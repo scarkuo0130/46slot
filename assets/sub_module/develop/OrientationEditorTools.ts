@@ -1,53 +1,56 @@
-import { _decorator, Asset, AssetManager, CCBoolean, CCInteger, Component, Enum, find, Node, Quat, serializeTag, Size, UITransform, Vec2, Vec3 } from 'cc';
-import {Orientation} from '../utils/Viewport';
+import { _decorator, Asset, AssetManager, CCBoolean, CCInteger, Component, Enum, EventHandler, find, instantiate, Node, Quat, serializeTag, Size, UITransform, Vec2, Vec3 } from 'cc';
+import {Orientation, Viewport} from '../utils/Viewport';
 const { ccclass, property, menu, help, disallowMultiple, executeInEditMode } = _decorator;
 import { Utils, _utilsDecorator } from '../utils/Utils';
-import { EditorTools } from './EditorTools';
 const { isDevelopFunction } = _utilsDecorator;
 
 @ccclass('OrientationData')
 export class OrientationData {
     
-    @property({type: String, displayName: '節點路徑', tooltip: '節點路徑'})
+    @property({displayName: '節點路徑', tooltip: '節點路徑'})
     public nodePath: string = '';
 
-    @property({type: Vec3, displayName: '座標', tooltip: '節點世界座標'})
+    @property({displayName: '座標', tooltip: '節點世界座標'})
     public position: Vec3 = new Vec3(0, 0, 0);
     
-    @property({type: Vec3, displayName: '縮放', tooltip: '節點世界縮放'})
+    @property({displayName: '縮放', tooltip: '節點世界縮放'})
     public scale: Vec3 = new Vec3(0, 0, 0);
 
-    // @property({type: Quat, displayName: '旋轉', tooltip: '節點世界旋轉'})
-    // public rotation: Quat = new Quat(0, 0, 0, 0);
-
-    @property({type: CCBoolean, displayName: '啟用', tooltip: '節點是否啟用'})
+    @property({displayName: '啟用', tooltip: 'active'})
     public active: boolean = true;
 
-    @property({type: String, displayName: '父節點路徑', tooltip: '父節點路徑'})
+    @property({displayName: '父節點路徑', tooltip: 'parentPath'})
     public parentPath: string = '';
 
-    @property({type: String, displayName: 'UUID', tooltip: '節點UUID'})
+    @property({displayName: '父節點', tooltip: 'parentNode'})
+    public parentNode : Node = null;
+
+    @property({displayName: 'UUID', tooltip: 'uuid'})
     public uuid: string = '';
 
-    @property({type:Node, displayName: '節點', tooltip: '節點'})
+    @property({type:Node, displayName: '節點', tooltip: 'node'})
     public node: Node = new Node();
 
-    @property({type: Size, displayName: 'UI Transform', tooltip: '節點UI Transform'})
+    @property({displayName: 'UI Transform', tooltip: '節點UI Transform'})
     public contentSize: Size = new Size();
     
-    @property({type: Vec2, displayName: '錨點', tooltip: '節點錨點'})
+    @property({displayName: '錨點', tooltip: '節點錨點'})
     public anchorPoint: Vec2 = new Vec2(0, 0);
 }
 
 
 @ccclass('OrientationEditorTools')
+@disallowMultiple(true)
 @executeInEditMode
 export class OrientationEditorTools extends Component {
-    @property({type: [OrientationData], displayName: '直版轉向資料', tooltip: '紀錄轉向資料'})
+    @property({type: [OrientationData], displayName: '直版轉向資料', tooltip: 'PortraitData'})
     public PortraitData = [];
 
-    @property({type: [OrientationData], displayName: '橫版轉向資料', tooltip: '紀錄轉向資料'})
+    @property({type: [OrientationData], displayName: '橫版轉向資料', tooltip: 'LandscapeData'})
     public LandscapeData = [];
+
+    @property({type:[Node], displayName: '紀錄節點', tooltip: 'saveNodes' })
+    public saveNodes: Node[] = [];
 
     private _orientation: Orientation = Orientation.PORTRAIT;
     @property({type:Enum(Orientation), displayName: '轉向設定', tooltip: '紀錄目前的轉向設定'})
@@ -60,15 +63,23 @@ export class OrientationEditorTools extends Component {
 
     @property({type:CCBoolean, displayName: '儲存轉向資料', tooltip: '是否儲存轉向資料'})
     public set SaveOrientationData(value: boolean) {
-        let canvas = find('Canvas');
-        if ( canvas == null ) return;
-        canvas.children.forEach( (child:Node) => OrientationEditorTools.instance.onCheckOrientationNode(this._orientation, child, this.saveOrientationData, 'Canvas') );
+        if ( this.saveNodes.length === 0 ) return;
+        this.saveNodes.forEach( (node:Node) => OrientationEditorTools.instance.onCheckOrientationNode(this._orientation, node, this.saveOrientationData, 'Canvas') );
     }
-
     public get SaveOrientationData() { return false; }
-    
+    public viewport : Viewport;
     public static instance: OrientationEditorTools = null;
-    public onLoad(): void { OrientationEditorTools.instance = this; }
+    public onLoad(): void { 
+        OrientationEditorTools.instance = this; 
+        this.viewport = Viewport.instance;
+
+        let event             = new EventHandler();
+        event.target          = this.node;
+        event.component       = 'OrientationEditorTools';
+        event.handler         = 'onOrientationChange';
+        event.customEventData = '';
+        this.viewport.addOrientationChangeEventHandler(event);
+    }
 
     // 變更轉向設定
     onOrientationChange( orientation: Orientation ): void {
@@ -82,11 +93,12 @@ export class OrientationEditorTools extends Component {
             node.active = item.active;
             node.setPosition(item.position);
             node.setScale(item.scale);
+            node.parent = item.parentNode;
             
             let uiTransform : UITransform = node.getComponent(UITransform);
-            if ( uiTransform != null) {
-                uiTransform.contentSize = new Size(item.contentSize);
-                uiTransform.anchorPoint = new Vec2(item.anchorPoint);
+            if ( uiTransform != null ) {
+                uiTransform.contentSize = item.contentSize;
+                uiTransform.anchorPoint = item.anchorPoint;
             }
         });
     }
@@ -124,6 +136,7 @@ export class OrientationEditorTools extends Component {
         data.parentPath = parentPath;
         data.uuid = node.uuid;
         data.active = node.active;
+        data.parentNode = node.parent;
 
         let uiTransform : UITransform = node.getComponent(UITransform);
         if ( uiTransform != null ) {

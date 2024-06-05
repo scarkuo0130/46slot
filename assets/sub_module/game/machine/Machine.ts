@@ -9,7 +9,7 @@ import { BigWin, BIGWIN_TYPE } from './BigWin';
 import { Paytable } from './pay/PayTable';
 import { Utils, _utilsDecorator } from '../../utils/Utils';
 import { DataManager } from '../../data/DataManager';
-import { SimbpleAudioClipData, SoundManager } from './SoundManager';
+import { SimpleAudioClipData, SoundManager } from './SoundManager';
 import { FeatureGame } from './FeatureGame/FeatureGame';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
@@ -62,8 +62,8 @@ export class MachineInscept {
     public featureGamePath = "";
 
 
-    @property( { type: SimbpleAudioClipData, displayName: 'SpinAudioClip', tooltip: '播放Spin音效', group: { name: 'SpinMode', id: '1' } } )
-    public spinAudio: SimbpleAudioClipData;
+    @property( { type: SimpleAudioClipData, displayName: 'SpinAudioClip', tooltip: '播放Spin音效', group: { name: 'SpinMode', id: '1' } } )
+    public spinAudio: SimpleAudioClipData;
 
     public controller: Controller;
 }

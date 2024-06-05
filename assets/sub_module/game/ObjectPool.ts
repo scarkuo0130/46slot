@@ -1,72 +1,73 @@
 import { _decorator, Component, Node, NodePool, instantiate, Vec3, Material, sp } from 'cc';
-import { Utils, _utilsDecorator } from '../utils/Utils';
-import { Symbol } from '../game/machine/Symbol';
-import { SCATTER_ID, WILD_ID } from './GameInformation';
-const { ccclass, property } = _decorator;
+import { _utilsDecorator } from '../utils/Utils';
+const { ccclass, property, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
-@ccclass('ObjectPool_ObjectData')
-export class ObjectPool_ObjectData {
+@ccclass('objectData')
+export class objectData {
     @property({ displayName:"ID", tooltip:"(id)取出物件代號" })
     public id : number = 0;
 
     @property({ type:Node, displayName:"Node", tooltip:"(ob)物件原型" })
-    public ob : Node;
+    public node : Node;
 }
 
-
+/**
+ * @class ObjectPool
+ * @description 物件池, 用來管理可重複利用物件的回收與取出
+ */
 @ccclass('ObjectPool')
+@disallowMultiple(true)
 export class ObjectPool extends Component {
-    @property({displayName:'RegistNodeID', type:[ObjectPool_ObjectData], tooltip:'(registNodeArray)設定物件原型'})
-    public registNodeArray:ObjectPool_ObjectData[] = [];
+    @property({displayName:'註冊物件原型', type:[objectData], tooltip:'registNodeArray'})
+    public mapObjectList:objectData[] = [];
 
     public static Instance : ObjectPool;
-    public static RegistNodeData = {};
+    public static originNodeData = {};
     public static Pool = {};
     public _goAway : Vec3;
-
-    @property({type:Material})
-    public materialGray:Material ;
-    @property({type:Material})
-    public materialSpine:Material ;
-    @property
-    public grayMode:boolean = false ;
 
     public onLoad(): void {
         this._goAway = new Vec3(5000,5000,5000);
         ObjectPool.Instance = this;
-        ObjectPool.RegistNodeData = {};
+        ObjectPool.originNodeData = {};
         ObjectPool.Pool = {};
         this.initNodeData();
     }
-
+    
     public start(): void {
         this.node.active = false;
         this.debugPool();
     }
 
+    /**
+     * @description 初始化物件池
+     */
     protected initNodeData() {
-        if ( this.registNodeArray === null ) return;
-        if ( this.registNodeArray.length === 0 ) return;
+        if ( this.mapObjectList === null ) return;
+        if ( this.mapObjectList.length === 0 ) return;
 
-        for(let i in this.registNodeArray) {
-            let nodeData : ObjectPool_ObjectData = this.registNodeArray[i];
+        for(let i in this.mapObjectList) {
+            let nodeData : objectData = this.mapObjectList[i];
             if ( nodeData === null ) continue;
-            let id = nodeData.id;
-            let node = nodeData.ob;
+            let [id, node] = [nodeData.id, nodeData.node];
             ObjectPool.registerNode(id, node);
         }
     }
 
-    public static registerNode(id:string, node:Node) : boolean {
-        if ( !id?.length ) return false;
-        if ( node == null ) return false;
-        if ( ObjectPool.RegistNodeData[id] ) return false;
-
-        ObjectPool.RegistNodeData[id] = node;
+    /**
+     * @description 註冊物件原型
+     * @param id  {string | number} 物件代號
+     * @param node { Node } 物件原型
+     * @returns { boolean } 是否註冊成功
+     */
+    public static registerNode(id:string|number, node:Node) : boolean {
+        if ( id == null || node == null || ObjectPool.originNodeData[id] ) return false;
+    
+        ObjectPool.originNodeData[id] = node;
         ObjectPool.Pool[id] = new NodePool();
         node.active = false;
-
+    
         ObjectPool.Instance.node.addChild(node);
         return true;
     }
@@ -84,7 +85,7 @@ export class ObjectPool extends Component {
         });
         console.log(ObjectPool.Instance);
         console.log('ObjectPool total:'+total, data);
-        console.log('register:', ObjectPool.RegistNodeData);
+        console.log('register:', ObjectPool.originNodeData);
     }
 
     @isDevelopFunction(true)
@@ -93,58 +94,38 @@ export class ObjectPool extends Component {
         return ObjectPool.debugConsole();
     }
 
+    /**
+     * @description 取出物件
+     * @param id {string | number} 物件代號
+     * @returns { Node } 取出物件
+     */
     public static Get(id) {
         if ( id == null ) return null;
-        let ob;
-        let pool:NodePool = ObjectPool.Pool[id];
 
-        if ( ObjectPool.Pool[id] != null && pool.size() > 0 ) {
-            ob = pool.get();
-            
-        } else {
-            if ( ObjectPool.RegistNodeData[id] == null ) return null;
-            ob = instantiate(ObjectPool.RegistNodeData[id]);
-        }
-        this.onGray(ob);
-        return ob;
+        let pool:NodePool = ObjectPool.Pool[id];
+        if ( pool != null && pool.size() > 0 ) {
+            return pool.get();
+        } 
+
+        if ( ObjectPool.originNodeData[id] == null ) return null;
+        return instantiate(ObjectPool.originNodeData[id]);
     }
 
-    public static Put(id:any, ob:Node) {
-        if ( ob == null ) return;
-        if ( id == null ) return;
-
-        if ( ObjectPool.Pool[id] == null ) ObjectPool.Pool[id] = new NodePool();
+    /**
+     * @description 回收物件
+     * @param id {string | number} 物件代號
+     * @param ob { Node } 物件
+     */
+    public static Put(id:string|number, ob:Node) {
+        if ( ob == null || id == null ) return;
+        
+        let pool = ObjectPool.Pool[id];
+        if ( pool == null ) pool = ObjectPool.Pool[id] = new NodePool();
         
         ob.active = false;
         ObjectPool.Instance.node.addChild(ob);
         ob.setPosition(this.Instance._goAway);
-
-        ObjectPool.Pool[id].put(ob);
-    }
-
-    public static PutSymbols(obs:Node[]) {
-        if ( !obs?.length ) return;
-
-        for(let i in obs) {
-            let ob = obs[i];
-            if ( ob == null ) continue;
-            let id = ob.getComponent('Symbol').id;
-            ObjectPool.Put(id, ob);
-        }
-    }
-    
-    public static setGray(set:boolean) { this.Instance.grayMode = set ;}
-    public static onGray(ob:any) {
-        let symbol = (ob as Node).getComponent( Symbol );
-        if (symbol !== null){
-            if  (WILD_ID === (symbol.symID)) return ;
-            if  (SCATTER_ID === (symbol.symID)) return ;
-            let spine = symbol.inscept.spineInscept.spine.getComponent<sp.Skeleton>( sp.Skeleton );
-            if (this.Instance.grayMode === true) 
-                spine.customMaterial = this.Instance.materialGray ;
-            else
-                spine.customMaterial = this.Instance.materialSpine ;    
-        } 
+        pool.put(ob);
     }
 }
 

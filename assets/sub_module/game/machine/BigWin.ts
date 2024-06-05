@@ -2,7 +2,7 @@ import { _decorator, Component, tween, sp, Color, Label, EventHandler, Vec3, Aud
 import { gameInformation } from '../GameInformation';
 import { Machine } from './Machine';
 import { Utils } from '../../utils/Utils';
-import { SimbpleAudioClipData, SoundManager } from './SoundManager';
+import { SimpleAudioClipData, SoundManager } from './SoundManager';
 import { SpineRepeatTool } from '../../utils/SpineRepeatTool';
 const { ccclass, property } = _decorator;
 

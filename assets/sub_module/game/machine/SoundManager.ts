@@ -1,6 +1,6 @@
 import { _decorator, AudioClip, AudioSource, CCFloat, CCInteger, Component, Enum, Node, tween, game } from 'cc';
 import { Utils } from '../../utils/Utils';
-const { ccclass, property } = _decorator;
+const { ccclass, property, disallowMultiple } = _decorator;
 
 export enum PLAY_MODE {
     NORMAL = 0,
@@ -13,8 +13,8 @@ export enum TYPE_SOUND {
     IS_MUSIC = 1,
 }
 
-@ccclass('SimbpleAudioClipData')
-export class SimbpleAudioClipData {
+@ccclass('SimpleAudioClipData')
+export class SimpleAudioClipData {
     @property({type:AudioClip, displayName:"Clip", tooltip:"音效內容(mp3)"})
     public clip: AudioClip;
 
@@ -27,20 +27,27 @@ export class SimbpleAudioClipData {
 
 @ccclass('AudioClipData')
 export class AudioClipData {
-    @property({displayName:'SoundID', tooltip:'播放ID設定'})
+    @property({displayName:'播放ID設定', tooltip:'id'})
     public id: string = "";
 
-    @property({type:AudioClip, displayName:"Clip", tooltip:"音效內容(mp3)"})
+    @property({displayName:'播放用途', tooltip:'description 僅於記錄查詢'})
+    public description: string = "";
+
+    @property({type:AudioClip, displayName:"音效檔(mp3)", tooltip:"clip"})
     public clip: AudioClip;
 
-    @property({type:CCFloat, displayName:"Volume", tooltip:"播放音量0.1 ~ 1", min:0.1, max:1, step:0.1})
+    @property({type:CCFloat, displayName:"音量", tooltip:"volume", min:0.1, max:1, step:0.1})
     public volume: number = 0.8;
 
-    @property({type:Enum(TYPE_SOUND), displayName:'Type', tooltip:'屬於音效還是音樂'})
-    public isMusic: TYPE_SOUND = TYPE_SOUND.IS_SOUND;
+    @property({type:Enum(TYPE_SOUND), displayName:'屬於音效還是音樂', tooltip:'soundType'})
+    public soundType: TYPE_SOUND = TYPE_SOUND.IS_SOUND;
+
+    @property({displayName:'是否過慮同音效播放', tooltip:'isQueue', visible: function(this:AudioClipData) { return this.soundType === TYPE_SOUND.IS_SOUND; }})
+    public isQueue: boolean = true;
 }
 
 @ccclass('SoundManager')
+@disallowMultiple(true)
 export class SoundManager extends Component {
 
     @property({type:[AudioClipData], displayName:'SoundList', tooltip:'音效設定列表'})
@@ -56,7 +63,6 @@ export class SoundManager extends Component {
 
     public static soundData : {};
 
-    //#region 音效播放模式
     public static mode: PLAY_MODE = PLAY_MODE.NORMAL;
     public static getMode() { return SoundManager.mode; }
     public static setMode(mode: PLAY_MODE) : PLAY_MODE
@@ -76,7 +82,6 @@ export class SoundManager extends Component {
 
         return mode;
     }
-    //#endregion
 
     public soundAudioSource : AudioSource[] = [];
     public musicAudioSource : AudioSource;
@@ -157,7 +162,7 @@ export class SoundManager extends Component {
         let sound : AudioClipData = SoundManager.soundData[id];
         if (sound == null) return;
 
-        if ( sound.isMusic == TYPE_SOUND.IS_MUSIC) {
+        if ( sound.soundType == TYPE_SOUND.IS_MUSIC) {
             let audioSource = SoundManager.Instance.musicAudioSource;
             SoundManager.lastMusicID = id;
             if ( SoundManager.isMute === true ) return;
@@ -257,7 +262,7 @@ export class SoundManager extends Component {
         return SoundManager.Instance.soundAudioSource[SoundManager.lastPlayIdx];
     }
 
-    private static queuePlaySoundList : SimbpleAudioClipData[] = [];
+    private static queuePlaySoundList : SimpleAudioClipData[] = [];
 
     /**
      * @param clip 音樂
@@ -278,7 +283,7 @@ export class SoundManager extends Component {
         return auSource;
     }
 
-    public static async queuePlayerSound(data:SimbpleAudioClipData) {
+    public static async queuePlayerSound(data:SimpleAudioClipData) {
 
         // console.log(this.queuePlaySoundList);
         if ( this.queuePlaySoundList.length != 0 ) {
@@ -302,7 +307,7 @@ export class SoundManager extends Component {
         }
     }
 
-    public static playSoundData(data:SimbpleAudioClipData, ququPlay:boolean=true) {
+    public static playSoundData(data:SimpleAudioClipData, ququPlay:boolean=true) {
         if ( data == null ) return null;
         if ( data.clip === null ) return null;
         if ( ququPlay === true ) return this.queuePlayerSound(data);

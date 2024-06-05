@@ -2,7 +2,7 @@ import { _decorator, Component, Node, tween } from 'cc';
 import { Paytable } from './PayTable';
 import { Utils } from '../../../utils/Utils';
 import { Symbol } from '../Symbol';
-import { SimbpleAudioClipData, SoundManager } from '../SoundManager';
+import { SimpleAudioClipData, SoundManager } from '../SoundManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Payway')
@@ -10,8 +10,8 @@ export class Payway extends Paytable {
     @property({ displayName: 'PerformAllWaysSec(millisecond)', tooltip: '全部得獎播放時間(微秒)', group: { name: 'Payway', id: '0' } })
     performAllWaysSec = 2000;
 
-    @property({ type: SimbpleAudioClipData, displayName: 'PaylineAudio', tooltip: '賠付線跑線音' })
-    public paylineAudio: SimbpleAudioClipData = new SimbpleAudioClipData();
+    @property({ type: SimpleAudioClipData, displayName: 'PaylineAudio', tooltip: '賠付線跑線音' })
+    public paylineAudio: SimpleAudioClipData = new SimpleAudioClipData();
 
     protected performAllLineTween;
     protected performSymbols: Symbol[] = [];
@@ -67,7 +67,7 @@ export class Payway extends Paytable {
         console.log(waysData);
         let symbol_id = waysData['symbol_id'];
         let symbols = this.machine.reel.getSymbolFromID(symbol_id);
-        symbols.forEach(sym => { sym.winState(); });
+        symbols.forEach(sym => { sym.win(); });
         this.performSymbols = this.performSymbols.concat(symbols);
 
         if (isAllLine === true) return;
@@ -86,7 +86,7 @@ export class Payway extends Paytable {
         for (let i in this.performSymbols) {
             let symbol: Symbol = this.performSymbols[i];
             if (symbol == null) continue;
-            symbol.normalState();
+            symbol.normal();
         }
 
         this.performSymbols = [];

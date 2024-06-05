@@ -34,17 +34,12 @@ export class Wheel extends WheelLibrary {
         return new Vec2(idxRange[0], idxRange[1]);
     }
 
-
-    // #region WHEEL STATE
     protected _state: WHEEL_STATE = WHEEL_STATE.STATE_NORMAL;
     public get state(): WHEEL_STATE { return this._state; }
     protected changeState(state: WHEEL_STATE) {
         this._state = state;
         return this._state;
     }
-    // #endregion  WHEEL STATE
-
-
 
     onLoad() {
         if (this.checkInscept() === false) {
@@ -55,7 +50,12 @@ export class Wheel extends WheelLibrary {
     }
 
     protected start(): void {
-        this.startPutSymbol();
+        this.initNodeData();
+        Utils.delay(1000).then(() => this.startPutSymbol());
+    }
+
+    private initNodeData() {
+        
     }
 
     /**

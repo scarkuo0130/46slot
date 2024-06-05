@@ -1,7 +1,7 @@
 import { _decorator, Color, Button, Component, EventHandle, EventHandler, Label, Node, Quat, sp, Sprite, SpriteFrame, tween, UIOpacity } from 'cc';
 import { Machine, MACHINE_STATE, MACHINE_STATUS } from './Machine';
-import { SPIN_MODE } from './Reel_bak';
-import { SoundManager, PLAY_MODE, SimbpleAudioClipData } from './SoundManager';
+import { SPIN_MODE } from './Reel';
+import { SoundManager, PLAY_MODE, SimpleAudioClipData } from './SoundManager';
 import { Game } from '../Game';
 import { gameInformation } from '../GameInformation';
 import { DataManager } from '../../data/DataManager';
@@ -147,8 +147,8 @@ export class ControllerInscept {
     @property( { type: Node, displayName: 'BuyFeatureButtonNode', tooltip: '購買FeatureGame的按鈕的Node', group: { name: 'BuyFeatureGame', id: '0' } } )
     public buyFeatureGameButtonNode: Node;
 
-    @property( { type: SimbpleAudioClipData, displayName: 'PressBtnAudio', tooltip: '按鍵共用音效', group: { name: 'Audio', id: '0' } } )
-    public pressBtnAudio: SimbpleAudioClipData;
+    @property( { type: SimpleAudioClipData, displayName: 'PressBtnAudio', tooltip: '按鍵共用音效', group: { name: 'Audio', id: '0' } } )
+    public pressBtnAudio: SimpleAudioClipData;
 
     @property( { type: [ Node ], displayName: 'HoverHands', tooltip: '新增hover小手', group: { name: 'Button', id: '0' } } )
     public clickHoverNodes: Node[] = [];

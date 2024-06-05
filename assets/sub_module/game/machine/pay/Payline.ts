@@ -5,7 +5,7 @@ import { Paytable, PAYTABLE_TYPE } from './PayTable';
 import { Utils } from '../../../utils/Utils';
 import { ObjectPool } from '../../ObjectPool';
 import { Symbol } from '../Symbol';
-import { SimbpleAudioClipData, SoundManager } from '../SoundManager';
+import { SimpleAudioClipData, SoundManager } from '../SoundManager';
 import { gameInformation } from '../../GameInformation';
 const { ccclass, property } = _decorator;
 
@@ -21,8 +21,8 @@ export class Payline extends Paytable {
     @property({ displayName:'DisplayTime', tooltip:'全獎播放時間(毫秒)', max:10000, min:100, step:100 })
     public showAllLineSec = 1000;
 
-    @property({type:SimbpleAudioClipData, displayName:'PaylineAudio', tooltip:'賠付線跑線音'})
-    public paylineAudio : SimbpleAudioClipData = new SimbpleAudioClipData();
+    @property({type:SimpleAudioClipData, displayName:'PaylineAudio', tooltip:'賠付線跑線音'})
+    public paylineAudio : SimpleAudioClipData = new SimpleAudioClipData();
 
     protected override paytableType = PAYTABLE_TYPE.PAYLINE;
 
@@ -135,7 +135,7 @@ export class Payline extends Paytable {
             showSymbol.setWorldPosition(symbol.getWorldPosition());
             showSymbol.active = true;
             symbol.active = false;
-            showSymbol.getComponent(Symbol).winState();
+            showSymbol.getComponent(Symbol).win();
             showSymbol.getComponent(Symbol).machine = this.machine;
             this.showSymbols.push(showSymbol);
         }

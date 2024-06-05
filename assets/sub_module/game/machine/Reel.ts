@@ -2,6 +2,7 @@ import { _decorator, CCFloat, CCInteger, Component, EventHandler, EventTarget, N
 import { Utils, _utilsDecorator } from '../../utils/Utils';
 import { Wheel } from './Wheel';
 import { Symbol } from './Symbol';
+import { objectPrototype } from 'mobx/dist/internal';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -23,7 +24,6 @@ export enum SPIN_MODE {
 
 export const SPIN_MODE_DATA = [ SPIN_MODE.NORMAL_MODE, SPIN_MODE.QUICK_MODE, SPIN_MODE.TURBO_MODE ];
 
-//#region Inspector
 /**
  * 啟動滾輪設定
  */
@@ -110,11 +110,9 @@ export class SymbolInspect {
     @property ({type:[SymbolNearMiss], displayName:'聽牌Symbol設定', tooltip:'哪些Symbol要做聽牌效果'})
     public symbolNearMiss: SymbolNearMiss[] = [];
 }
-//#endregion Inspector
 
 @ccclass('Reel')
 export class Reel extends Component {
-    //#region Inspector
     @property ({type:Node, displayName:'滾輪容器', tooltip:'滾輪容器', group:{'name':'滾輪容器'}})
     private mContainer = null;
 
@@ -129,7 +127,6 @@ export class Reel extends Component {
 
     @property ({displayName:'Symbol設定', tooltip:'Symbol設定', group:{'name':'Symbol設定與聽牌設定'}})
     protected symbolInspect: SymbolInspect = new SymbolInspect();
-    //#endregion Inspector
 
     protected properties: any = {
         machine         : null,   // 機台 { Machine }
@@ -163,7 +160,6 @@ export class Reel extends Component {
 
     protected onLoad() {
         this.properties.container = this.mContainer;
-
         this.changeState(REEL_STATE.INIT_STATE);
     }
 
@@ -173,8 +169,18 @@ export class Reel extends Component {
         this.initStopRollingData();
         this.initRollingTime();
         this.changeState(REEL_STATE.NORMAL_STATE);
+        this.initNodeData();
 
-        console.log(this.properties);
+        this.developStart();
+    }
+
+    @isDevelopFunction(true)
+    private developStart() { cc.reel = this; }
+
+    private initNodeData() {
+        Object.defineProperty(this.node, 'reel',    { get: () => this });
+        Object.defineProperty(this.node, 'machine', { get: () => this.properties.machine });
+        Object.defineProperty(this.node, 'wheels',  { get: () => this.getWheels() });
     }
 
     public getWheels (): Wheel[] { return this.properties.wheels; }
@@ -271,7 +277,7 @@ export class Reel extends Component {
      */
     protected get isNearMiss() : boolean { return this.properties.nearMiss >=0; }
 
-    //#region 滾輪速度設定 Norma,Quick,Turbo SPIN_MODE
+    // 滾輪速度設定 Norma,Quick,Turbo SPIN_MODE
     public setSpinMode ( mode: SPIN_MODE ): SPIN_MODE { return this.properties.mode = mode; }
     public get spinMode() { return this.properties.mode; }
 
@@ -281,35 +287,34 @@ export class Reel extends Component {
      * @returns 
      */
     public getSpinMode (): SPIN_MODE { return this.spinMode; }
-    //#endregion 滾輪速度設定
+    // 滾輪速度設定
 
-    //#region 快速停輪 isFastStoping
+    //快速停輪 isFastStoping
     protected get isFastStoping():boolean { return this.properties.isFastStoping; }
     public set fastStoping(value:boolean) { this.properties.isFastStoping = value; }
-    //#endregion 快速停輪
+    // 快速停輪
 
-    //#region 設定停輪事件 stopingHandler
+    //設定停輪事件 stopingHandler
     /** 設定停輪 Handler */
     public setStopingHandler(handler: EventHandler) { this.properties.handler.stoping = handler; }
     /** 移除停輪 Handler */
     public removeStopingHandler() {  this.properties.handler.stoping = null; }
-    //#endregion 設定停輪事件 stopingHandler
+    //設定停輪事件 stopingHandler
 
-    //#region 狀態 REEL_STATE
+    //狀態 REEL_STATE
     public get state() { return this.properties.state; }
     private changeState ( state: REEL_STATE ) { this.properties.state = state; }
-    //#endregion 狀態
 
-    //#region machine
+    //machine
     public get machine() { return this.properties.machine; }
     public setMachine(machine:any) { this.properties.machine = machine; }
-    //#endregion machine
+    //machine
 
-    //#region 設定盤面結果 result 
+    //設定盤面結果 result 
     public get result() { return this.properties.result; }
     public setResult(result:any) { 
         this.properties.result = result; }
-    //#endregion result
+    //result
 
     public get container() { return this.properties.container; }
 
@@ -444,7 +449,7 @@ export class Reel extends Component {
         let position = symbol.worldPosition;
         symbol.parent = container;
         symbol.worldPosition = position;
-        symbol.getComponent(Symbol).stopState();
+        symbol?.drop();
 
         this.properties.showDropSymbols[wheelID].push(symbol);
     }

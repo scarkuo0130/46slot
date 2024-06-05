@@ -1,6 +1,6 @@
-import { _decorator, Component, Node, Size, Enum, sp, Vec3 } from 'cc';
-import { Reel } from '../Reel_bak';
-import { SimbpleAudioClipData, SoundManager } from '../SoundManager';
+import { _decorator, Component, Node, Size, Enum, sp, Vec3, CCInteger } from 'cc';
+import { Reel } from '../Reel';
+import { SimpleAudioClipData, SoundManager } from '../SoundManager';
 import { Symbol } from '../Symbol';
 import { ObjectPool } from '../../ObjectPool';
 import { Wheel } from '../Wheel';
@@ -17,15 +17,15 @@ const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 /**
  * 轉輪基本設定
  */
-@ccclass('BaseInscept')
-export class BaseInscept {
-    @property({type: Size, displayName: 'Symbol大小設定', tooltip: 'Symbol pixel大小'})
+@ccclass('BaseInspect')
+export class BaseInspect {
+    @property({displayName: 'Symbol大小設定', tooltip: 'Symbol pixel大小'})
     public symbolSize: Size = new Size(100, 100);
 
-    @property({displayName:'滾輪長度', min: 1, max: 99, step: 1, type: Number, tooltip: '裝幾個Symbol'})
+    @property({type:CCInteger, displayName:'滾輪長度', min: 1, max: 99, step: 1, type: Number, tooltip: '裝幾個Symbol'})
     public length: number = 4;
 
-    @property({type: Size, displayName: '隱藏數量(上,下)', tooltip: '上下軸隱藏幾個Symbol'})
+    @property({displayName: '隱藏數量(上,下)', tooltip: '上下軸隱藏幾個Symbol'})
     public hideSize: Size = new Size(1, 1);
 
     @property({type:Node, displayName: 'Symbol容器', tooltip: 'Symbol容器'})
@@ -45,14 +45,14 @@ export class BaseInscept {
 @ccclass('AudioInscept')
 export class AudioInscept {
 
-    @property({ type: SimbpleAudioClipData, displayName: '啟動音效', tooltip: '啟動音效' })
-    public startAudio: SimbpleAudioClipData = new SimbpleAudioClipData();
+    @property({ type: SimpleAudioClipData, displayName: '啟動音效', tooltip: '啟動音效' })
+    public startAudio: SimpleAudioClipData = new SimpleAudioClipData();
     
-    @property({ type: SimbpleAudioClipData, displayName: '停輪音效', tooltip: '停輪音效' })
-    public stopAudio: SimbpleAudioClipData = new SimbpleAudioClipData();
+    @property({ type: SimpleAudioClipData, displayName: '停輪音效', tooltip: '停輪音效' })
+    public stopAudio: SimpleAudioClipData = new SimpleAudioClipData();
 
-    @property({ type: SimbpleAudioClipData, displayName: '聽牌音效', tooltip: '聽牌音效' })
-    public nearAudio: SimbpleAudioClipData = new SimbpleAudioClipData();
+    @property({ type: SimpleAudioClipData, displayName: '聽牌音效', tooltip: '聽牌音效' })
+    public nearAudio: SimpleAudioClipData = new SimpleAudioClipData();
 }
 
 /**
@@ -157,8 +157,8 @@ export async function awaitCallLibaryFunction(obj:any, func:string, ...args:any[
 @ccclass('WheelLibrary')
 export class WheelLibrary extends Component {
     //#region 設定
-    @property({ type:BaseInscept, displayName: '基礎設定', group: { name: '基礎設定', id: '0' } })
-    public readonly baseInscept: BaseInscept = new BaseInscept();
+    @property({ type:BaseInspect, displayName: '基礎設定', group: { name: '基礎設定', id: '0' } })
+    public readonly baseInscept: BaseInspect = new BaseInspect();
 
     @property({ type: AudioInscept, displayName: '音效設定', tooltip: '音效設定', group: { name: '音效設定', id: '0' } })
     public readonly audioInscpect: AudioInscept = new AudioInscept();
@@ -345,9 +345,7 @@ export class WheelLibrary extends Component {
     /**
      * 初始化滾輪設定
      */
-    protected initRolling() {
-        this.rollingInscept.initProperty(this.node.getComponent(Wheel));
-    }
+    protected initRolling() { this.rollingInscept.initProperty(this.node.getComponent(Wheel)); }
 
     protected initStartRolling() { this.startRolling.initProperty(this.node.getComponent(Wheel)); }
 
@@ -382,12 +380,11 @@ export class WheelLibrary extends Component {
      * @param idx    {number} 放置位置
      * @returns      {boolean} 是否成功放置
      */
-    public putSymbol(symbol: Node, idx: number): boolean {
+    public putSymbol(symbol: any, idx: number): boolean {
         if (symbol == null) return false;
 
         let container   = this.container;
-        let sym         = symbol.getComponent(Symbol);
-        let size        = sym._symbolSize;
+        let size        = symbol.size;
         let pos         = this.getSymbolPutPos(idx, size);
 
         this.setSymbolMachine(symbol);
@@ -396,7 +393,7 @@ export class WheelLibrary extends Component {
         symbol.active = true;
         
         // 大型 symbol 設置
-        if (size.y > 1) {
+        if (size?.height > 1) {
             for (let i = 0; i < size.y; i++) {
                 this.setSymbolData(symbol, (idx - i));
             }
@@ -404,7 +401,6 @@ export class WheelLibrary extends Component {
             this.setSymbolData(symbol, idx);
         }
 
-        sym.setWheelPosition(0, idx);
         return true;
     }
 
@@ -478,7 +474,7 @@ export class WheelLibrary extends Component {
         let sym = symbol.getComponent<Symbol>(Symbol);
         symbolData[idx]['symbol'] = symbol;
         symbolData[idx]['id'] = sym.symID;
-        symbolData[idx]['size'] = sym._symbolSize;
+        symbolData[idx]['size'] = symbol?.size;
         symbolData[idx]['uuid'] = symbol.uuid;
     }
 
@@ -553,12 +549,12 @@ export class WheelLibrary extends Component {
     /**
      * 將所有圖標設定為模糊狀態
      */
-    public allBlurSymbol() { this.symbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).moveState()); }
+    public allBlurSymbol() { this.symbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).moving()); }
 
     /**
      * 將所有圖標設定為正常狀態
      */
-    public allNormalSymbol() { this.symbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).normalState()); }
+    public allNormalSymbol() { this.symbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).normal()); }
 
     /**
      * 取得亂數 symbol 編號

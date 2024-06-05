@@ -169,10 +169,9 @@ export class PayCascading extends Paytable {
         let wheels: any = this.machine.reel.getWheels();
         let symbol = wheels[ x ].getSymbol( 0, y );
         if ( symbol === null ) return;
-        let symbolComponent = symbol.getComponent( Symbol );
-        symbolComponent.winState();
-        // await Utils.delay(this.cascadingWinSec * 1000);
-        // wheels[x].cascadingIndex(y);
+        
+        symbol?.win();
+
         return symbol;
     }
 

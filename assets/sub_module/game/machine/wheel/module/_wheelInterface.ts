@@ -1,6 +1,6 @@
 import { _decorator, Size, Node, Enum, sp } from 'cc';
 import { Wheel } from '../../Wheel';
-import { SimbpleAudioClipData } from '../../SoundManager';
+import { SimpleAudioClipData } from '../../SoundManager';
 import { StartRolling1 } from './_rolling_type/StartRolling1';
 import { StartRolling2 } from './_rolling_type/StartRolling2';
 import { RollingType } from './_rolling_type/RollingType';

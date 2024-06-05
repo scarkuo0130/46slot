@@ -80,7 +80,6 @@ export class wheelCascade extends Wheel {
             }
         } ).start();
         symbol.active = true;
-        SoundManager.playSoundData( symbolComponent.inscept.dropAudio );
     }
 
     public fillSymbol ( add_symbols: number[] ) {
@@ -114,7 +113,7 @@ export class wheelCascade extends Wheel {
             newSym.setPosition( fromPos );
             newSym.active = true;
             let symbol: Symbol = newSym.getComponent( Symbol );
-            symbol.winState();
+            symbol.win();
             this.fallPos( newSym, toIdx );
             this.putSymbol( newSym, toIdx );
         }

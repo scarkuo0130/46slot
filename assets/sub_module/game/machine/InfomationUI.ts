@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Toggle } from 'cc';
-import { SimbpleAudioClipData, SoundManager } from './SoundManager';
+import { SimpleAudioClipData, SoundManager } from './SoundManager';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
 @ccclass('InfomationUI')
@@ -26,7 +26,7 @@ export class InfomationUI extends Component {
     @property({type:Toggle, displayName:'Toggle3', group:{name:'ToggleSetting', id:'1'} })
     public toggle3:Toggle;
 
-    @property({type:SimbpleAudioClipData})
+    @property({type:SimpleAudioClipData})
     public pressBtnAudio;
 
     public pageData = {};
