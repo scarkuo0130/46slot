@@ -1,0 +1,1220 @@
+{
+"skeleton": { "hash": "ZXYUgqoZgvReIY8RRsB0aphd/sg", "spine": "3.8.72" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "spin", "parent": "root" },
+	{ "name": "btn_stop", "parent": "spin" },
+	{ "name": "spin_r", "parent": "btn_stop", "x": 5, "y": 2 },
+	{ "name": "stop_gear_base", "parent": "btn_stop", "x": 4.5, "y": 2 },
+	{ "name": "stop_gear_frame", "parent": "btn_stop", "x": 4, "y": 2.5 },
+	{ "name": "stop_stop", "parent": "btn_stop", "x": 4.5, "y": -5.5 },
+	{ "name": "btn_spin", "parent": "spin" },
+	{ "name": "spin_g", "parent": "btn_spin", "x": 5, "y": 2 },
+	{ "name": "spin_gear _base", "parent": "btn_spin", "x": 4.5, "y": 2 },
+	{ "name": "spin_gear_frame", "parent": "btn_spin", "x": 4, "y": 2.5 },
+	{ "name": "spin_arrow_T", "parent": "btn_spin" },
+	{ "name": "spin_arrow", "parent": "spin_arrow_T", "x": 6.5, "y": 3.5 },
+	{ "name": "spin_smoke", "parent": "spin" },
+	{ "name": "spin_glow", "parent": "spin", "x": 1, "y": 1.5 }
+],
+"slots": [
+	{ "name": "spin_r", "bone": "spin_r" },
+	{ "name": "stop_gear_base", "bone": "stop_gear_base" },
+	{ "name": "stop_gear_frame", "bone": "stop_gear_frame" },
+	{ "name": "stop_stop", "bone": "stop_stop" },
+	{ "name": "FREE", "bone": "stop_stop" },
+	{ "name": "spin_r2", "bone": "spin_r" },
+	{ "name": "spin_r3", "bone": "spin_r" },
+	{ "name": "spin_gear _base", "bone": "spin_gear _base" },
+	{ "name": "spin_gear_frame", "bone": "spin_gear_frame" },
+	{ "name": "spin_g", "bone": "spin_g", "blend": "additive" },
+	{ "name": "spin_arrow_O", "bone": "spin_arrow" },
+	{ "name": "spin_arrow", "bone": "spin_arrow" },
+	{ "name": "spin_arrow2", "bone": "spin_arrow", "blend": "additive" },
+	{ "name": "spin_arrow3", "bone": "spin_arrow", "blend": "additive" },
+	{ "name": "spin_glow", "bone": "spin_glow", "blend": "additive" },
+	{ "name": "spin_smoke", "bone": "spin_smoke" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"stop_gear_base": {
+				"stop_gear_base": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 82.5, -83, -82.5, -83, -82.5, 83, 82.5, 83 ],
+					"hull": 4
+				}
+			},
+			"spin_glow": {
+				"spin_glow_00": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 151, -154.5, -151, -154.5, -151, 154.5, 151, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_02": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 148, -154.5, -151, -154.5, -151, 154.5, 148, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_04": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 147, -154.5, -151, -154.5, -151, 154.5, 147, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_06": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -150.5, -151, -150.5, -151, 154.5, 157, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_08": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -146.5, -151, -146.5, -151, 154.5, 157, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_10": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -145.5, -151, -145.5, -151, 154.5, 157, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_12": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -144.5, -151, -144.5, -151, 154.5, 157, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_14": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -154.5, -151, -154.5, -151, 154.5, 157, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_16": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -154.5, -149, -154.5, -149, 154.5, 157, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_18": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -154.5, -142, -154.5, -142, 154.5, 157, 154.5 ],
+					"hull": 4
+				},
+				"spin_glow_20": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -154.5, -141, -154.5, -141, 149.5, 157, 149.5 ],
+					"hull": 4
+				},
+				"spin_glow_22": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -154.5, -151, -154.5, -151, 145.5, 157, 145.5 ],
+					"hull": 4
+				},
+				"spin_glow_24": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -154.5, -151, -154.5, -151, 143.5, 157, 143.5 ],
+					"hull": 4
+				},
+				"spin_glow_26": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 157, -154.5, -151, -154.5, -151, 141.5, 157, 141.5 ],
+					"hull": 4
+				},
+				"spin_glow_28": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 155, -154.5, -151, -154.5, -151, 149.5, 155, 149.5 ],
+					"hull": 4
+				},
+				"spin_glow_30": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 151, -154.5, -151, -154.5, -151, 154.5, 151, 154.5 ],
+					"hull": 4
+				}
+			},
+			"spin_arrow": {
+				"spin_arrow": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 49.5, -46.5, -49.5, -46.5, -49.5, 46.5, 49.5, 46.5 ],
+					"hull": 4
+				}
+			},
+			"spin_gear_frame": {
+				"spin_gear_frame": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 90, -89.5, -90, -89.5, -90, 89.5, 90, 89.5 ],
+					"hull": 4
+				}
+			},
+			"stop_gear_frame": {
+				"stop_gear_frame": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 90, -89.5, -90, -89.5, -90, 89.5, 90, 89.5 ],
+					"hull": 4
+				}
+			},
+			"spin_arrow_O": {
+				"spin_arrow_O": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 50.5, -47.5, -50.5, -47.5, -50.5, 46.5, 50.5, 46.5 ],
+					"hull": 4
+				}
+			},
+			"spin_r2": {
+				"spin_r": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 119, -120, -119, -120, -119, 120, 119, 120 ],
+					"hull": 4
+				}
+			},
+			"spin_r3": {
+				"spin_r": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 119, -120, -119, -120, -119, 120, 119, 120 ],
+					"hull": 4
+				}
+			},
+			"stop_stop": {
+				"stop_stop": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 38.5, -31.5, -38.5, -31.5, -38.5, 47.5, 38.5, 47.5 ],
+					"hull": 4
+				}
+			},
+			"spin_arrow2": {
+				"spin_arrow": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 49.5, -46.5, -49.5, -46.5, -49.5, 46.5, 49.5, 46.5 ],
+					"hull": 4
+				}
+			},
+			"spin_arrow3": {
+				"spin_arrow": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 49.5, -46.5, -49.5, -46.5, -49.5, 46.5, 49.5, 46.5 ],
+					"hull": 4
+				}
+			},
+			"spin_g": {
+				"spin_g": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 119, -120, -119, -120, -119, 120, 119, 120 ],
+					"hull": 4
+				}
+			},
+			"FREE": {
+				"FREE": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 35.5, -45.5, -35.5, -45.5, -35.5, 45.5, 35.5, 45.5 ],
+					"hull": 4
+				}
+			},
+			"spin_smoke": {
+				"spin_smoke_01": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 59, 42, -68, 42, -68, 84, 59, 84 ],
+					"hull": 4
+				},
+				"spin_smoke_03": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 62, 41, -70, 41, -70, 86, 62, 86 ],
+					"hull": 4
+				},
+				"spin_smoke_05": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 92, -9, -74, -9, -74, 89, 92, 89 ],
+					"hull": 4
+				},
+				"spin_smoke_07": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 94, -40, -78, -40, -78, 93, 94, 93 ],
+					"hull": 4
+				},
+				"spin_smoke_09": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 97, -47, -81, -47, -81, 97, 97, 97 ],
+					"hull": 4
+				},
+				"spin_smoke_11": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 100, -50, -85, -50, -85, 101, 100, 101 ],
+					"hull": 4
+				},
+				"spin_smoke_13": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 103, -81, -87, -81, -87, 106, 103, 106 ],
+					"hull": 4
+				},
+				"spin_smoke_15": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 106, -83, -89, -83, -89, 109, 106, 109 ],
+					"hull": 4
+				},
+				"spin_smoke_17": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 108, -86, -90, -86, -90, 112, 108, 112 ],
+					"hull": 4
+				},
+				"spin_smoke_19": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 110, -89, -89, -89, -89, 115, 110, 115 ],
+					"hull": 4
+				},
+				"spin_smoke_21": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 111, -93, -89, -93, -89, 116, 111, 116 ],
+					"hull": 4
+				},
+				"spin_smoke_23": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 112, -97, -88, -97, -88, 117, 112, 117 ],
+					"hull": 4
+				},
+				"spin_smoke_25": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 114, -100, -87, -100, -87, 117, 114, 117 ],
+					"hull": 4
+				},
+				"spin_smoke_27": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 116, -102, -86, -102, -86, 118, 116, 118 ],
+					"hull": 4
+				},
+				"spin_smoke_29": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 117, -103, -89, -103, -89, 118, 117, 118 ],
+					"hull": 4
+				},
+				"spin_smoke_31": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 118, -103, -95, -103, -95, 118, 118, 118 ],
+					"hull": 4
+				},
+				"spin_smoke_33": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 121, -103, -102, -103, -102, 119, 121, 119 ],
+					"hull": 4
+				},
+				"spin_smoke_35": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 122, -105, -109, -105, -109, 113, 122, 113 ],
+					"hull": 4
+				},
+				"spin_smoke_37": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 123, -107, -115, -107, -115, 114, 123, 114 ],
+					"hull": 4
+				},
+				"spin_smoke_39": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 124, -108, -119, -108, -119, 82, 124, 82 ],
+					"hull": 4
+				},
+				"spin_smoke_41": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 125, -108, -122, -108, -122, 85, 125, 85 ],
+					"hull": 4
+				},
+				"spin_smoke_43": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 126, -107, -124, -107, -124, 89, 126, 89 ],
+					"hull": 4
+				},
+				"spin_smoke_45": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 126, -107, -124, -107, -124, 93, 126, 93 ],
+					"hull": 4
+				},
+				"spin_smoke_47": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 106, -106, -124, -106, -124, 96, 106, 96 ],
+					"hull": 4
+				},
+				"spin_smoke_49": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 105, -106, -125, -106, -125, 101, 105, 101 ],
+					"hull": 4
+				},
+				"spin_smoke_51": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 100, -101, -125, -101, -125, 105, 100, 105 ],
+					"hull": 4
+				},
+				"spin_smoke_53": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 104, -102, -124, -102, -124, 108, 104, 108 ],
+					"hull": 4
+				},
+				"spin_smoke_55": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 108, -102, -103, -102, -103, 111, 108, 111 ],
+					"hull": 4
+				},
+				"spin_smoke_57": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 110, -103, -103, -103, -103, 112, 110, 112 ],
+					"hull": 4
+				},
+				"spin_smoke_59": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 111, -62, -104, -62, -104, 111, 111, 111 ],
+					"hull": 4
+				},
+				"spin_smoke_61": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 111, -66, -105, -66, -105, 111, 111, 111 ],
+					"hull": 4
+				},
+				"spin_smoke_63": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 112, -76, -106, -76, -106, 114, 112, 114 ],
+					"hull": 4
+				},
+				"spin_smoke_65": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 111, -81, -107, -81, -107, 117, 111, 117 ],
+					"hull": 4
+				},
+				"spin_smoke_67": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 109, -85, -106, -85, -106, 119, 109, 119 ],
+					"hull": 4
+				},
+				"spin_smoke_69": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 109, -91, -79, -91, -79, 120, 109, 120 ],
+					"hull": 4
+				},
+				"spin_smoke_71": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 112, -98, -79, -98, -79, 120, 112, 120 ],
+					"hull": 4
+				},
+				"spin_smoke_73": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 114, -104, -79, -104, -79, 120, 114, 120 ],
+					"hull": 4
+				},
+				"spin_smoke_75": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 117, -110, -79, -110, -79, 119, 117, 119 ],
+					"hull": 4
+				},
+				"spin_smoke_77": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 118, -114, -61, -114, -61, 118, 118, 118 ],
+					"hull": 4
+				},
+				"spin_smoke_79": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 118, -117, -63, -117, -63, 117, 118, 117 ],
+					"hull": 4
+				},
+				"spin_smoke_81": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 117, -119, -65, -119, -65, 79, 117, 79 ],
+					"hull": 4
+				},
+				"spin_smoke_83": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 115, -119, -75, -119, -75, 81, 115, 81 ],
+					"hull": 4
+				},
+				"spin_smoke_85": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 109, -118, -78, -118, -78, 83, 109, 83 ],
+					"hull": 4
+				},
+				"spin_smoke_87": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 101, -111, -81, -111, -81, 85, 101, 85 ],
+					"hull": 4
+				}
+			},
+			"spin_r": {
+				"spin_r": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 119, -120, -119, -120, -119, 120, 119, 120 ],
+					"hull": 4
+				}
+			},
+			"spin_gear _base": {
+				"spin_gear _base": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 82.5, -83, -82.5, -83, -82.5, 83, 82.5, 83 ],
+					"hull": 4
+				}
+			}
+		}
+	}
+],
+"animations": {
+	"idle": {
+		"slots": {
+			"spin_arrow": {
+				"attachment": [
+					{ "name": "spin_arrow" }
+				]
+			},
+			"spin_gear_frame": {
+				"attachment": [
+					{ "name": "spin_gear_frame" }
+				]
+			},
+			"spin_smoke": {
+				"attachment": [
+					{ "name": "spin_smoke_01" },
+					{ "time": 0.0667, "name": "spin_smoke_03" },
+					{ "time": 0.1333, "name": "spin_smoke_05" },
+					{ "time": 0.2, "name": "spin_smoke_07" },
+					{ "time": 0.2667, "name": "spin_smoke_09" },
+					{ "time": 0.3333, "name": "spin_smoke_11" },
+					{ "time": 0.4, "name": "spin_smoke_13" },
+					{ "time": 0.4667, "name": "spin_smoke_15" },
+					{ "time": 0.5333, "name": "spin_smoke_17" },
+					{ "time": 0.6, "name": "spin_smoke_19" },
+					{ "time": 0.6667, "name": "spin_smoke_21" },
+					{ "time": 0.7333, "name": "spin_smoke_23" },
+					{ "time": 0.8, "name": "spin_smoke_25" },
+					{ "time": 0.8667, "name": "spin_smoke_27" },
+					{ "time": 0.9333, "name": "spin_smoke_29" },
+					{ "time": 1, "name": "spin_smoke_31" },
+					{ "time": 1.0667, "name": "spin_smoke_33" },
+					{ "time": 1.1333, "name": "spin_smoke_35" },
+					{ "time": 1.2, "name": "spin_smoke_37" },
+					{ "time": 1.2667, "name": "spin_smoke_39" },
+					{ "time": 1.3333, "name": "spin_smoke_41" },
+					{ "time": 1.4, "name": "spin_smoke_43" },
+					{ "time": 1.4667, "name": "spin_smoke_45" },
+					{ "time": 1.5333, "name": "spin_smoke_47" },
+					{ "time": 1.6, "name": "spin_smoke_49" },
+					{ "time": 1.6667, "name": "spin_smoke_51" },
+					{ "time": 1.7333, "name": "spin_smoke_53" },
+					{ "time": 1.8, "name": "spin_smoke_55" },
+					{ "time": 1.8667, "name": "spin_smoke_57" },
+					{ "time": 1.9333, "name": "spin_smoke_59" },
+					{ "time": 2, "name": "spin_smoke_61" },
+					{ "time": 2.0667, "name": "spin_smoke_63" },
+					{ "time": 2.1333, "name": "spin_smoke_65" },
+					{ "time": 2.2, "name": "spin_smoke_67" },
+					{ "time": 2.2667, "name": "spin_smoke_69" },
+					{ "time": 2.3333, "name": "spin_smoke_71" },
+					{ "time": 2.4, "name": "spin_smoke_73" },
+					{ "time": 2.4667, "name": "spin_smoke_75" },
+					{ "time": 2.5333, "name": "spin_smoke_77" },
+					{ "time": 2.6, "name": "spin_smoke_79" },
+					{ "time": 2.6667, "name": "spin_smoke_81" },
+					{ "time": 2.7333, "name": "spin_smoke_83" },
+					{ "time": 2.8, "name": "spin_smoke_85" },
+					{ "time": 2.8667, "name": "spin_smoke_87" },
+					{ "time": 2.9333, "name": null }
+				]
+			},
+			"spin_gear _base": {
+				"attachment": [
+					{ "name": "spin_gear _base" }
+				]
+			},
+			"spin_g": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffa0" },
+					{ "time": 1.6667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 3, "color": "ffffff00" },
+					{ "time": 4, "color": "ffffffa0" },
+					{ "time": 4.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "spin_g" }
+				]
+			}
+		},
+		"bones": {
+			"spin_arrow": {
+				"rotate": [
+					{},
+					{ "time": 1, "angle": -120 },
+					{ "time": 2, "angle": 120 },
+					{ "time": 3 },
+					{ "time": 4, "angle": -120 },
+					{ "time": 5, "angle": 120 },
+					{ "time": 6 }
+				]
+			},
+			"spin_gear _base": {
+				"rotate": [
+					{},
+					{ "time": 2, "angle": 120 },
+					{ "time": 4, "angle": -120 },
+					{ "time": 6 }
+				]
+			},
+			"spin_arrow_T": {
+				"translate": [
+					{ "x": -1.5, "y": -1.5 }
+				]
+			}
+		}
+	},
+	"play01": {
+		"slots": {
+			"spin_arrow": {
+				"attachment": [
+					{ "name": "spin_arrow" }
+				]
+			},
+			"spin_gear_frame": {
+				"color": [
+					{ "color": "ffffffff" },
+					{ "time": 0.2, "color": "91ff00ff" },
+					{ "time": 0.6667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "spin_gear_frame" }
+				]
+			},
+			"spin_smoke": {
+				"attachment": [
+					{ "name": "spin_smoke_01" },
+					{ "time": 0.0667, "name": "spin_smoke_03" },
+					{ "time": 0.1333, "name": "spin_smoke_05" },
+					{ "time": 0.2, "name": "spin_smoke_07" },
+					{ "time": 0.2667, "name": "spin_smoke_09" },
+					{ "time": 0.3333, "name": "spin_smoke_11" },
+					{ "time": 0.4, "name": "spin_smoke_13" },
+					{ "time": 0.4667, "name": "spin_smoke_15" },
+					{ "time": 0.5333, "name": "spin_smoke_17" },
+					{ "time": 0.6, "name": "spin_smoke_19" },
+					{ "time": 0.6667, "name": "spin_smoke_21" },
+					{ "time": 0.7333, "name": "spin_smoke_23" },
+					{ "time": 0.8, "name": "spin_smoke_25" },
+					{ "time": 0.8667, "name": "spin_smoke_27" },
+					{ "time": 0.9333, "name": "spin_smoke_29" },
+					{ "time": 1, "name": "spin_smoke_31" },
+					{ "time": 1.0667, "name": "spin_smoke_33" },
+					{ "time": 1.1333, "name": "spin_smoke_35" },
+					{ "time": 1.2, "name": "spin_smoke_37" },
+					{ "time": 1.2667, "name": "spin_smoke_39" },
+					{ "time": 1.3333, "name": "spin_smoke_41" },
+					{ "time": 1.4, "name": "spin_smoke_43" },
+					{ "time": 1.4667, "name": "spin_smoke_45" },
+					{ "time": 1.5333, "name": "spin_smoke_47" },
+					{ "time": 1.6, "name": "spin_smoke_49" },
+					{ "time": 1.6667, "name": "spin_smoke_51" },
+					{ "time": 1.7333, "name": "spin_smoke_53" },
+					{ "time": 1.8, "name": "spin_smoke_55" },
+					{ "time": 1.8667, "name": "spin_smoke_57" },
+					{ "time": 1.9333, "name": "spin_smoke_59" },
+					{ "time": 2, "name": "spin_smoke_61" },
+					{ "time": 2.0667, "name": "spin_smoke_63" },
+					{ "time": 2.1333, "name": "spin_smoke_65" },
+					{ "time": 2.2, "name": "spin_smoke_67" },
+					{ "time": 2.2667, "name": "spin_smoke_69" },
+					{ "time": 2.3333, "name": "spin_smoke_71" },
+					{ "time": 2.4, "name": "spin_smoke_73" },
+					{ "time": 2.4667, "name": "spin_smoke_75" },
+					{ "time": 2.5333, "name": "spin_smoke_77" },
+					{ "time": 2.6, "name": "spin_smoke_79" },
+					{ "time": 2.6667, "name": "spin_smoke_81" },
+					{ "time": 2.7333, "name": "spin_smoke_83" },
+					{ "time": 2.8, "name": "spin_smoke_85" },
+					{ "time": 2.8667, "name": "spin_smoke_87" },
+					{ "time": 2.9333, "name": null },
+					{ "time": 3.5, "name": "spin_smoke_01" },
+					{ "time": 3.5667, "name": "spin_smoke_03" },
+					{ "time": 3.6333, "name": "spin_smoke_05" },
+					{ "time": 3.7, "name": "spin_smoke_07" },
+					{ "time": 3.7667, "name": "spin_smoke_09" },
+					{ "time": 3.8333, "name": "spin_smoke_11" },
+					{ "time": 3.9, "name": "spin_smoke_13" },
+					{ "time": 3.9667, "name": "spin_smoke_15" },
+					{ "time": 4.0333, "name": "spin_smoke_17" },
+					{ "time": 4.1, "name": "spin_smoke_19" },
+					{ "time": 4.1667, "name": "spin_smoke_21" },
+					{ "time": 4.2333, "name": "spin_smoke_23" },
+					{ "time": 4.3, "name": "spin_smoke_25" },
+					{ "time": 4.3667, "name": "spin_smoke_27" },
+					{ "time": 4.4333, "name": "spin_smoke_29" },
+					{ "time": 4.5, "name": "spin_smoke_31" },
+					{ "time": 4.5667, "name": "spin_smoke_33" },
+					{ "time": 4.6333, "name": "spin_smoke_35" },
+					{ "time": 4.7, "name": "spin_smoke_37" },
+					{ "time": 4.7667, "name": "spin_smoke_39" },
+					{ "time": 4.8333, "name": "spin_smoke_41" },
+					{ "time": 4.9, "name": "spin_smoke_43" },
+					{ "time": 4.9667, "name": "spin_smoke_45" },
+					{ "time": 5.0333, "name": "spin_smoke_47" },
+					{ "time": 5.1, "name": "spin_smoke_49" },
+					{ "time": 5.1667, "name": "spin_smoke_51" },
+					{ "time": 5.2333, "name": "spin_smoke_53" },
+					{ "time": 5.3, "name": "spin_smoke_55" },
+					{ "time": 5.3667, "name": "spin_smoke_57" },
+					{ "time": 5.4333, "name": "spin_smoke_59" },
+					{ "time": 5.5, "name": "spin_smoke_61" },
+					{ "time": 5.5667, "name": "spin_smoke_63" },
+					{ "time": 5.6333, "name": "spin_smoke_65" },
+					{ "time": 5.7, "name": "spin_smoke_67" },
+					{ "time": 5.7667, "name": "spin_smoke_69" },
+					{ "time": 5.8333, "name": "spin_smoke_71" },
+					{ "time": 5.9, "name": "spin_smoke_73" },
+					{ "time": 5.9667, "name": "spin_smoke_75" },
+					{ "time": 6.0333, "name": "spin_smoke_77" },
+					{ "time": 6.1, "name": "spin_smoke_79" },
+					{ "time": 6.1667, "name": "spin_smoke_81" },
+					{ "time": 6.2333, "name": "spin_smoke_83" },
+					{ "time": 6.3, "name": "spin_smoke_85" },
+					{ "time": 6.3667, "name": "spin_smoke_87" },
+					{ "time": 6.4333, "name": null }
+				]
+			},
+			"spin_arrow2": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 2.3333, "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.9333, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 4.6667, "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 5.2667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 5.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "spin_arrow" }
+				]
+			},
+			"spin_gear _base": {
+				"attachment": [
+					{ "name": "spin_gear _base" }
+				]
+			},
+			"spin_g": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffffa0" },
+					{ "time": 0.4333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 3.5, "color": "ffffff00" },
+					{ "time": 4.5, "color": "ffffffa0" },
+					{ "time": 5.1667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "spin_g" }
+				]
+			},
+			"spin_glow": {
+				"attachment": [
+					{ "name": "spin_glow_00" },
+					{ "time": 0.0667, "name": "spin_glow_02" },
+					{ "time": 0.1333, "name": "spin_glow_04" },
+					{ "time": 0.2, "name": "spin_glow_06" },
+					{ "time": 0.2667, "name": "spin_glow_08" },
+					{ "time": 0.3333, "name": "spin_glow_10" },
+					{ "time": 0.4, "name": "spin_glow_12" },
+					{ "time": 0.4667, "name": "spin_glow_14" },
+					{ "time": 0.5333, "name": "spin_glow_16" },
+					{ "time": 0.6, "name": "spin_glow_18" },
+					{ "time": 0.6667, "name": "spin_glow_20" },
+					{ "time": 0.7333, "name": "spin_glow_22" },
+					{ "time": 0.8, "name": "spin_glow_24" },
+					{ "time": 0.8667, "name": "spin_glow_26" },
+					{ "time": 0.9333, "name": "spin_glow_28" },
+					{ "time": 1, "name": "spin_glow_00" },
+					{ "time": 1.0667, "name": "spin_glow_02" },
+					{ "time": 1.1333, "name": "spin_glow_04" },
+					{ "time": 1.2, "name": "spin_glow_06" },
+					{ "time": 1.2667, "name": "spin_glow_08" },
+					{ "time": 1.3333, "name": "spin_glow_10" },
+					{ "time": 1.4, "name": "spin_glow_12" },
+					{ "time": 1.4667, "name": "spin_glow_14" },
+					{ "time": 1.5333, "name": "spin_glow_16" },
+					{ "time": 1.6, "name": "spin_glow_18" },
+					{ "time": 1.6667, "name": "spin_glow_20" },
+					{ "time": 1.7333, "name": "spin_glow_22" },
+					{ "time": 1.8, "name": "spin_glow_24" },
+					{ "time": 1.8667, "name": "spin_glow_26" },
+					{ "time": 1.9333, "name": "spin_glow_28" },
+					{ "time": 2, "name": "spin_glow_00" },
+					{ "time": 2.0667, "name": "spin_glow_02" },
+					{ "time": 2.1333, "name": "spin_glow_04" },
+					{ "time": 2.2, "name": "spin_glow_06" },
+					{ "time": 2.2667, "name": "spin_glow_08" },
+					{ "time": 2.3333, "name": "spin_glow_10" },
+					{ "time": 2.4, "name": "spin_glow_12" },
+					{ "time": 2.4667, "name": "spin_glow_14" },
+					{ "time": 2.5333, "name": "spin_glow_16" },
+					{ "time": 2.6, "name": "spin_glow_18" },
+					{ "time": 2.6667, "name": "spin_glow_20" },
+					{ "time": 2.7333, "name": "spin_glow_22" },
+					{ "time": 2.8, "name": "spin_glow_24" },
+					{ "time": 2.8667, "name": "spin_glow_26" },
+					{ "time": 2.9333, "name": "spin_glow_28" },
+					{ "time": 3, "name": "spin_glow_00" },
+					{ "time": 3.0667, "name": "spin_glow_02" },
+					{ "time": 3.1333, "name": "spin_glow_04" },
+					{ "time": 3.2, "name": "spin_glow_06" },
+					{ "time": 3.2667, "name": "spin_glow_08" },
+					{ "time": 3.3333, "name": "spin_glow_10" },
+					{ "time": 3.4, "name": "spin_glow_12" },
+					{ "time": 3.4667, "name": "spin_glow_14" },
+					{ "time": 3.5333, "name": "spin_glow_16" },
+					{ "time": 3.6, "name": "spin_glow_18" },
+					{ "time": 3.6667, "name": "spin_glow_20" },
+					{ "time": 3.7333, "name": "spin_glow_22" },
+					{ "time": 3.8, "name": "spin_glow_24" },
+					{ "time": 3.8667, "name": "spin_glow_26" },
+					{ "time": 3.9333, "name": "spin_glow_28" },
+					{ "time": 4, "name": "spin_glow_00" },
+					{ "time": 4.0667, "name": "spin_glow_02" },
+					{ "time": 4.1333, "name": "spin_glow_04" },
+					{ "time": 4.2, "name": "spin_glow_06" },
+					{ "time": 4.2667, "name": "spin_glow_08" },
+					{ "time": 4.3333, "name": "spin_glow_10" },
+					{ "time": 4.4, "name": "spin_glow_12" },
+					{ "time": 4.4667, "name": "spin_glow_14" },
+					{ "time": 4.5333, "name": "spin_glow_16" },
+					{ "time": 4.6, "name": "spin_glow_18" },
+					{ "time": 4.6667, "name": "spin_glow_20" },
+					{ "time": 4.7333, "name": "spin_glow_22" },
+					{ "time": 4.8, "name": "spin_glow_24" },
+					{ "time": 4.8667, "name": "spin_glow_26" },
+					{ "time": 4.9333, "name": "spin_glow_28" },
+					{ "time": 5, "name": "spin_glow_00" },
+					{ "time": 5.0667, "name": "spin_glow_02" },
+					{ "time": 5.1333, "name": "spin_glow_04" },
+					{ "time": 5.2, "name": "spin_glow_06" },
+					{ "time": 5.2667, "name": "spin_glow_08" },
+					{ "time": 5.3333, "name": "spin_glow_10" },
+					{ "time": 5.4, "name": "spin_glow_12" },
+					{ "time": 5.4667, "name": "spin_glow_14" },
+					{ "time": 5.5333, "name": "spin_glow_16" },
+					{ "time": 5.6, "name": "spin_glow_18" },
+					{ "time": 5.6667, "name": "spin_glow_20" },
+					{ "time": 5.7333, "name": "spin_glow_22" },
+					{ "time": 5.8, "name": "spin_glow_24" },
+					{ "time": 5.8667, "name": "spin_glow_26" },
+					{ "time": 5.9333, "name": "spin_glow_28" },
+					{ "time": 6, "name": "spin_glow_00" },
+					{ "time": 6.0667, "name": "spin_glow_02" },
+					{ "time": 6.1333, "name": "spin_glow_04" },
+					{ "time": 6.2, "name": "spin_glow_06" },
+					{ "time": 6.2667, "name": "spin_glow_08" },
+					{ "time": 6.3333, "name": "spin_glow_10" },
+					{ "time": 6.4, "name": "spin_glow_12" },
+					{ "time": 6.4667, "name": "spin_glow_14" },
+					{ "time": 6.5333, "name": "spin_glow_16" },
+					{ "time": 6.6, "name": "spin_glow_18" },
+					{ "time": 6.6667, "name": "spin_glow_20" },
+					{ "time": 6.7333, "name": "spin_glow_22" },
+					{ "time": 6.8, "name": "spin_glow_24" },
+					{ "time": 6.8667, "name": "spin_glow_26" },
+					{ "time": 6.9333, "name": "spin_glow_28" },
+					{ "time": 7, "name": "spin_glow_30" }
+				]
+			},
+			"spin_arrow3": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 2.3333, "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.9333, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 4.6667, "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 5.2667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 5.6667, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"spin_arrow": {
+				"rotate": [
+					{},
+					{ "time": 0.4, "angle": -120 },
+					{ "time": 0.7667, "angle": 120 },
+					{ "time": 1.1667 },
+					{ "time": 1.5667, "angle": -120 },
+					{ "time": 1.9333, "angle": 120 },
+					{ "time": 2.3333 },
+					{ "time": 2.7333, "angle": -120 },
+					{ "time": 3.1, "angle": 120 },
+					{ "time": 3.5 },
+					{ "time": 3.8667, "angle": -120 },
+					{ "time": 4.2667, "angle": 120 },
+					{ "time": 4.6667 },
+					{ "time": 5.0333, "angle": -120 },
+					{ "time": 5.4333, "angle": 120 },
+					{ "time": 5.8333 },
+					{ "time": 6.2, "angle": -120 },
+					{ "time": 6.6, "angle": 120 },
+					{ "time": 7 }
+				]
+			},
+			"spin_g": {
+				"scale": [
+					{},
+					{ "time": 0.6667, "x": 1.211, "y": 1.211, "curve": "stepped" },
+					{ "time": 3.5 }
+				]
+			},
+			"spin_gear _base": {
+				"rotate": [
+					{},
+					{ "time": 1.1667, "angle": 120 },
+					{ "time": 2.3333, "angle": -120 },
+					{ "time": 3.5 },
+					{ "time": 4.6667, "angle": 120 },
+					{ "time": 5.8333, "angle": -120 },
+					{ "time": 7 }
+				]
+			},
+			"spin_arrow_T": {
+				"translate": [
+					{ "x": -1.5, "y": -1.5 }
+				]
+			}
+		}
+	},
+	"play02": {
+		"slots": {
+			"stop_gear_frame": {
+				"attachment": [
+					{ "name": "stop_gear_frame" }
+				]
+			},
+			"spin_r2": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffa0" },
+					{ "time": 1.6667, "color": "ffffff00" }
+				]
+			},
+			"spin_r": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffa0" },
+					{ "time": 1.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "spin_r" }
+				]
+			},
+			"stop_stop": {
+				"attachment": [
+					{ "name": "stop_stop" }
+				]
+			},
+			"spin_r3": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffa0" },
+					{ "time": 1.6667, "color": "ffffff00" }
+				]
+			},
+			"stop_gear_base": {
+				"attachment": [
+					{ "name": "stop_gear_base" }
+				]
+			},
+			"spin_smoke": {
+				"attachment": [
+					{ "name": "spin_smoke_01" },
+					{ "time": 0.0667, "name": "spin_smoke_03" },
+					{ "time": 0.1333, "name": "spin_smoke_05" },
+					{ "time": 0.2, "name": "spin_smoke_07" },
+					{ "time": 0.2667, "name": "spin_smoke_09" },
+					{ "time": 0.3333, "name": "spin_smoke_11" },
+					{ "time": 0.4, "name": "spin_smoke_13" },
+					{ "time": 0.4667, "name": "spin_smoke_15" },
+					{ "time": 0.5333, "name": "spin_smoke_17" },
+					{ "time": 0.6, "name": "spin_smoke_19" },
+					{ "time": 0.6667, "name": "spin_smoke_21" },
+					{ "time": 0.7333, "name": "spin_smoke_23" },
+					{ "time": 0.8333, "name": "spin_smoke_25" },
+					{ "time": 0.9, "name": "spin_smoke_27" },
+					{ "time": 0.9667, "name": "spin_smoke_29" },
+					{ "time": 1.0333, "name": "spin_smoke_31" },
+					{ "time": 1.1, "name": "spin_smoke_33" },
+					{ "time": 1.1667, "name": "spin_smoke_35" },
+					{ "time": 1.2333, "name": "spin_smoke_37" },
+					{ "time": 1.3, "name": "spin_smoke_39" },
+					{ "time": 1.3667, "name": "spin_smoke_41" },
+					{ "time": 1.4333, "name": "spin_smoke_43" },
+					{ "time": 1.5, "name": "spin_smoke_45" },
+					{ "time": 1.5667, "name": "spin_smoke_47" },
+					{ "time": 1.6333, "name": "spin_smoke_49" },
+					{ "time": 1.7, "name": "spin_smoke_51" },
+					{ "time": 1.7667, "name": "spin_smoke_53" },
+					{ "time": 1.8333, "name": "spin_smoke_55" },
+					{ "time": 1.9, "name": "spin_smoke_57" },
+					{ "time": 1.9667, "name": "spin_smoke_59" },
+					{ "time": 2.0333, "name": "spin_smoke_61" },
+					{ "time": 2.1, "name": "spin_smoke_63" },
+					{ "time": 2.1667, "name": "spin_smoke_65" },
+					{ "time": 2.2333, "name": "spin_smoke_67" },
+					{ "time": 2.3, "name": "spin_smoke_69" },
+					{ "time": 2.3667, "name": "spin_smoke_71" },
+					{ "time": 2.4667, "name": "spin_smoke_73" },
+					{ "time": 2.5333, "name": "spin_smoke_75" },
+					{ "time": 2.6, "name": "spin_smoke_77" },
+					{ "time": 2.6667, "name": "spin_smoke_79" },
+					{ "time": 2.7333, "name": "spin_smoke_81" },
+					{ "time": 2.8, "name": "spin_smoke_83" },
+					{ "time": 2.8667, "name": "spin_smoke_85" },
+					{ "time": 2.9333, "name": "spin_smoke_87" },
+					{ "time": 3, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"spin_r": {
+				"scale": [
+					{ "x": 1.007, "y": 1.007 }
+				]
+			}
+		}
+	},
+	"play03": {
+		"slots": {
+			"stop_gear_frame": {
+				"attachment": [
+					{ "name": "stop_gear_frame" }
+				]
+			},
+			"FREE": {
+				"attachment": [
+					{ "name": "FREE" }
+				]
+			},
+			"spin_r2": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffa0" },
+					{ "time": 1.6667, "color": "ffffff00" }
+				]
+			},
+			"spin_r": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffa0" },
+					{ "time": 1.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "spin_r" }
+				]
+			},
+			"spin_r3": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffa0" },
+					{ "time": 1.6667, "color": "ffffff00" }
+				]
+			},
+			"stop_gear_base": {
+				"attachment": [
+					{ "name": "stop_gear_base" }
+				]
+			},
+			"spin_smoke": {
+				"attachment": [
+					{ "name": "spin_smoke_01" },
+					{ "time": 0.0667, "name": "spin_smoke_03" },
+					{ "time": 0.1333, "name": "spin_smoke_05" },
+					{ "time": 0.2, "name": "spin_smoke_07" },
+					{ "time": 0.2667, "name": "spin_smoke_09" },
+					{ "time": 0.3333, "name": "spin_smoke_11" },
+					{ "time": 0.4, "name": "spin_smoke_13" },
+					{ "time": 0.4667, "name": "spin_smoke_15" },
+					{ "time": 0.5333, "name": "spin_smoke_17" },
+					{ "time": 0.6, "name": "spin_smoke_19" },
+					{ "time": 0.6667, "name": "spin_smoke_21" },
+					{ "time": 0.7333, "name": "spin_smoke_23" },
+					{ "time": 0.8333, "name": "spin_smoke_25" },
+					{ "time": 0.9, "name": "spin_smoke_27" },
+					{ "time": 0.9667, "name": "spin_smoke_29" },
+					{ "time": 1.0333, "name": "spin_smoke_31" },
+					{ "time": 1.1, "name": "spin_smoke_33" },
+					{ "time": 1.1667, "name": "spin_smoke_35" },
+					{ "time": 1.2333, "name": "spin_smoke_37" },
+					{ "time": 1.3, "name": "spin_smoke_39" },
+					{ "time": 1.3667, "name": "spin_smoke_41" },
+					{ "time": 1.4333, "name": "spin_smoke_43" },
+					{ "time": 1.5, "name": "spin_smoke_45" },
+					{ "time": 1.5667, "name": "spin_smoke_47" },
+					{ "time": 1.6333, "name": "spin_smoke_49" },
+					{ "time": 1.7, "name": "spin_smoke_51" },
+					{ "time": 1.7667, "name": "spin_smoke_53" },
+					{ "time": 1.8333, "name": "spin_smoke_55" },
+					{ "time": 1.9, "name": "spin_smoke_57" },
+					{ "time": 1.9667, "name": "spin_smoke_59" },
+					{ "time": 2.0333, "name": "spin_smoke_61" },
+					{ "time": 2.1, "name": "spin_smoke_63" },
+					{ "time": 2.1667, "name": "spin_smoke_65" },
+					{ "time": 2.2333, "name": "spin_smoke_67" },
+					{ "time": 2.3, "name": "spin_smoke_69" },
+					{ "time": 2.3667, "name": "spin_smoke_71" },
+					{ "time": 2.4667, "name": "spin_smoke_73" },
+					{ "time": 2.5333, "name": "spin_smoke_75" },
+					{ "time": 2.6, "name": "spin_smoke_77" },
+					{ "time": 2.6667, "name": "spin_smoke_79" },
+					{ "time": 2.7333, "name": "spin_smoke_81" },
+					{ "time": 2.8, "name": "spin_smoke_83" },
+					{ "time": 2.8667, "name": "spin_smoke_85" },
+					{ "time": 2.9333, "name": "spin_smoke_87" },
+					{ "time": 3, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"spin_r": {
+				"scale": [
+					{ "x": 1.007, "y": 1.007 }
+				]
+			}
+		}
+	}
+}
+}

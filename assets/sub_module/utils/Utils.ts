@@ -1,4 +1,4 @@
-import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp } from "cc";
+import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp, game, Node } from "cc";
 import { PREVIEW } from "cc/env";
 import { Game } from "../game/Game";
 import { Config, GameConfig } from '../game/GameConfig';
@@ -23,6 +23,11 @@ export namespace _utilsDecorator {
 }
 
 export class Utils {
+
+    public static AddHandHoverEvent ( target: Node ) {
+        target.on( Node.EventType.MOUSE_ENTER, () => { game.canvas.style.cursor = 'pointer'; } );
+        target.on( Node.EventType.MOUSE_LEAVE, () => { game.canvas.style.cursor = 'default'; } );
+    }
 
     public static Random ( min: number = 0, max: number ): number {
         return Math.floor( Math.random() * ( max - min ) ) + min;
@@ -288,7 +293,7 @@ export class Utils {
         return curve;
     }
 
-    public static async delayEvent ( event: EventTarget = null, eventType: string ): Promise<any> {
+    public static async delayEvent ( event: EventTarget = null, eventType: string = 'done' ): Promise<any> {
         if ( event == null ) return;
         return await new Promise( ( resolve ) => { event.once( eventType, resolve ); } );
     }
@@ -315,6 +320,8 @@ export class Utils {
         const animation: sp.spine.Animation = animationState?.data.skeletonData.findAnimation( animationName );
         return animation?.duration ?? 0;//空值合并，当左侧的操作数为 null 或者 undefined 时，返回其右侧操作，否则返回左侧。
     }
+
+
 }
 
 export var gversion = null;
