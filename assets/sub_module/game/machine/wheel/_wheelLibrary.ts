@@ -22,8 +22,8 @@ export class BaseInspect {
     @property({displayName: 'Symbol大小設定', tooltip: 'Symbol pixel大小'})
     public symbolSize: Size = new Size(100, 100);
 
-    @property({type:CCInteger, displayName:'滾輪長度', min: 1, max: 99, step: 1, type: Number, tooltip: '裝幾個Symbol'})
-    public length: number = 4;
+    @property({ displayName:'滾輪長度', min: 1, max: 99, step: 1, type: CCInteger, tooltip: '裝幾個Symbol'})
+    public length = 4;
 
     @property({displayName: '隱藏數量(上,下)', tooltip: '上下軸隱藏幾個Symbol'})
     public hideSize: Size = new Size(1, 1);
@@ -34,7 +34,7 @@ export class BaseInspect {
     @property({displayName: '啟動時是否放置Symbol', tooltip: '啟動時是否放置Symbol'})
     public startPutSymbol :boolean = true;
 
-    @property({type: [Number], displayName: '隨機Symbol設定', tooltip: '滾動中會出現哪些Symbol, 陣列ID'})
+    @property({type: [CCInteger], displayName: '隨機Symbol設定', tooltip: '滾動中會出現哪些Symbol, 陣列ID'})
     public rollingSymbols: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 }

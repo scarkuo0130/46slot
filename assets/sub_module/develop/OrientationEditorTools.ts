@@ -40,9 +40,11 @@ export class OrientationData {
 
 
 @ccclass('OrientationEditorTools')
-@disallowMultiple(true)
 @executeInEditMode
 export class OrientationEditorTools extends Component {
+    @property({displayName: '主控制器, 全場 Scene 只能有一個是主控制器', tooltip: 'isMainController'})
+    public isMainController: boolean = false;
+
     @property({type: [OrientationData], displayName: '直版轉向資料', tooltip: 'PortraitData'})
     public PortraitData = [];
 
@@ -53,24 +55,41 @@ export class OrientationEditorTools extends Component {
     public saveNodes: Node[] = [];
 
     private _orientation: Orientation = Orientation.PORTRAIT;
-    @property({type:Enum(Orientation), displayName: '轉向設定', tooltip: '紀錄目前的轉向設定'})
+    @property({type:Enum(Orientation), displayName: '轉向設定', tooltip: '紀錄目前的轉向設定', visible:function(this:OrientationEditorTools) { return this.isMainController; }})
     public set orientation(value: Orientation) {
         this._orientation = value;
         this.onOrientationChange(value);
+        if ( this.isMainController === true ) {
+            OrientationEditorTools.subOrientationController.forEach( (controller:OrientationEditorTools) => controller.onOrientationChange(value) );
+        }
     }
-
     public get orientation() { return this._orientation; }
 
     @property({type:CCBoolean, displayName: '儲存轉向資料', tooltip: '是否儲存轉向資料'})
     public set SaveOrientationData(value: boolean) {
+        console.log('SaveOrientationData');
         if ( this.saveNodes.length === 0 ) return;
-        this.saveNodes.forEach( (node:Node) => OrientationEditorTools.instance.onCheckOrientationNode(this._orientation, node, this.saveOrientationData, 'Canvas') );
+        // let self = this;
+        // this.saveNodes.forEach( (node:Node) => self.onCheckOrientationNode(this._orientation, node, self.saveOrientationData, node.getPathInHierarchy()) );
+        for(let i=0; i<this.saveNodes.length; i++) {
+            this.onCheckOrientationNode(OrientationEditorTools.instance._orientation, this.saveNodes[i], this.saveOrientationData.bind(this), this.saveNodes[i].getPathInHierarchy());
+        }
+    
     }
     public get SaveOrientationData() { return false; }
+
     public viewport : Viewport;
     public static instance: OrientationEditorTools = null;
+    private static subOrientationController: OrientationEditorTools[] = [];
+    public static addSubOrientationController( controller: OrientationEditorTools ): void { OrientationEditorTools.subOrientationController.push(controller); }
+
     public onLoad(): void { 
-        OrientationEditorTools.instance = this; 
+        if ( this.isMainController === true ) {
+            OrientationEditorTools.instance = this;
+            Utils.delay(300).then( () => { Viewport.lockResizeHandler(); } );
+        } else {
+            OrientationEditorTools.addSubOrientationController(this);
+        }
         this.viewport = Viewport.instance;
 
         let event             = new EventHandler();
@@ -93,7 +112,8 @@ export class OrientationEditorTools extends Component {
             node.active = item.active;
             node.setPosition(item.position);
             node.setScale(item.scale);
-            node.parent = item.parentNode;
+
+            if ( item.parentNode != null ) node.setParent(item.parentNode);
             
             let uiTransform : UITransform = node.getComponent(UITransform);
             if ( uiTransform != null ) {
@@ -108,15 +128,15 @@ export class OrientationEditorTools extends Component {
 
         let children = node.children;
         if ( children.length === 0 ) return;
-        children.forEach( (child:Node) => { OrientationEditorTools.instance.onCheckOrientationNode(orientation, child, callEvent, parentPath); } );
+        children.forEach( (child:Node) => { this.onCheckOrientationNode(orientation, child, callEvent, parentPath); } );
     }
     
     saveOrientationData( orientation: Orientation, node:Node, parentPath:string ): void {
         if ( node == null ) return;
 
         let orientationData;
-        if ( orientation === Orientation.PORTRAIT ) orientationData = OrientationEditorTools.instance.PortraitData;
-        else if ( orientation === Orientation.LANDSCAPE ) orientationData = OrientationEditorTools.instance.LandscapeData;
+        if ( orientation === Orientation.PORTRAIT ) orientationData = this.PortraitData;
+        else if ( orientation === Orientation.LANDSCAPE ) orientationData = this.LandscapeData;
 
         if ( orientationData == null ) orientationData = {};
 
@@ -147,8 +167,8 @@ export class OrientationEditorTools extends Component {
         data.node = node;
         
         orientationData.push(data);
-        if ( orientation === Orientation.PORTRAIT ) OrientationEditorTools.instance.PortraitData = orientationData;
-        else if ( orientation === Orientation.LANDSCAPE ) OrientationEditorTools.instance.LandscapeData = orientationData;
+        if ( orientation === Orientation.PORTRAIT ) this.PortraitData = orientationData;
+        else if ( orientation === Orientation.LANDSCAPE ) this.LandscapeData = orientationData;
     }
 }
 

@@ -80,6 +80,7 @@ export class Viewport {
     }
 
     protected resizeHandler ( lockOrientation = null ): void {
+        console.log( 'resizeHandler');
         window.setTimeout( ( event ) => {
             console.log( 'resizeHandler', [ this.orientation, this.previousOrientation ] );
             this.checkOrientation( lockOrientation );

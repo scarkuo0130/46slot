@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Sprite, SpriteFrame } from 'cc';
-import { i18n } from '../utils/i18n';
+import { i18n } from '../../utils/i18n';
 
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
