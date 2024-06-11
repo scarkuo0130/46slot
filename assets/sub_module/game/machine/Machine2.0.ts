@@ -32,6 +32,10 @@ export class Machine2_0 extends Component {
         this.properties['controller'] = Controller2_0.Instance;
     }
 
+    public startAutoSpin() {
+        console.log('startAutoSpin');
+    }
+
 
 }
 

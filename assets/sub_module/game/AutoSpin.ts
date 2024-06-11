@@ -21,8 +21,8 @@ export class AutoSpin extends Component {
 
     private readonly initData = {
         'autoSpin' : {
-            'close' : { [DATE_TYPE.TYPE]: Button, [DATE_TYPE.NODE_PATH] : 'Background/Close', [DATE_TYPE.CLICK_EVENT]: this.closeUI  },
-            'start' : { [DATE_TYPE.TYPE]: Button, [DATE_TYPE.NODE_PATH] : 'Background/Start', [DATE_TYPE.CLICK_EVENT]: this.clickStart  },
+            'close'     : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Background/Close', [DATE_TYPE.CLICK_EVENT]: this.closeUI  },
+            'start'     : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Background/Start', [DATE_TYPE.CLICK_EVENT]: this.clickStart  },
         },
         'spinTimes'     : {
             'switch'    : { [DATE_TYPE.TYPE] : switchButton,  [DATE_TYPE.NODE_PATH] : 'Background/Spin Times/SwitchButton' },
@@ -48,21 +48,27 @@ export class AutoSpin extends Component {
 
     private properties = {
         'machine' : null,
+        'autoSpin' :{
+            active          : false,  // 目前是否開啟
+            spinTimeActive  : false,  // 是否開啟spinTime
+            spinTimes       : 0,      // 目前的剩餘次數
+            untilFeature    : false,  // 是否開啟直到特定feature
+        }
     };
 
-    public get machine() { return this.properties.machine; }
+    public get machine() :Machine2_0 { return this.properties.machine; }
 
     public static Instance: AutoSpin = null;
     protected onLoad(): void {
+        this.node.active = false;
+        this.node.setPosition(0,0,0);
         AutoSpin.Instance = this;
         this.init();
+        this.properties.machine = Machine2_0.Instance;
     }
 
     private init() {
-        this.node.active = false;
-        this.node.setPosition(0,0,0);
         this.properties = JSON.parse(JSON.stringify(this.initData));
-        this.properties.machine = Machine2_0.Instance;
         let properties = this.initData;
         
         for(let i=0;i<Object.keys(properties).length;i++) {
@@ -167,6 +173,21 @@ export class AutoSpin extends Component {
     public clickStart() {
         console.log('clickStart');
         this.closeUI();
+
+        let spinTimesData                = this.initData.spinTimes.dropdown[DATE_TYPE.COMPONENT].getPickData();
+        let spinTimeActive      :boolean = this.initData.spinTimes.switch[DATE_TYPE.COMPONENT].active;
+        let untilFeatureActive  :boolean = this.initData.untilFeature.switch[DATE_TYPE.COMPONENT].active;
+        let spinTimes           :number  = parseInt(spinTimesData.customData);
+        let active              = (spinTimeActive || untilFeatureActive);
+
+        if ( active === false ) return;
+        let autoSpin = this.properties.autoSpin;
+        autoSpin.active         = active;
+        autoSpin.spinTimeActive = spinTimeActive;
+        autoSpin.spinTimes      = spinTimes;
+        autoSpin.untilFeature   = untilFeatureActive;
+
+        this.machine.startAutoSpin();
     }
 }
 
