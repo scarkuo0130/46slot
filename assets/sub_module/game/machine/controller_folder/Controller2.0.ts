@@ -1,6 +1,9 @@
 import { _decorator, Component, Node, game, Button, EventTarget, Vec3, tween, Color, Sprite } from 'cc';
 import { Utils } from '../../../utils/Utils';
 import { Orientation, Viewport } from '../../../utils/Viewport';
+import OpenAI from 'openai';
+import { AutoSpin } from '../../AutoSpin';
+import { Machine2_0 } from '../Machine2.0';
 const { ccclass, property } = _decorator;
 
 export enum BUTTON_DATA_TYPE {
@@ -34,17 +37,20 @@ export class Controller2_0 extends Component {
         'Sound'             : { [BUTTON_DATA_TYPE.PATH] : 'Option Buttons/Sound',       [BUTTON_DATA_TYPE.EVENT] : this.clickSound,             [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
         
         // ====== 橫版按鈕 ======
-        'OptionLandscape'   : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Option',            [BUTTON_DATA_TYPE.EVENT] : this.clickOption,            [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
-        'RecordLandscape'   : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/Record',    [BUTTON_DATA_TYPE.EVENT] : this.clickRecord,            [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
-        'SoundLandscape'    : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/Sound',     [BUTTON_DATA_TYPE.EVENT] : this.clickSound,             [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
-        'InGameMenuLandscape':{ [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/InGameMenu',[BUTTON_DATA_TYPE.EVENT] : this.clickInGameMenu,        [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
-        'ScreenLandscape'   : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/Screen',    [BUTTON_DATA_TYPE.EVENT] : this.clickFullscreen,        [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
+        'OptionLandscape'   : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Option',            [BUTTON_DATA_TYPE.EVENT] : this.clickOption,    [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
+        'RecordLandscape'   : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/Record',    [BUTTON_DATA_TYPE.EVENT] : this.clickRecord,    [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
+        'SoundLandscape'    : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/Sound',     [BUTTON_DATA_TYPE.EVENT] : this.clickSound,     [BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
+        'InGameMenuLandscape':{ [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/InGameMenu',[BUTTON_DATA_TYPE.EVENT] : this.clickInGameMenu,[BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
+        'ScreenLandscape'   : { [BUTTON_DATA_TYPE.PATH] : 'Option Landscape/Content/Screen',    [BUTTON_DATA_TYPE.EVENT] : this.clickFullscreen,[BUTTON_DATA_TYPE.BUSY_DISABLE]: true, },
     };
 
     /**
      * 
      */
     protected properties = {
+        'machine' : null,
+
+
         // Option 按鈕資料
         'OptionButtons' : { // 點擊 Option 按鈕後的選項設定
             [Orientation.PORTRAIT] : { // 直版
@@ -78,10 +84,33 @@ export class Controller2_0 extends Component {
             'path'   : '---- Common Mask ----',
             'alpha'  : 200,
             'event'  : null,
-        }
+        },
+
+        'SpeedMode' : {
+            'Normal' : {
+                'type' : Machine2_0.SPEED_MODE.NORMAL,
+                'path' : 'Bottom Buttons/Speed/Normal',
+                'node' : null,
+                'next' : 'Quick',
+            },
+
+            'Quick' : {
+                'type' : Machine2_0.SPEED_MODE.QUICK,
+                'path' : 'Bottom Buttons/Speed/Quick',
+                'node' : null,
+                'next' : 'Turbo',
+            },
+
+            'Turbo' : {
+                'type' : Machine2_0.SPEED_MODE.TURBO,
+                'path' : 'Bottom Buttons/Speed/Turbo',
+                'node' : null,
+                'next' : 'Normal',
+            },
+        },
     };
 
-    private static Instance: Controller2_0 = null;
+    public static Instance: Controller2_0 = null;
 
     /**
      * 初始化按鈕
@@ -102,6 +131,26 @@ export class Controller2_0 extends Component {
                 this.properties['BusyDisableButtons'].push(button.getComponent(Button));
             }
         }
+    }
+
+    private initSpeedMode() {
+        let speedMode = this.properties.SpeedMode;
+        let speedModeType = Machine2_0.SPEED_MODE;
+
+        speedMode[speedModeType.NORMAL] = speedMode['Normal'];
+        speedMode[speedModeType.QUICK]  = speedMode['Quick'];
+        speedMode[speedModeType.TURBO]  = speedMode['Turbo'];
+
+        speedMode[speedModeType.NORMAL]['node'] = this.node.getChildByPath(speedMode['Normal']['path']);
+        speedMode[speedModeType.QUICK]['node']  = this.node.getChildByPath(speedMode['Quick']['path']);
+        speedMode[speedModeType.TURBO]['node']  = this.node.getChildByPath(speedMode['Turbo']['path']);
+        speedMode[speedModeType.NORMAL]['next'] = speedModeType.QUICK;
+        speedMode[speedModeType.QUICK]['next']  = speedModeType.TURBO;
+        speedMode[speedModeType.TURBO]['next']  = speedModeType.NORMAL;
+        
+        delete speedMode['Normal'];
+        delete speedMode['Quick'];
+        delete speedMode['Turbo'];
     }
 
     /**
@@ -136,8 +185,10 @@ export class Controller2_0 extends Component {
     public async maskActive(active:boolean) {
         let maskData = this.properties['Mask'];
         let [sprite, fadeIn,event ] = [maskData['sprite'], maskData['alpha'], maskData['event']];
+        if ( event && event['running'] ) return ;
         
         event.removeAll('done');
+        event['running'] = true;
         let fromAlpha = active ? 0 : fadeIn;
         let toAlpha   = active ? fadeIn : 0;
         let data      = { 'value': fromAlpha };
@@ -150,7 +201,12 @@ export class Controller2_0 extends Component {
         }).start();
 
         await Utils.delayEvent(event);
+        event['running'] = false;
+        sprite.node.active = active;
     }
+
+    public static MaskActive(active:boolean) { return Controller2_0.Instance.maskActive(active); }
+
     // #endregion 遮罩
 
     /**
@@ -161,10 +217,21 @@ export class Controller2_0 extends Component {
 
     protected onLoad(): void {
         Controller2_0.Instance = this;
+        this.properties['machine'] = Machine2_0.Instance;
+
         this.initButton();
         this.initOptionButton();
         this.initMask();
+        this.initSpeedMode();
+
+        console.log(this.properties);
     }
+
+    protected start() {
+        this.changeSpeedMode(this.machine.SpeedMode);
+    }
+
+    public get machine() { return this.properties['machine']; }
 
     //region 按鈕事件 [[rgba(0, 0, 0, 0)]]
 
@@ -191,10 +258,6 @@ export class Controller2_0 extends Component {
         
     }
 
-    start() {
-        console.log(this);
-    }
-
     protected clickTotalBetDecrease() {
         console.log('clickTotalBetDecrease');
     }
@@ -218,7 +281,7 @@ export class Controller2_0 extends Component {
         let optionData  = this.properties['OptionButtons'][orientation];
         let [ node, oFromPos, oToPos, isActive, running, bottomNode ] = [ optionData['node'], optionData['fromPos'], optionData['toPos'], optionData['active'], optionData['running'], optionData['bottomNode'] ];
         
-        if ( node == null )         return console.error('Option Node is null', optionData);
+        if ( node    == null )      return console.error('Option Node is null', optionData);
         if ( running === true )     return;
         if ( active  === isActive ) return;
         active = !isActive;
@@ -246,11 +309,28 @@ export class Controller2_0 extends Component {
     protected clickOptionBack() { return this.clickOption(null, false); }
 
     protected clickSpeedMode() {
-        console.log('clickSpeedMode');
+        let speedMode = this.properties.SpeedMode;
+        let lastMode = this.machine.SpeedMode;
+        let nextMode = speedMode[lastMode]['next'];
+
+        return this.changeSpeedMode(nextMode);
     }
 
+    protected changeSpeedMode(mode:number) {
+        let speedMode = this.properties.SpeedMode;
+        let lastMode = this.machine.SpeedMode;
+        if ( lastMode === mode ) return;
+
+        speedMode[mode]['node'].active = true;
+        speedMode[lastMode]['node'].active = false;
+
+        return this.machine.setSpeedMode(mode);
+    }
+
+    public static ChangeSpeedMode(mode:number) { return Controller2_0.Instance.changeSpeedMode(mode); }
+
     protected clickAutoSpin() {
-        console.log('clickAutoSpin');
+       AutoSpin.OpenUI();
     }
 
     protected clickInGameMenu() {

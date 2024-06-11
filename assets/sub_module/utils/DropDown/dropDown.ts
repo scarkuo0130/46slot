@@ -50,7 +50,6 @@ export class dropDown extends Component {
     protected items = null;
 
     protected onLoad(): void {
-        console.log('onLoad:', this.itemList);
         this.mainDisplayItemLabel.node.on(Node.EventType.TOUCH_END, this.click, this);
         this.mainScrollView.node.active = false;
         this.defaultItem.itemNode.active = false;
@@ -59,6 +58,7 @@ export class dropDown extends Component {
     }
 
     public start() { 
+        Utils.AddHandHoverEvent(this.node);
         this.pickDefault(); 
     }
 
@@ -108,38 +108,30 @@ export class dropDown extends Component {
     }
 
     protected createItem() {
-        console.log('createItem: step 1', this.itemList);
         if ( this.itemList == null ) return;
-
-        console.log('createItem: step 2' );
         if ( this.itemList.length === 0 ) return;
-
-        console.log('createItem: step 3' );
         let container = this.mainScrollView.content;
         let defaultIndx = this.defaultDisplayIdx;
         this.items = {'pickIdx':defaultIndx};
 
-        console.log('createItem: step 4' );
         for(let i in this.itemList) {
             let item = this.itemList[i];
             let itemNode : Node;
             let idx = parseInt(i);
 
-            console.log('createItem: step 5', item );
             if ( item.itemNode != null ) {
-                console.log('createItem: step 5-1');
                 item.itemNode.active = false;
                 item.itemDisplayLabel.string = item.itemName;
                 itemNode = instantiate(item.itemNode);
 
             } else {
-                console.log('createItem: step 5-2');
                 this.defaultItem.itemDisplayLabel.string = item.itemName;
                 itemNode = instantiate(this.defaultItem.itemNode);
             }
             
             itemNode.on(Node.EventType.TOUCH_END, (event:Event)=>{ return this.pickItem(event, itemNode, item.itemName, idx); } );
             this.items[idx] = { 'node':itemNode, 'data':item, 'idx':idx, 'customData':item.itemCustomData };
+            Utils.AddHandHoverEvent(itemNode);
             /*if ( idx === defaultIndx ) {
                 this.pickItem(null, itemNode, item.itemName, idx);
             }*/
@@ -152,7 +144,6 @@ export class dropDown extends Component {
     }
 
     protected pickDefault() { 
-        console.log('pickDefault:', this.items);
         let index = this.items.pickIdx;
         let itemNode = this.items[index]['node'];
         let itemName = this.items[index]['data'].itemName;
@@ -166,7 +157,6 @@ export class dropDown extends Component {
         let totalHeight = itemHeight * displayAmount;
         let uiTrans = this.mainScrollView.getComponent(UITransform);
         let conSize = uiTrans.contentSize;
-        console.log('conSize:', conSize.width, totalHeight);
         uiTrans.setContentSize(conSize.width, totalHeight);
     }
 

@@ -1,4 +1,5 @@
 import { _decorator, CCBoolean, Color, Component, EventHandler, Node, Sprite, tween, Vec3 } from 'cc';
+import { Utils } from '../Utils';
 const { ccclass, property } = _decorator;
 
 @ccclass('switchButton')
@@ -30,8 +31,7 @@ export class switchButton extends Component {
     @property({group:{name:'nonActive', displayOrder:1}, displayName:'NonActiveButtonColor'})
     private nonActiveButtonColor: Color;
 
-    // @property({group:{name:'nonActive', displayOrder:1}, displayName:'NonActiveEventHandler', type:[EventHandler] })
-    // private nonActiveEventHandler: EventHandler[] = [];
+    public addActiveEventHandler(handler:EventHandler) { this.activeEventHandler.push(handler); }
 
     private nowActive: boolean;
     private mainSprite: Sprite;
@@ -43,6 +43,7 @@ export class switchButton extends Component {
         this.mainSprite = this.getComponent<Sprite>(Sprite);
         this.buttonSprite = this.buttonNode.getComponent<Sprite>(Sprite);
         this.node.on(Node.EventType.TOUCH_END, this.click, this);
+        Utils.AddHandHoverEvent(this.node);
     }
 
     protected start() {
@@ -72,7 +73,6 @@ export class switchButton extends Component {
     click() {
         let act = !this.nowActive;
         this.switch(act);
-
         if ( this.activeEventHandler.length > 0 ) {
             for(let i in this.activeEventHandler) this.activeEventHandler[i].emit([act]);
         }

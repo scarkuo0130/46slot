@@ -1,4 +1,4 @@
-import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp, game, Node } from "cc";
+import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color } from "cc";
 import { PREVIEW } from "cc/env";
 import { Game } from "../game/Game";
 import { Config, GameConfig } from '../game/GameConfig';
@@ -321,7 +321,40 @@ export class Utils {
         return animation?.duration ?? 0;//空值合并，当左侧的操作数为 null 或者 undefined 时，返回其右侧操作，否则返回左侧。
     }
 
+    public static readonly activeUIScale = [ new Vec3( 0.5, 0.5, 1 ), new Vec3( 1, 1, 1 )];
+    public static readonly activeUIAlpha = [ new Color( 255, 255, 255, 0 ), new Color( 255, 255, 255, 255 )];
+    public static activeUIEventTarget: EventTarget = null;
+    public static async commonActiveUITween( ui:Node, active:boolean) {
+        if ( ui == null ) return;
+        if ( this.activeUIEventTarget && this.activeUIEventTarget['running'] === true ) return;
 
+        let fromScale = active ? this.activeUIScale[ 0 ] : this.activeUIScale[ 1 ];
+        let toScale   = active ? this.activeUIScale[ 1 ] : this.activeUIScale[ 0 ];
+        if ( this.activeUIEventTarget == null ) {
+            this.activeUIEventTarget = new EventTarget();
+        } else {
+            this.activeUIEventTarget.removeAll('done');
+        }
+        this.activeUIEventTarget['running'] = true;
+        ui.setScale( fromScale );
+        ui.active = true;
+        tween( ui ).to(0.3, { scale: toScale }, { 
+            easing: 'backOut',
+            onComplete:(x)=> Utils.activeUIEventTarget.emit('done')
+        }).start();
+
+        let sprite = ui.getComponent(Sprite);
+        if ( sprite != null ) {
+            let fromColor = active ? this.activeUIAlpha[ 0 ] : this.activeUIAlpha[ 1 ];
+            let toColor   = active ? this.activeUIAlpha[ 1 ] : this.activeUIAlpha[ 0 ];
+            sprite.color = fromColor;
+            tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
+        }
+
+        await this.delayEvent( this.activeUIEventTarget );
+        this.activeUIEventTarget['running'] = false;
+        ui.active = active;
+    }
 }
 
 export var gversion = null;
