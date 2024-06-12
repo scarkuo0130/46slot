@@ -7,7 +7,6 @@ import { Utils, _utilsDecorator } from '../utils/Utils';
 import { i18n } from '../utils/i18n';
 import { PREVIEW } from 'cc/env';
 import { GoogleAnalytics } from '../analytics/GoogleAnalytics';
-import { LoadingUI } from '../../4500/scripts/LoadingUI';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -36,12 +35,6 @@ export class Loading extends Component {
     @property( { displayName: 'LoadingScene', tooltip: 'Input game scene', group: { name: 'Setting', id: '0' } } )
     public GameScene: string = "Game";
 
-    //@property( { type: ProgressBar, displayName: 'ProgressBar', tooltip: 'Loading進度條', group: { name: 'Setting', id: '0' } } )
-    //public progressBar !: ProgressBar;
-    //@property( { type: Label, displayName: 'ProgressLabel', tooltip: '顯示進度數字', group: { name: 'Setting', id: '0' } } )
-    //public progressLabel: Label;
-
-    //gameid=4100&token=testtoken4100&betrecordurl=http://br-lab.game-rock.online&lang=en&homeurl=https://localhost&mode=0&serverurl=http://gs-lab.game-rock.online&t=20231101&b=iqazwsxi
     @property( { displayName: "GameID", tooltip: "遊戲ID", group: { name: 'Preview', id: '0' } } )
     public gameid: number = 0;
 
@@ -57,6 +50,12 @@ export class Loading extends Component {
     @property( { displayName: 'betrecordurl', group: { name: 'Preview', id: '0' } } )
     public betrecordurl: string = "http://br-lab.game-rock.online";
 
+    @property( { displayName: 'currency', tooltip: '貨幣USD', group: { name: 'Preview', id: '0' } } )
+    public currency: string = "IDR";
+
+    @property( { displayName: '是否為預覽模式, 如果Loading.ts不是掛在 Loading Scene, 請打勾', tooltip: 'isPreview', group: { name: 'Preview', id: '0' } } )
+    public isPreview: boolean = false;
+
 
     @property( { type: [ LoadingImage ], displayName: 'PlatformImage', tooltip: '載入平台圖片', group: { name: 'LoadingPlatfromImage', id: '0' } } )
     public platformImage: LoadingImage[] = [];
@@ -70,10 +69,10 @@ export class Loading extends Component {
     @property( { type: Sprite, displayName: 'MaskSprite', tooltip: '遮罩圖片顯示', group: { name: 'LoadingPlatfromImage', id: '0' } } )
     public maskSprite: Sprite = null;
 
-    public static Instance: Loading;
+    public static Instance: Loading = null;
 
     onLoad () {
-        Loading.Instance = this;
+        if ( Loading.Instance == null ) Loading.Instance = this;
         Utils.getConfig();
         this.getParamURL();
         this.changePlatformImage();
@@ -89,7 +88,7 @@ export class Loading extends Component {
             .catch( function ( e ) {
                 console.error( e );
                 console.error( 'fail to load data from server' );
-                cc.Dailog.errorMessage( e );
+                // cc.Dailog.errorMessage( e );
             } );
     }
 
@@ -151,6 +150,9 @@ export class Loading extends Component {
         gameInformation.serverurl = this.getParam( paramURL, 'serverurl' );
         gameInformation.lang = this.getParam( paramURL, 'lang' );
         gameInformation.betrecordurl = this.getParam( paramURL, 'betrecordurl' );
+
+        let currency = this.getParam( paramURL, 'currency' );
+        if ( currency ) gameInformation.setCurrency(currency);
         i18n.init( gameInformation.lang );
     }
 
@@ -200,6 +202,8 @@ export class Loading extends Component {
     }
 
     async loadGameScene () {
+        if ( Loading.Instance.isPreview === true ) return;
+
         const self = this;
         GoogleAnalytics.instance.initialize();
         director.preloadScene( Loading.Instance.GameScene, function ( completedCount, totalCount, item ) {

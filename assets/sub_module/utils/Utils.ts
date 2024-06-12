@@ -324,7 +324,7 @@ export class Utils {
     public static getConfig ( callback: EventHandler = null ) {
         if ( Config != null ) return callback?.emit( [ Config ] );
         resources.load( 'data/config', JsonAsset, ( err, config ) => {
-            if ( err != null ) return;
+            if ( err != null ) return console.error( err );
             GameConfig.setConfig( config.json );
             this.setVersion( Config[ 'Version' ] );
             this.loadCurrency();

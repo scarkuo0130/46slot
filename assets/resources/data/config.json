@@ -1,0 +1,10 @@
+{
+    "Sites": {
+        "Develop": [
+            "gc-lab.game-rock.online",
+            "localhost"
+        ],
+        "QA": []
+    },
+    "Version": "4600.beta01"
+}

@@ -1,0 +1,108 @@
+{
+    "IDR" : {
+        "symbol" : "Rp",
+        "fixedDigit" : 0
+    },
+
+    "CNY" : {
+        "symbol" : "¥",
+        "fixedDigit" : 2
+    },
+
+    "MYR" : {
+        "symbol" : "RM",
+        "fixedDigit" : 2
+    },
+
+    "THB" : {
+        "symbol" : "‎฿",
+        "fixedDigit" : 0
+    },
+
+    "VND" : {
+        "symbol" : "₫",
+        "fixedDigit" : 0
+    },
+
+    "PHP" : {
+        "symbol" : "₱",
+        "fixedDigit" : 2
+    },
+
+    "KRW" : {
+        "symbol" : "₩",
+        "fixedDigit" : 0
+    },
+
+    "USD" : {
+        "symbol" : "$",
+        "fixedDigit" : 2
+    },
+
+    "EUR" : {
+        "symbol" : "€",
+        "fixedDigit" : 2
+    },
+
+    "JPY" : {
+        "symbol" : "¥",
+        "fixedDigit" : 0
+    },
+
+    "GBP" : {
+        "symbol" : "£",
+        "fixedDigit" : 2
+    },
+
+    "AUD" : {
+        "symbol" : "A$",
+        "fixedDigit" : 2
+    },
+
+    "CAD" : {
+        "symbol" : "C$",
+        "fixedDigit" : 2
+    },
+
+    "CHF" : {
+        "symbol" : "CHF",
+        "fixedDigit" : 2
+    },
+
+    "HKD" : {
+        "symbol" : "HK$",
+        "fixedDigit" : 2
+    },
+
+    "NZD" : {
+        "symbol" : "NZ$",
+        "fixedDigit" : 2
+    },
+
+    "SGD" : {
+        "symbol" : "S$",
+        "fixedDigit" : 2
+    },
+
+    "SEK" : {
+        "symbol" : "kr",
+        "fixedDigit" : 2
+    },
+
+    "NOK" : {
+        "symbol" : "kr",
+        "fixedDigit" : 2
+    },
+
+    "DKK" : {
+        "symbol" : "kr",
+        "fixedDigit" : 2
+    },
+
+    "MXN" : {
+        "symbol" : "Mex$",
+        "fixedDigit" : 2
+    }
+
+
+}
