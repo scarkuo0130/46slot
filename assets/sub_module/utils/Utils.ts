@@ -22,7 +22,85 @@ export namespace _utilsDecorator {
     }
 }
 
+export enum DATE_TYPE {
+    NODE = 0, // object node
+    COMPONENT = 1, // object component
+    TYPE = 2, // object component type
+    NODE_PATH = 3, // node path for init object
+    CLICK_EVENT = 4, // click event
+}
+
 export class Utils {
+    public static initPropertyData<T>(component: T) {
+        return {
+            [DATE_TYPE.NODE]        : Node,
+            [DATE_TYPE.COMPONENT]   : component,
+            [DATE_TYPE.TYPE]        : null,
+            [DATE_TYPE.NODE_PATH]   : "",
+            [DATE_TYPE.CLICK_EVENT] : Function,
+        };
+    }
+
+
+    public static initData( initData:any, bindComponent: any ) {
+        if ( initData == null ) return;
+        if ( bindComponent == null ) return;
+        if ( bindComponent.node == null ) return;
+
+        let properties = bindComponent['properties'];
+        if ( properties == null ) properties = {};
+
+        for(let i=0;i<Object.keys(initData).length;i++) {
+
+            let key = Object.keys(initData)[i];
+            let property = initData[key];
+
+            for(let j=0;j<Object.keys(property).length;j++) {
+                let subKey = Object.keys(property)[j];
+                let subProperty = property[subKey];
+
+                if ( subKey === 'INIT_EVENT' ) {
+                    let boundSubProperty = subProperty.bind(bindComponent);
+                    boundSubProperty(property);
+                    continue;
+                }
+
+                let path = subProperty[DATE_TYPE.NODE_PATH];
+                if ( path == null || typeof(path) !== 'string' ) continue;
+
+                let node = bindComponent.node.getChildByPath(path);
+                if ( node == null ) {
+                    console.error('AutoSpin: Node not found: ' + subProperty[DATE_TYPE.NODE_PATH]);
+                    continue;
+                }
+
+                let t = subProperty[DATE_TYPE.TYPE];
+                let component = node.getComponent(t);
+                
+                if ( component == null ) {
+                    console.error('AutoSpin: Component not found: ' + subProperty[DATE_TYPE.TYPE]);
+                    continue;
+                }
+
+                let propertiesData = Utils.initPropertyData(component);
+
+                if ( subProperty[DATE_TYPE.CLICK_EVENT] != null ) {
+                    node.on(Node.EventType.TOUCH_END, subProperty[DATE_TYPE.CLICK_EVENT], bindComponent);
+                    Utils.AddHandHoverEvent(node);
+                }
+
+                propertiesData[DATE_TYPE.NODE] = node;
+                propertiesData[DATE_TYPE.COMPONENT] = component;
+                propertiesData[DATE_TYPE.TYPE] = t;
+                propertiesData[DATE_TYPE.NODE_PATH] = path;
+                propertiesData[DATE_TYPE.CLICK_EVENT] = subProperty[DATE_TYPE.CLICK_EVENT];
+
+                property[subKey] = propertiesData;
+            }
+
+            properties[key] = property;
+        }
+    }
 
     public static AddHandHoverEvent ( target: Node ) {
         target.on( Node.EventType.MOUSE_ENTER, () => { game.canvas.style.cursor = 'pointer'; } );

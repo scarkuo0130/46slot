@@ -2,19 +2,11 @@ import { _decorator, Button, Component, Node, EventHandler } from 'cc';
 import { switchButton } from '../utils/SwitchButton/switchButton';
 import { LanguageLabel } from './Language/LanguageLabel';
 import { dropDown } from '../utils/DropDown/dropDown';
-import { Utils } from '../utils/Utils';
+import { Utils, DATE_TYPE } from '../utils/Utils';
 import { Controller2_0 } from './machine/controller_folder/Controller2.0';
 import { Machine } from 'xstate';
 import { Machine2_0 } from './machine/Machine2.0';
 const { ccclass, property } = _decorator;
-
-export enum DATE_TYPE {
-    NODE = 0, // object node
-    COMPONENT = 1, // object component
-    TYPE = 2, // object component type
-    NODE_PATH = 3, // node path for init object
-    CLICK_EVENT = 4, // click event
-}
 
 @ccclass('AutoSpin')
 export class AutoSpin extends Component {
@@ -68,50 +60,9 @@ export class AutoSpin extends Component {
     }
 
     private init() {
-        this.properties = JSON.parse(JSON.stringify(this.initData));
-        let properties = this.initData;
-        
-        for(let i=0;i<Object.keys(properties).length;i++) {
-
-            let key = Object.keys(properties)[i];
-            let property = properties[key];
-
-            for(let j=0;j<Object.keys(property).length;j++) {
-                let subKey = Object.keys(property)[j];
-                let subProperty = property[subKey];
-
-                if ( subKey === 'INIT_EVENT' ) {
-                    let boundSubProperty = subProperty.bind(this);
-                    boundSubProperty(property);
-                    continue;
-                }
-
-
-                console.log('subProperty',subKey, typeof(subProperty), property);
-                let path = subProperty[DATE_TYPE.NODE_PATH];
-                if ( path == null || typeof(path) !== 'string' ) continue;
-
-                subProperty[DATE_TYPE.NODE] = this.node.getChildByPath(subProperty[DATE_TYPE.NODE_PATH]);
-                if ( subProperty[DATE_TYPE.NODE] == null ) {
-                    console.error('AutoSpin: Node not found: ' + subProperty[DATE_TYPE.NODE_PATH]);
-                    continue;
-                }
-                subProperty[DATE_TYPE.COMPONENT] = subProperty[DATE_TYPE.NODE].getComponent(subProperty[DATE_TYPE.TYPE]);
-                if ( subProperty[DATE_TYPE.COMPONENT] == null ) {
-                    console.error('AutoSpin: Component not found: ' + subProperty[DATE_TYPE.TYPE]);
-                    continue;
-                }
-
-                if ( subProperty[DATE_TYPE.CLICK_EVENT] != null ) {
-                    subProperty[DATE_TYPE.NODE].on(Node.EventType.TOUCH_END, subProperty[DATE_TYPE.CLICK_EVENT], this);
-                    Utils.AddHandHoverEvent(subProperty[DATE_TYPE.NODE]);
-                }
-            }
-
-            this.properties[key] = property;
-        }
+        Utils.initData(this.initData, this);
+        console.log('autospin init',this.properties);
     }
-
 
     public closeUI() { this.activeUI(false); }
     public async openUI() { 
@@ -175,11 +126,11 @@ export class AutoSpin extends Component {
         this.closeUI();
 
         let spinTimesData                = this.initData.spinTimes.dropdown[DATE_TYPE.COMPONENT].getPickData();
-        let spinTimeActive      :boolean = this.initData.spinTimes.switch[DATE_TYPE.COMPONENT].active;
-        let untilFeatureActive  :boolean = this.initData.untilFeature.switch[DATE_TYPE.COMPONENT].active;
+        let spinTimeActive      :boolean = this.initData.spinTimes.switch[DATE_TYPE.COMPONENT].Active;
+        let untilFeatureActive  :boolean = this.initData.untilFeature.switch[DATE_TYPE.COMPONENT].Active;
         let spinTimes           :number  = parseInt(spinTimesData.customData);
         let active              = (spinTimeActive || untilFeatureActive);
-
+        
         if ( active === false ) return;
         let autoSpin = this.properties.autoSpin;
         autoSpin.active         = active;
