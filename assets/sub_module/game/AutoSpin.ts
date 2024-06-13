@@ -61,7 +61,6 @@ export class AutoSpin extends Component {
 
     private init() {
         Utils.initData(this.initData, this);
-        console.log('autospin init',this.properties);
     }
 
     public closeUI() { this.activeUI(false); }

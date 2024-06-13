@@ -3,8 +3,8 @@ import { Utils, DATE_TYPE } from '../utils/Utils';
 import { Controller2_0 } from './machine/controller_folder/Controller2.0';
 const { ccclass, property } = _decorator;
 
-@ccclass('DieLogUI')
-export class DieLogUI extends Component {
+@ccclass('DialogUI')
+export class DialogUI extends Component {
     private initData = {
         'items' : {
             'close'   : { [DATE_TYPE.TYPE] : Button, [DATE_TYPE.NODE_PATH] : 'Background/Close',        [DATE_TYPE.CLICK_EVENT]: this.closeUI  },
@@ -29,13 +29,13 @@ export class DieLogUI extends Component {
         },
     };
 
-    public static Instance: DieLogUI = null;
+    public static Instance: DialogUI = null;
 
     protected onLoad(): void { this.init(); }
 
 
     private init(): void {
-        DieLogUI.Instance = this;
+        DialogUI.Instance = this;
         this.node.active = false;
         this.node.setPosition(0,0,0);
         Utils.initData(this.initData, this);
@@ -46,7 +46,7 @@ export class DieLogUI extends Component {
         Controller2_0.MaskActive(false);
     }
 
-    public static OpenUI(content:string, activeClose=false, title:string='', clickEvent:Function=null, okLabel:string='ok'): void { return DieLogUI.Instance.openUI(content, activeClose, title, clickEvent, okLabel); }
+    public static OpenUI(content:string, activeClose=false, title:string='', clickEvent:Function=null, okLabel:string='ok'): void { return DialogUI.Instance.openUI(content, activeClose, title, clickEvent, okLabel); }
     public openUI(content:string, activeClose=false, title:string='', clickEvent:Function=null, okLabel:string='ok'): void {
         this.properties.clickEvent = clickEvent;
         this.properties.activeClose = activeClose;

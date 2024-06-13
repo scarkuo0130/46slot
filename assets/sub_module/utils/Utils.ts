@@ -38,9 +38,71 @@ export class Utils {
             [DATE_TYPE.TYPE]        : null,
             [DATE_TYPE.NODE_PATH]   : "",
             [DATE_TYPE.CLICK_EVENT] : Function,
+
+            get node()      { return this[DATE_TYPE.NODE]; },
+            get component() { return this[DATE_TYPE.COMPONENT]; },
+            get type()      { return this[DATE_TYPE.TYPE]; },
+            get clickEvent(){ return this[DATE_TYPE.CLICK_EVENT]; },
         };
     }
 
+    public static processProperty(bindComponent: any, key: string, property: any) {
+        let haveInitEvent = null;
+
+        for(let j=0;j<Object.keys(property).length;j++) {
+            const subKey = Object.keys(property)[j];
+            const subProperty = property[subKey];
+
+            if ( subKey === 'INIT_EVENT' ) {
+                let boundSubProperty = subProperty.bind(bindComponent);
+                haveInitEvent = boundSubProperty;
+                continue;
+            }
+
+            const path = subProperty[DATE_TYPE.NODE_PATH];
+            if ( path == null || typeof(path) !== 'string' ) continue;
+
+            const node = bindComponent.node.getChildByPath(path);
+            if ( node == null ) {
+                console.error('Node not found: ' + subProperty[DATE_TYPE.NODE_PATH]);
+                continue;
+            }
+
+            const t = subProperty[DATE_TYPE.TYPE];
+            const component = ( t == Node ) ? node : node.getComponent(t);
+            
+            if ( component == null ) {
+                console.error('Component not found: ' + subProperty[DATE_TYPE.TYPE], path);
+                continue;
+            }
+
+            let propertiesData = Utils.initPropertyData(component);
+
+            if ( subProperty[DATE_TYPE.CLICK_EVENT] != null ) {
+                node.on(Node.EventType.TOUCH_END, subProperty[DATE_TYPE.CLICK_EVENT], bindComponent);
+                Utils.AddHandHoverEvent(node);
+            }
+
+            propertiesData[DATE_TYPE.NODE]        = node;
+            propertiesData[DATE_TYPE.COMPONENT]   = component;
+            propertiesData[DATE_TYPE.TYPE]        = t;
+            propertiesData[DATE_TYPE.NODE_PATH]   = path;
+            propertiesData[DATE_TYPE.CLICK_EVENT] = subProperty[DATE_TYPE.CLICK_EVENT];
+
+            const otherData = subProperty;
+            delete otherData[DATE_TYPE.NODE];
+            delete otherData[DATE_TYPE.COMPONENT];
+            delete otherData[DATE_TYPE.TYPE];
+            delete otherData[DATE_TYPE.NODE_PATH];
+            delete otherData[DATE_TYPE.CLICK_EVENT];
+            if ( Object.keys(otherData).length > 0 ) propertiesData = Utils.mergeJsonData(propertiesData, otherData);
+
+            if ( !property[key] || !property[key][subKey] ) property[subKey] = propertiesData;
+            else property[subKey] = Utils.mergeJsonData(property[key][subKey], propertiesData);
+        }
+
+        return { property, haveInitEvent };
+    }
 
     public static initData( initData:any, bindComponent: any ) {
         if ( initData == null ) return;
@@ -51,55 +113,31 @@ export class Utils {
         if ( properties == null ) properties = {};
 
         for(let i=0;i<Object.keys(initData).length;i++) {
+            const key = Object.keys(initData)[i];
+            const property = initData[key];
 
-            let key = Object.keys(initData)[i];
-            let property = initData[key];
+            const { property: processedProperty, haveInitEvent } = Utils.processProperty(bindComponent, key, property);
 
-            for(let j=0;j<Object.keys(property).length;j++) {
-                let subKey = Object.keys(property)[j];
-                let subProperty = property[subKey];
+            properties[key] = processedProperty;
 
-                if ( subKey === 'INIT_EVENT' ) {
-                    let boundSubProperty = subProperty.bind(bindComponent);
-                    boundSubProperty(property);
-                    continue;
-                }
-
-                let path = subProperty[DATE_TYPE.NODE_PATH];
-                if ( path == null || typeof(path) !== 'string' ) continue;
-
-                let node = bindComponent.node.getChildByPath(path);
-                if ( node == null ) {
-                    console.error('AutoSpin: Node not found: ' + subProperty[DATE_TYPE.NODE_PATH]);
-                    continue;
-                }
-
-                let t = subProperty[DATE_TYPE.TYPE];
-                let component = node.getComponent(t);
-                
-                if ( component == null ) {
-                    console.error('AutoSpin: Component not found: ' + subProperty[DATE_TYPE.TYPE]);
-                    continue;
-                }
-
-                let propertiesData = Utils.initPropertyData(component);
-
-                if ( subProperty[DATE_TYPE.CLICK_EVENT] != null ) {
-                    node.on(Node.EventType.TOUCH_END, subProperty[DATE_TYPE.CLICK_EVENT], bindComponent);
-                    Utils.AddHandHoverEvent(node);
-                }
-
-                propertiesData[DATE_TYPE.NODE] = node;
-                propertiesData[DATE_TYPE.COMPONENT] = component;
-                propertiesData[DATE_TYPE.TYPE] = t;
-                propertiesData[DATE_TYPE.NODE_PATH] = path;
-                propertiesData[DATE_TYPE.CLICK_EVENT] = subProperty[DATE_TYPE.CLICK_EVENT];
-
-                property[subKey] = propertiesData;
-            }
-
-            properties[key] = property;
+            if ( haveInitEvent != null ) haveInitEvent();
         }
+    }
+
+    /**
+     * 合併兩個 JSON 物件
+     */
+    public static mergeJsonData( target: any, source: any ) {
+        if ( target == null ) target = {};
+        if ( source == null ) return target;
+
+        let keys = Object.keys(source);
+        for ( let i in keys ) {
+            let key = keys[ i ];
+            target[ key ] = source[ key ];
+        }
+
+        return target;
     }
 
     public static AddHandHoverEvent ( target: Node ) {

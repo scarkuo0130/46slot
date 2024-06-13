@@ -3,6 +3,7 @@ import { Utils, _utilsDecorator } from '../../utils/Utils';
 import { Wheel } from './Wheel';
 import { Symbol } from './Symbol';
 import { objectPrototype } from 'mobx/dist/internal';
+import { Machine2_0 } from './Machine2.0';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -161,6 +162,7 @@ export class Reel extends Component {
     protected onLoad() {
         this.properties.container = this.mContainer;
         this.changeState(REEL_STATE.INIT_STATE);
+        Machine2_0.SetReel(this);
     }
 
     protected start() {
@@ -312,9 +314,7 @@ export class Reel extends Component {
 
     //設定盤面結果 result 
     public get result() { return this.properties.result; }
-    public setResult(result:any) { 
-        this.properties.result = result; }
-    //result
+    public setResult(result:any) { this.properties.result = result; }
 
     public get container() { return this.properties.container; }
 

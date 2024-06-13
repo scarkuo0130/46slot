@@ -178,9 +178,9 @@
     "gameid": 1601,
     "token": "testtoken1601",
     "serverurl": "http://gs-lab.game-rock.online",
-    "lang": "id",
+    "lang": "en",
     "betrecordurl": "http://br-lab.game-rock.online",
-    "currency": "",
+    "currency": "IDR",
     "isPreview": true,
     "platformImage": [],
     "horizontalSprite": null,
@@ -558,7 +558,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 411.0741971207088,
+    "_orthoHeight": 374.949494949495,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -29094,7 +29094,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "DielogUI",
+    "_name": "DialogUI",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": {
