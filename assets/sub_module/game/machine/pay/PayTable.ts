@@ -88,13 +88,13 @@ export class Paytable extends Component {
      * @override 可覆寫
      */
     public async spin() {
-        this.breakPerformSingleLineLoop(); // 取消報獎流程
+        this.breakPerformSingleLineLoop();          // 取消報獎流程
         this.machine.state = Machine2_0.SPIN_STATE.SPINNING;
-        await this.reel.spin(); // 等待 SPIN 結束
+        await this.reel.spin();                     // 等待 SPIN 結束
         this.machine.state = Machine2_0.SPIN_STATE.STOPPING;
-        await this.processWinningScore(); // 執行報獎流程
+        await this.processWinningScore();           // 執行報獎流程
         this.machine.state = Machine2_0.SPIN_STATE.IDLE;
-        this.performSingleLineLoop(); // 執行單項報獎流程
+        this.performSingleLineLoop();               // 執行單項報獎流程
     }
 
     /**
@@ -188,6 +188,7 @@ export class Paytable extends Component {
     public breakPerformSingleLineLoop() {
         this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
         this.reelMaskActive(false);         // 關閉遮罩
+        this.machine.controller.setTotalWin(0);
     }
 
     @property( { type: Label, displayName: 'WinNumberAllLine', tooltip: '全部中獎的分數Label', group: { name: 'settings', id: '0' } } )

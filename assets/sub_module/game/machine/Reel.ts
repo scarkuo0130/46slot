@@ -408,7 +408,7 @@ export class Reel extends Component {
 
         for(let i=0;i<rollingData.length;i++) {
             
-            let time = rollingData[i].time;
+            let time = rollingData[i].time + 100;
             let data = rollingData[i];
             let id = data.wheelID;
             let wheel = wheels[id];
@@ -432,7 +432,7 @@ export class Reel extends Component {
             symbols.forEach(symbol => symbol?.remove());
             showDropSymbols[i] = [];
 
-            const wSymbols = wheels[i].symbols();
+            const wSymbols = wheels[i].allSymbols();
             wSymbols.forEach(symbol => symbol.active = true);
         }
 
@@ -462,14 +462,15 @@ export class Reel extends Component {
         return showSymbol;
     }
 
-    public moveToShowWinContainer(wheelID:number, symbol_id:number, max_amount:number=99) : Node[] {
+    public moveToShowWinContainer(wheelID:number, symbol_id:number[], max_amount:number=99) : Node[] {
         const wheels           = this.getWheels();
-        const wSymbols : any[] = wheels[wheelID].symbols();
+        const wSymbols : any[] = wheels[wheelID].symbols;
         let symbols            = [];
         let amount             = 0;
 
         for(let i=0;i<wSymbols.length;i++) {
-            if ( wSymbols[i].SymID !== symbol_id ) continue;
+            // if ( wSymbols[i].SymID !== symbol_id ) continue;
+            if ( symbol_id.indexOf(wSymbols[i].SymID) === -1 ) continue;
             symbols.push(this.moveToShowDropSymbol(wheelID, wSymbols[i]));
             amount++;
             if ( amount >= max_amount ) break;
@@ -488,9 +489,7 @@ export class Reel extends Component {
         if ( dropSymbols.length === 0 ) return;
 
         let symbols = [];
-        for(let i=0;i<dropSymbols.length;i++) {
-            symbols.push(this.moveToShowWinContainer(wheelID, dropSymbols[i]));
-        }
+        symbols.push(symbols.push(this.moveToShowWinContainer(wheelID, dropSymbols)));
 
         return symbols;
     }

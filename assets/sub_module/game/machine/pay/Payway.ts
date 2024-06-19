@@ -59,6 +59,8 @@ export class Payway extends Paytable {
         // await this.reelMaskActive(false);       // 關閉遮罩
         this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
         totalWinLabel.string = '';              // 關閉總得分
+        this.machine.controller.changeTotalWin(pay_credit_total); // 更新總得分
+        this.machine.controller.refreshBalance(); // 更新餘額
     }
 
     // way {"symbol_id": 7,"way": 3,"ways": [1,1,1],"pay_credit": 500}
@@ -68,13 +70,10 @@ export class Payway extends Paytable {
 
         let wSymbols = [];
         for(let i=0;i<ways.length;i++) {
-            console.log('performSingleLine', i, ways[i]);
-            wSymbols.push(reel.moveToShowWinContainer(i, symbol_id, ways[i]));
+            wSymbols.push(reel.moveToShowWinContainer(i, [symbol_id, 0], ways[i]));
         }
-        console.log('wSymbols', wSymbols);
         let winSec = wSymbols[0][0].getComponent(Symbol).getAnimationDuration();
         if ( winSec < 1 ) winSec = 1;
-        console.log('winSec', winSec);
         wSymbols.forEach( w=>w.forEach( symbol=> symbol.getComponent(Symbol).win()));
         
         if ( isWaiting ) await Utils.delay(winSec * 1000);
@@ -89,16 +88,11 @@ export class Payway extends Paytable {
         if ( pay_credit_total === 0 ) return;
         if ( extra?.ways.length === 0 ) return;
 
-        console.log('performSingleLineLoop', ways);
-
         await this.reelMaskActive(true);        // 打開遮罩
         let idx = 0;
         while(true) {
-            console.log('performSingleLineLoop step 1', idx, ways[idx]);
             await this.performSingleLine(ways[idx], true);
-            console.log('performSingleLineLoop step 2', this.machine.state);
             if ( this.machine.state !== Machine2_0.SPIN_STATE.IDLE ) return;
-            console.log('performSingleLineLoop step 3');
             this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
             idx++;
             if ( idx >= ways.length ) idx = 0;

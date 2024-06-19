@@ -544,17 +544,25 @@ export class WheelLibrary extends Component {
     /**
      * 取得所有 symbol 物件
      */
-    public symbols() { return this.container.children; }
+    public allSymbols() { return this.container.children; }
+
+    /**
+     * 取得輪帶上有效 Symbol
+     */
+    public get symbols() {
+        const symbols = Object.values(this.getIndexSymbol);
+        return symbols.slice(0, this.wheelLength);
+    }
 
     /**
      * 將所有圖標設定為模糊狀態
      */
-    public allBlurSymbol() { this.symbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).moving()); }
+    public allBlurSymbol() { this.allSymbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).moving()); }
 
     /**
      * 將所有圖標設定為正常狀態
      */
-    public allNormalSymbol() { this.symbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).normal()); }
+    public allNormalSymbol() { this.allSymbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).normal()); }
 
     /**
      * 取得亂數 symbol 編號
