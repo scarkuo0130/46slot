@@ -1,0 +1,76 @@
+
+high_symbol_4.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BM_01
+  rotate: false
+  xy: 608, 497
+  size: 604, 505
+  orig: 606, 507
+  offset: 1, 1
+  index: -1
+BM_02
+  rotate: false
+  xy: 608, 3
+  size: 591, 492
+  orig: 593, 494
+  offset: 1, 1
+  index: -1
+Ingots_01
+  rotate: false
+  xy: 2, 2
+  size: 334, 189
+  orig: 344, 210
+  offset: 3, 10
+  index: -1
+Ingots_02
+  rotate: false
+  xy: 1201, 229
+  size: 466, 259
+  orig: 471, 275
+  offset: 5, 9
+  index: -1
+Ingots_03
+  rotate: false
+  xy: 2, 193
+  size: 541, 290
+  orig: 544, 301
+  offset: 3, 0
+  index: -1
+effect/Icon_Common_24
+  rotate: true
+  xy: 1214, 490
+  size: 512, 502
+  orig: 512, 512
+  offset: 0, 8
+  index: -1
+effect/Lig
+  rotate: false
+  xy: 1669, 217
+  size: 110, 105
+  orig: 128, 114
+  offset: 9, 9
+  index: -1
+effect/fangshe02
+  rotate: false
+  xy: 338, 12
+  size: 185, 179
+  orig: 200, 200
+  offset: 9, 12
+  index: -1
+high_symbol_4
+  rotate: false
+  xy: 2, 485
+  size: 604, 517
+  orig: 606, 520
+  offset: 1, 2
+  index: -1
+圖層 1
+  rotate: true
+  xy: 1669, 324
+  size: 164, 140
+  orig: 164, 140
+  offset: 0, 0
+  index: -1

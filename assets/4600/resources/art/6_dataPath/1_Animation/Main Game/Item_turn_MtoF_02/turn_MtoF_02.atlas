@@ -1,0 +1,27 @@
+
+turn_MtoF_02.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+GU01
+  rotate: false
+  xy: 851, 262
+  size: 201, 202
+  orig: 216, 216
+  offset: 6, 6
+  index: -1
+GU02
+  rotate: false
+  xy: 2, 2
+  size: 272, 27
+  orig: 274, 33
+  offset: 1, 1
+  index: -1
+turn_MtoF_02
+  rotate: false
+  xy: 2, 31
+  size: 847, 433
+  orig: 866, 436
+  offset: 9, 2
+  index: -1

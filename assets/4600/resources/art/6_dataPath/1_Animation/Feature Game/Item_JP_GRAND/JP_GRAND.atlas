@@ -1,0 +1,167 @@
+
+JP_GRAND.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+GRAND
+  rotate: false
+  xy: 189, 11
+  size: 129, 38
+  orig: 133, 41
+  offset: 2, 2
+  index: -1
+GRAND_BM
+  rotate: false
+  xy: 586, 97
+  size: 210, 61
+  orig: 212, 63
+  offset: 1, 1
+  index: -1
+GRAND_CH
+  rotate: false
+  xy: 2, 19
+  size: 185, 30
+  orig: 222, 35
+  offset: 1, 1
+  index: -1
+GRAND_KAO
+  rotate: false
+  xy: 2, 152
+  size: 253, 102
+  orig: 257, 106
+  offset: 2, 2
+  index: -1
+KBO_01
+  rotate: false
+  xy: 331, 2
+  size: 52, 53
+  orig: 257, 106
+  offset: 4, 35
+  index: -1
+KBO_02
+  rotate: false
+  xy: 798, 98
+  size: 70, 63
+  orig: 257, 106
+  offset: 3, 27
+  index: -1
+KBO_03
+  rotate: true
+  xy: 979, 56
+  size: 91, 78
+  orig: 257, 106
+  offset: 3, 18
+  index: -1
+KBO_04
+  rotate: true
+  xy: 870, 144
+  size: 110, 83
+  orig: 257, 106
+  offset: 3, 16
+  index: -1
+KBO_05
+  rotate: false
+  xy: 725, 9
+  size: 127, 86
+  orig: 257, 106
+  offset: 4, 15
+  index: -1
+KBO_06
+  rotate: false
+  xy: 727, 163
+  size: 141, 91
+  orig: 257, 106
+  offset: 7, 12
+  index: -1
+KBO_07
+  rotate: true
+  xy: 490, 2
+  size: 153, 94
+  orig: 257, 106
+  offset: 11, 9
+  index: -1
+KBO_08
+  rotate: false
+  xy: 331, 57
+  size: 157, 97
+  orig: 257, 106
+  offset: 22, 6
+  index: -1
+KBO_09
+  rotate: false
+  xy: 170, 51
+  size: 159, 99
+  orig: 257, 106
+  offset: 36, 4
+  index: -1
+KBO_10
+  rotate: false
+  xy: 2, 51
+  size: 166, 99
+  orig: 257, 106
+  offset: 47, 3
+  index: -1
+KBO_11
+  rotate: false
+  xy: 257, 156
+  size: 159, 98
+  orig: 257, 106
+  offset: 65, 3
+  index: -1
+KBO_12
+  rotate: false
+  xy: 418, 157
+  size: 156, 97
+  orig: 257, 106
+  offset: 82, 2
+  index: -1
+KBO_13
+  rotate: false
+  xy: 576, 160
+  size: 149, 94
+  orig: 257, 106
+  offset: 97, 3
+  index: -1
+KBO_14
+  rotate: false
+  xy: 586, 5
+  size: 137, 90
+  orig: 257, 106
+  offset: 114, 3
+  index: -1
+KBO_15
+  rotate: false
+  xy: 854, 12
+  size: 123, 84
+  orig: 257, 106
+  offset: 130, 5
+  index: -1
+KBO_16
+  rotate: true
+  xy: 955, 149
+  size: 105, 81
+  orig: 257, 106
+  offset: 149, 7
+  index: -1
+KBO_17
+  rotate: true
+  xy: 1038, 168
+  size: 86, 75
+  orig: 257, 106
+  offset: 168, 11
+  index: -1
+KBO_18
+  rotate: true
+  xy: 1059, 99
+  size: 67, 61
+  orig: 257, 106
+  offset: 187, 16
+  index: -1
+KBO_19
+  rotate: false
+  xy: 385, 2
+  size: 49, 53
+  orig: 257, 106
+  offset: 204, 16
+  index: -1

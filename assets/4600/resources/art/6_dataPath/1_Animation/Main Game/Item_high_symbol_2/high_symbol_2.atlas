@@ -1,0 +1,83 @@
+
+high_symbol_2.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BM_01
+  rotate: false
+  xy: 608, 496
+  size: 604, 505
+  orig: 606, 507
+  offset: 1, 1
+  index: -1
+BM_02
+  rotate: false
+  xy: 608, 2
+  size: 591, 492
+  orig: 593, 494
+  offset: 1, 1
+  index: -1
+Boat_01
+  rotate: true
+  xy: 1579, 27
+  size: 460, 118
+  orig: 463, 120
+  offset: 0, 2
+  index: -1
+Boat_02
+  rotate: false
+  xy: 2, 247
+  size: 517, 231
+  orig: 517, 231
+  offset: 0, 0
+  index: -1
+Boat_03
+  rotate: false
+  xy: 1201, 188
+  size: 376, 299
+  orig: 376, 311
+  offset: 0, 12
+  index: -1
+Boat_04
+  rotate: false
+  xy: 2, 45
+  size: 378, 200
+  orig: 378, 200
+  offset: 0, 0
+  index: -1
+effect/Icon_Common_24
+  rotate: true
+  xy: 1214, 489
+  size: 512, 502
+  orig: 512, 512
+  offset: 0, 8
+  index: -1
+effect/Lig
+  rotate: false
+  xy: 1367, 81
+  size: 110, 105
+  orig: 128, 114
+  offset: 9, 9
+  index: -1
+effect/fangshe02
+  rotate: true
+  xy: 382, 60
+  size: 185, 179
+  orig: 200, 200
+  offset: 9, 12
+  index: -1
+high_symbol_2
+  rotate: false
+  xy: 2, 480
+  size: 604, 521
+  orig: 606, 523
+  offset: 1, 1
+  index: -1
+圖層 1
+  rotate: false
+  xy: 1201, 46
+  size: 164, 140
+  orig: 164, 140
+  offset: 0, 0
+  index: -1

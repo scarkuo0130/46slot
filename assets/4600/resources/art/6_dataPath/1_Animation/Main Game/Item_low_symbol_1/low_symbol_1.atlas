@@ -1,0 +1,34 @@
+
+low_symbol_1.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A_01
+  rotate: false
+  xy: 2, 6
+  size: 96, 104
+  orig: 98, 106
+  offset: 1, 1
+  index: -1
+A_02
+  rotate: false
+  xy: 168, 140
+  size: 102, 112
+  orig: 104, 114
+  offset: 1, 1
+  index: -1
+圖層 1
+  rotate: false
+  xy: 2, 112
+  size: 164, 140
+  orig: 164, 140
+  offset: 0, 0
+  index: -1
+圖層 2
+  rotate: false
+  xy: 168, 2
+  size: 100, 136
+  orig: 104, 140
+  offset: 2, 1
+  index: -1

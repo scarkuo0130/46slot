@@ -1,0 +1,587 @@
+
+Wild.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+F_01
+  rotate: true
+  xy: 1236, 89
+  size: 63, 59
+  orig: 92, 88
+  offset: 6, 23
+  index: -1
+Wild_01
+  rotate: true
+  xy: 555, 410
+  size: 539, 538
+  orig: 541, 540
+  offset: 1, 1
+  index: -1
+Wild_02
+  rotate: false
+  xy: 2, 1492
+  size: 550, 553
+  orig: 555, 556
+  offset: 2, 2
+  index: -1
+Wild_03
+  rotate: false
+  xy: 1549, 630
+  size: 445, 442
+  orig: 447, 444
+  offset: 1, 1
+  index: -1
+Wild_04
+  rotate: false
+  xy: 1092, 1035
+  size: 455, 457
+  orig: 460, 461
+  offset: 2, 3
+  index: -1
+Wild_G_01
+  rotate: true
+  xy: 554, 951
+  size: 541, 536
+  orig: 543, 538
+  offset: 1, 1
+  index: -1
+Wild_G_02
+  rotate: false
+  xy: 2, 384
+  size: 551, 551
+  orig: 557, 554
+  offset: 3, 2
+  index: -1
+Wild_G_03
+  rotate: false
+  xy: 1549, 1074
+  size: 446, 441
+  orig: 448, 443
+  offset: 1, 1
+  index: -1
+Wild_G_04
+  rotate: false
+  xy: 1549, 1589
+  size: 456, 456
+  orig: 461, 460
+  offset: 2, 3
+  index: -1
+Wild_G_05
+  rotate: false
+  xy: 2, 175
+  size: 199, 207
+  orig: 201, 209
+  offset: 1, 1
+  index: -1
+Wild_G_OK
+  rotate: false
+  xy: 554, 1494
+  size: 551, 551
+  orig: 557, 554
+  offset: 3, 2
+  index: -1
+Wild_OK
+  rotate: false
+  xy: 2, 937
+  size: 550, 553
+  orig: 555, 556
+  offset: 2, 2
+  index: -1
+fangshe03
+  rotate: true
+  xy: 203, 197
+  size: 185, 179
+  orig: 200, 200
+  offset: 9, 12
+  index: -1
+光點_02/3_00001
+  rotate: false
+  xy: 203, 182
+  size: 13, 13
+  orig: 73, 77
+  offset: 49, 51
+  index: -1
+光點_02/3_00002
+  rotate: false
+  xy: 716, 8
+  size: 32, 40
+  orig: 73, 77
+  offset: 30, 24
+  index: -1
+光點_02/3_00003
+  rotate: true
+  xy: 750, 17
+  size: 31, 55
+  orig: 73, 77
+  offset: 30, 10
+  index: -1
+光點_02/3_00004
+  rotate: true
+  xy: 606, 5
+  size: 43, 53
+  orig: 73, 77
+  offset: 18, 12
+  index: -1
+光點_02/3_00005
+  rotate: true
+  xy: 661, 6
+  size: 42, 53
+  orig: 73, 77
+  offset: 18, 12
+  index: -1
+光點_02/3_00006
+  rotate: false
+  xy: 1297, 93
+  size: 57, 59
+  orig: 73, 77
+  offset: 4, 6
+  index: -1
+光點_02/3_00007
+  rotate: true
+  xy: 1458, 978
+  size: 55, 58
+  orig: 73, 77
+  offset: 5, 8
+  index: -1
+光點_02/3_00008
+  rotate: false
+  xy: 1299, 434
+  size: 55, 66
+  orig: 73, 77
+  offset: 5, 0
+  index: -1
+光點_02/3_00009
+  rotate: false
+  xy: 1546, 1517
+  size: 65, 70
+  orig: 73, 77
+  offset: 5, 2
+  index: -1
+光點_02/3_00010
+  rotate: false
+  xy: 1208, 1516
+  size: 63, 71
+  orig: 73, 77
+  offset: 6, 1
+  index: -1
+光點_02/3_00011
+  rotate: false
+  xy: 1680, 1517
+  size: 63, 70
+  orig: 73, 77
+  offset: 5, 2
+  index: -1
+光點_02/3_00012
+  rotate: false
+  xy: 1273, 1516
+  size: 63, 71
+  orig: 73, 77
+  offset: 6, 2
+  index: -1
+光點_02/3_00013
+  rotate: false
+  xy: 1810, 1517
+  size: 61, 70
+  orig: 73, 77
+  offset: 7, 3
+  index: -1
+光點_02/3_00014
+  rotate: false
+  xy: 1338, 1517
+  size: 68, 70
+  orig: 73, 77
+  offset: 1, 4
+  index: -1
+光點_02/3_00015
+  rotate: false
+  xy: 1232, 426
+  size: 65, 69
+  orig: 73, 77
+  offset: 1, 5
+  index: -1
+光點_02/3_00016
+  rotate: false
+  xy: 1936, 1518
+  size: 67, 69
+  orig: 73, 77
+  offset: 1, 5
+  index: -1
+光點_02/3_00017
+  rotate: false
+  xy: 1095, 414
+  size: 67, 69
+  orig: 73, 77
+  offset: 1, 6
+  index: -1
+光點_02/3_00018
+  rotate: false
+  xy: 1164, 414
+  size: 66, 69
+  orig: 73, 77
+  offset: 2, 6
+  index: -1
+光點_02/3_00019
+  rotate: false
+  xy: 1243, 19
+  size: 67, 68
+  orig: 73, 77
+  offset: 1, 7
+  index: -1
+光點_02/3_00020
+  rotate: true
+  xy: 1312, 25
+  size: 66, 65
+  orig: 73, 77
+  offset: 1, 7
+  index: -1
+光點_02/3_00021
+  rotate: true
+  xy: 1092, 962
+  size: 71, 64
+  orig: 73, 77
+  offset: 1, 8
+  index: -1
+光點_02/3_00022
+  rotate: true
+  xy: 970, 12
+  size: 71, 67
+  orig: 73, 77
+  offset: 2, 8
+  index: -1
+光點_02/3_00023
+  rotate: true
+  xy: 1408, 1516
+  size: 70, 67
+  orig: 73, 77
+  offset: 2, 9
+  index: -1
+光點_02/3_00024
+  rotate: true
+  xy: 1477, 1516
+  size: 70, 67
+  orig: 73, 77
+  offset: 2, 9
+  index: -1
+光點_02/3_00025
+  rotate: true
+  xy: 1039, 12
+  size: 71, 66
+  orig: 73, 77
+  offset: 2, 10
+  index: -1
+光點_02/3_00026
+  rotate: true
+  xy: 1613, 1517
+  size: 70, 65
+  orig: 73, 77
+  offset: 2, 11
+  index: -1
+光點_02/3_00027
+  rotate: true
+  xy: 1177, 1733
+  size: 69, 64
+  orig: 73, 77
+  offset: 3, 12
+  index: -1
+光點_02/3_00028
+  rotate: true
+  xy: 1745, 1517
+  size: 70, 63
+  orig: 73, 77
+  offset: 2, 12
+  index: -1
+光點_02/3_00029
+  rotate: true
+  xy: 1873, 1517
+  size: 70, 61
+  orig: 73, 77
+  offset: 2, 14
+  index: -1
+圖層 1
+  rotate: true
+  xy: 694, 244
+  size: 164, 140
+  orig: 164, 140
+  offset: 0, 0
+  index: -1
+火龍捲/FireSeqq_00000
+  rotate: false
+  xy: 1107, 1709
+  size: 68, 50
+  orig: 320, 180
+  offset: 164, 107
+  index: -1
+火龍捲/FireSeqq_00001
+  rotate: false
+  xy: 1107, 1709
+  size: 68, 50
+  orig: 320, 180
+  offset: 164, 107
+  index: -1
+火龍捲/FireSeqq_00002
+  rotate: true
+  xy: 1458, 882
+  size: 94, 52
+  orig: 320, 180
+  offset: 138, 107
+  index: -1
+火龍捲/FireSeqq_00003
+  rotate: true
+  xy: 1293, 502
+  size: 126, 54
+  orig: 320, 180
+  offset: 105, 107
+  index: -1
+火龍捲/FireSeqq_00004
+  rotate: true
+  xy: 1227, 497
+  size: 131, 64
+  orig: 320, 180
+  offset: 100, 98
+  index: -1
+火龍捲/FireSeqq_00005
+  rotate: false
+  xy: 1107, 2
+  size: 134, 85
+  orig: 320, 180
+  offset: 97, 78
+  index: -1
+火龍捲/FireSeqq_00006
+  rotate: false
+  xy: 1408, 1709
+  size: 135, 105
+  orig: 320, 180
+  offset: 95, 58
+  index: -1
+火龍捲/FireSeqq_00007
+  rotate: false
+  xy: 1408, 1816
+  size: 135, 114
+  orig: 320, 180
+  offset: 93, 50
+  index: -1
+火龍捲/FireSeqq_00008
+  rotate: false
+  xy: 1107, 1592
+  size: 134, 115
+  orig: 320, 180
+  offset: 91, 50
+  index: -1
+火龍捲/FireSeqq_00009
+  rotate: false
+  xy: 1408, 1588
+  size: 134, 119
+  orig: 320, 180
+  offset: 89, 47
+  index: -1
+火龍捲/FireSeqq_00010
+  rotate: false
+  xy: 1107, 1926
+  size: 134, 119
+  orig: 320, 180
+  offset: 89, 47
+  index: -1
+火龍捲/FireSeqq_00011
+  rotate: false
+  xy: 1107, 1804
+  size: 132, 120
+  orig: 320, 180
+  offset: 86, 46
+  index: -1
+火龍捲/FireSeqq_00012
+  rotate: false
+  xy: 1095, 485
+  size: 130, 143
+  orig: 320, 180
+  offset: 85, 23
+  index: -1
+火龍捲/FireSeqq_00013
+  rotate: false
+  xy: 996, 249
+  size: 127, 159
+  orig: 320, 180
+  offset: 86, 10
+  index: -1
+火龍捲/FireSeqq_00014
+  rotate: true
+  xy: 1083, 89
+  size: 158, 151
+  orig: 320, 180
+  offset: 83, 14
+  index: -1
+火龍捲/FireSeqq_00015
+  rotate: true
+  xy: 305, 21
+  size: 174, 149
+  orig: 320, 180
+  offset: 76, 17
+  index: -1
+火龍捲/FireSeqq_00016
+  rotate: true
+  xy: 384, 208
+  size: 174, 149
+  orig: 320, 180
+  offset: 76, 17
+  index: -1
+火龍捲/FireSeqq_00017
+  rotate: true
+  xy: 456, 33
+  size: 173, 148
+  orig: 320, 180
+  offset: 77, 16
+  index: -1
+火龍捲/FireSeqq_00018
+  rotate: true
+  xy: 2, 3
+  size: 170, 148
+  orig: 320, 180
+  offset: 79, 15
+  index: -1
+火龍捲/FireSeqq_00019
+  rotate: true
+  xy: 152, 4
+  size: 169, 151
+  orig: 320, 180
+  offset: 78, 13
+  index: -1
+火龍捲/FireSeqq_00020
+  rotate: true
+  xy: 535, 217
+  size: 165, 157
+  orig: 320, 180
+  offset: 80, 9
+  index: -1
+火龍捲/FireSeqq_00021
+  rotate: true
+  xy: 606, 50
+  size: 165, 157
+  orig: 320, 180
+  offset: 80, 9
+  index: -1
+火龍捲/FireSeqq_00022
+  rotate: true
+  xy: 765, 80
+  size: 162, 160
+  orig: 320, 180
+  offset: 82, 8
+  index: -1
+火龍捲/FireSeqq_00023
+  rotate: false
+  xy: 836, 247
+  size: 158, 161
+  orig: 320, 180
+  offset: 84, 8
+  index: -1
+火龍捲/FireSeqq_00024
+  rotate: false
+  xy: 927, 85
+  size: 154, 160
+  orig: 320, 180
+  offset: 86, 9
+  index: -1
+火龍捲/FireSeqq_00025
+  rotate: true
+  xy: 1243, 1904
+  size: 141, 157
+  orig: 320, 180
+  offset: 94, 11
+  index: -1
+火龍捲/FireSeqq_00026
+  rotate: true
+  xy: 1243, 1761
+  size: 141, 157
+  orig: 320, 180
+  offset: 94, 11
+  index: -1
+火龍捲/FireSeqq_00027
+  rotate: true
+  xy: 1243, 1631
+  size: 128, 154
+  orig: 320, 180
+  offset: 100, 12
+  index: -1
+火龍捲/FireSeqq_00028
+  rotate: false
+  xy: 1125, 269
+  size: 112, 143
+  orig: 320, 180
+  offset: 106, 18
+  index: -1
+火龍捲/FireSeqq_00029
+  rotate: true
+  xy: 1408, 1932
+  size: 113, 136
+  orig: 320, 180
+  offset: 105, 20
+  index: -1
+火龍捲/FireSeqq_00030
+  rotate: true
+  xy: 1236, 154
+  size: 113, 110
+  orig: 320, 180
+  offset: 106, 34
+  index: -1
+火龍捲/FireSeqq_00031
+  rotate: true
+  xy: 1239, 311
+  size: 113, 110
+  orig: 320, 180
+  offset: 106, 34
+  index: -1
+火龍捲/FireSeqq_00032
+  rotate: true
+  xy: 1349, 517
+  size: 111, 107
+  orig: 320, 180
+  offset: 107, 35
+  index: -1
+火龍捲/FireSeqq_00033
+  rotate: true
+  xy: 1348, 200
+  size: 109, 104
+  orig: 320, 180
+  offset: 109, 35
+  index: -1
+火龍捲/FireSeqq_00034
+  rotate: true
+  xy: 1351, 326
+  size: 106, 101
+  orig: 320, 180
+  offset: 110, 36
+  index: -1
+火龍捲/FireSeqq_00035
+  rotate: true
+  xy: 1356, 96
+  size: 102, 94
+  orig: 320, 180
+  offset: 113, 38
+  index: -1
+火龍捲/FireSeqq_00036
+  rotate: true
+  xy: 1452, 96
+  size: 102, 94
+  orig: 320, 180
+  offset: 113, 38
+  index: -1
+火龍捲/FireSeqq_00037
+  rotate: false
+  xy: 1107, 1496
+  size: 99, 91
+  orig: 320, 180
+  offset: 114, 41
+  index: -1
+火龍捲/FireSeqq_00038
+  rotate: false
+  xy: 807, 2
+  size: 92, 76
+  orig: 320, 180
+  offset: 116, 52
+  index: -1
+火龍捲/FireSeqq_00039
+  rotate: true
+  xy: 901, 2
+  size: 76, 67
+  orig: 320, 180
+  offset: 121, 56
+  index: -1

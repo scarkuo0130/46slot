@@ -1,0 +1,13 @@
+
+turn_MtoF.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Door01
+  rotate: true
+  xy: 2, 2
+  size: 323, 722
+  orig: 324, 722
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+Background_Phoenix.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Phoenix_01
+  rotate: true
+  xy: 2, 40
+  size: 437, 425
+  orig: 451, 452
+  offset: 6, 25
+  index: -1
+Phoenix_02
+  rotate: true
+  xy: 902, 2
+  size: 168, 102
+  orig: 177, 116
+  offset: 2, 7
+  index: -1
+Phoenix_03
+  rotate: true
+  xy: 429, 72
+  size: 405, 344
+  orig: 407, 348
+  offset: 2, 0
+  index: -1
+Phoenix_04
+  rotate: true
+  xy: 775, 11
+  size: 159, 125
+  orig: 166, 132
+  offset: 7, 5
+  index: -1
+Phoenix_05
+  rotate: false
+  xy: 775, 172
+  size: 182, 305
+  orig: 189, 317
+  offset: 3, 0
+  index: -1

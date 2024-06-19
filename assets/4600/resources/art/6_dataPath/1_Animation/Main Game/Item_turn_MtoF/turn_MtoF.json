@@ -1,0 +1,198 @@
+{
+"skeleton": {
+	"hash": "8Zh6zAU/OWk5wlHfYb0sfaqEsuU",
+	"spine": "3.8.75",
+	"x": -640.91,
+	"y": -360.47,
+	"width": 1282.28,
+	"height": 720.83,
+	"images": "./images/",
+	"audio": "D:/SLOT/多福多財/完成/4_動態特效/SPINE/EditFiles/turn_MtoF"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "Door1", "parent": "root", "x": -479.67 },
+	{ "name": "Door4", "parent": "root", "x": 481.59 },
+	{ "name": "Door3", "parent": "root", "x": 160.53 },
+	{ "name": "Door2", "parent": "root", "x": -159.04 }
+],
+"slots": [
+	{ "name": "JO", "bone": "root", "attachment": "JO" },
+	{ "name": "Door4", "bone": "Door4", "attachment": "Door1" },
+	{ "name": "Door3", "bone": "Door3", "attachment": "Door1" },
+	{ "name": "Door2", "bone": "Door2", "attachment": "Door1" },
+	{ "name": "Door1", "bone": "Door1", "attachment": "Door3" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"JO": {
+				"JO": {
+					"type": "clipping",
+					"end": "JO",
+					"vertexCount": 4,
+					"vertices": [ -640.78, 360.37, 641.18, 360.36, 641.38, -360.47, -640.91, -360.39 ],
+					"color": "ce3a3aff"
+				}
+			},
+			"Door1": {
+				"Door": { "x": -479.5, "width": 324, "height": 722 },
+				"Door01": { "width": 324, "height": 722 },
+				"Door1": { "width": 324, "height": 722 },
+				"Door2": { "path": "Door", "width": 324, "height": 722 },
+				"Door3": { "path": "Door01", "width": 324, "height": 722 }
+			},
+			"Door2": {
+				"Door": { "x": -159.34, "width": 324, "height": 722 },
+				"Door01": { "width": 324, "height": 722 },
+				"Door1": { "path": "Door01", "width": 324, "height": 722 },
+				"Door2": { "path": "Door", "width": 324, "height": 722 }
+			},
+			"Door3": {
+				"Door": { "x": 161.09, "y": 1.44, "width": 324, "height": 722 },
+				"Door01": { "width": 324, "height": 722 },
+				"Door1": { "path": "Door01", "width": 324, "height": 722 },
+				"Door2": { "path": "Door", "width": 324, "height": 722 }
+			},
+			"Door4": {
+				"Door": { "x": 481.96, "width": 324, "height": 722 },
+				"Door01": { "width": 324, "height": 722 },
+				"Door1": { "path": "Door01", "width": 324, "height": 722 },
+				"Door2": { "path": "Door", "width": 324, "height": 722 }
+			}
+		}
+	}
+],
+"animations": {
+	"play01": {
+		"slots": {
+			"Door1": {
+				"attachment": [
+					{ "time": 1.0333, "name": "Door3" },
+					{ "time": 1.3333, "name": "Door3" }
+				]
+			},
+			"Door2": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.5333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.0333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 1.3333, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "Door1" },
+					{ "time": 1.0333, "name": "Door1" },
+					{ "time": 1.3333, "name": "Door1" }
+				]
+			},
+			"JO": {
+				"attachment": [
+					{ "time": 1.0333, "name": "JO" }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"translate": [
+					{ "time": 1.0333 }
+				]
+			},
+			"Door2": {
+				"translate": [
+					{ "x": -643.12 },
+					{ "time": 0.5333, "x": -320.57 },
+					{ "time": 1.0333, "x": -0.27, "curve": "stepped" },
+					{ "time": 1.3333, "x": -0.27 }
+				]
+			},
+			"Door1": {
+				"translate": [
+					{ "x": -322.4 },
+					{ "time": 0.5333, "x": 0.19 },
+					{ "time": 1.0333, "curve": "stepped" },
+					{ "time": 1.3333 }
+				]
+			},
+			"Door4": {
+				"translate": [
+					{ "x": 323.41 },
+					{ "time": 0.5333, "x": 1.41 },
+					{ "time": 1.0333, "x": -319.7, "curve": "stepped" },
+					{ "time": 1.3333, "x": -319.7 }
+				]
+			},
+			"Door3": {
+				"translate": [
+					{ "x": 644.47 },
+					{ "time": 0.5333, "x": 322.47 },
+					{ "time": 1.0333, "x": 322.02, "curve": "stepped" },
+					{ "time": 1.3333, "x": 322.02 }
+				]
+			}
+		}
+	},
+	"play02": {
+		"slots": {
+			"Door1": {
+				"attachment": [
+					{ "name": "Door3" }
+				]
+			},
+			"Door2": {
+				"color": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.5, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "Door1" }
+				]
+			},
+			"JO": {
+				"attachment": [
+					{ "time": 1.0333, "name": "JO" }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"translate": [
+					{ "time": 1.0333 }
+				]
+			},
+			"Door2": {
+				"translate": [
+					{ "x": -0.27 },
+					{ "time": 0.5, "x": -320.57 },
+					{ "time": 1.0333, "x": -641.18, "curve": "stepped" },
+					{ "time": 1.3333, "x": -641.18 }
+				]
+			},
+			"Door1": {
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.5 },
+					{ "time": 1.0333, "x": -320.61, "curve": "stepped" },
+					{ "time": 1.3333, "x": -320.61 }
+				]
+			},
+			"Door4": {
+				"translate": [
+					{ "x": -319.7 },
+					{ "time": 0.5, "x": 1.41 },
+					{ "time": 1.0333, "x": 323.41, "curve": "stepped" },
+					{ "time": 1.3333, "x": 323.41 }
+				]
+			},
+			"Door3": {
+				"translate": [
+					{ "x": 322.02, "curve": "stepped" },
+					{ "time": 0.5, "x": 322.02 },
+					{ "time": 1.0333, "x": 644.47, "curve": "stepped" },
+					{ "time": 1.3333, "x": 644.47 }
+				]
+			}
+		}
+	}
+}
+}
