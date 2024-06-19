@@ -31,8 +31,8 @@ export class SymbolSpineInspect {
 @ccclass('Symbol/Inspect')
 export class Inspect {
 
-    @property({ displayName: "ID" })
-    public id: string = "";
+    @property({ displayName: "ID", step: 1, tooltip: 'id'})
+    public id: number = 0;
 
     @property({ group: { name: 'Spine Mode', id: '10' }, type: SymbolSpineInspect })
     public spineInspect: SymbolSpineInspect = new SymbolSpineInspect();
@@ -63,7 +63,7 @@ export class Symbol extends Component {
         data : {},
     };
 
-    public get symID() { return parseInt(this.inspect.id); }
+    public get symID() { return this.inspect.id; }
     public get spine() : sp.Skeleton | null { return this.properties.data['spine']; }
 
     /// <summary>
@@ -74,22 +74,18 @@ export class Symbol extends Component {
         Object.defineProperty(this.node, 'size',    { get: () => this.properties.size });
         Object.defineProperty(this.node, 'machine', { get: () => this.properties.machine, set: (value) => this.properties.machine = value });
         Object.defineProperty(this.node, 'spine',   { get: () => this.spine });
-        Object.defineProperty(this.node, 'normal',  this.normal.bind(this));
-        Object.defineProperty(this.node, 'moving',  this.moving.bind(this));
-        Object.defineProperty(this.node, 'drop',    this.drop.bind(this));
-        Object.defineProperty(this.node, 'win',     this.win.bind(this));
+        this.node['normal'] = this.normal.bind(this);
+        this.node['moving'] = this.moving.bind(this);
+        this.node['drop']   = this.drop.bind(this);
+        this.node['win']    = this.win.bind(this);
+        this.node['winDur'] = this.getAnimationDuration.bind(this, TYPE_STATE.WIN);
+        this.node['remove'] = this.remove.bind(this);
     }
 
-    protected start(): void {
-        this.initNodeData();
-    }
+    protected start(): void { this.initNodeData(); }
 
     public onLoad(): void {
-        if (this.inspect.id == null || this.inspect.id === "") {
-            console.error(`Symbol ${this.node[' INFO ']} 未設定ID`);
-            return;
-        }
-
+        
         let [ normal, move, win, drop ] = [ 
             this.inspect.spineInspect.normalAnimation, 
             this.inspect.spineInspect.moveAnimation, 
@@ -106,6 +102,13 @@ export class Symbol extends Component {
 
         ObjectPool.registerNode(this.inspect.id, this.node);
     }
+
+    public remove() { 
+        this.node.active = false;
+        return ObjectPool.Put(this.symID, this.node); 
+    }
+
+    public getAnimationDuration(type: TYPE_STATE = TYPE_STATE.WIN) { return this.properties.data[type].duration; }
 
     onEnable() { this.normal(); }
 

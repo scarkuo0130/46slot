@@ -3,116 +3,106 @@ import { Paytable } from './PayTable';
 import { Utils } from '../../../utils/Utils';
 import { Symbol } from '../Symbol';
 import { SimpleAudioClipData, SoundManager } from '../SoundManager';
+import { Machine2_0 } from '../Machine2.0';
 const { ccclass, property } = _decorator;
 
 @ccclass('Payway')
 export class Payway extends Paytable {
-    @property({ displayName: 'PerformAllWaysSec(millisecond)', tooltip: '全部得獎播放時間(微秒)', group: { name: 'Payway', id: '0' } })
-    performAllWaysSec = 2000;
+    
+    /**
+     * Spin 流程，可自行撰寫
+     */
+    public async spin() { return await super.spin(); }
 
-    @property({ type: SimpleAudioClipData, displayName: 'PaylineAudio', tooltip: '賠付線跑線音' })
-    public paylineAudio: SimpleAudioClipData = new SimpleAudioClipData();
+        /**
+     * 進入報獎流程
+     * @override 可覆寫
+     * @todo 如果有中獎的話, 進入報獎流程
+     * @todo 報獎完畢後，如果分數高於 BigWin 分數，進入 BigWin 流程
+     * @todo 如果玩家沒有中斷報獎流程，則進入輪播報獎流程
+     */
+    public async processWinningScore() {
+        const gameResult = this.gameResult;
+        console.log(gameResult);
 
-    protected performAllLineTween;
-    protected performSymbols: Symbol[] = [];
-    protected wayIndex = 0;
+        const { extra, pay_credit_total } = gameResult;
 
-    protected tempPaywayData;
-
-    public async performAllLine(payRuleData, totalwin: number, firstTime = false) {
-        console.log(payRuleData);
-        if (payRuleData['extra'] == null) return;
-        if (payRuleData['extra']['ways'] == null) return;
-        this.tempPaywayData = payRuleData;
-        let ways = payRuleData['extra']['ways'];
-
-        this.wayIndex = 0;
-        this.performSymbols = [];
-        for (let i in ways) {
-            this.performOneWay(ways[i], true);
-        }
-
-        let winData = { 'number': Math.floor(totalwin / 2) };
-        let rollNumberSec = (this.performAllWaysSec - 200) / 1000;
-        let self = this;
-        // let currency = gameInformation._currencySymbol;
-        SoundManager.playSoundData(this.paylineAudio);
-
-        if (firstTime) this.performAllLineTween = tween(winData).to(rollNumberSec, { number: totalwin }, {
-            easing: "linear",
-            onUpdate: (target) => {
-                self.winNumberAllLine.string = 'WIN' + Utils.numberComma(target['number']);
-            },
-        }).start();
-
-        await Utils.delay(this.performAllWaysSec);
-        this.closePayline();
+        if ( pay_credit_total === 0 ) return;
+        if ( extra?.ways.length === 0 ) return;
+        
+        return await super.processWinningScore();
     }
 
     /**
-     * 
-     * @param waysData {
-            "symbol_id": 6,
-            "way": 4,
-            "ways": [
-                1,
-                1,
-                1,
-                1
-            ],
-            "pay_credit": 2
-        }
+     * 播放全部獎項
      */
-    public performOneWay(waysData, isAllLine: boolean = false) {
-        console.log(waysData);
-        let symbol_id = waysData['symbol_id'];
-        let symbols = this.machine.reel.getSymbolFromID(symbol_id);
-        symbols.forEach(sym => { sym.win(); });
-        this.performSymbols = this.performSymbols.concat(symbols);
+    public async performAllPayline() {
+        const { extra, pay_credit_total } = this.gameResult;
+        const { ways } = extra;
+        const totalWinLabel = this.totalWinLabel;
 
-        if (isAllLine === true) return;
-        let winScore = waysData['pay_credit'];
-        this.reelMaskActive(true);
-        this.singleLineActive(true, Utils.numberComma(winScore));
-        let worldPos = symbols[0].node.getWorldPosition();
-        worldPos.x += this.winNumberSinglePos.x;
-        worldPos.y += this.winNumberSinglePos.y;
+        await this.reelMaskActive(true);        // 打開遮罩
 
-        this.winNumberSingleLine.node.setWorldPosition(worldPos);
+        // 播放全部獎項
+        let max_wait_sec = 1;
+        for(let i = 0; i < ways.length; i++) {
+            let way = ways[i];
+            let sec = await this.performSingleLine(way);
+            if ( sec > max_wait_sec ) max_wait_sec = sec;
+        }
+        
+        Utils.commonTweenNumber(totalWinLabel, 0, pay_credit_total, max_wait_sec); // 播放總得分
+        const waitSec = (max_wait_sec + 1) * 1000;
+        await Utils.delay(waitSec); 
+
+        
+        // await this.reelMaskActive(false);       // 關閉遮罩
+        this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
+        totalWinLabel.string = '';              // 關閉總得分
     }
 
-    protected async closePayline() {
-        console.log(this.performSymbols);
-        for (let i in this.performSymbols) {
-            let symbol: Symbol = this.performSymbols[i];
-            if (symbol == null) continue;
-            symbol.normal();
-        }
+    // way {"symbol_id": 7,"way": 3,"ways": [1,1,1],"pay_credit": 500}
+    public async performSingleLine(way: any, isWaiting: boolean=false) : Promise<number> {
+        const { symbol_id, ways, pay_credit } = way;
+        const { reel } = this;
 
-        this.performSymbols = [];
-        await Utils.delay(500);
-        return super.closePayline();
+        let wSymbols = [];
+        for(let i=0;i<ways.length;i++) {
+            console.log('performSingleLine', i, ways[i]);
+            wSymbols.push(reel.moveToShowWinContainer(i, symbol_id, ways[i]));
+        }
+        console.log('wSymbols', wSymbols);
+        let winSec = wSymbols[0][0].getComponent(Symbol).getAnimationDuration();
+        if ( winSec < 1 ) winSec = 1;
+        console.log('winSec', winSec);
+        wSymbols.forEach( w=>w.forEach( symbol=> symbol.getComponent(Symbol).win()));
+        
+        if ( isWaiting ) await Utils.delay(winSec * 1000);
+
+        return winSec;
     }
 
     public async performSingleLineLoop() {
-        if (this.tempCancelPerform === true) {
-            return this.closePayline();
+        const { extra, pay_credit_total } = this.gameResult;
+        const { ways } = extra;
+
+        if ( pay_credit_total === 0 ) return;
+        if ( extra?.ways.length === 0 ) return;
+
+        console.log('performSingleLineLoop', ways);
+
+        await this.reelMaskActive(true);        // 打開遮罩
+        let idx = 0;
+        while(true) {
+            console.log('performSingleLineLoop step 1', idx, ways[idx]);
+            await this.performSingleLine(ways[idx], true);
+            console.log('performSingleLineLoop step 2', this.machine.state);
+            if ( this.machine.state !== Machine2_0.SPIN_STATE.IDLE ) return;
+            console.log('performSingleLineLoop step 3');
+            this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
+            idx++;
+            if ( idx >= ways.length ) idx = 0;
         }
-
-        let ways = this.tempPaywayData['extra']['ways'];
-        this.wayIndex++;
-
-        if (this.wayIndex === ways.length) {
-            this.wayIndex = 0;
-        }
-
-        await this.performOneWay(ways[this.wayIndex], false);
-        await Utils.delay(this.performAllWaysSec);
-
-        this.closePayline();
-        if (this.tempCancelPerform) return;
-
-        return this.performSingleLineLoop();
     }
 }
 

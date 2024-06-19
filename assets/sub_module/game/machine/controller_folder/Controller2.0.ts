@@ -195,8 +195,6 @@ export class Controller2_0 extends Component {
 
     public get machine() :Machine2_0 { return this.props['machine']; }
 
-    //region 按鈕事件 [[rgba(0, 0, 0, 0)]]
-
     /**
      * Spin 按鈕事件
      */
@@ -209,35 +207,13 @@ export class Controller2_0 extends Component {
             return false;
         }
 
-        console.log('clickSpin');
         this.clickOption(null, false); // 關閉 Option 功能
-        // 通知 machine 開始 Spin
-        // let waitEvent: EventTarget = this.machihe.spin();
-        // 有取得 waitEvent 表示 machine 開始 Spin
-        // if ( waitEvent == null ) return; 
         // 禁用所有按鈕
-        console.log(this.properties['BusyDisableButtons']);
         this.activeBusyButtons(false);
         // 等待 Spin 結束
-        // await Utils.delayEvent(waitEvent);
-
-        // await Utils.delay(1000); // 模擬等待時間
         await this.machine.clickSpin();
-
         // 啟用所有按鈕
         this.activeBusyButtons(true);
-        
-    }
-
-    protected clickTotalBetDecrease() { this.changeTotalBetIdx(this.betIdx - 1); }
-    protected clickTotalBetIncrease() { this.changeTotalBetIdx(this.betIdx + 1); }
-    private changeTotalBetIdx(idx:number) {
-        const length = this.betIdxLength;
-
-        if ( idx >= length ) idx = 0;
-        if ( idx < 0 ) idx = length - 1;
-        this.betIdx = idx;
-        this.refreshTotalBet();
     }
 
     protected clickInformation() {
@@ -245,10 +221,8 @@ export class Controller2_0 extends Component {
     }
 
     /**
-     * 切換顯示 Option 功能
-     * @param event  按鈕事件, 目前無使用
+     * 切換顯示 Option 按鈕列表功能
      * @param active 切換按鈕狀態, 預設為反向
-     * @returns 
      */
     protected clickOption(event, active:boolean=null) {
         const orientation = Viewport.instance.getCurrentOrientation();
@@ -281,8 +255,14 @@ export class Controller2_0 extends Component {
         tween(node).to(0.3, { position: toPos }, { easing:'backOut', onComplete:completeEvent }).start();
     }
 
+    /**
+     * 關閉 Option 按鈕列表 功能
+     */
     protected clickOptionBack() { return this.clickOption(null, false); }
 
+    /**
+     * 點擊切換速度模式
+     */
     protected clickSpeedMode() {
         const speedMode = this.props.speedMode;
         const lastMode = this.machine.SpeedMode;
@@ -291,7 +271,11 @@ export class Controller2_0 extends Component {
         return this.changeSpeedMode(nextMode);
     }
 
-    protected changeSpeedMode(mode:number) {
+    /**
+     * 切換速度模式
+     * @param mode { Machine.SPEED_MODE } 速度模式代號
+     */
+    private changeSpeedMode(mode:number) {
         const speedMode = this.props.speedMode;
         const lastMode = this.machine.SpeedMode;
         if ( lastMode === mode ) return;
@@ -324,25 +308,33 @@ export class Controller2_0 extends Component {
         console.log('clickFullscreen');
     }
 
-    //#endregion 按鈕事件
-
-
-    //#region [[rgba(0, 0, 0, 0)]] 數值畫面功能
-
+    /** 更新餘額顯示 */
     public refreshBalance() {
         const balance = DataManager.instance.userData.credit;
         this.changeBalance(balance);
     }
 
-    public async changeBalance(to:number, from:number=null, tweenNumber:boolean=true, tweenSec=1) {
+    /**
+     * 變更餘額顯示 (非同步)
+     * @param to          {number}         目標數字
+     * @param from        {number | null}  起始數字, null = 預設為上次數字
+     * @param tweenSec    {float}           滾動秒數, 0 = 不滾動顯示
+     * @returns {Promise<any>}
+     */
+    public async changeBalance(to:number, from:number=null, tweenSec=1) {
         if ( to == null ) return;
         if ( to === from ) return;
-        if ( tweenNumber === false ) return this.setBalance(to);
+        if ( tweenSec === 0 ) return this.setBalance(to);
 
         from = from ?? this.props['ui']['balance']['lastValue'];
         return await this.tweenValue(to, from, tweenSec, (data)=> this.setBalance(data['value']), this.props['ui']['balance']['event']);
     }
 
+    /**
+     * 顯示餘額
+     * @param balance {number} 餘額
+     * @returns {void}
+     */
     public setBalance(balance:number) {
         const balanceLabel:Label = this.props['ui']['balance'][DATE_TYPE.COMPONENT];
         const currencySymbol = gameInformation._currencySymbol;
@@ -350,33 +342,47 @@ export class Controller2_0 extends Component {
         balanceLabel.string = `${currencySymbol} ${Utils.numberComma(balance)}`;
     }
 
-    public async changeTotalWin(to:number, from:number=null, tweenNumber:boolean=true, tweenSec=1) {
+    /**
+     * 變更總贏分顯示 (非同步)
+     * @param to          {number}         目標數字
+     * @param from        {number | null}  起始數字, null = 預設為上次數字
+     * @param tweenSec    {float}           滾動秒數, 0 = 不滾動顯示
+     * @returns {Promise<any>}
+     */
+    public async changeTotalWin(to:number, from:number=null, tweenSec=1) {
         if ( to == null ) return;
         if ( to === from ) return;
-        if ( tweenNumber === false || tweenSec === 0 ) return this.setTotalWin(to);
+        if ( tweenSec === 0 ) return this.setTotalWin(to);
         from = from ?? this.props['ui']['totalWin']['lastValue'];
         return await this.tweenValue(to, from, tweenSec, (data)=> this.setTotalWin(data['value']), this.props['ui']['totalWin']['event']);
     }
 
+    /**
+     * 顯示總贏分
+     * @param totalWin 顯示總贏分
+     * @returns { void }
+     */
+
     public setTotalWin(totalWin:number) {
         const totalWinLabel:Label = this.props['ui']['totalWin'][DATE_TYPE.COMPONENT];
-        const currencySymbol = gameInformation._currencySymbol;
+        const currencySymbol      = gameInformation._currencySymbol;
 
         this.props['ui']['totalWin']['lastValue'] = totalWin;
-        if ( totalWin > 0 ) return totalWinLabel.string = `${currencySymbol} ${Utils.numberComma(totalWin)}`;
-        totalWinLabel.string = '';
-    }
-
-    public async changeTotalBet(to:number, from:number=null, tweenNumber:boolean=true, tweenSec=0.2) {
-        if ( to == null ) return;
-        if ( to === from ) return;
-        if ( tweenNumber === false || tweenSec === 0 ) return this.setTotalBet(to);
-        from = from ?? this.props['ui']['totalBet']['lastValue'];
         
-        return await this.tweenValue(to, from, tweenSec, (data)=> this.setTotalBet(data['value']), this.props['ui']['totalBet']['event']);
+        if ( totalWin === 0 ) return totalWinLabel.string = '';
+        return totalWinLabel.string = `${currencySymbol} ${Utils.numberComma(totalWin)}`;
     }
 
-    public async tweenValue(to:number, from:number, tweenSec:number, onUpdate:any, eventTarget:EventTarget) {
+    /**
+     * 滾動數字工具
+     * @todo 提供給 TotalWin, TotalBet, Balance 滾動數字使用
+     * @param to            {number}      目標數字
+     * @param from          {number}      起始數字
+     * @param tweenSec      {float}        滾動秒數
+     * @param onUpdate      {function}    更新數字事件
+     * @param eventTarget   {EventTarget} 結束觸發事件
+     */
+    private async tweenValue(to:number, from:number, tweenSec:number, onUpdate:any, eventTarget:EventTarget) {
         if ( to == null ) return;
         if ( to === from ) return;
         if ( !onUpdate || !eventTarget ) return;
@@ -385,10 +391,34 @@ export class Controller2_0 extends Component {
         eventTarget.removeAll('done');
         tween(data).to(tweenSec, { value: to }, { onUpdate: onUpdate, onComplete: ()=> eventTarget.emit('done') }).start();
 
-        return Utils.delayEvent(eventTarget);
+        return await Utils.delayEvent(eventTarget);
     }
 
-    public setTotalBet(totalBet:number) {
+
+    //#region TotalBet 相關功能 [[rgba(0, 0, 0, 0)]]
+
+    /**
+     * 改變總押注顯示數字 (非同步)
+     * @param to          {number}         目標數字
+     * @param from        {number | null}  起始數字, null = 預設為上次數字
+     * @param tweenSec    {float}           滾動秒數
+     * @returns {Promise<any>}
+     */
+    public async changeTotalBet(to:number, from:number=null, tweenSec=0.2) {
+        if ( to == null ) return;
+        if ( to === from ) return;
+        if ( tweenSec === 0 ) return this.setTotalBet(to);
+        from = from ?? this.props['ui']['totalBet']['lastValue'];
+        
+        return await this.tweenValue(to, from, tweenSec, (data)=> this.setTotalBet(data['value']), this.props['ui']['totalBet']['event']);
+    }
+
+    /**
+     * 顯示總押注
+     * @param totalBet {number} 總押注
+     * @returns {void}
+     */
+    private setTotalBet(totalBet:number) {
         const totalBetLabel:Label = this.props['ui']['totalBet'][DATE_TYPE.COMPONENT];
         const currencySymbol = gameInformation._currencySymbol;
 
@@ -396,9 +426,14 @@ export class Controller2_0 extends Component {
         totalBetLabel.string = `${currencySymbol} ${Utils.numberComma(totalBet)}`;
     }
 
-    public set betIdx(value:number) { this.props['ui']['totalBet']['betIdx'] = value; }
+    /**  設定押注Index (private) */
+    private set betIdx(value:number) { this.props['ui']['totalBet']['betIdx'] = value; }
+
+    /**  取得押注Index */
     public get betIdx() { return this.props['ui']['totalBet']['betIdx']; }
-    public get betValue() { 
+
+    /**  取得押注額度 */
+    private get betValue() { 
         const [ coinValue, lineBet, lineTotal ] = [
             gameInformation.coinValueArray[this.betIdx],
             gameInformation.lineBet,
@@ -408,14 +443,34 @@ export class Controller2_0 extends Component {
         return coinValue * 1000 * lineBet * lineTotal / 1000;
     }
 
+    /**  取得總押注 */
     public get totalBet() { return this.betValue; }
 
-    public get betIdxLength() { return gameInformation.coinValueArray.length; }
+    /**  取得押注額度數量 */
+    private get betIdxLength() { return gameInformation.coinValueArray.length; }
 
+    /**  更新押注額 */
     public refreshTotalBet() { /*this.setTotalBet(this.betValue);*/ this.changeTotalBet(this.betValue); }
 
-    // #endregion 數值畫面功能
+    /**  減少押注 */
+    protected clickTotalBetDecrease() { this.changeTotalBetIdx(this.betIdx - 1); }
 
+    /**  增加押注 */
+    protected clickTotalBetIncrease() { this.changeTotalBetIdx(this.betIdx + 1); }
+
+    /** 
+     * 改變押注 
+     * @param idx {number} 指定押注Index
+     */
+    private changeTotalBetIdx(idx:number) {
+        const length = this.betIdxLength;
+
+        if ( idx >= length ) idx = 0;
+        if ( idx < 0 ) idx = length - 1;
+        this.betIdx = idx;
+        this.refreshTotalBet();
+    }
+
+    //#endregion TotalBet 相關功能
 
 }
-

@@ -1,7 +1,6 @@
 import { _decorator, tween, Component, Node, sp, Label, Vec3, EventHandler, Tween } from 'cc';
 import { Machine } from '../Machine';
-import { Reel } from '../Reel_bak';
-import { Paytable, PAYTABLE_TYPE } from './PayTable';
+import { Paytable } from './PayTable';
 import { Utils } from '../../../utils/Utils';
 import { ObjectPool } from '../../ObjectPool';
 import { Symbol } from '../Symbol';
@@ -23,8 +22,6 @@ export class Payline extends Paytable {
 
     @property({type:SimpleAudioClipData, displayName:'PaylineAudio', tooltip:'賠付線跑線音'})
     public paylineAudio : SimpleAudioClipData = new SimpleAudioClipData();
-
-    protected override paytableType = PAYTABLE_TYPE.PAYLINE;
 
     public payLines = [];
 

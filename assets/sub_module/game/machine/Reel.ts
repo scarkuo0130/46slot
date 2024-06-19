@@ -4,16 +4,16 @@ import { Wheel } from './Wheel';
 import { Symbol } from './Symbol';
 import { objectPrototype } from 'mobx/dist/internal';
 import { Machine2_0 } from './Machine2.0';
+import { ObjectPool } from '../ObjectPool';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
 /** 滾輪狀態 */
 export enum REEL_STATE {
-    INIT_STATE = -1,    // 初始化狀態
-    NORMAL_STATE = 0,   // 正常狀態
-    SPINING_STATE = 1,  // 開始滾動狀態
-    STOPING_STATE = 2,  // 停止滾動狀態
-    WIN_STATE = 3,      // 表演狀態
+    INIT     = -1, // 初始化狀態
+    IDLE     = 0,  // 正常狀態
+    SPINNING = 1,  // 開始滾動狀態
+    STOPPING = 2,  // 停止滾動狀態
 }
 
 /** 速度設定 */
@@ -105,7 +105,7 @@ export class SymbolInspect {
     @property ({type:[CCInteger], displayName:'停輪表演 Symbol ID', tooltip:'哪些圖標停輪後要破框與表演'})
     public isDropSymbol: number[] = [0];
 
-    @property ({type:Node, displayName:'表演位置', tooltip:'停輪後要破框與表演的位置'})
+    @property ({type:Node, displayName:'破框與表演位置', tooltip:'停輪後要破框與表演的位置'})
     public container: Node;
 
     @property ({type:[SymbolNearMiss], displayName:'聽牌Symbol設定', tooltip:'哪些Symbol要做聽牌效果'})
@@ -115,8 +115,7 @@ export class SymbolInspect {
 @ccclass('Reel')
 export class Reel extends Component {
     @property ({type:Node, displayName:'滾輪容器', tooltip:'滾輪容器', group:{'name':'滾輪容器'}})
-    private mContainer = null;
-
+    private wheelController = null;
     @property ({displayName:'啟動設定', tooltip:'啟動設定', group:{'name':'啟動設定'}})
     protected startRollingInspect: StartRollingInspect = new StartRollingInspect();
 
@@ -138,8 +137,9 @@ export class Reel extends Component {
         stopingWheel    : [],     // 正在停輪滾輪 { number[false,false,.....] }
         isFastStoping   : false,  // 是否快速停輪 { boolean }
         showDropSymbols : [],     // 顯示破框表演的 Symbol { wheelID: Node[] }
-        state           : REEL_STATE.INIT_STATE, // 滾輪狀態
+        state           : REEL_STATE.INIT, // 滾輪狀態
         mode            : SPIN_MODE.NORMAL_MODE, // 速度設定 
+        showWinContainer: null,   // 顯示營分Symbol的容器 { Node }
         handler : {
             stoping : null,       // 等待停止的 Handler
         },
@@ -160,8 +160,9 @@ export class Reel extends Component {
     };
 
     protected onLoad() {
-        this.properties.container = this.mContainer;
-        this.changeState(REEL_STATE.INIT_STATE);
+        this.properties.container = this.wheelController;
+        this.changeState(REEL_STATE.INIT);
+        this.properties.showWinContainer = this.symbolInspect.container;
         Machine2_0.SetReel(this);
     }
 
@@ -170,7 +171,7 @@ export class Reel extends Component {
         this.initStartRollingData();
         this.initStopRollingData();
         this.initRollingTime();
-        this.changeState(REEL_STATE.NORMAL_STATE);
+        this.changeState(REEL_STATE.IDLE);
         this.initNodeData();
 
         this.developStart();
@@ -308,7 +309,7 @@ export class Reel extends Component {
     private changeState ( state: REEL_STATE ) { this.properties.state = state; }
 
     //machine
-    public get machine() { return this.properties.machine; }
+    public get machine() : Machine2_0 { return this.properties.machine; }
     public setMachine(machine:any) { this.properties.machine = machine; }
     //machine
 
@@ -335,20 +336,21 @@ export class Reel extends Component {
     /**
      * @description 滾輪開始滾動
      */
-    public async Spin() {
+    public async spin() {
         this.Rest();
 
-        this.changeState(REEL_STATE.SPINING_STATE); // 開始滾輪
+        this.changeState(REEL_STATE.SPINNING); // 開始滾輪
         this.startRolling();      // 啟動滾輪
 
         await this.rolling();     // 滾輪持續滾動
-        this.changeState(REEL_STATE.STOPING_STATE); // 停止滾輪
+        this.changeState(REEL_STATE.STOPPING); // 停止滾輪
 
         await this.stopRolling(); // 通知停止滾輪
-        this.changeState(REEL_STATE.NORMAL_STATE);  // 恢復正常狀態
+        this.changeState(REEL_STATE.IDLE);  // 恢復正常狀態
 
         await Utils.delayEvent(this.properties.handler.stoping, 'done'); // 等待滾輪靜止
-        this.machine?.eventSpingStop(0);            // 通知機台滾輪停止
+        
+        // 回到 paytable spin function
     }
 
     /**
@@ -388,7 +390,7 @@ export class Reel extends Component {
             if ( time >= stopTime )     break;      // 滾輪停止時間
 
             time += stepTime;
-            console.log('rolling time:', time, stopTime);
+            // console.log('rolling time:', time, stopTime);
         }
 
         await Utils.delay(100);
@@ -398,6 +400,7 @@ export class Reel extends Component {
      * @description 通知 Wheel 停止滾輪
      */
     protected async stopRolling() {
+
         let mode = this.spinMode;
         let rollingData = this.properties.stopRolling[mode];
         let wheels = this.getWheels();
@@ -425,33 +428,54 @@ export class Reel extends Component {
         let showDropSymbols = this.properties.showDropSymbols;
 
         for(let i=0;i<wheels.length;i++) {
-            let symbols = showDropSymbols[i];
-            if ( symbols?.length === 0 ) continue;
-            for(let j=0;j<symbols.length;j++) {
-                let symbol = symbols[j];
-                let position = symbol.worldPosition;
-                symbol.parent = wheels[i].container;
-                symbol.worldPosition = position;
-            }
-
+            const symbols = showDropSymbols[i];
+            symbols.forEach(symbol => symbol?.remove());
             showDropSymbols[i] = [];
+
+            const wSymbols = wheels[i].symbols();
+            wSymbols.forEach(symbol => symbol.active = true);
         }
 
         this.properties.showDropSymbols = showDropSymbols;
     }
     
+    /**
+     * 取得表演的 Symbol 容器
+     */
+    public get showWinContainer() : Node { return this.properties.showWinContainer; }
+
      /**
      * 移動到表演位置，並且進行表演
      * @param symbol 
      */
-    public moveToShowDropSymbol(wheelID:number, symbol:Node) {
-        let container = this.symbolInspect.container;
-        let position = symbol.worldPosition;
-        symbol.parent = container;
-        symbol.worldPosition = position;
-        symbol?.drop();
+    public moveToShowDropSymbol(wheelID:number, symbol:any) {
+        const container  = this.showWinContainer;
+        const position   = symbol.worldPosition;
+        const showSymbol = ObjectPool.Get(symbol.SymID);
+        
+        symbol.active            = false;
+        showSymbol.parent        = container;
+        showSymbol.worldPosition = position;
+        showSymbol.active        = true;
 
-        this.properties.showDropSymbols[wheelID].push(symbol);
+        this.properties.showDropSymbols[wheelID].push(showSymbol);
+        return showSymbol;
+    }
+
+    public moveToShowWinContainer(wheelID:number, symbol_id:number, max_amount:number=99) : Node[] {
+        const wheels           = this.getWheels();
+        const wSymbols : any[] = wheels[wheelID].symbols();
+        let symbols            = [];
+        let amount             = 0;
+
+        for(let i=0;i<wSymbols.length;i++) {
+            if ( wSymbols[i].SymID !== symbol_id ) continue;
+            symbols.push(this.moveToShowDropSymbol(wheelID, wSymbols[i]));
+            amount++;
+            if ( amount >= max_amount ) break;
+        }
+
+        return symbols;
     }
 
     /**
@@ -459,17 +483,16 @@ export class Reel extends Component {
      * @param wheelID 
      * @returns 
      */
-    public showDropSymbol(wheelID:number) {
+    public showDropSymbol(wheelID:number) : Node[] {
         let dropSymbols = this.symbolInspect.isDropSymbol;
-        let wheelSymbols = this.getWheels()[wheelID].symbols();
+        if ( dropSymbols.length === 0 ) return;
 
-        if ( dropSymbols?.length === 0 ) return;
-        wheelSymbols.forEach(symbol => {
-            let symbolComponent = symbol.getComponent(Symbol);
-            if (dropSymbols.includes(symbolComponent.symID)) {
-                this.moveToShowDropSymbol(wheelID, symbol);
-            }
-        });
+        let symbols = [];
+        for(let i=0;i<dropSymbols.length;i++) {
+            symbols.push(this.moveToShowWinContainer(wheelID, dropSymbols[i]));
+        }
+
+        return symbols;
     }
 
     /**
@@ -479,9 +502,8 @@ export class Reel extends Component {
     public setStopWheel(wheelID:number) {
         this.properties.stopingWheel[wheelID] = true; // 設定滾輪停止
         this.showDropSymbol(wheelID);                 // 檢查是否有破框與表演的 Symbol
-        let self = this;
-        if ( this.properties.stopingWheel.every((value) => value === true) ) {
-            self.properties.handler.stoping.emit('done'); 
+        if (this.properties.stopingWheel.every(value => value)) {
+            this.properties.handler.stoping.emit('done'); 
         }
     }
 
@@ -507,6 +529,18 @@ export class Reel extends Component {
      * @param id 指定 Symbol ID
      * @returns 
      */
-    public getSymbolFromID (id): Symbol[] { return this.symbols.flatMap(symbolRow => Object.values(symbolRow).filter(symbol => symbol.id === id)); }
+    public getSymbolById (id:number): Symbol[] { 
+        let symbols = this.symbols;
+        let result = [];
+        for(let i=0;i<symbols.length;i++) {
+            let keys = Object.keys(symbols[i]);
+            for(let j=0;j<keys.length;j++) {
+                let symbol = symbols[i][keys[j]].getComponent(Symbol);
+                if ( symbol.symID === id ) result.push(symbol);
+            }
+        }
+
+        return result;
+     }
 }
 

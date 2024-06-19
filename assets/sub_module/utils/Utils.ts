@@ -1,4 +1,4 @@
-import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color } from "cc";
+import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label } from "cc";
 import { PREVIEW } from "cc/env";
 import { Game } from "../game/Game";
 import { Config, GameConfig } from '../game/GameConfig';
@@ -442,15 +442,12 @@ export class Utils {
     public static activeUIEventTarget: EventTarget = null;
     public static async commonActiveUITween( ui:Node, active:boolean) {
         if ( ui == null ) return;
-        if ( this.activeUIEventTarget && this.activeUIEventTarget['running'] === true ) return;
+        if (this.activeUIEventTarget?.['running'] === true) return;
 
         let fromScale = active ? this.activeUIScale[ 0 ] : this.activeUIScale[ 1 ];
         let toScale   = active ? this.activeUIScale[ 1 ] : this.activeUIScale[ 0 ];
-        if ( this.activeUIEventTarget == null ) {
-            this.activeUIEventTarget = new EventTarget();
-        } else {
-            this.activeUIEventTarget.removeAll('done');
-        }
+        this.activeUIEventTarget = this.activeUIEventTarget ?? new EventTarget();
+        this.activeUIEventTarget.removeAll('done');
         this.activeUIEventTarget['running'] = true;
         ui.setScale( fromScale );
         ui.active = true;
@@ -470,6 +467,54 @@ export class Utils {
         await this.delayEvent( this.activeUIEventTarget );
         this.activeUIEventTarget['running'] = false;
         ui.active = active;
+    }
+
+    /**
+     * 共用 tween 數字變化動畫
+     * @param label             { Label  }           顯示的 Label
+     * @param from              { number }           起始數字
+     * @param to                { number }           結束數字
+     * @param duration          { float }             動畫時間
+     * @param numberStringFunc  { Function }         數字轉換字串函式 (value:number)=>string
+     * @param eventTarget       { EventTarget }      指定等待結束事件
+     * @returns 
+     */
+    public static async commonTweenNumber(label:Label, from:number=0, to:number, duration:number, numberStringFunc:Function=null, eventTarget:EventTarget=null) : Promise<any>{
+        if ( label == null ) return;
+        
+        let data = { value: from };
+
+        if ( numberStringFunc == null ) numberStringFunc = Utils.numberComma;
+        label.string = numberStringFunc(from);
+
+
+        const t = tween(data).to(duration, { value: to }, { easing: 'smooth',
+            onUpdate:   () => { label.string = numberStringFunc(data.value); },
+            onComplete: () => { eventTarget?.emit('done'); }
+         }).start();
+
+        if ( eventTarget == null ) return;
+        return await Utils.delayEvent(eventTarget);
+    }
+
+    public static async commonFadeIn( ui:Node, fadeout:boolean ) {
+        if ( ui == null ) return;
+        if (this.activeUIEventTarget?.['running'] === true) return;
+
+        const sprite = ui.getComponent(Sprite);
+        if ( sprite == null ) return;
+
+        let fromColor = fadeout ? this.activeUIAlpha[ 1 ] : this.activeUIAlpha[ 0 ];
+        let toColor   = fadeout ? this.activeUIAlpha[ 0 ] : this.activeUIAlpha[ 1 ];
+
+        this.activeUIEventTarget = this.activeUIEventTarget ?? new EventTarget();
+        this.activeUIEventTarget.removeAll('done');
+        this.activeUIEventTarget['running'] = true;
+        sprite.color = fromColor;
+        tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
+        await this.delayEvent( this.activeUIEventTarget );
+        this.activeUIEventTarget['running'] = false;
+        ui.active = fadeout;
     }
 }
 
