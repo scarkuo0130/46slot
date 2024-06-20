@@ -1,7 +1,7 @@
 
 import { _decorator, Component, Node, Vec2, sp, instantiate, Size, size } from 'cc';
 import { SimpleAudioClipData, SoundManager } from './SoundManager';
-import { Machine } from './Machine';
+import { Machine } from '../machine/Machine';
 import { ObjectPool } from '../ObjectPool';
 import { Wheel } from './Wheel';
 import { Utils } from '../../utils/Utils';

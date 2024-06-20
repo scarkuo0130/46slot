@@ -3,9 +3,8 @@ import { switchButton } from '../utils/SwitchButton/switchButton';
 import { LanguageLabel } from './Language/LanguageLabel';
 import { dropDown } from '../utils/DropDown/dropDown';
 import { Utils, DATE_TYPE } from '../utils/Utils';
-import { Controller2_0 } from './machine/controller_folder/Controller2.0';
-import { Machine } from 'xstate';
-import { Machine2_0 } from './machine/Machine2.0';
+import { Controller } from './machine/controller_folder/Controller';
+import { Machine } from './machine/Machine';
 const { ccclass, property } = _decorator;
 
 @ccclass('AutoSpin')
@@ -48,7 +47,7 @@ export class AutoSpin extends Component {
         }
     };
 
-    public get machine() :Machine2_0 { return this.properties.machine; }
+    public get machine() :Machine { return this.properties.machine; }
 
     public static Instance: AutoSpin = null;
     protected onLoad(): void {
@@ -56,7 +55,7 @@ export class AutoSpin extends Component {
         this.node.setPosition(0,0,0);
         AutoSpin.Instance = this;
         this.init();
-        this.properties.machine = Machine2_0.Instance;
+        this.properties.machine = Machine.Instance;
     }
 
     private init() {
@@ -73,7 +72,7 @@ export class AutoSpin extends Component {
 
     public async activeUI(active:boolean) {
         if ( this.node.active === active ) return;
-        Controller2_0.MaskActive(active);
+        Controller.MaskActive(active);
         return await Utils.commonActiveUITween(this.node, active);
     }
 
@@ -86,17 +85,17 @@ export class AutoSpin extends Component {
     }
 
     public switchQuickSpin(active:boolean) {
-        if ( active === true ) return Controller2_0.ChangeSpeedMode(Machine2_0.SPEED_MODE.QUICK);
-        if ( this.machine.SpeedMode === Machine2_0.SPEED_MODE.QUICK ) return Controller2_0.ChangeSpeedMode(Machine2_0.SPEED_MODE.NORMAL);
+        if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.QUICK);
+        if ( this.machine.SpeedMode === Machine.SPEED_MODE.QUICK ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.NORMAL);
     }
 
     public switchTurboSpin(active:boolean) {
-        if ( active === true ) return Controller2_0.ChangeSpeedMode(Machine2_0.SPEED_MODE.TURBO);
-        if ( this.machine.SpeedMode === Machine2_0.SPEED_MODE.TURBO ) return Controller2_0.ChangeSpeedMode(Machine2_0.SPEED_MODE.NORMAL);
+        if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.TURBO);
+        if ( this.machine.SpeedMode === Machine.SPEED_MODE.TURBO ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.NORMAL);
     }
 
     public changeSpeedMode(mode:number) {
-        let type = Machine2_0.SPEED_MODE;
+        let type = Machine.SPEED_MODE;
         switch(mode) {
             case type.QUICK:  
                 this.initData.turboSpin.switch[DATE_TYPE.COMPONENT].switch(false); 

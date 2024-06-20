@@ -1,20 +1,19 @@
-import { _decorator, Component, Node, tween } from 'cc';
-import { Paytable } from './PayTable';
-import { Utils } from '../../../utils/Utils';
-import { Symbol } from '../Symbol';
-import { SimpleAudioClipData, SoundManager } from '../SoundManager';
-import { Machine2_0 } from '../Machine2.0';
+import { _decorator, Component, Node, tween, Vec3 } from 'cc';
+import { Paytable } from '../../sub_module/game/machine/pay/PayTable';
+import { Utils } from '../../sub_module/utils/Utils';
+import { Symbol } from '../../sub_module/game/machine/Symbol';
+import { Machine } from '../../sub_module/game/machine/Machine';
 const { ccclass, property } = _decorator;
 
 @ccclass('Payway')
 export class Payway extends Paytable {
-    
-    /**
-     * Spin 流程，可自行撰寫
-     */
-    public async spin() { return await super.spin(); }
 
-        /**
+    protected onload() { return; }
+
+    // 給予專案 start 使用
+    protected onstart() { return; }
+
+    /**
      * 進入報獎流程
      * @override 可覆寫
      * @todo 如果有中獎的話, 進入報獎流程
@@ -55,8 +54,6 @@ export class Payway extends Paytable {
         const waitSec = (max_wait_sec + 1) * 1000;
         await Utils.delay(waitSec); 
 
-        
-        // await this.reelMaskActive(false);       // 關閉遮罩
         this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
         totalWinLabel.string = '';              // 關閉總得分
         this.machine.controller.changeTotalWin(pay_credit_total); // 更新總得分
@@ -72,15 +69,22 @@ export class Payway extends Paytable {
         for(let i=0;i<ways.length;i++) {
             wSymbols.push(reel.moveToShowWinContainer(i, [symbol_id, 0], ways[i]));
         }
+
         let winSec = wSymbols[0][0].getComponent(Symbol).getAnimationDuration();
         if ( winSec < 1 ) winSec = 1;
         wSymbols.forEach( w=>w.forEach( symbol=> symbol.getComponent(Symbol).win()));
         
-        if ( isWaiting ) await Utils.delay(winSec * 1000);
-
+        if ( isWaiting ) {
+            this.displaySingleWinNumber(pay_credit, wSymbols[0][0].worldPosition);
+            await Utils.delay(winSec * 1000);
+            this.displaySingleWinNumber(0);
+        }
         return winSec;
     }
 
+    /**
+     * 單獎輪播
+     */
     public async performSingleLineLoop() {
         const { extra, pay_credit_total } = this.gameResult;
         const { ways } = extra;
@@ -92,7 +96,7 @@ export class Payway extends Paytable {
         let idx = 0;
         while(true) {
             await this.performSingleLine(ways[idx], true);
-            if ( this.machine.state !== Machine2_0.SPIN_STATE.IDLE ) return;
+            if ( this.machine.state !== Machine.SPIN_STATE.IDLE ) return;
             this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
             idx++;
             if ( idx >= ways.length ) idx = 0;

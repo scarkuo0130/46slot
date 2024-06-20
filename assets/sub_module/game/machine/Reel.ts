@@ -2,8 +2,7 @@ import { _decorator, CCFloat, CCInteger, Component, EventHandler, EventTarget, N
 import { Utils, _utilsDecorator } from '../../utils/Utils';
 import { Wheel } from './Wheel';
 import { Symbol } from './Symbol';
-import { objectPrototype } from 'mobx/dist/internal';
-import { Machine2_0 } from './Machine2.0';
+import { Machine } from './Machine';
 import { ObjectPool } from '../ObjectPool';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
@@ -163,7 +162,7 @@ export class Reel extends Component {
         this.properties.container = this.wheelController;
         this.changeState(REEL_STATE.INIT);
         this.properties.showWinContainer = this.symbolInspect.container;
-        Machine2_0.SetReel(this);
+        Machine.SetReel(this);
     }
 
     protected start() {
@@ -309,7 +308,7 @@ export class Reel extends Component {
     private changeState ( state: REEL_STATE ) { this.properties.state = state; }
 
     //machine
-    public get machine() : Machine2_0 { return this.properties.machine; }
+    public get machine() : Machine { return this.properties.machine; }
     public setMachine(machine:any) { this.properties.machine = machine; }
     //machine
 

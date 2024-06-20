@@ -2,13 +2,13 @@ import { _decorator, Component, Node, game, Button, EventTarget, Vec3, tween, Co
 import { Utils, DATE_TYPE } from '../../../utils/Utils';
 import { Orientation, Viewport } from '../../../utils/Viewport';
 import { AutoSpin } from '../../AutoSpin';
-import { Machine2_0 } from '../Machine2.0';
+import { Machine } from '../Machine';
 import { gameInformation } from '../../GameInformation';
 import { DataManager } from '../../../data/DataManager';
 const { ccclass, property } = _decorator;
 
-@ccclass('Controller2_0')
-export class Controller2_0 extends Component {
+@ccclass('Controller')
+export class Controller extends Component {
 
     private initData = {
         "buttons" : {
@@ -35,9 +35,9 @@ export class Controller2_0 extends Component {
         },
 
         'speedMode' : {
-            [Machine2_0.SPEED_MODE.NORMAL] : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Normal', 'next':Machine2_0.SPEED_MODE.QUICK },
-            [Machine2_0.SPEED_MODE.QUICK]  : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Quick',  'next':Machine2_0.SPEED_MODE.TURBO },
-            [Machine2_0.SPEED_MODE.TURBO]  : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Turbo',  'next':Machine2_0.SPEED_MODE.NORMAL},
+            [Machine.SPEED_MODE.NORMAL] : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Normal', 'next':Machine.SPEED_MODE.QUICK },
+            [Machine.SPEED_MODE.QUICK]  : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Quick',  'next':Machine.SPEED_MODE.TURBO },
+            [Machine.SPEED_MODE.TURBO]  : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Turbo',  'next':Machine.SPEED_MODE.NORMAL},
         },
 
         'ui' : {
@@ -94,7 +94,7 @@ export class Controller2_0 extends Component {
 
     get props() { return this.properties; }
 
-    public static Instance: Controller2_0 = null;
+    public static Instance: Controller = null;
 
     /**
      * 初始化按鈕
@@ -168,7 +168,7 @@ export class Controller2_0 extends Component {
         sprite.node.active = active;
     }
 
-    public static MaskActive(active:boolean) { return Controller2_0.Instance.maskActive(active); }
+    public static MaskActive(active:boolean) { return Controller.Instance.maskActive(active); }
 
     // #endregion 遮罩
 
@@ -179,8 +179,8 @@ export class Controller2_0 extends Component {
     private activeBusyButtons(active:boolean) { this.props['BusyDisableButtons'].forEach((button: Button) => { button.interactable = active; }); }
 
     protected onLoad(): void {
-        Controller2_0.Instance = this;
-        this.props['machine'] = Machine2_0.Instance;
+        Controller.Instance = this;
+        this.props['machine'] = Machine.Instance;
 
         Utils.initData(this.initData, this);
         this.initMask();
@@ -193,7 +193,7 @@ export class Controller2_0 extends Component {
         this.changeSpeedMode(this.machine.SpeedMode);
     }
 
-    public get machine() :Machine2_0 { return this.props['machine']; }
+    public get machine() :Machine { return this.props['machine']; }
 
     /**
      * Spin 按鈕事件
@@ -286,7 +286,7 @@ export class Controller2_0 extends Component {
         return this.machine.setSpeedMode(mode);
     }
 
-    public static ChangeSpeedMode(mode:number) { return Controller2_0.Instance.changeSpeedMode(mode); }
+    public static ChangeSpeedMode(mode:number) { return Controller.Instance.changeSpeedMode(mode); }
 
     protected clickAutoSpin() {
        AutoSpin.OpenUI();

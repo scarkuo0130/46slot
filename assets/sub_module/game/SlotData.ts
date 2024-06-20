@@ -2,7 +2,7 @@ import mobx from 'mobx/dist/mobx.cjs.production.min.js';
 import { CONFIG, FallSymbol } from './Constants';
 import { gameInformation } from './GameInformation';
 import { playerInformation } from './PlayerInformation';
-import { EventHandheld, EventHandler } from 'cc';
+import { EventHandheld, EventHandler, sp } from 'cc';
 
 type EliminateData = {
     ID: number,
@@ -79,6 +79,7 @@ export class SlotData {
 
     /** spin 回傳事件 */
     spinResponseEventHandler: EventHandler;
+    machine:any;
 
     errorCodeHandler : EventHandler;
 
@@ -100,7 +101,10 @@ export class SlotData {
         gameInformation.betCredit = spinData.bet_credit;
         this.IS_SUB_GAME = spinData.get_sub_game;
 
-        if ( this.spinResponseEventHandler != null ) this.spinResponseEventHandler.emit([spinData]);
+        this.machine?.spinResponse(spinData);
+
+        // console.log(this.spinResponseEventHandler, 'this.spinResponseEventHandler');
+        //if ( this.spinResponseEventHandler != null ) this.spinResponseEventHandler.emit([spinData]);
         // console.log(this.FREE_GAME_ALL_ELIMINATE_TIMES ,'this.CONFIG.FREE_GAME_ALL_ELIMINATE_TIMES ');
         this.getOnceSpinData( spinData.main_game );
     }

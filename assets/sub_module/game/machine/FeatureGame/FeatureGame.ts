@@ -1,6 +1,5 @@
 import { _decorator, Component, EventHandler, Label, Node, tween } from 'cc';
-import { Machine, MACHINE_STATE, MACHINE_STATUS } from '../Machine';
-import { SPIN_ACTION } from '../Controller';
+import { Machine} from '../Machine';
 import { Utils, _utilsDecorator } from '../../../utils/Utils';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
@@ -59,8 +58,8 @@ export class FeatureGame extends Component {
      * 進入 FeatureGame 需要執行的動畫
      */
     public async enterFeatureGame() {
-        this.machine.controller.spinButtonController(SPIN_ACTION.SPECIAL);
-        this.machine.setStatus = MACHINE_STATUS.FREE_GAME;
+        // this.machine.controller.spinButtonController(SPIN_ACTION.SPECIAL);
+        // this.machine.setStatus = MACHINE_STATUS.FREE_GAME;
         if (this.enterFeatureGameUI == null) return;
         this.enterFeatureGameUI.active = true;
     }
@@ -105,9 +104,9 @@ export class FeatureGame extends Component {
         this.isReturnMainGame = false;
         this.tmp_totalWin = 0;
         this.endFeatureGameUINode.active = false;
-        this.machine.setStatus = MACHINE_STATUS.MAIN_GAME;
-        this.machine.setState = MACHINE_STATE.IDLE;
-        this.machine.controller.spinButtonController(SPIN_ACTION.NORMAL);
+        // this.machine.setStatus = MACHINE_STATUS.MAIN_GAME;
+        // this.machine.setState = MACHINE_STATE.IDLE;
+        // this.machine.controller.spinButtonController(SPIN_ACTION.NORMAL);
     }
 }
 

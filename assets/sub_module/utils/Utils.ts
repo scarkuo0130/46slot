@@ -1,5 +1,5 @@
 import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label } from "cc";
-import { PREVIEW } from "cc/env";
+import { PREVIEW, EDITOR } from "cc/env";
 import { Game } from "../game/Game";
 import { Config, GameConfig } from '../game/GameConfig';
 import { gameInformation } from '../game/GameInformation';
@@ -14,6 +14,7 @@ export namespace _utilsDecorator {
      */
     export function isDevelopFunction ( value: boolean = true ) {
         return function ( target: any, propertyKey: string, descriptor: PropertyDescriptor ) {
+            if ( EDITOR === true ) return;
             if ( Utils.isDevelopment() === true ) return;
             if ( value === false ) return;
             target[ propertyKey ] = () => { };
@@ -340,6 +341,7 @@ export class Utils {
     }
 
     public static getSite () {
+        if ( EDITOR === true ) return 'Develop';
         let domain = window.location.hostname;
         if ( Config == null || Object.keys( Config ).length === 0 ) return Utils.getConfig();
         if ( Config[ 'Sites' ] == null ) return Utils.getConfig();

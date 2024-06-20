@@ -1,9 +1,9 @@
 import { _decorator, Component, tween, sp, Color, Label, EventHandler, Vec3, AudioSource, AudioClip } from 'cc';
 import { gameInformation } from '../GameInformation';
-import { Machine } from './Machine';
 import { Utils } from '../../utils/Utils';
 import { SimpleAudioClipData, SoundManager } from './SoundManager';
 import { SpineRepeatTool } from '../../utils/SpineRepeatTool';
+import { Machine } from './Machine';
 const { ccclass, property } = _decorator;
 
 export enum BIGWIN_TYPE {

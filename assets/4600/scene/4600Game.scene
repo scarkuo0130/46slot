@@ -9005,8 +9005,8 @@
       0,
       0
     ],
-    "rollingTime_n": 0.2,
-    "rollingTime_q": 0.1,
+    "rollingTime_n": 0,
+    "rollingTime_q": 0,
     "rollingTime_t": 0
   },
   {
@@ -9033,8 +9033,8 @@
       0,
       0
     ],
-    "rollingTime_n": 0.2,
-    "rollingTime_q": 0.1,
+    "rollingTime_n": 0.25,
+    "rollingTime_q": 0.15,
     "rollingTime_t": 0
   },
   {
@@ -9260,7 +9260,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 88.957,
       "z": 0
     },
     "_lrot": {
@@ -9298,8 +9298,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 50.39999999999999
+      "width": 42.36103751256703,
+      "height": 54.400000000000006
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9328,11 +9328,11 @@
       "b": 255,
       "a": 255
     },
-    "_string": "",
+    "_string": "123",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 23.3125,
-    "_fontSize": 20,
+    "_actualFontSize": 26.809375,
+    "_fontSize": 23,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
     "_overflow": 0,
@@ -9341,11 +9341,11 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_isItalic": false,
-    "_isBold": false,
+    "_isBold": true,
     "_isUnderline": false,
     "_underlineHeight": 2,
     "_cacheMode": 0,
-    "_enableOutline": false,
+    "_enableOutline": true,
     "_outlineColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -9364,8 +9364,8 @@
     },
     "_shadowOffset": {
       "__type__": "cc.Vec2",
-      "x": 2,
-      "y": 2
+      "x": -2,
+      "y": -2
     },
     "_shadowBlur": 2,
     "_id": "d91CkRmEVA9bc9pnOZNT0m"
@@ -9408,7 +9408,7 @@
     "winNumberSinglePos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": -40,
       "z": 0
     },
     "_id": "bbhS6FDhRDPq93s6wEnl7T"
@@ -23991,7 +23991,7 @@
       "__id__": 414
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 778

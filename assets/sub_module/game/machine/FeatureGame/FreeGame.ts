@@ -1,6 +1,5 @@
 import { _decorator, Component, Node } from 'cc';
 import { FeatureGame } from './FeatureGame';
-import { MACHINE_STATUS } from '../Machine';
 import { Utils } from '../../../utils/Utils';
 const { ccclass, property } = _decorator;
 
@@ -31,7 +30,7 @@ export class FreeGame extends FeatureGame {
     public displayLastSpinTimes ( times: number ) { }
 
     public isFeatureGame ( result: any ): boolean {
-        if ( this.machine.status != MACHINE_STATUS.MAIN_GAME ) return true;
+        // if ( this.machine.status != MACHINE_STATUS.MAIN_GAME ) return true;
         if ( result[ 'get_sub_game' ] !== true ) return false;
         if ( result[ 'sub_game' ] == null ) return false;
         if ( result[ 'sub_game' ][ 'result' ] == null || result[ 'sub_game' ][ 'result' ].length === 0 ) return false;
@@ -101,8 +100,8 @@ export class FreeGame extends FeatureGame {
     }
 
     public async eventSpingStop ( wheelIndex: number ) {
-        if ( this.machine.featureGame != this ) return false;
-        if ( this.machine.status != MACHINE_STATUS.FREE_GAME ) return false;
+        // if ( this.machine.featureGame != this ) return false;
+        // if ( this.machine.status != MACHINE_STATUS.FREE_GAME ) return false;
 
         await this.spinDone();
         return true;

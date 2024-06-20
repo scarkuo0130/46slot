@@ -1,14 +1,8 @@
 import { _decorator, Sprite, Component, Node, Vec3, tween, Label, EventHandler, EventTarget, JsonAsset, ccenum, UIOpacity, CCInteger, CCFloat, Color } from 'cc';
 import { Reel } from '../Reel';
 import { Utils, DATE_TYPE } from '../../../utils/Utils';
-import { Machine2_0 } from '../Machine2.0';
+import { Machine } from '../Machine';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
-
-export enum PAYTABLE_TYPE {
-    PAYLINE = 1,
-    PAYWAY = 2,
-    OTHER = 3,
-}
 
 @ccclass( 'Paytable' )
 @disallowMultiple( true )
@@ -16,8 +10,11 @@ export enum PAYTABLE_TYPE {
 @menu( 'https://docs.google.com/document/d/1dphr3ShXfiQeFBN_UhPWQ2qZvvQtS38hXS8EIeAwM-Q/edit#heading=h.2vlv1h3mtlze' )
 export class Paytable extends Component {
 
-    @property( { type: Node, displayName: '遮罩物件', tooltip: 'reelMask', group: { name: '遮罩', id: '0' } } )
+    @property( { type: Node, displayName: '遮罩物件', tooltip: 'reelMask', group: { name: 'settings', id: '0' } } )
     public reelMask: Node = null;
+
+    @property( { displayName: '單線中獎的分數Label位移', tooltip: 'winNumberSinglePos', group: { name: 'settings', id: '0' } } )
+    public winNumberSinglePos: Vec3 = new Vec3();
 
     private initData = {
         'ui' : {
@@ -35,7 +32,7 @@ export class Paytable extends Component {
         'ui' : {},
     };
 
-    public get machine () : Machine2_0 { return this.properties['machine']; }
+    public get machine () : Machine { return this.properties['machine']; }
 
     public get reel (): Reel { return this.machine.reel; }
 
@@ -45,17 +42,28 @@ export class Paytable extends Component {
 
     public get totalWinLabel() : Label { return this.properties.ui?.labelWinScore?.component ; }
 
+    public get singleWinLabel() : Label { return this.properties.ui?.labelSingleWinScore?.component ; }
+
+    // 給予專案 onLoad 使用
+    protected onload() { return; }
+
+    // 給予專案 start 使用
+    protected onstart() { return; }
+
     onLoad () {
         this.init();
+        this.onload();
     }
 
     protected start(): void {
         this.reelMaskActive(false);
         this.totalWinLabel.string = '';
+        this.singleWinLabel.string = '';
+        this.onstart();
     }
 
     private init() {
-        this.properties['machine'] = Machine2_0.Instance;
+        this.properties['machine'] = Machine.Instance;
         this.machine.paytable = this;
         Utils.initData(this.initData, this);
         this.properties['maskEvent'] = new EventTarget();
@@ -89,11 +97,11 @@ export class Paytable extends Component {
      */
     public async spin() {
         this.breakPerformSingleLineLoop();          // 取消報獎流程
-        this.machine.state = Machine2_0.SPIN_STATE.SPINNING;
+        this.machine.state = Machine.SPIN_STATE.SPINNING;
         await this.reel.spin();                     // 等待 SPIN 結束
-        this.machine.state = Machine2_0.SPIN_STATE.STOPPING;
+        this.machine.state = Machine.SPIN_STATE.STOPPING;
         await this.processWinningScore();           // 執行報獎流程
-        this.machine.state = Machine2_0.SPIN_STATE.IDLE;
+        this.machine.state = Machine.SPIN_STATE.IDLE;
         this.performSingleLineLoop();               // 執行單項報獎流程
     }
 
@@ -109,24 +117,7 @@ export class Paytable extends Component {
     /**
      * 播放全部獎項
      */
-    public async performAllPayline() {
-        // 打開遮罩
-        await this.reelMaskActive(true);
-
-        // 播放全部獎項
-        let max_wait_sec = 0;
-        for(let i = 0; i < this.gameResult['pay_line'].length; i++) {
-            let payline = this.gameResult['pay_line'][i];
-            let sec = await this.performSingleLine(payline, false);
-            if ( sec > max_wait_sec ) max_wait_sec = sec;
-        }
-
-        // 等待最大時間
-        await Utils.delay(max_wait_sec * 1000 + 100);
-
-        // 關閉遮罩
-        await this.reelMaskActive(false);
-    };
+    public async performAllPayline() {}
 
     /**
      * 播放單項獎項
@@ -134,18 +125,7 @@ export class Paytable extends Component {
      * @param isWait { boolean } 是否等待
      * @returns { number } 等待秒數
      */
-    public async performSingleLine(payline:any, isWait:boolean=true) : Promise<number>  {
-        const { amount, pay_credit, pay_line, symbol_id } = payline;
-        let winningSymbols = this.reel.getSymbolById(symbol_id);    // 取得 Symbol 資料
-        let spineSec = winningSymbols[0].getAnimationDuration();    // 取得獎項動畫時間
-        spineSec += 1;
-        console.log('spineSec', spineSec);
-
-        // 播放獎項動畫
-        winningSymbols.forEach( symbol => symbol.win() );
-
-        return spineSec;
-    }
+    public async performSingleLine(payline:any, isWait:boolean=true) : Promise<number>  { return 0;}
 
 
     /**
@@ -153,10 +133,7 @@ export class Paytable extends Component {
      * @param active 
      * @returns 
      */
-    protected async reelMaskActive ( active: boolean ) {
-        if ( this.mask == null ) return;
-        this.maskFadeIn( active );
-    }
+    protected async reelMaskActive ( active: boolean ) {this.maskFadeIn( active ); }
 
     /**
      * 遮罩淡入淡出
@@ -189,112 +166,18 @@ export class Paytable extends Component {
         this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
         this.reelMaskActive(false);         // 關閉遮罩
         this.machine.controller.setTotalWin(0);
+        this.displaySingleWinNumber(0);
     }
-
-    @property( { type: Label, displayName: 'WinNumberAllLine', tooltip: '全部中獎的分數Label', group: { name: 'settings', id: '0' } } )
-    public winNumberAllLine: Label;
-
-    @property( { type: Label, displayName: 'WinNumberSingleLine', tooltip: '單線中獎的分數Label', group: { name: 'settings', id: '0' } } )
-    public winNumberSingleLine: Label;
-
-    @property( { displayName: 'WinNumberSinglePos', tooltip: '單線中獎的分數Label位移', group: { name: 'settings', id: '0' } } )
-    public winNumberSinglePos: Vec3 = new Vec3();
-
-    @property( { type: JsonAsset, displayName: 'PaytableSymbolData', tooltip: 'Symbol賠付表', group: { name: 'settings', id: '0' } } )
-    public paytableSymbolJson: JsonAsset;
-
-    protected tempPayRuleData;
-    protected tempTotalWin;
-    protected tempLoopIdx = 0;
-    protected tempCancelPerform: boolean = false;
-
-
-    protected singleLineActive ( active: boolean, score: string = '' ) {
-        if ( this.winNumberSingleLine == null ) return;
-        this.winNumberSingleLine.node.active = active;
-        this.winNumberSingleLine.string = score;
-    }
-
-    protected setSingleLinePos ( wheelX: number, wheelY: number, score: number ) {
-        let wheels = this.reel.getWheels();
-        let wheel = wheels[ wheelX ];
-        if ( wheel == null ) return;
-
-        let symbol: Node = wheel.getSymbol( wheelY );
-        if ( symbol == null ) return;
-
-        let pos = symbol.worldPosition.clone();
-        pos.add( this.winNumberSinglePos );
-        this.winNumberSingleLine.node.worldPosition = pos;
-
-        console.log( this.winNumberSingleLine.node.worldPosition );
-        this.singleLineActive( true, Utils.numberComma( score ) );
-    }
-
-
-    public async setPerformAllLineValue ( value: number, startTween: number = 0, tweenSec: number = 0 ) {
-        if ( value === null ) return this.winNumberAllLine.string = '';
-        if ( value === 0 ) return this.winNumberAllLine.string = 'WIN 0';
-        if ( tweenSec === 0 ) return this.winNumberAllLine.string = `WIN ${ Utils.numberComma( value ) }`;
-
-        let tweenNumber = { value: startTween };
-        let self = this;
-        tween( tweenNumber ).to( tweenSec, { value: value }, {
-            onUpdate: () => {
-                let value = Math.floor( tweenNumber.value );
-                self.winNumberAllLine.string = `WIN ${ Utils.numberComma( value ) }`;
-            }
-        } ).start();
-        return await Utils.delay( tweenSec * 1000 );
-    }
-
-    /**
-     * 取消播放獎項效果
-     */
-    public cancelPerform () {
-        this.closePayline();
-        this.tempCancelPerform = true;
-        // this.node.active = false;
-    }
-
-    /**
-     * 關閉顯示得分狀態
-     */
-    protected closePayline () {
-        this.reelMaskActive( false );
-        this.singleLineActive( false );
-    }
-
-    /** 全獎播放 **/
-
-    public async performAllPayline_old ( payRuleData, totalWin: number, onCompleteCallBack: EventHandler ) {
-        this.tempPayRuleData = payRuleData;
-        this.tempTotalWin = totalWin;
-        this.tempLoopIdx = -1;
-        this.tempCancelPerform = false;
-        this.node.active = true;
-
-        await this.performAllLine( payRuleData, totalWin, true );
-        this.singleLineActive( false );
-        return onCompleteCallBack.emit( [ onCompleteCallBack.customEventData ] );
-    }
-
-    /**
-     * 播放全部獎項，此功能撰寫在各繼承模組 ex payline, payway...
-     * @param payRuleData 
-     * @returns 
-     */
-    public async performAllLine ( payRuleData, totalWin: number, firstTime = false ) { return; }
 
     /** 單獎輪播 **/
     public async performSingleLineLoop () { return; }
 
-    /**
-     * 單獎輪播
-     * @param lineData 
-     * @param isAllLine 
-     * @returns 
-     */
-    public async performSingleLine_old ( lineData, isAllLine: boolean = false ) { return; }
+    public displaySingleWinNumber(pay_credit:number, pos: Vec3=Vec3.ZERO) {
+        if ( pay_credit === 0 ) return this.singleWinLabel.string = '';
+        let wPos = new Vec3(pos.x + this.winNumberSinglePos.x, pos.y + this.winNumberSinglePos.y, 0);
+        this.singleWinLabel.string = Utils.numberComma(pay_credit);
+        this.singleWinLabel.node.worldPosition = wPos;
+    }
+
 }
 

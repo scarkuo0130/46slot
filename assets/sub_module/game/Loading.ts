@@ -7,7 +7,7 @@ import { Utils, _utilsDecorator } from '../utils/Utils';
 import { i18n } from '../utils/i18n';
 import { PREVIEW } from 'cc/env';
 import { GoogleAnalytics } from '../analytics/GoogleAnalytics';
-import { Machine2_0 } from './machine/Machine2.0';
+import { Machine } from './machine/Machine';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -201,7 +201,7 @@ export class Loading extends Component {
         console.log( 'getGameData', result );
         EventManager.instance.dispatchEvent( EventType.UPDATE_PROGRESS, 0.4 );
         if ( Loading.Instance.isPreview === false ) return;
-        Machine2_0.EnterGame();
+        Machine.EnterGame();
     }
 
     async loadGameScene () {

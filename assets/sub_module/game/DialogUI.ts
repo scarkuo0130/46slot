@@ -1,6 +1,6 @@
 import { _decorator, Component, Node, Button, Label } from 'cc';
 import { Utils, DATE_TYPE } from '../utils/Utils';
-import { Controller2_0 } from './machine/controller_folder/Controller2.0';
+import { Controller } from './machine/controller_folder/Controller';
 const { ccclass, property } = _decorator;
 
 @ccclass('DialogUI')
@@ -43,7 +43,7 @@ export class DialogUI extends Component {
 
     private closeUI(): void {
         Utils.commonActiveUITween(this.node, false);
-        Controller2_0.MaskActive(false);
+        Controller.MaskActive(false);
     }
 
     public static OpenUI(content:string, activeClose=false, title:string='', clickEvent:Function=null, okLabel:string='ok'): void { return DialogUI.Instance.openUI(content, activeClose, title, clickEvent, okLabel); }
@@ -59,7 +59,7 @@ export class DialogUI extends Component {
         this.properties.items.okLabel[DATE_TYPE.COMPONENT].string = okLabel;
        
         Utils.commonActiveUITween(this.node, true);
-        Controller2_0.MaskActive(true);
+        Controller.MaskActive(true);
     }
 
     public clickConfirm(): void {
