@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "eHppEQ02brRXFou7WQ92AVGrvBs",
+	"hash": "NJEzLWFObB6miL+AL510vLXPLHo",
 	"spine": "3.8.75",
 	"x": -433,
 	"y": -217.19,
@@ -56,24 +56,64 @@
 	}
 ],
 "animations": {
-	"play": {
+	"idle": {
 		"slots": {
-			"GU02": {
+			"GU01": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff35" },
-					{ "time": 1, "color": "ffffff1a" },
-					{ "time": 1.5, "color": "ffffff7e" },
-					{ "time": 2, "color": "ffffff00" }
+					{ "color": "ffffff00" }
 				]
 			},
 			"GU01-3": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 1.1667, "color": "ffffffaa" },
-					{ "time": 2, "color": "ffffff00" }
+					{ "color": "ffffff00" }
 				]
 			},
+			"GU03": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"GU02": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"GU01-2": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"GU01": {
+				"translate": [
+					{ "x": -45.98, "y": -70.22 }
+				]
+			},
+			"GU02": {
+				"translate": [
+					{}
+				]
+			},
+			"GU03": {
+				"translate": [
+					{}
+				]
+			},
+			"GU01-2": {
+				"translate": [
+					{ "x": 3.34, "y": -0.84 }
+				]
+			},
+			"GU01-3": {
+				"translate": [
+					{ "x": 3.34, "y": -0.84 }
+				]
+			}
+		}
+	},
+	"play": {
+		"slots": {
 			"GU01": {
 				"color": [
 					{ "color": "ffffff00" },
@@ -81,7 +121,7 @@
 					{ "time": 2, "color": "ffffff00" }
 				]
 			},
-			"GU01-2": {
+			"GU01-3": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 1.1667, "color": "ffffffaa" },
@@ -94,6 +134,22 @@
 					{ "time": 0.5, "color": "ffffff35" },
 					{ "time": 1, "color": "ffffff1a" },
 					{ "time": 1.5, "color": "ffffff7e" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"GU02": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff35" },
+					{ "time": 1, "color": "ffffff1a" },
+					{ "time": 1.5, "color": "ffffff7e" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"GU01-2": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1.1667, "color": "ffffffaa" },
 					{ "time": 2, "color": "ffffff00" }
 				]
 			}

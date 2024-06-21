@@ -27,7 +27,7 @@ Boat_01
   index: -1
 Boat_02
   rotate: false
-  xy: 2, 247
+  xy: 2, 222
   size: 517, 231
   orig: 517, 231
   offset: 0, 0
@@ -41,38 +41,38 @@ Boat_03
   index: -1
 Boat_04
   rotate: false
-  xy: 2, 45
+  xy: 2, 20
   size: 378, 200
   orig: 378, 200
   offset: 0, 0
   index: -1
-effect/Icon_Common_24
+Icon_Common_24
   rotate: true
   xy: 1214, 489
   size: 512, 502
   orig: 512, 512
   offset: 0, 8
   index: -1
-effect/Lig
+Lig
   rotate: false
   xy: 1367, 81
   size: 110, 105
   orig: 128, 114
   offset: 9, 9
   index: -1
-effect/fangshe02
+fangshe02
   rotate: true
-  xy: 382, 60
+  xy: 382, 35
   size: 185, 179
   orig: 200, 200
   offset: 9, 12
   index: -1
-high_symbol_2
+high_symbol_3
   rotate: false
-  xy: 2, 480
-  size: 604, 521
-  orig: 606, 523
-  offset: 1, 1
+  xy: 2, 455
+  size: 604, 546
+  orig: 604, 549
+  offset: 0, 3
   index: -1
 圖層 1
   rotate: false

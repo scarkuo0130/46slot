@@ -10,6 +10,7 @@ import { StateManager } from '../StateManager';
 import { slotData } from '../SlotData';
 import { Utils, _utilsDecorator } from '../../utils/Utils';
 import { Paytable } from './pay/PayTable';
+import { Viewport } from '../../utils/Viewport';
 const { ccclass, property } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -26,6 +27,9 @@ export class Machine extends Component {
 
     // 是否正在SPIN
     public get spinning() { return this.properties.spinState > Machine.SPIN_STATE.PERFORM_SCORE; }
+
+    // 是否忙碌中
+    public get isBusy() : boolean { return this.properties.spinState > Machine.SPIN_STATE.IDLE; }
     public set state(value:number) { this.properties.spinState = value; }
     public get state() { return this.properties.spinState; }
 
@@ -62,7 +66,7 @@ export class Machine extends Component {
 
     public get SpeedMode() { return this.properties['speedMode']; }
 
-    public get controller() : Controller { return this.properties['controller']; }
+    public get controller() : Controller { return Controller.Instance; }
 
     public get paytable() : Paytable { return this.properties['paytable']; }
     public set paytable(value) { this.properties['paytable'] = value; }
@@ -86,6 +90,7 @@ export class Machine extends Component {
 
     protected start() {
         this.properties['controller'] = Controller.Instance;
+        Viewport.lockResizeHandler();
     }
 
     public startAutoSpin() {

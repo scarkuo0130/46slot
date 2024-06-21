@@ -5,86 +5,79 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BM_01
-  rotate: true
-  xy: 567, 637
+  rotate: false
+  xy: 2, 649
   size: 563, 535
   orig: 565, 537
   offset: 1, 1
   index: -1
 BM_02
   rotate: true
-  xy: 2, 101
+  xy: 2, 92
   size: 555, 527
   orig: 557, 529
   offset: 1, 1
   index: -1
 BM_03
   rotate: false
-  xy: 531, 116
+  xy: 531, 102
   size: 545, 519
   orig: 547, 521
   offset: 1, 1
   index: -1
-BRS
-  rotate: false
-  xy: 2, 658
-  size: 563, 542
-  orig: 565, 547
-  offset: 1, 4
-  index: -1
 bird_01
   rotate: true
-  xy: 1104, 920
+  xy: 1127, 904
   size: 280, 342
   orig: 280, 346
   offset: 0, 0
   index: -1
 bird_02
   rotate: true
-  xy: 1448, 964
+  xy: 1471, 948
   size: 236, 364
   orig: 349, 365
   offset: 8, 0
   index: -1
 bird_03
-  rotate: true
-  xy: 1078, 2
+  rotate: false
+  xy: 1314, 708
   size: 119, 194
   orig: 121, 196
   offset: 2, 0
   index: -1
 bird_04
   rotate: false
-  xy: 1448, 689
+  xy: 1471, 673
   size: 295, 273
   orig: 307, 283
   offset: 9, 5
   index: -1
-effect/Icon_Common_24
+Icon_Common_24
   rotate: true
-  xy: 1078, 123
+  xy: 1078, 109
   size: 512, 502
   orig: 512, 512
   offset: 0, 8
   index: -1
-effect/Lig
+Lig
   rotate: false
-  xy: 1291, 647
+  xy: 1078, 2
   size: 110, 105
   orig: 128, 114
   offset: 9, 9
   index: -1
-effect/fangshe02
+fangshe02
   rotate: false
-  xy: 1104, 739
+  xy: 1127, 723
   size: 185, 179
   orig: 200, 200
   offset: 9, 12
   index: -1
 圖層 1
   rotate: true
-  xy: 1291, 754
-  size: 164, 140
-  orig: 164, 140
-  offset: 0, 0
+  xy: 567, 623
+  size: 561, 558
+  orig: 563, 560
+  offset: 1, 0
   index: -1

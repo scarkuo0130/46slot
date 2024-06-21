@@ -1,33 +1,26 @@
 
 low_symbol_3.png
-size: 512,256
+size: 512,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Q_01
   rotate: true
-  xy: 2, 2
+  xy: 267, 8
   size: 86, 114
   orig: 88, 116
   offset: 1, 1
   index: -1
 Q_02
   rotate: true
-  xy: 144, 21
+  xy: 143, 2
   size: 92, 122
   orig: 94, 124
   offset: 1, 1
   index: -1
-圖層 1
-  rotate: true
-  xy: 2, 90
-  size: 164, 140
-  orig: 164, 140
-  offset: 0, 0
-  index: -1
 圖層 2
-  rotate: false
-  xy: 144, 115
+  rotate: true
+  xy: 2, 4
   size: 90, 139
   orig: 93, 142
   offset: 2, 1

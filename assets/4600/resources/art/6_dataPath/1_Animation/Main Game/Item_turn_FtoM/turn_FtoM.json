@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "r7bFlU8mZ8zevYEOqK3oZQYsFEk",
+	"hash": "6Npl450RAGyOkN54YOAdARZyTrY",
 	"spine": "3.8.75",
 	"x": -359.94,
 	"y": -640.18,
@@ -44,7 +44,21 @@
 	}
 ],
 "animations": {
-	"play01": {
+	"idle": {
+		"bones": {
+			"Door01": {
+				"translate": [
+					{}
+				]
+			},
+			"Door2": {
+				"translate": [
+					{}
+				]
+			}
+		}
+	},
+	"play": {
 		"bones": {
 			"Door01": {
 				"translate": [

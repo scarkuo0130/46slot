@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "8Zh6zAU/OWk5wlHfYb0sfaqEsuU",
+	"hash": "cAWU3tbtjj0oeF+wOa5HW/Zf1zs",
 	"spine": "3.8.75",
 	"x": -640.91,
 	"y": -360.47,
@@ -65,14 +65,47 @@
 	}
 ],
 "animations": {
-	"play01": {
+	"idle": {
 		"slots": {
-			"Door1": {
+			"Door2": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
 				"attachment": [
-					{ "time": 1.0333, "name": "Door3" },
-					{ "time": 1.3333, "name": "Door3" }
+					{ "name": "Door1" }
 				]
 			},
+			"Door1": {
+				"attachment": [
+					{ "name": "Door3" }
+				]
+			}
+		},
+		"bones": {
+			"Door2": {
+				"translate": [
+					{ "x": -0.27 }
+				]
+			},
+			"Door1": {
+				"translate": [
+					{}
+				]
+			},
+			"Door4": {
+				"translate": [
+					{ "x": -319.7 }
+				]
+			},
+			"Door3": {
+				"translate": [
+					{ "x": 322.02 }
+				]
+			}
+		}
+	},
+	"play": {
+		"slots": {
 			"Door2": {
 				"color": [
 					{ "color": "ffffffff", "curve": "stepped" },
@@ -84,6 +117,12 @@
 					{ "name": "Door1" },
 					{ "time": 1.0333, "name": "Door1" },
 					{ "time": 1.3333, "name": "Door1" }
+				]
+			},
+			"Door1": {
+				"attachment": [
+					{ "time": 1.0333, "name": "Door3" },
+					{ "time": 1.3333, "name": "Door3" }
 				]
 			},
 			"JO": {
@@ -134,11 +173,6 @@
 	},
 	"play02": {
 		"slots": {
-			"Door1": {
-				"attachment": [
-					{ "name": "Door3" }
-				]
-			},
 			"Door2": {
 				"color": [
 					{ "color": "ffffffff", "curve": "stepped" },
@@ -146,6 +180,11 @@
 				],
 				"attachment": [
 					{ "name": "Door1" }
+				]
+			},
+			"Door1": {
+				"attachment": [
+					{ "name": "Door3" }
 				]
 			},
 			"JO": {

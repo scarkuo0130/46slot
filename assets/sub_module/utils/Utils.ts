@@ -65,7 +65,7 @@ export class Utils {
 
             const node = bindComponent.node.getChildByPath(path);
             if ( node == null ) {
-                console.error('Node not found: ' + subProperty[DATE_TYPE.NODE_PATH]);
+                // console.error('Node not found: ' + subProperty[DATE_TYPE.NODE_PATH]);
                 continue;
             }
 
@@ -73,7 +73,7 @@ export class Utils {
             const component = ( t == Node ) ? node : node.getComponent(t);
             
             if ( component == null ) {
-                console.error('Component not found: ' + subProperty[DATE_TYPE.TYPE], path);
+                // console.error('Component not found: ' + subProperty[DATE_TYPE.TYPE], path);
                 continue;
             }
 

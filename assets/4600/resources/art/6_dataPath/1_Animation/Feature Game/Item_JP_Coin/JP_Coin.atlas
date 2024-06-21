@@ -4,751 +4,737 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-CoinSeq/Coin_00
+Coin_00
   rotate: true
-  xy: 531, 1823
+  xy: 531, 1764
   size: 132, 136
   orig: 160, 160
   offset: 14, 12
   index: -1
-CoinSeq/Coin_01
+Coin_01
   rotate: true
-  xy: 1878, 1919
+  xy: 1875, 1860
   size: 123, 135
   orig: 160, 160
   offset: 19, 12
   index: -1
-CoinSeq/Coin_02
+Coin_02
   rotate: true
-  xy: 1246, 1936
+  xy: 1243, 1877
   size: 106, 137
   orig: 160, 160
   offset: 27, 11
   index: -1
-CoinSeq/Coin_03
+Coin_03
   rotate: true
-  xy: 576, 1957
+  xy: 573, 1898
   size: 85, 138
   orig: 160, 160
   offset: 38, 11
   index: -1
-CoinSeq/Coin_04
+Coin_04
   rotate: true
-  xy: 164, 1983
+  xy: 161, 1924
   size: 59, 139
   orig: 160, 160
   offset: 51, 10
   index: -1
-CoinSeq/Coin_05
+Coin_05
   rotate: true
-  xy: 23, 1991
+  xy: 20, 1932
   size: 51, 139
   orig: 160, 160
   offset: 54, 10
   index: -1
-CoinSeq/Coin_06
+Coin_06
   rotate: true
-  xy: 305, 1983
+  xy: 302, 1924
   size: 59, 139
   orig: 160, 160
   offset: 51, 10
   index: -1
-CoinSeq/Coin_07
+Coin_07
   rotate: true
-  xy: 716, 1957
+  xy: 713, 1898
   size: 85, 138
   orig: 160, 160
   offset: 38, 11
   index: -1
-CoinSeq/Coin_08
+Coin_08
   rotate: true
-  xy: 1385, 1936
+  xy: 1382, 1877
   size: 106, 137
   orig: 160, 160
   offset: 27, 11
   index: -1
-CoinSeq/Coin_09
+Coin_09
   rotate: true
-  xy: 2, 1866
+  xy: 2, 1807
   size: 123, 135
   orig: 160, 160
   offset: 19, 12
   index: -1
-Icon_Common_24
-  rotate: false
-  xy: 2, 291
-  size: 512, 502
-  orig: 512, 512
-  offset: 0, 8
-  index: -1
 JP_Coin
   rotate: true
-  xy: 1551, 907
+  xy: 2, 617
   size: 420, 429
   orig: 422, 431
   offset: 1, 1
   index: -1
-Seq/Comp 1/Comp 1_00001
+JP_Coin_blur
+  rotate: true
+  xy: 1218, 2
+  size: 462, 499
+  orig: 462, 500
+  offset: 0, 1
+  index: -1
+Comp 1_00001
   rotate: false
-  xy: 5, 2026
+  xy: 2, 1967
   size: 16, 16
   orig: 211, 216
   offset: 24, 176
   index: -1
-Seq/Comp 1/Comp 1_00002
+Comp 1_00002
   rotate: false
-  xy: 509, 1977
+  xy: 506, 1918
   size: 65, 65
   orig: 211, 216
   offset: 7, 145
   index: -1
-Seq/Comp 1/Comp 1_00003
+Comp 1_00003
   rotate: true
-  xy: 944, 1955
+  xy: 941, 1896
   size: 87, 88
   orig: 211, 216
   offset: 2, 126
   index: -1
-Seq/Comp 1/Comp 1_00004
+Comp 1_00004
   rotate: true
-  xy: 1139, 1938
+  xy: 1136, 1879
   size: 104, 105
   orig: 211, 216
   offset: 0, 111
   index: -1
-Seq/Comp 1/Comp 1_00005
+Comp 1_00005
   rotate: false
-  xy: 1758, 1924
+  xy: 1755, 1865
   size: 118, 118
   orig: 211, 216
   offset: 0, 98
   index: -1
-Seq/Comp 1/Comp 1_00006
+Comp 1_00006
   rotate: true
-  xy: 398, 1845
+  xy: 398, 1786
   size: 130, 131
   orig: 211, 216
   offset: 0, 85
   index: -1
-Seq/Comp 1/Comp 1_00007
+Comp 1_00007
   rotate: true
-  xy: 812, 1812
+  xy: 812, 1753
   size: 141, 142
   orig: 211, 216
   offset: 0, 74
   index: -1
-Seq/Comp 1/Comp 1_00008
+Comp 1_00008
   rotate: true
-  xy: 956, 1788
+  xy: 956, 1729
   size: 150, 152
   orig: 211, 216
   offset: 0, 64
   index: -1
-Seq/Comp 1/Comp 1_00009
+Comp 1_00009
   rotate: true
-  xy: 1426, 1769
+  xy: 1426, 1710
   size: 160, 161
   orig: 211, 216
   offset: 0, 55
   index: -1
-Seq/Comp 1/Comp 1_00010
+Comp 1_00010
   rotate: true
-  xy: 2, 1688
+  xy: 1757, 1691
   size: 167, 170
   orig: 211, 216
   offset: 1, 46
   index: -1
-Seq/Comp 1/Comp 1_00011
+Comp 1_00011
   rotate: true
-  xy: 522, 1639
+  xy: 350, 1610
   size: 174, 176
   orig: 211, 216
   offset: 2, 38
   index: -1
-Seq/Comp 1/Comp 1_00012
+Comp 1_00012
   rotate: true
-  xy: 882, 1607
+  xy: 710, 1572
   size: 179, 180
   orig: 211, 216
   offset: 4, 31
   index: -1
-Seq/Comp 1/Comp 1_00013
+Comp 1_00013
   rotate: true
-  xy: 1251, 1586
+  xy: 1079, 1542
   size: 181, 183
   orig: 211, 216
   offset: 8, 25
   index: -1
-Seq/Comp 1/Comp 1_00014
+Comp 1_00014
   rotate: true
-  xy: 1621, 1569
+  xy: 1449, 1515
   size: 182, 184
   orig: 211, 216
   offset: 12, 19
   index: -1
-Seq/Comp 1/Comp 1_00015
+Comp 1_00015
   rotate: true
-  xy: 1807, 1569
+  xy: 1635, 1507
   size: 182, 185
   orig: 211, 216
   offset: 17, 13
   index: -1
-Seq/Comp 1/Comp 1_00016
+Comp 1_00016
   rotate: true
-  xy: 1436, 1580
+  xy: 1264, 1527
   size: 181, 183
   orig: 211, 216
   offset: 23, 9
   index: -1
-Seq/Comp 1/Comp 1_00017
+Comp 1_00017
   rotate: true
-  xy: 700, 1632
+  xy: 528, 1576
   size: 178, 180
   orig: 211, 216
   offset: 29, 5
   index: -1
-Seq/Comp 1/Comp 1_00018
+Comp 1_00018
   rotate: true
-  xy: 345, 1670
+  xy: 173, 1618
   size: 173, 175
   orig: 211, 216
   offset: 36, 3
   index: -1
-Seq/Comp 1/Comp 1_00019
+Comp 1_00019
   rotate: true
-  xy: 174, 1683
+  xy: 2, 1629
   size: 167, 169
   orig: 211, 216
   offset: 44, 1
   index: -1
-Seq/Comp 1/Comp 1_00020
+Comp 1_00020
   rotate: true
-  xy: 1264, 1775
+  xy: 1264, 1716
   size: 159, 160
   orig: 211, 216
   offset: 52, 1
   index: -1
-Seq/Comp 1/Comp 1_00021
+Comp 1_00021
   rotate: true
-  xy: 1110, 1784
+  xy: 1110, 1725
   size: 150, 152
   orig: 211, 216
   offset: 61, 0
   index: -1
-Seq/Comp 1/Comp 1_00022
+Comp 1_00022
   rotate: true
-  xy: 669, 1815
+  xy: 669, 1756
   size: 140, 141
   orig: 211, 216
   offset: 71, 0
   index: -1
-Seq/Comp 1/Comp 1_00023
+Comp 1_00023
   rotate: true
-  xy: 266, 1852
+  xy: 266, 1793
   size: 129, 130
   orig: 211, 216
   offset: 82, 0
   index: -1
-Seq/Comp 1/Comp 1_00024
+Comp 1_00024
   rotate: false
-  xy: 1639, 1925
+  xy: 1636, 1866
   size: 117, 117
   orig: 211, 216
   offset: 94, 1
   index: -1
-Seq/Comp 1/Comp 1_00025
+Comp 1_00025
   rotate: true
-  xy: 1034, 1940
+  xy: 1031, 1881
   size: 102, 103
   orig: 211, 216
   offset: 108, 1
   index: -1
-Seq/Comp 1/Comp 1_00026
+Comp 1_00026
   rotate: false
-  xy: 856, 1957
+  xy: 853, 1898
   size: 86, 85
   orig: 211, 216
   offset: 123, 3
   index: -1
-Seq/Comp 1/Comp 1_00027
+Comp 1_00027
   rotate: false
-  xy: 446, 1981
+  xy: 443, 1922
   size: 61, 61
   orig: 211, 216
   offset: 142, 8
   index: -1
-Seq/Comp 1/Comp 1_00028
-  rotate: false
-  xy: 2, 2041
-  size: 1, 1
-  orig: 1, 1
-  offset: 0, 0
-  index: -1
 fangshe02
   rotate: false
-  xy: 1064, 1603
+  xy: 892, 1548
   size: 185, 179
   orig: 200, 200
   offset: 9, 12
   index: -1
 glow
   rotate: true
-  xy: 2, 1227
+  xy: 1625, 1263
   size: 241, 246
   orig: 267, 270
   offset: 11, 13
   index: -1
-圖層 1
+001
   rotate: false
-  xy: 1589, 1763
-  size: 160, 160
-  orig: 160, 160
-  offset: 0, 0
-  index: -1
-爆炸_05/001
-  rotate: false
-  xy: 1524, 1931
+  xy: 1521, 1872
   size: 113, 111
   orig: 121, 119
   offset: 4, 4
   index: -1
-爆炸_05/002
+002
   rotate: false
-  xy: 139, 1857
+  xy: 139, 1798
   size: 125, 124
   orig: 131, 130
   offset: 3, 3
   index: -1
-爆炸_05/003
+003
   rotate: false
-  xy: 1751, 1753
+  xy: 1589, 1699
   size: 166, 164
   orig: 173, 172
   offset: 3, 5
   index: -1
-爆炸_05/004
+004
   rotate: true
-  xy: 197, 1470
+  xy: 2, 1418
   size: 198, 199
   orig: 205, 206
   offset: 3, 3
   index: -1
-爆炸_05/005
+005
   rotate: true
-  xy: 398, 1417
+  xy: 203, 1388
   size: 220, 226
   orig: 229, 233
   offset: 4, 4
   index: -1
-爆炸_05/006
-  rotate: true
-  xy: 1099, 1355
+006
+  rotate: false
+  xy: 658, 1335
   size: 229, 235
   orig: 240, 244
   offset: 4, 5
   index: -1
-爆炸_05/007
+007
   rotate: true
-  xy: 853, 1373
+  xy: 889, 1312
   size: 228, 244
   orig: 237, 256
   offset: 5, 8
   index: -1
-爆炸_05/008
+008
   rotate: true
-  xy: 1576, 1329
+  xy: 1375, 1275
   size: 238, 248
   orig: 250, 265
   offset: 4, 11
   index: -1
-爆炸_05/009
+009
   rotate: false
-  xy: 1336, 1341
+  xy: 1135, 1288
   size: 238, 237
   orig: 259, 250
   offset: 10, 6
   index: -1
-爆炸_05/010
+010
   rotate: true
-  xy: 626, 1406
+  xy: 431, 1350
   size: 224, 225
   orig: 260, 250
   offset: 22, 22
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00002
+Thunder_Loop2_00002
   rotate: true
-  xy: 2, 795
+  xy: 1303, 915
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00022
+Thunder_Loop2_00022
   rotate: true
-  xy: 2, 795
+  xy: 1303, 915
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00042
+Thunder_Loop2_00042
   rotate: true
-  xy: 2, 795
+  xy: 1303, 915
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00062
+Thunder_Loop2_00062
   rotate: true
-  xy: 2, 795
+  xy: 1303, 915
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00063
+Thunder_Loop2_00063
   rotate: true
-  xy: 2, 795
+  xy: 1303, 915
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00083
+Thunder_Loop2_00083
   rotate: true
-  xy: 2, 795
+  xy: 1303, 915
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00103
+Thunder_Loop2_00103
   rotate: true
-  xy: 2, 795
+  xy: 1303, 915
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00004
+Thunder_Loop2_00004
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00024
+Thunder_Loop2_00024
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00025
+Thunder_Loop2_00025
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00045
+Thunder_Loop2_00045
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00065
+Thunder_Loop2_00065
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00085
+Thunder_Loop2_00085
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00105
+Thunder_Loop2_00105
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00106
+Thunder_Loop2_00106
   rotate: true
-  xy: 572, 1077
+  xy: 324, 1039
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00007
+Thunder_Loop2_00007
   rotate: true
-  xy: 2, 1498
+  xy: 1822, 1506
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00027
+Thunder_Loop2_00027
   rotate: true
-  xy: 2, 1498
+  xy: 1822, 1506
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00047
+Thunder_Loop2_00047
   rotate: true
-  xy: 2, 1498
+  xy: 1822, 1506
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00067
+Thunder_Loop2_00067
   rotate: true
-  xy: 2, 1498
+  xy: 1822, 1506
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00068
+Thunder_Loop2_00068
   rotate: true
-  xy: 2, 1498
+  xy: 1822, 1506
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00088
+Thunder_Loop2_00088
   rotate: true
-  xy: 2, 1498
+  xy: 1822, 1506
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00108
+Thunder_Loop2_00108
   rotate: true
-  xy: 2, 1498
+  xy: 1822, 1506
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00009
+Thunder_Loop2_00009
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00029
+Thunder_Loop2_00029
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00030
+Thunder_Loop2_00030
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00050
+Thunder_Loop2_00050
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00070
+Thunder_Loop2_00070
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00090
+Thunder_Loop2_00090
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00110
+Thunder_Loop2_00110
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00111
+Thunder_Loop2_00111
   rotate: true
-  xy: 250, 1143
+  xy: 2, 1114
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00012
+Thunder_Loop2_00012
   rotate: true
-  xy: 1005, 1004
+  xy: 757, 951
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00032
+Thunder_Loop2_00032
   rotate: true
-  xy: 1005, 1004
+  xy: 757, 951
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00052
+Thunder_Loop2_00052
   rotate: true
-  xy: 1005, 1004
+  xy: 757, 951
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00072
+Thunder_Loop2_00072
   rotate: true
-  xy: 1005, 1004
+  xy: 757, 951
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00073
+Thunder_Loop2_00073
   rotate: true
-  xy: 1005, 1004
+  xy: 757, 951
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00093
+Thunder_Loop2_00093
   rotate: true
-  xy: 1005, 1004
+  xy: 757, 951
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00113
+Thunder_Loop2_00113
   rotate: true
-  xy: 1005, 1004
+  xy: 757, 951
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00015
+Thunder_Loop2_00015
   rotate: true
-  xy: 516, 122
+  xy: 2, 69
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00076
+Thunder_Loop2_00076
   rotate: true
-  xy: 516, 122
+  xy: 2, 69
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00096
+Thunder_Loop2_00096
   rotate: true
-  xy: 516, 122
+  xy: 2, 69
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00016
+Thunder_Loop2_00016
   rotate: true
-  xy: 1124, 2
+  xy: 610, 10
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00036
+Thunder_Loop2_00036
   rotate: true
-  xy: 1124, 2
+  xy: 610, 10
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00056
+Thunder_Loop2_00056
   rotate: true
-  xy: 1124, 2
+  xy: 610, 10
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00097
+Thunder_Loop2_00097
   rotate: true
-  xy: 1124, 2
+  xy: 610, 10
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00117
+Thunder_Loop2_00117
   rotate: true
-  xy: 1124, 2
+  xy: 610, 10
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00018
+Thunder_Loop2_00018
   rotate: true
-  xy: 1168, 458
+  xy: 1072, 466
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00038
+Thunder_Loop2_00038
   rotate: true
-  xy: 1168, 458
+  xy: 1072, 466
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00058
+Thunder_Loop2_00058
   rotate: true
-  xy: 1168, 458
+  xy: 1072, 466
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00059
+Thunder_Loop2_00059
   rotate: true
-  xy: 1168, 458
+  xy: 1072, 466
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00079
+Thunder_Loop2_00079
   rotate: true
-  xy: 1168, 458
+  xy: 1072, 466
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00099
+Thunder_Loop2_00099
   rotate: true
-  xy: 1168, 458
+  xy: 1072, 466
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00119
+Thunder_Loop2_00119
   rotate: true
-  xy: 1168, 458
+  xy: 1072, 466
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00020
+Thunder_Loop2_00020
   rotate: true
-  xy: 529, 578
+  xy: 433, 525
   size: 424, 637
   orig: 1920, 1080
   offset: 643, 159
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00101
+Thunder_Loop2_00101
   rotate: true
-  xy: 529, 578
+  xy: 433, 525
   size: 424, 637
   orig: 1920, 1080
   offset: 643, 159
@@ -759,131 +745,187 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-雷電_循環繞光2/Thunder_Loop2_00005
+Thunder_Loop2_00000
   rotate: false
-  xy: 733, 740
-  size: 732, 715
+  xy: 868, 797
+  size: 809, 809
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 563, 106
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00066
+Thunder_Loop2_00061
   rotate: false
-  xy: 733, 740
-  size: 732, 715
+  xy: 868, 797
+  size: 809, 809
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 563, 106
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00086
+Thunder_Loop2_00081
   rotate: false
-  xy: 733, 740
-  size: 732, 715
+  xy: 868, 797
+  size: 809, 809
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 563, 106
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00006
+Thunder_Loop2_00014
   rotate: false
-  xy: 2, 23
-  size: 732, 715
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00026
+Thunder_Loop2_00034
   rotate: false
-  xy: 2, 23
-  size: 732, 715
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00046
+Thunder_Loop2_00035
   rotate: false
-  xy: 2, 23
-  size: 732, 715
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00087
+Thunder_Loop2_00055
   rotate: false
-  xy: 2, 23
-  size: 732, 715
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00107
+Thunder_Loop2_00075
   rotate: false
-  xy: 2, 23
-  size: 732, 715
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 612, 113
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00008
-  rotate: true
-  xy: 2, 748
-  size: 707, 729
+Thunder_Loop2_00095
+  rotate: false
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 632, 126
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00028
-  rotate: true
-  xy: 2, 748
-  size: 707, 729
+Thunder_Loop2_00115
+  rotate: false
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 632, 126
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00048
-  rotate: true
-  xy: 2, 748
-  size: 707, 729
+Thunder_Loop2_00116
+  rotate: false
+  xy: 840, 20
+  size: 839, 775
   orig: 1920, 1080
-  offset: 632, 126
+  offset: 549, 151
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00049
-  rotate: true
-  xy: 2, 748
-  size: 707, 729
+Thunder_Loop2_00017
+  rotate: false
+  xy: 2, 800
+  size: 864, 806
   orig: 1920, 1080
-  offset: 632, 126
+  offset: 535, 121
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00069
-  rotate: true
-  xy: 2, 748
-  size: 707, 729
+Thunder_Loop2_00037
+  rotate: false
+  xy: 2, 800
+  size: 864, 806
   orig: 1920, 1080
-  offset: 632, 126
+  offset: 535, 121
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00089
-  rotate: true
-  xy: 2, 748
-  size: 707, 729
+Thunder_Loop2_00057
+  rotate: false
+  xy: 2, 800
+  size: 864, 806
   orig: 1920, 1080
-  offset: 632, 126
+  offset: 535, 121
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00109
-  rotate: true
-  xy: 2, 748
-  size: 707, 729
+Thunder_Loop2_00077
+  rotate: false
+  xy: 2, 800
+  size: 864, 806
   orig: 1920, 1080
-  offset: 632, 126
+  offset: 535, 121
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00010
-  rotate: true
-  xy: 736, 2
-  size: 736, 741
+Thunder_Loop2_00078
+  rotate: false
+  xy: 2, 800
+  size: 864, 806
   orig: 1920, 1080
-  offset: 597, 136
+  offset: 535, 121
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00071
-  rotate: true
-  xy: 736, 2
-  size: 736, 741
+Thunder_Loop2_00098
+  rotate: false
+  xy: 2, 800
+  size: 864, 806
   orig: 1920, 1080
-  offset: 597, 136
+  offset: 535, 121
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00091
-  rotate: true
-  xy: 736, 2
-  size: 736, 741
+Thunder_Loop2_00118
+  rotate: false
+  xy: 2, 800
+  size: 864, 806
   orig: 1920, 1080
-  offset: 597, 136
+  offset: 535, 121
+  index: -1
+Thunder_Loop2_00019
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
+  index: -1
+Thunder_Loop2_00039
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
+  index: -1
+Thunder_Loop2_00040
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
+  index: -1
+Thunder_Loop2_00060
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
+  index: -1
+Thunder_Loop2_00080
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
+  index: -1
+Thunder_Loop2_00100
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
+  index: -1
+Thunder_Loop2_00120
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
+  index: -1
+Thunder_Loop2_00121
+  rotate: false
+  xy: 2, 2
+  size: 836, 796
+  orig: 1920, 1080
+  offset: 547, 121
   index: -1
 
 JP_Coin3.png
@@ -891,194 +933,159 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-雷電_循環繞光2/Thunder_Loop2_00003
+Thunder_Loop2_00001
+  rotate: false
+  xy: 2, 773
+  size: 809, 809
+  orig: 1920, 1080
+  offset: 563, 106
+  index: -1
+Thunder_Loop2_00021
+  rotate: false
+  xy: 2, 773
+  size: 809, 809
+  orig: 1920, 1080
+  offset: 563, 106
+  index: -1
+Thunder_Loop2_00041
+  rotate: false
+  xy: 2, 773
+  size: 809, 809
+  orig: 1920, 1080
+  offset: 563, 106
+  index: -1
+Thunder_Loop2_00082
+  rotate: false
+  xy: 2, 773
+  size: 809, 809
+  orig: 1920, 1080
+  offset: 563, 106
+  index: -1
+Thunder_Loop2_00102
+  rotate: false
+  xy: 2, 773
+  size: 809, 809
+  orig: 1920, 1080
+  offset: 563, 106
+  index: -1
+Thunder_Loop2_00003
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00023
+Thunder_Loop2_00023
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00043
+Thunder_Loop2_00043
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00044
+Thunder_Loop2_00044
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00064
+Thunder_Loop2_00064
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00084
+Thunder_Loop2_00084
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00104
+Thunder_Loop2_00104
   rotate: true
-  xy: 2, 8
+  xy: 2, 2
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00011
+Thunder_Loop2_00010
   rotate: true
-  xy: 2, 804
+  xy: 813, 846
   size: 736, 741
   orig: 1920, 1080
   offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00031
+Thunder_Loop2_00071
   rotate: true
-  xy: 2, 804
+  xy: 813, 846
   size: 736, 741
   orig: 1920, 1080
   offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00051
+Thunder_Loop2_00091
   rotate: true
-  xy: 2, 804
+  xy: 813, 846
   size: 736, 741
   orig: 1920, 1080
   offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00092
+Thunder_Loop2_00013
   rotate: true
-  xy: 2, 804
-  size: 736, 741
-  orig: 1920, 1080
-  offset: 597, 136
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00112
-  rotate: true
-  xy: 2, 804
-  size: 736, 741
-  orig: 1920, 1080
-  offset: 597, 136
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00013
-  rotate: true
-  xy: 745, 779
+  xy: 811, 10
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00033
+Thunder_Loop2_00033
   rotate: true
-  xy: 745, 779
+  xy: 811, 10
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00053
+Thunder_Loop2_00053
   rotate: true
-  xy: 745, 779
+  xy: 811, 10
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00054
+Thunder_Loop2_00054
   rotate: true
-  xy: 745, 779
+  xy: 811, 10
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00074
+Thunder_Loop2_00074
   rotate: true
-  xy: 745, 779
+  xy: 811, 10
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00094
+Thunder_Loop2_00094
   rotate: true
-  xy: 745, 779
+  xy: 811, 10
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00114
+Thunder_Loop2_00114
   rotate: true
-  xy: 745, 779
+  xy: 811, 10
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00014
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00034
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00035
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00055
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00075
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00095
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00115
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00116
-  rotate: false
-  xy: 811, 2
-  size: 839, 775
-  orig: 1920, 1080
-  offset: 549, 151
   index: -1
 
 JP_Coin4.png
@@ -1086,164 +1093,150 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-雷電_循環繞光2/Thunder_Loop2_00000
-  rotate: false
-  xy: 868, 810
-  size: 809, 809
-  orig: 1920, 1080
-  offset: 563, 106
+Icon_Common_24
+  rotate: true
+  xy: 1470, 239
+  size: 512, 502
+  orig: 512, 512
+  offset: 0, 8
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00061
-  rotate: false
-  xy: 868, 810
-  size: 809, 809
-  orig: 1920, 1080
-  offset: 563, 106
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00081
-  rotate: false
-  xy: 868, 810
-  size: 809, 809
-  orig: 1920, 1080
-  offset: 563, 106
-  index: -1
-雷電_循環繞光2/Thunder_Loop2_00001
+Thunder_Loop2_00005
   rotate: false
   xy: 2, 2
-  size: 809, 809
+  size: 732, 715
   orig: 1920, 1080
-  offset: 563, 106
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00021
+Thunder_Loop2_00066
   rotate: false
   xy: 2, 2
-  size: 809, 809
+  size: 732, 715
   orig: 1920, 1080
-  offset: 563, 106
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00041
+Thunder_Loop2_00086
   rotate: false
   xy: 2, 2
-  size: 809, 809
+  size: 732, 715
   orig: 1920, 1080
-  offset: 563, 106
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00082
+Thunder_Loop2_00006
   rotate: false
-  xy: 2, 2
-  size: 809, 809
+  xy: 736, 2
+  size: 732, 715
   orig: 1920, 1080
-  offset: 563, 106
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00102
+Thunder_Loop2_00026
   rotate: false
-  xy: 2, 2
-  size: 809, 809
+  xy: 736, 2
+  size: 732, 715
   orig: 1920, 1080
-  offset: 563, 106
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00017
+Thunder_Loop2_00046
   rotate: false
-  xy: 2, 813
-  size: 864, 806
+  xy: 736, 2
+  size: 732, 715
   orig: 1920, 1080
-  offset: 535, 121
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00037
+Thunder_Loop2_00087
   rotate: false
-  xy: 2, 813
-  size: 864, 806
+  xy: 736, 2
+  size: 732, 715
   orig: 1920, 1080
-  offset: 535, 121
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00057
+Thunder_Loop2_00107
   rotate: false
-  xy: 2, 813
-  size: 864, 806
+  xy: 736, 2
+  size: 732, 715
   orig: 1920, 1080
-  offset: 535, 121
+  offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00077
-  rotate: false
-  xy: 2, 813
-  size: 864, 806
+Thunder_Loop2_00008
+  rotate: true
+  xy: 740, 753
+  size: 707, 729
   orig: 1920, 1080
-  offset: 535, 121
+  offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00078
-  rotate: false
-  xy: 2, 813
-  size: 864, 806
+Thunder_Loop2_00028
+  rotate: true
+  xy: 740, 753
+  size: 707, 729
   orig: 1920, 1080
-  offset: 535, 121
+  offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00098
-  rotate: false
-  xy: 2, 813
-  size: 864, 806
+Thunder_Loop2_00048
+  rotate: true
+  xy: 740, 753
+  size: 707, 729
   orig: 1920, 1080
-  offset: 535, 121
+  offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00118
-  rotate: false
-  xy: 2, 813
-  size: 864, 806
+Thunder_Loop2_00049
+  rotate: true
+  xy: 740, 753
+  size: 707, 729
   orig: 1920, 1080
-  offset: 535, 121
+  offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00019
-  rotate: false
-  xy: 813, 12
-  size: 836, 796
+Thunder_Loop2_00069
+  rotate: true
+  xy: 740, 753
+  size: 707, 729
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00039
-  rotate: false
-  xy: 813, 12
-  size: 836, 796
+Thunder_Loop2_00089
+  rotate: true
+  xy: 740, 753
+  size: 707, 729
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00040
-  rotate: false
-  xy: 813, 12
-  size: 836, 796
+Thunder_Loop2_00109
+  rotate: true
+  xy: 740, 753
+  size: 707, 729
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00060
+Thunder_Loop2_00011
   rotate: false
-  xy: 813, 12
-  size: 836, 796
+  xy: 2, 719
+  size: 736, 741
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00080
+Thunder_Loop2_00031
   rotate: false
-  xy: 813, 12
-  size: 836, 796
+  xy: 2, 719
+  size: 736, 741
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00100
+Thunder_Loop2_00051
   rotate: false
-  xy: 813, 12
-  size: 836, 796
+  xy: 2, 719
+  size: 736, 741
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00120
+Thunder_Loop2_00092
   rotate: false
-  xy: 813, 12
-  size: 836, 796
+  xy: 2, 719
+  size: 736, 741
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00121
+Thunder_Loop2_00112
   rotate: false
-  xy: 813, 12
-  size: 836, 796
+  xy: 2, 719
+  size: 736, 741
   orig: 1920, 1080
-  offset: 547, 121
+  offset: 597, 136
   index: -1

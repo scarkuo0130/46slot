@@ -1,0 +1,132 @@
+
+Reward_Window.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Reward_Window_00
+  rotate: true
+  xy: 369, 11
+  size: 94, 128
+  orig: 646, 200
+  offset: 64, 36
+  index: -1
+Reward_Window_01
+  rotate: true
+  xy: 1530, 36
+  size: 142, 132
+  orig: 646, 200
+  offset: 64, 35
+  index: -1
+Reward_Window_02
+  rotate: true
+  xy: 1290, 296
+  size: 210, 134
+  orig: 646, 200
+  offset: 45, 34
+  index: -1
+Reward_Window_03
+  rotate: true
+  xy: 837, 96
+  size: 275, 148
+  orig: 646, 200
+  offset: 28, 26
+  index: -1
+Reward_Window_04
+  rotate: true
+  xy: 1098, 175
+  size: 331, 190
+  orig: 646, 200
+  offset: 20, 0
+  index: -1
+Reward_Window_05
+  rotate: false
+  xy: 2, 235
+  size: 343, 136
+  orig: 646, 200
+  offset: 57, 32
+  index: -1
+Reward_Window_06
+  rotate: false
+  xy: 2, 42
+  size: 365, 131
+  orig: 646, 200
+  offset: 83, 32
+  index: -1
+Reward_Window_07
+  rotate: false
+  xy: 347, 240
+  size: 355, 131
+  orig: 646, 200
+  offset: 143, 32
+  index: -1
+Reward_Window_08
+  rotate: true
+  xy: 704, 45
+  size: 326, 131
+  orig: 646, 200
+  offset: 215, 32
+  index: -1
+Reward_Window_09
+  rotate: false
+  xy: 369, 107
+  size: 311, 131
+  orig: 646, 200
+  offset: 264, 32
+  index: -1
+Reward_Window_10
+  rotate: false
+  xy: 987, 42
+  size: 291, 131
+  orig: 646, 200
+  offset: 312, 32
+  index: -1
+Reward_Window_11
+  rotate: false
+  xy: 1280, 42
+  size: 248, 131
+  orig: 646, 200
+  offset: 361, 32
+  index: -1
+Reward_Window_12
+  rotate: true
+  xy: 1426, 305
+  size: 201, 130
+  orig: 646, 200
+  offset: 409, 32
+  index: -1
+Reward_Window_13
+  rotate: false
+  xy: 1426, 180
+  size: 152, 123
+  orig: 646, 200
+  offset: 458, 32
+  index: -1
+Reward_Window_14
+  rotate: true
+  xy: 499, 2
+  size: 103, 97
+  orig: 646, 200
+  offset: 506, 34
+  index: -1
+bm
+  rotate: false
+  xy: 551, 373
+  size: 545, 133
+  orig: 550, 136
+  offset: 2, 2
+  index: -1
+dp
+  rotate: true
+  xy: 1290, 181
+  size: 113, 125
+  orig: 116, 129
+  offset: 1, 2
+  index: -1
+kao
+  rotate: false
+  xy: 2, 373
+  size: 547, 133
+  orig: 552, 135
+  offset: 2, 1
+  index: -1

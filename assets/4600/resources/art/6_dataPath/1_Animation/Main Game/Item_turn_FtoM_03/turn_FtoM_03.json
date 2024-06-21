@@ -1,0 +1,127 @@
+{
+"skeleton": {
+	"hash": "YF7tofj6JOZgWoutnHmWLfAaIQg",
+	"spine": "3.8.75",
+	"x": -489.5,
+	"y": -483.5,
+	"width": 979,
+	"height": 967,
+	"images": "./images/",
+	"audio": "D:/SLOT/多福多財/完成/4_動態特效/SPINE/EditFiles/Item_turn_FtoM_02"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "GU03", "parent": "root", "color": "00ffeaff" },
+	{ "name": "GU04", "parent": "root", "color": "00e0ffff" }
+],
+"slots": [
+	{ "name": "GU04", "bone": "GU04", "color": "ffffff00", "attachment": "GU04", "blend": "additive" },
+	{ "name": "GU03", "bone": "GU03", "color": "ffffff00", "attachment": "GU03", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"GU03": {
+				"GU03": { "x": -1, "y": -0.5, "width": 780, "height": 713 }
+			},
+			"GU04": {
+				"GU04": { "width": 979, "height": 967 }
+			}
+		}
+	}
+],
+"animations": {
+	"idle": {
+		"slots": {
+			"GU03": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"GU03": {
+				"scale": [
+					{ "x": 0.4, "y": 0.4 }
+				]
+			}
+		}
+	},
+	"play": {
+		"slots": {
+			"GU03": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1.5, "color": "ffffff8a" }
+				]
+			},
+			"GU04": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1.5, "color": "ffffffb0" }
+				]
+			}
+		},
+		"bones": {
+			"GU03": {
+				"scale": [
+					{ "x": 0.4, "y": 0.4 },
+					{ "time": 1.5, "x": 1.5, "y": 1.5 }
+				]
+			},
+			"GU04": {
+				"rotate": [
+					{},
+					{ "time": 1.5, "angle": 180 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1.5 }
+				],
+				"scale": [
+					{ "x": 0.3, "y": 0.3 },
+					{ "time": 1.5 }
+				]
+			}
+		}
+	},
+	"play02": {
+		"slots": {
+			"GU03": {
+				"color": [
+					{ "color": "ffffff8a" },
+					{ "time": 1.1667, "color": "ffffff00" },
+					{ "time": 2, "color": "ffffff22" }
+				]
+			},
+			"GU04": {
+				"color": [
+					{ "color": "ffffffb0" },
+					{ "time": 1, "color": "ffffff6f" },
+					{ "time": 2, "color": "ffffffb0" }
+				]
+			}
+		},
+		"bones": {
+			"GU03": {
+				"scale": [
+					{ "x": 1.5, "y": 1.5 }
+				]
+			},
+			"GU04": {
+				"rotate": [
+					{ "angle": 180 },
+					{ "time": 2, "angle": 1 }
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				]
+			}
+		}
+	}
+}
+}

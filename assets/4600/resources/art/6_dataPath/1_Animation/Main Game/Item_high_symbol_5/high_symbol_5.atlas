@@ -6,77 +6,77 @@ filter: Linear,Linear
 repeat: none
 B2
   rotate: false
-  xy: 2, 659
+  xy: 516, 590
   size: 591, 492
   orig: 593, 494
   offset: 1, 1
   index: -1
 BM_01
   rotate: false
-  xy: 1109, 529
+  xy: 1109, 555
   size: 604, 505
   orig: 606, 507
   offset: 1, 1
   index: -1
-effect/Icon_Common_24
+Icon_Common_24
   rotate: false
-  xy: 595, 554
+  xy: 2, 675
   size: 512, 502
   orig: 512, 512
   offset: 0, 8
   index: -1
-effect/Lig
+Lig
   rotate: false
-  xy: 2, 1323
+  xy: 2, 1349
   size: 110, 105
   orig: 128, 114
   offset: 9, 9
   index: -1
-effect/fangshe02
+fangshe02
   rotate: false
-  xy: 280, 1249
+  xy: 114, 1275
   size: 185, 179
   orig: 200, 200
   offset: 9, 12
   index: -1
 golda_01
   rotate: true
-  xy: 2, 144
+  xy: 2, 75
   size: 513, 515
   orig: 515, 517
   offset: 1, 1
   index: -1
 golda_02
   rotate: true
-  xy: 519, 29
+  xy: 519, 65
   size: 523, 526
   orig: 527, 530
   offset: 2, 2
   index: -1
 goldb_01
   rotate: true
-  xy: 467, 1153
+  xy: 301, 1179
   size: 275, 279
   orig: 277, 281
   offset: 1, 1
   index: -1
 goldb_02
   rotate: true
-  xy: 748, 1142
+  xy: 582, 1168
   size: 286, 292
   orig: 289, 296
   offset: 1, 2
   index: -1
 goldb_03
   rotate: true
-  xy: 1042, 1058
+  xy: 876, 1084
   size: 370, 380
   orig: 372, 382
   offset: 1, 1
   index: -1
 goldb_04
   rotate: true
-  xy: 1424, 1036
+  xy: 1258, 1062
   size: 392, 401
   orig: 396, 407
   offset: 2, 3
@@ -84,14 +84,7 @@ goldb_04
 high_symbol_5
   rotate: false
   xy: 1047, 2
-  size: 604, 525
-  orig: 606, 528
-  offset: 1, 2
-  index: -1
-圖層 1
-  rotate: false
-  xy: 114, 1288
-  size: 164, 140
-  orig: 164, 140
-  offset: 0, 0
+  size: 604, 551
+  orig: 604, 555
+  offset: 0, 3
   index: -1

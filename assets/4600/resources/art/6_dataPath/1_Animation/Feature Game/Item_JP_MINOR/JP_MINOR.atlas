@@ -4,6 +4,20 @@ size: 2048,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+GRAND
+  rotate: false
+  xy: 2, 9
+  size: 120, 33
+  orig: 122, 35
+  offset: 1, 1
+  index: -1
+MINOR
+  rotate: false
+  xy: 2, 9
+  size: 120, 33
+  orig: 122, 35
+  offset: 1, 1
+  index: -1
 GRAND_BM
   rotate: true
   xy: 2, 44
@@ -150,20 +164,6 @@ KBO_19
   size: 49, 53
   orig: 257, 106
   offset: 204, 16
-  index: -1
-MINOR
-  rotate: false
-  xy: 2, 9
-  size: 120, 33
-  orig: 122, 35
-  offset: 1, 1
-  index: -1
-GRAND
-  rotate: false
-  xy: 2, 9
-  size: 120, 33
-  orig: 122, 35
-  offset: 1, 1
   index: -1
 MINOR_BM
   rotate: true

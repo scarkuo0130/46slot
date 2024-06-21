@@ -1,4 +1,4 @@
-import { _decorator, Button, Component, Node, EventHandler } from 'cc';
+import { _decorator, Button, Component, Node, Label } from 'cc';
 import { switchButton } from '../utils/SwitchButton/switchButton';
 import { LanguageLabel } from './Language/LanguageLabel';
 import { dropDown } from '../utils/DropDown/dropDown';
@@ -47,7 +47,16 @@ export class AutoSpin extends Component {
         }
     };
 
-    public get machine() :Machine { return this.properties.machine; }
+    public get active() : boolean { return this.properties.autoSpin.active; }
+    private set active(value:boolean) { this.properties.autoSpin.active = value; }
+
+    public get machine() : Machine { return this.properties.machine; }
+
+    /** 開啟 AutoSpin 後的Spin按鈕 */
+    public get autoSpinButton() : Button { return this.machine.controller.autoSpinButton; }
+
+    /** 開啟 AutoSpin 後的次數顯示 Label */
+    public get autoSpinTimeLabel() : Label { return this.machine.controller.autoSpinLabel; }
 
     public static Instance: AutoSpin = null;
     protected onLoad(): void {
@@ -55,6 +64,9 @@ export class AutoSpin extends Component {
         this.node.setPosition(0,0,0);
         AutoSpin.Instance = this;
         this.init();
+    }
+
+    protected start(): void {
         this.properties.machine = Machine.Instance;
     }
 
@@ -64,6 +76,7 @@ export class AutoSpin extends Component {
 
     public closeUI() { this.activeUI(false); }
     public async openUI() { 
+        if ( this.machine.isBusy ) return;
         await this.activeUI(true);
         this.changeSpeedMode(this.machine.SpeedMode); 
     }
@@ -120,23 +133,73 @@ export class AutoSpin extends Component {
     }
 
     public clickStart() {
-        console.log('clickStart');
         this.closeUI();
+        if ( this.machine.isBusy ) return;
 
-        let spinTimesData                = this.initData.spinTimes.dropdown[DATE_TYPE.COMPONENT].getPickData();
-        let spinTimeActive      :boolean = this.initData.spinTimes.switch[DATE_TYPE.COMPONENT].Active;
-        let untilFeatureActive  :boolean = this.initData.untilFeature.switch[DATE_TYPE.COMPONENT].Active;
-        let spinTimes           :number  = parseInt(spinTimesData.customData);
-        let active              = (spinTimeActive || untilFeatureActive);
+        const spinTimesData                = this.initData.spinTimes.dropdown[DATE_TYPE.COMPONENT].getPickData();
+        const spinTimeActive      :boolean = this.initData.spinTimes.switch[DATE_TYPE.COMPONENT].Active;
+        const untilFeatureActive  :boolean = this.initData.untilFeature.switch[DATE_TYPE.COMPONENT].Active;
+        const spinTimes           :number  = parseInt(spinTimesData.customData);
+        const active              = (spinTimeActive || untilFeatureActive);
         
         if ( active === false ) return;
-        let autoSpin = this.properties.autoSpin;
-        autoSpin.active         = active;
+        const autoSpin = this.properties.autoSpin;
+        this.active             = active;
         autoSpin.spinTimeActive = spinTimeActive;
         autoSpin.spinTimes      = spinTimes;
         autoSpin.untilFeature   = untilFeatureActive;
 
-        this.machine.startAutoSpin();
+        console.log(autoSpin);
+        this.decrementCount();
+    }
+
+    /**
+     * 
+     * @returns 
+     */
+    public decrementCount() : boolean {
+        if ( this.active === false ) {
+            this.autoSpinButton.node.active = false;
+            return false;
+        }
+        
+        this.autoSpinButton.node.active = true;
+        const autoSpin = this.properties.autoSpin;
+
+        if ( autoSpin.spinTimeActive === true ) {
+            if ( autoSpin.spinTimes > 0 ) {
+                autoSpin.spinTimes--;
+                this.autoSpinTimeLabel.string = autoSpin.spinTimes.toString();
+                this.machine.controller.clickSpin();
+
+                if ( autoSpin.spinTimes === 0 ) this.active = false;
+                return true;
+            } else if ( autoSpin.spinTimes === -1 ) {
+                this.autoSpinTimeLabel.string = '∞';
+                this.machine.controller.clickSpin();
+                return true;
+            }
+        } 
+        
+        if ( autoSpin.untilFeature === true ) {
+            this.autoSpinTimeLabel.string = '';
+            this.machine.controller.clickSpin();
+            return true;
+        }
+
+        this.stopAutoSpin();
+        return false;
+    }
+
+    /**
+     * 
+     */
+    public static StopAutoSpin() { AutoSpin.Instance.stopAutoSpin(); }
+
+    public stopAutoSpin() {
+        this.autoSpinButton.node.active = false;
+        this.autoSpinTimeLabel.string = '';
+        this.active = false;
     }
 }
 

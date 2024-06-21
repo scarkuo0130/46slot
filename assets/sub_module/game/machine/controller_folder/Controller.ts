@@ -58,6 +58,11 @@ export class Controller extends Component {
             'portraitBottom' : { [DATE_TYPE.TYPE]: Node, [DATE_TYPE.NODE_PATH]: 'Bottom Buttons' },
             'portraitOption' : { [DATE_TYPE.TYPE]: Node, [DATE_TYPE.NODE_PATH]: 'Option Buttons' },
             'landscapeOption': { [DATE_TYPE.TYPE]: Node, [DATE_TYPE.NODE_PATH]: 'Option Landscape/Content' },
+        },
+
+        'autoSpin' : {
+            'button'        : { [DATE_TYPE.TYPE]: Button, [DATE_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin', [DATE_TYPE.CLICK_EVENT]: AutoSpin.StopAutoSpin },
+            'label'         : { [DATE_TYPE.TYPE]: Label,  [DATE_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin/Label' },
         }
     };
 
@@ -91,6 +96,11 @@ export class Controller extends Component {
         },
         
     };
+
+    get autoSpinButton() { return this.properties['autoSpin']['button'][DATE_TYPE.COMPONENT]; }
+    get autoSpinLabel()  { return this.properties['autoSpin']['label'][DATE_TYPE.COMPONENT]; }
+
+    get autoSpin() { return AutoSpin.Instance; }
 
     get props() { return this.properties; }
 
@@ -198,7 +208,7 @@ export class Controller extends Component {
     /**
      * Spin 按鈕事件
      */
-    protected async clickSpin() {
+    public async clickSpin() {
 
         if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
 
@@ -214,6 +224,9 @@ export class Controller extends Component {
         await this.machine.clickSpin();
         // 啟用所有按鈕
         this.activeBusyButtons(true);
+
+        // 如果有 AutoSpin 則繼續
+        // this.autoSpin.decrementCount();
     }
 
     protected clickInformation() {
@@ -290,6 +303,10 @@ export class Controller extends Component {
 
     protected clickAutoSpin() {
        AutoSpin.OpenUI();
+    }
+
+    protected clickStopAutoSpin() {
+
     }
 
     protected clickInGameMenu() {

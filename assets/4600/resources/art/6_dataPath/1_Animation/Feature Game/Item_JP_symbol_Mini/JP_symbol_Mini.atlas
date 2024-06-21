@@ -4,210 +4,210 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Comp 1/Comp 1_00000
+Comp 1_00000
   rotate: true
   xy: 8, 1887
   size: 5, 6
   orig: 250, 250
   offset: 27, 211
   index: -1
-Comp 1/Comp 1_00001
+Comp 1_00001
   rotate: true
   xy: 16, 1877
   size: 15, 19
   orig: 250, 250
   offset: 26, 198
   index: -1
-Comp 1/Comp 1_00002
+Comp 1_00002
   rotate: true
   xy: 88, 1856
   size: 36, 39
   orig: 250, 250
   offset: 16, 178
   index: -1
-Comp 1/Comp 1_00003
+Comp 1_00003
   rotate: false
   xy: 129, 1849
   size: 46, 43
   orig: 250, 250
   offset: 16, 174
   index: -1
-Comp 1/Comp 1_00004
+Comp 1_00004
   rotate: false
   xy: 177, 1840
   size: 53, 52
   orig: 250, 250
   offset: 16, 165
   index: -1
-Comp 1/Comp 1_00005
+Comp 1_00005
   rotate: false
   xy: 232, 1812
   size: 108, 80
   orig: 250, 250
   offset: 16, 154
   index: -1
-Comp 1/Comp 1_00006
+Comp 1_00006
   rotate: false
   xy: 447, 1795
   size: 124, 97
   orig: 250, 250
   offset: 16, 142
   index: -1
-Comp 1/Comp 1_00007
+Comp 1_00007
   rotate: false
   xy: 693, 1780
   size: 132, 112
   orig: 250, 250
   offset: 21, 128
   index: -1
-Comp 1/Comp 1_00008
+Comp 1_00008
   rotate: true
   xy: 1125, 1763
   size: 129, 133
   orig: 250, 250
   offset: 32, 107
   index: -1
-Comp 1/Comp 1_00009
+Comp 1_00009
   rotate: true
   xy: 1719, 1754
   size: 138, 161
   orig: 250, 250
   offset: 28, 80
   index: -1
-Comp 1/Comp 1_00010
+Comp 1_00010
   rotate: true
   xy: 346, 1644
   size: 149, 183
   orig: 250, 250
   offset: 19, 58
   index: -1
-Comp 1/Comp 1_00011
+Comp 1_00011
   rotate: true
   xy: 889, 1608
   size: 155, 183
   orig: 250, 250
   offset: 19, 55
   index: -1
-Comp 1/Comp 1_00012
+Comp 1_00012
   rotate: true
   xy: 1264, 1596
   size: 165, 187
   orig: 250, 250
   offset: 19, 48
   index: -1
-Comp 1/Comp 1_00013
+Comp 1_00013
   rotate: true
   xy: 1640, 1577
   size: 175, 182
   orig: 250, 250
   offset: 19, 48
   index: -1
-Comp 1/Comp 1_00014
+Comp 1_00014
   rotate: false
   xy: 1453, 1584
   size: 185, 172
   orig: 250, 250
   offset: 19, 48
   index: -1
-Comp 1/Comp 1_00015
+Comp 1_00015
   rotate: false
   xy: 1074, 1601
   size: 188, 160
   orig: 250, 250
   offset: 20, 48
   index: -1
-Comp 1/Comp 1_00016
+Comp 1_00016
   rotate: false
   xy: 531, 1628
   size: 183, 150
   orig: 250, 250
   offset: 31, 48
   index: -1
-Comp 1/Comp 1_00017
+Comp 1_00017
   rotate: false
   xy: 716, 1617
   size: 171, 150
   orig: 250, 250
   offset: 46, 47
   index: -1
-Comp 1/Comp 1_00018
+Comp 1_00018
   rotate: true
   xy: 174, 1658
   size: 147, 170
   orig: 250, 250
   offset: 72, 18
   index: -1
-Comp 1/Comp 1_00019
+Comp 1_00019
   rotate: true
   xy: 2, 1709
   size: 138, 170
   orig: 250, 250
   offset: 82, 12
   index: -1
-Comp 1/Comp 1_00020
+Comp 1_00020
   rotate: true
   xy: 956, 1765
   size: 127, 167
   orig: 250, 250
   offset: 93, 8
   index: -1
-Comp 1/Comp 1_00021
+Comp 1_00021
   rotate: true
   xy: 1260, 1763
   size: 129, 163
   orig: 250, 250
   offset: 96, 3
   index: -1
-Comp 1/Comp 1_00022
+Comp 1_00022
   rotate: true
   xy: 1425, 1763
   size: 129, 151
   orig: 250, 250
   offset: 96, 3
   index: -1
-Comp 1/Comp 1_00023
+Comp 1_00023
   rotate: true
   xy: 1578, 1758
   size: 134, 139
   orig: 250, 250
   offset: 97, 3
   index: -1
-Comp 1/Comp 1_00024
+Comp 1_00024
   rotate: false
   xy: 827, 1769
   size: 127, 123
   orig: 250, 250
   offset: 105, 3
   index: -1
-Comp 1/Comp 1_00025
+Comp 1_00025
   rotate: false
   xy: 573, 1791
   size: 118, 101
   orig: 250, 250
   offset: 116, 3
   index: -1
-Comp 1/Comp 1_00026
+Comp 1_00026
   rotate: false
   xy: 342, 1807
   size: 103, 85
   orig: 250, 250
   offset: 131, 6
   index: -1
-Comp 1/Comp 1_00027
+Comp 1_00027
   rotate: false
   xy: 58, 1869
   size: 28, 23
   orig: 250, 250
   offset: 206, 64
   index: -1
-Comp 1/Comp 1_00028
+Comp 1_00028
   rotate: false
   xy: 37, 1875
   size: 19, 17
   orig: 250, 250
   offset: 215, 64
   index: -1
-Comp 1/Comp 1_00029
+Comp 1_00029
   rotate: false
   xy: 2, 1890
   size: 4, 2
@@ -256,84 +256,84 @@ Xuanwu_05
   orig: 160, 160
   offset: 0, 0
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00002
+Thunder_Loop2_00002
   rotate: true
   xy: 2, 1006
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00022
+Thunder_Loop2_00022
   rotate: true
   xy: 2, 1006
   size: 346, 525
   orig: 1920, 1080
   offset: 620, 198
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00004
+Thunder_Loop2_00004
   rotate: true
   xy: 631, 1312
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00024
+Thunder_Loop2_00024
   rotate: true
   xy: 631, 1312
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00025
+Thunder_Loop2_00025
   rotate: true
   xy: 631, 1312
   size: 294, 431
   orig: 1920, 1080
   offset: 603, 228
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00007
+Thunder_Loop2_00007
   rotate: true
   xy: 1824, 1547
   size: 183, 193
   orig: 1920, 1080
   offset: 608, 349
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00009
+Thunder_Loop2_00009
   rotate: true
   xy: 309, 1354
   size: 272, 320
   orig: 1920, 1080
   offset: 1015, 484
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00012
+Thunder_Loop2_00012
   rotate: true
   xy: 1064, 1247
   size: 335, 544
   orig: 1920, 1080
   offset: 931, 326
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00015
+Thunder_Loop2_00015
   rotate: true
   xy: 1358, 207
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00016
+Thunder_Loop2_00016
   rotate: true
   xy: 2, 2
   size: 454, 606
   orig: 1920, 1080
   offset: 737, 246
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00018
+Thunder_Loop2_00018
   rotate: true
   xy: 641, 365
   size: 447, 715
   orig: 1920, 1080
   offset: 700, 118
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00020
+Thunder_Loop2_00020
   rotate: true
   xy: 2, 458
   size: 424, 637
@@ -346,28 +346,28 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-雷電_循環繞光2/Thunder_Loop2_00005
+Thunder_Loop2_00005
   rotate: false
   xy: 733, 740
   size: 732, 715
   orig: 1920, 1080
   offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00006
+Thunder_Loop2_00006
   rotate: false
   xy: 2, 23
   size: 732, 715
   orig: 1920, 1080
   offset: 612, 113
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00008
+Thunder_Loop2_00008
   rotate: true
   xy: 2, 748
   size: 707, 729
   orig: 1920, 1080
   offset: 632, 126
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00010
+Thunder_Loop2_00010
   rotate: true
   xy: 736, 2
   size: 736, 741
@@ -380,35 +380,35 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-雷電_循環繞光2/Thunder_Loop2_00003
+Thunder_Loop2_00003
   rotate: true
   xy: 2, 8
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00023
+Thunder_Loop2_00023
   rotate: true
   xy: 2, 8
   size: 769, 807
   orig: 1920, 1080
   offset: 587, 104
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00011
+Thunder_Loop2_00011
   rotate: true
   xy: 2, 804
   size: 736, 741
   orig: 1920, 1080
   offset: 597, 136
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00013
+Thunder_Loop2_00013
   rotate: true
   xy: 745, 779
   size: 761, 771
   orig: 1920, 1080
   offset: 568, 143
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00014
+Thunder_Loop2_00014
   rotate: false
   xy: 811, 2
   size: 839, 775
@@ -421,35 +421,35 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-雷電_循環繞光2/Thunder_Loop2_00000
+Thunder_Loop2_00000
   rotate: false
   xy: 868, 810
   size: 809, 809
   orig: 1920, 1080
   offset: 563, 106
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00001
+Thunder_Loop2_00001
   rotate: false
   xy: 2, 2
   size: 809, 809
   orig: 1920, 1080
   offset: 563, 106
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00021
+Thunder_Loop2_00021
   rotate: false
   xy: 2, 2
   size: 809, 809
   orig: 1920, 1080
   offset: 563, 106
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00017
+Thunder_Loop2_00017
   rotate: false
   xy: 2, 813
   size: 864, 806
   orig: 1920, 1080
   offset: 535, 121
   index: -1
-雷電_循環繞光2/Thunder_Loop2_00019
+Thunder_Loop2_00019
   rotate: false
   xy: 813, 12
   size: 836, 796
