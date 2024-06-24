@@ -50,7 +50,7 @@ export class AutoSpin extends Component {
     public get active() : boolean { return this.properties.autoSpin.active; }
     private set active(value:boolean) { this.properties.autoSpin.active = value; }
 
-    public get machine() : Machine { return this.properties.machine; }
+    public get machine() : Machine { return Machine.Instance; }
 
     /** 開啟 AutoSpin 後的Spin按鈕 */
     public get autoSpinButton() : Button { return this.machine.controller.autoSpinButton; }

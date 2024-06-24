@@ -226,7 +226,7 @@ export class Controller extends Component {
         this.activeBusyButtons(true);
 
         // 如果有 AutoSpin 則繼續
-        // this.autoSpin.decrementCount();
+        this.autoSpin.decrementCount();
     }
 
     protected clickInformation() {
