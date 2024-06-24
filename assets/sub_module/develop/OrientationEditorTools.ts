@@ -1,4 +1,4 @@
-import { _decorator, Asset, AssetManager, CCBoolean, CCInteger, Component, Enum, EventHandler, find, instantiate, Node, Quat, serializeTag, Size, UITransform, Vec2, Vec3 } from 'cc';
+import { _decorator, Asset, AssetManager, CCBoolean, CCInteger, Component, Enum, EventHandler, find, instantiate, log, Node, Quat, serializeTag, Size, UITransform, Vec2, Vec3 } from 'cc';
 import {Orientation, Viewport} from '../utils/Viewport';
 const { ccclass, property, menu, help, disallowMultiple, executeInEditMode } = _decorator;
 import { Utils, _utilsDecorator } from '../utils/Utils';
@@ -59,11 +59,31 @@ export class OrientationEditorTools extends Component {
     public set orientation(value: Orientation) {
         this._orientation = value;
         this.onOrientationChange(value);
+        this.backupOrientationData();
         if ( this.isMainController === true ) {
-            OrientationEditorTools.subOrientationController.forEach( (controller:OrientationEditorTools) => controller.onOrientationChange(value) );
+            OrientationEditorTools.subOrientationController.forEach( (controller:OrientationEditorTools) => controller.subOrientation(value) );
         }
     }
     public get orientation() { return this._orientation; }
+
+    public subOrientation(orientation:Orientation) {
+        this.backupOrientationData();
+        this.onOrientationChange(orientation);
+    }
+
+    public backupOrientationData() {
+        const nodes = this.saveNodes;
+        log('backup nodes', nodes.length);
+        if ( nodes.length === 0 ) return;
+
+        for(let i=0; i<nodes.length; i++) {
+            const backupNode = instantiate(nodes[i]);
+            backupNode.active = false;
+            backupNode.name = nodes[i].name + '_backup';
+            nodes[i].parent.addChild(backupNode);
+            log('backupNode', backupNode.name);
+        }
+    }
 
     @property({type:CCBoolean, displayName: '儲存轉向資料', tooltip: '是否儲存轉向資料'})
     public set SaveOrientationData(value: boolean) {
@@ -102,25 +122,29 @@ export class OrientationEditorTools extends Component {
 
     // 變更轉向設定
     onOrientationChange( orientation: Orientation ): void {
-        let orientationData = orientation === Orientation.PORTRAIT ? this.PortraitData : this.LandscapeData;
-        if ( orientationData == null ) return;
+        try {
+            let orientationData = orientation === Orientation.PORTRAIT ? this.PortraitData : this.LandscapeData;
+            if ( orientationData == null ) return;
 
-        orientationData.forEach( (item:OrientationData) => {
-            let node = find(item.nodePath);
-            if ( node == null ) return;
+            orientationData.forEach( (item:OrientationData) => {
+                let node = find(item.nodePath);
+                if ( node == null ) return;
 
-            node.active = item.active;
-            node.setPosition(item.position);
-            node.setScale(item.scale);
+                node.active = item.active;
+                node.setPosition(item.position);
+                node.setScale(item.scale);
 
-            if ( item.parentNode != null ) node.setParent(item.parentNode);
-            
-            let uiTransform : UITransform = node.getComponent(UITransform);
-            if ( uiTransform != null ) {
-                uiTransform.contentSize = item.contentSize;
-                uiTransform.anchorPoint = item.anchorPoint;
-            }
-        });
+                if ( item.parentNode != null ) node.setParent(item.parentNode);
+                
+                let uiTransform : UITransform = node.getComponent(UITransform);
+                if ( uiTransform != null ) {
+                    uiTransform.contentSize = item.contentSize;
+                    uiTransform.anchorPoint = item.anchorPoint;
+                }
+            });
+        } catch(e) { 
+            log(e); 
+        }
     }
 
     onCheckOrientationNode( orientation: Orientation, node:Node, callEvent:Function, parentPath:string ): void {
