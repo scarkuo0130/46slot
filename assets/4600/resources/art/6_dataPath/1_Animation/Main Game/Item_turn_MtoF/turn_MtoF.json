@@ -1,234 +1,139 @@
 {
 "skeleton": {
-	"hash": "cAWU3tbtjj0oeF+wOa5HW/Zf1zs",
+	"hash": "GaEaONiN8SGfpC0U/TgMDK8Bxz0",
 	"spine": "3.8.75",
-	"x": -640.91,
-	"y": -360.47,
-	"width": 1282.28,
-	"height": 720.83,
+	"x": -644.05,
+	"y": -360,
+	"width": 1284.25,
+	"height": 720,
 	"images": "./images/",
-	"audio": "D:/SLOT/多福多財/完成/4_動態特效/SPINE/EditFiles/turn_MtoF"
+	"audio": ""
 },
 "bones": [
 	{ "name": "root" },
-	{ "name": "Door1", "parent": "root", "x": -479.67 },
-	{ "name": "Door4", "parent": "root", "x": 481.59 },
-	{ "name": "Door3", "parent": "root", "x": 160.53 },
-	{ "name": "Door2", "parent": "root", "x": -159.04 }
+	{ "name": "DoorA", "parent": "root", "x": -483.05 },
+	{ "name": "DoorB", "parent": "root", "x": -161.26 },
+	{ "name": "DoorC", "parent": "root", "x": 159.67 },
+	{ "name": "DoorD", "parent": "root", "x": 478.21 }
 ],
 "slots": [
-	{ "name": "JO", "bone": "root", "attachment": "JO" },
-	{ "name": "Door4", "bone": "Door4", "attachment": "Door1" },
-	{ "name": "Door3", "bone": "Door3", "attachment": "Door1" },
-	{ "name": "Door2", "bone": "Door2", "attachment": "Door1" },
-	{ "name": "Door1", "bone": "Door1", "attachment": "Door3" }
+	{ "name": "Door01", "bone": "DoorA", "attachment": "Door01" },
+	{ "name": "Door1", "bone": "DoorB", "attachment": "Door01" },
+	{ "name": "Door2", "bone": "DoorC", "attachment": "Door01" },
+	{ "name": "Door3", "bone": "DoorD", "attachment": "Door01" }
 ],
 "skins": [
 	{
 		"name": "default",
 		"attachments": {
-			"JO": {
-				"JO": {
-					"type": "clipping",
-					"end": "JO",
-					"vertexCount": 4,
-					"vertices": [ -640.78, 360.37, 641.18, 360.36, 641.38, -360.47, -640.91, -360.39 ],
-					"color": "ce3a3aff"
-				}
+			"Door01": {
+				"Door01": { "x": 0.5, "width": 323, "height": 720 }
 			},
 			"Door1": {
-				"Door": { "x": -479.5, "width": 324, "height": 722 },
-				"Door01": { "width": 324, "height": 722 },
-				"Door1": { "width": 324, "height": 722 },
-				"Door2": { "path": "Door", "width": 324, "height": 722 },
-				"Door3": { "path": "Door01", "width": 324, "height": 722 }
+				"Door01": { "x": 0.5, "width": 323, "height": 720 }
 			},
 			"Door2": {
-				"Door": { "x": -159.34, "width": 324, "height": 722 },
-				"Door01": { "width": 324, "height": 722 },
-				"Door1": { "path": "Door01", "width": 324, "height": 722 },
-				"Door2": { "path": "Door", "width": 324, "height": 722 }
+				"Door01": { "x": 0.5, "width": 323, "height": 720 }
 			},
 			"Door3": {
-				"Door": { "x": 161.09, "y": 1.44, "width": 324, "height": 722 },
-				"Door01": { "width": 324, "height": 722 },
-				"Door1": { "path": "Door01", "width": 324, "height": 722 },
-				"Door2": { "path": "Door", "width": 324, "height": 722 }
-			},
-			"Door4": {
-				"Door": { "x": 481.96, "width": 324, "height": 722 },
-				"Door01": { "width": 324, "height": 722 },
-				"Door1": { "path": "Door01", "width": 324, "height": 722 },
-				"Door2": { "path": "Door", "width": 324, "height": 722 }
+				"Door01": { "x": 0.5, "width": 323, "height": 720 }
 			}
 		}
 	}
 ],
 "animations": {
 	"idle": {
-		"slots": {
-			"Door2": {
-				"color": [
-					{ "color": "ffffffff" }
-				],
-				"attachment": [
-					{ "name": "Door1" }
-				]
-			},
-			"Door1": {
-				"attachment": [
-					{ "name": "Door3" }
-				]
-			}
-		},
 		"bones": {
-			"Door2": {
+			"DoorA": {
 				"translate": [
-					{ "x": -0.27 }
+					{ "x": -320.16 }
 				]
 			},
-			"Door1": {
+			"DoorB": {
 				"translate": [
-					{}
+					{ "x": -641.65 }
 				]
 			},
-			"Door4": {
+			"DoorD": {
 				"translate": [
-					{ "x": -319.7 }
+					{ "x": 322.83 }
 				]
 			},
-			"Door3": {
+			"DoorC": {
 				"translate": [
-					{ "x": 322.02 }
+					{ "x": 641.65 }
 				]
 			}
 		}
 	},
 	"play": {
-		"slots": {
-			"Door2": {
-				"color": [
-					{ "color": "ffffffff", "curve": "stepped" },
-					{ "time": 0.5333, "color": "ffffffff", "curve": "stepped" },
-					{ "time": 1.0333, "color": "ffffffff", "curve": "stepped" },
-					{ "time": 1.3333, "color": "ffffffff" }
-				],
-				"attachment": [
-					{ "name": "Door1" },
-					{ "time": 1.0333, "name": "Door1" },
-					{ "time": 1.3333, "name": "Door1" }
-				]
-			},
-			"Door1": {
-				"attachment": [
-					{ "time": 1.0333, "name": "Door3" },
-					{ "time": 1.3333, "name": "Door3" }
-				]
-			},
-			"JO": {
-				"attachment": [
-					{ "time": 1.0333, "name": "JO" }
-				]
-			}
-		},
 		"bones": {
-			"root": {
+			"DoorA": {
 				"translate": [
-					{ "time": 1.0333 }
+					{ "x": -320.16 },
+					{ "time": 0.3333, "x": 3.6 },
+					{ "time": 0.6667, "x": 322.25, "curve": "stepped" },
+					{ "time": 0.8333, "x": 322.25 }
 				]
 			},
-			"Door2": {
+			"DoorB": {
 				"translate": [
-					{ "x": -643.12 },
-					{ "time": 0.5333, "x": -320.57 },
-					{ "time": 1.0333, "x": -0.27, "curve": "stepped" },
-					{ "time": 1.3333, "x": -0.27 }
+					{ "x": -641.65 },
+					{ "time": 0.3333, "x": -317.89, "curve": "stepped" },
+					{ "time": 0.6667, "x": -317.89, "curve": "stepped" },
+					{ "time": 0.8333, "x": -317.89 }
 				]
 			},
-			"Door1": {
+			"DoorD": {
 				"translate": [
-					{ "x": -322.4 },
-					{ "time": 0.5333, "x": 0.19 },
-					{ "time": 1.0333, "curve": "stepped" },
-					{ "time": 1.3333 }
+					{ "x": 322.83 },
+					{ "time": 0.3333, "x": -0.08, "curve": "stepped" },
+					{ "time": 0.6667, "x": -0.08, "curve": "stepped" },
+					{ "time": 0.8333, "x": -0.08 }
 				]
 			},
-			"Door4": {
+			"DoorC": {
 				"translate": [
-					{ "x": 323.41 },
-					{ "time": 0.5333, "x": 1.41 },
-					{ "time": 1.0333, "x": -319.7, "curve": "stepped" },
-					{ "time": 1.3333, "x": -319.7 }
-				]
-			},
-			"Door3": {
-				"translate": [
-					{ "x": 644.47 },
-					{ "time": 0.5333, "x": 322.47 },
-					{ "time": 1.0333, "x": 322.02, "curve": "stepped" },
-					{ "time": 1.3333, "x": 322.02 }
+					{ "x": 641.65 },
+					{ "time": 0.3333, "x": 318.75 },
+					{ "time": 0.6667, "x": 0.95, "curve": "stepped" },
+					{ "time": 0.8333, "x": 0.95 }
 				]
 			}
 		}
 	},
 	"play02": {
-		"slots": {
-			"Door2": {
-				"color": [
-					{ "color": "ffffffff", "curve": "stepped" },
-					{ "time": 0.5, "color": "ffffffff" }
-				],
-				"attachment": [
-					{ "name": "Door1" }
-				]
-			},
-			"Door1": {
-				"attachment": [
-					{ "name": "Door3" }
-				]
-			},
-			"JO": {
-				"attachment": [
-					{ "time": 1.0333, "name": "JO" }
-				]
-			}
-		},
 		"bones": {
-			"root": {
+			"DoorA": {
 				"translate": [
-					{ "time": 1.0333 }
+					{ "x": 322.25 },
+					{ "time": 0.3333, "x": 3.6 },
+					{ "time": 0.6667, "x": -320.16, "curve": "stepped" },
+					{ "time": 0.7667, "x": -320.16 }
 				]
 			},
-			"Door2": {
+			"DoorB": {
 				"translate": [
-					{ "x": -0.27 },
-					{ "time": 0.5, "x": -320.57 },
-					{ "time": 1.0333, "x": -641.18, "curve": "stepped" },
-					{ "time": 1.3333, "x": -641.18 }
+					{ "x": -317.89, "curve": "stepped" },
+					{ "time": 0.3333, "x": -317.89 },
+					{ "time": 0.6667, "x": -641.65, "curve": "stepped" },
+					{ "time": 0.7667, "x": -641.65 }
 				]
 			},
-			"Door1": {
+			"DoorD": {
 				"translate": [
-					{ "curve": "stepped" },
-					{ "time": 0.5 },
-					{ "time": 1.0333, "x": -320.61, "curve": "stepped" },
-					{ "time": 1.3333, "x": -320.61 }
+					{ "x": -0.08, "curve": "stepped" },
+					{ "time": 0.3333, "x": -0.08 },
+					{ "time": 0.6667, "x": 322.83, "curve": "stepped" },
+					{ "time": 0.7667, "x": 322.83 }
 				]
 			},
-			"Door4": {
+			"DoorC": {
 				"translate": [
-					{ "x": -319.7 },
-					{ "time": 0.5, "x": 1.41 },
-					{ "time": 1.0333, "x": 323.41, "curve": "stepped" },
-					{ "time": 1.3333, "x": 323.41 }
-				]
-			},
-			"Door3": {
-				"translate": [
-					{ "x": 322.02, "curve": "stepped" },
-					{ "time": 0.5, "x": 322.02 },
-					{ "time": 1.0333, "x": 644.47, "curve": "stepped" },
-					{ "time": 1.3333, "x": 644.47 }
+					{ "x": 0.95 },
+					{ "time": 0.3333, "x": 318.75 },
+					{ "time": 0.6667, "x": 641.65, "curve": "stepped" },
+					{ "time": 0.7667, "x": 641.65 }
 				]
 			}
 		}

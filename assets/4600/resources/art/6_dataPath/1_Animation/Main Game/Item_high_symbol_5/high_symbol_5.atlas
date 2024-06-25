@@ -1,90 +1,90 @@
 
 high_symbol_5.png
-size: 2048,2048
+size: 256,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 B2
   rotate: false
-  xy: 516, 590
-  size: 591, 492
-  orig: 593, 494
-  offset: 1, 1
+  xy: 2, 1042
+  size: 237, 198
+  orig: 237, 198
+  offset: 0, 0
   index: -1
 BM_01
   rotate: false
-  xy: 1109, 555
-  size: 604, 505
-  orig: 606, 507
-  offset: 1, 1
+  xy: 2, 1242
+  size: 242, 203
+  orig: 242, 203
+  offset: 0, 0
   index: -1
 Icon_Common_24
   rotate: false
-  xy: 2, 675
-  size: 512, 502
-  orig: 512, 512
-  offset: 0, 8
+  xy: 2, 427
+  size: 205, 194
+  orig: 205, 205
+  offset: 0, 2
   index: -1
 Lig
   rotate: false
-  xy: 2, 1349
-  size: 110, 105
-  orig: 128, 114
-  offset: 9, 9
+  xy: 157, 191
+  size: 43, 42
+  orig: 51, 46
+  offset: 4, 4
   index: -1
 fangshe02
   rotate: false
-  xy: 114, 1275
-  size: 185, 179
-  orig: 200, 200
-  offset: 9, 12
+  xy: 157, 118
+  size: 73, 71
+  orig: 80, 80
+  offset: 4, 5
   index: -1
 golda_01
   rotate: true
-  xy: 2, 75
-  size: 513, 515
-  orig: 515, 517
-  offset: 1, 1
+  xy: 2, 623
+  size: 206, 207
+  orig: 206, 207
+  offset: 0, 0
   index: -1
 golda_02
   rotate: true
-  xy: 519, 65
-  size: 523, 526
-  orig: 527, 530
-  offset: 2, 2
+  xy: 2, 831
+  size: 209, 211
+  orig: 211, 212
+  offset: 1, 1
   index: -1
 goldb_01
-  rotate: true
-  xy: 301, 1179
-  size: 275, 279
-  orig: 277, 281
-  offset: 1, 1
+  rotate: false
+  xy: 120, 4
+  size: 111, 112
+  orig: 111, 112
+  offset: 0, 0
   index: -1
 goldb_02
   rotate: true
-  xy: 582, 1168
-  size: 286, 292
-  orig: 289, 296
-  offset: 1, 2
+  xy: 2, 2
+  size: 114, 116
+  orig: 116, 118
+  offset: 1, 1
   index: -1
 goldb_03
   rotate: true
-  xy: 876, 1084
-  size: 370, 380
-  orig: 372, 382
-  offset: 1, 1
+  xy: 2, 118
+  size: 149, 153
+  orig: 149, 153
+  offset: 0, 0
   index: -1
 goldb_04
   rotate: true
-  xy: 1258, 1062
-  size: 392, 401
-  orig: 396, 407
-  offset: 2, 3
+  xy: 2, 269
+  size: 156, 161
+  orig: 158, 163
+  offset: 1, 1
   index: -1
 high_symbol_5
   rotate: false
-  xy: 1047, 2
-  size: 604, 551
-  orig: 604, 555
-  offset: 0, 3
+  xy: 2, 1447
+  size: 242, 220
+  orig: 242, 222
+  offset: 0, 1
   index: -1

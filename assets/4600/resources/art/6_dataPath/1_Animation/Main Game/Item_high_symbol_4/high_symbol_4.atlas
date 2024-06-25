@@ -1,76 +1,69 @@
 
 high_symbol_4.png
-size: 2048,1024
+size: 256,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BM_01
   rotate: false
-  xy: 608, 509
-  size: 604, 505
-  orig: 606, 507
-  offset: 1, 1
+  xy: 2, 696
+  size: 242, 203
+  orig: 242, 203
+  offset: 0, 0
   index: -1
 BM_02
   rotate: false
-  xy: 608, 15
-  size: 591, 492
-  orig: 593, 494
-  offset: 1, 1
+  xy: 2, 496
+  size: 237, 198
+  orig: 237, 198
+  offset: 0, 0
   index: -1
 Ingots_01
-  rotate: true
-  xy: 1669, 166
-  size: 334, 189
-  orig: 344, 210
-  offset: 3, 10
+  rotate: false
+  xy: 101, 3
+  size: 134, 76
+  orig: 138, 84
+  offset: 1, 4
   index: -1
 Ingots_02
-  rotate: false
-  xy: 1201, 241
-  size: 466, 259
-  orig: 471, 275
-  offset: 5, 9
+  rotate: 180
+  xy: 41, 79
+  size: 186, 104
+  orig: 188, 110
+  offset: 2, 3
   index: -1
 Ingots_03
   rotate: false
   xy: 2, 183
-  size: 541, 290
-  orig: 544, 301
-  offset: 3, 0
+  size: 217, 116
+  orig: 218, 120
+  offset: 1, 0
   index: -1
 Icon_Common_24
-  rotate: true
-  xy: 1214, 502
-  size: 512, 502
-  orig: 512, 512
-  offset: 0, 8
+  rotate: false
+  xy: 2, 300
+  size: 205, 194
+  orig: 205, 205
+  offset: 0, 2
   index: -1
 Lig
   rotate: false
-  xy: 355, 76
-  size: 110, 105
-  orig: 128, 114
-  offset: 9, 9
+  xy: 197, 256
+  size: 43, 42
+  orig: 51, 46
+  offset: 4, 4
   index: -1
 fangshe02
   rotate: false
-  xy: 2, 2
-  size: 185, 179
-  orig: 200, 200
-  offset: 9, 12
+  xy: 2, 25
+  size: 73, 71
+  orig: 80, 80
+  offset: 4, 5
   index: -1
 high_symbol_4
   rotate: false
-  xy: 2, 475
-  size: 604, 539
-  orig: 604, 545
-  offset: 0, 4
-  index: -1
-圖層 1
-  rotate: false
-  xy: 189, 41
-  size: 164, 140
-  orig: 164, 140
-  offset: 0, 0
+  xy: 2, 901
+  size: 242, 215
+  orig: 242, 218
+  offset: 0, 2
   index: -1

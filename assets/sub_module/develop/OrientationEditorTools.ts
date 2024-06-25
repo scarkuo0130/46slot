@@ -2,6 +2,7 @@ import { _decorator, Asset, AssetManager, CCBoolean, CCInteger, Component, Enum,
 import {Orientation, Viewport} from '../utils/Viewport';
 const { ccclass, property, menu, help, disallowMultiple, executeInEditMode } = _decorator;
 import { Utils, _utilsDecorator } from '../utils/Utils';
+import { EDITOR } from 'cc/env';
 const { isDevelopFunction } = _utilsDecorator;
 
 @ccclass('OrientationData')
@@ -72,6 +73,7 @@ export class OrientationEditorTools extends Component {
     }
 
     public backupOrientationData() {
+        if ( EDITOR !== true ) return;
         const nodes = this.saveNodes;
         log('backup nodes', nodes.length);
         if ( nodes.length === 0 ) return;
@@ -81,7 +83,6 @@ export class OrientationEditorTools extends Component {
             backupNode.active = false;
             backupNode.name = nodes[i].name + '_backup';
             nodes[i].parent.addChild(backupNode);
-            log('backupNode', backupNode.name);
         }
     }
 
@@ -118,6 +119,11 @@ export class OrientationEditorTools extends Component {
         event.handler         = 'onOrientationChange';
         event.customEventData = '';
         this.viewport.addOrientationChangeEventHandler(event);
+    }
+
+    private start() {
+        if ( EDITOR === true ) return;
+        this.onOrientationChange(this.viewport.getCurrentOrientation());
     }
 
     // 變更轉向設定

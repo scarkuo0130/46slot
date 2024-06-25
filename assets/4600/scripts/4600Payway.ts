@@ -49,7 +49,7 @@ export class Payway4600 extends Payway {
         this.properties['preload']['mask'].node.active = true;
         this.properties['preload']['pDoor'].node.active = true;
         this.properties['preload']['lDoor'].node.active = true;
-        this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
+        // this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT]?.setAnimation(0, 'idle', false);
         this.properties['jp']['grand_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
         this.properties['jp']['major_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
         this.properties['jp']['minor_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
@@ -83,11 +83,15 @@ export class Payway4600 extends Payway {
         return super.processWinningScore();
     }
 
+    /**
+     *  聚寶盆吸收 Wild Symbol動畫
+     */
     private async absorbWildSymbolIntoTreasurePot() {
         // 盤面是否有 Wild Symbol
         const wilds = this.reel.showWinSymbol(WildID);
         if (wilds.length === 0) return;
 
+        console.log('absorbWildSymbolIntoTreasurePot', wilds.length);
         let self = this;
         // 打開遮罩
         // this.reelMaskActive(true);
@@ -109,7 +113,6 @@ export class Payway4600 extends Payway {
         // 等待動畫播完
         await Utils.delay(1000);
         this.reel.moveBackToWheel();
-        this.jp(JP_TYPE.POT).ani.component.setAnimation(0, 'play', false);
 
         /// 沒有得分, 關閉遮罩
         // if ( this.gameResult?.pay_credit_total === 0 ) this.reelMaskActive(false);
@@ -120,13 +123,16 @@ export class Payway4600 extends Payway {
     /** 開場動畫 */
     private async preload_open_door() {
         const orientation = Viewport.Orientation;
+        const door : sp.Skeleton = orientation === Orientation.PORTRAIT ? this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT] : this.properties['preload']['lDoor'][DATA_TYPE.COMPONENT];
+
+        this.properties['preload']['mask'].node.active = true;
+        door.node.active = true;
+        door.setAnimation(0, 'play02', false);
+        door.paused = true;
+
         await Utils.commonFadeIn(this.properties['preload']['mask'].node, true, [new Color(0,0,0,0), new Color(0,0,0,255)]);
-        
-        if ( Orientation.PORTRAIT === orientation ) {
-            // this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT].setAnimation(0, 'play02', false);
-        } else {
-            // this.properties['preload']['lDoor'][DATA_TYPE.COMPONENT].setAnimation(0, 'play02', false);
-        }
+        door.paused = false;
+
         await Utils.delay(2000);
         this.properties['preload']['pDoor'].node.active = false;
         this.properties['preload']['lDoor'].node.active = false;
@@ -152,11 +158,11 @@ export class Payway4600 extends Payway {
     }
 
     /**
-     * 輪播 JP 發光動態
+     * 輪播發光動畫
      */
     private async loop_play_jp_ani() {
-        await Utils.delay(Utils.Random(5000,10000));
-        let type = Utils.Random(0,3);
+        await Utils.delay(Utils.Random(3000,8000));
+        let type = Utils.Random(JP_TYPE.GRAND, JP_TYPE.POT);
         this.jp(type).ani.component.setAnimation(0, 'play', false);
 
         this.loop_play_jp_ani();

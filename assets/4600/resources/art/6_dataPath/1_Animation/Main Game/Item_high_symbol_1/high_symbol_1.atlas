@@ -1,153 +1,153 @@
 
 high_symbol_1.png
-size: 2048,1024
+size: 256,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Icon_Common_24
-  rotate: false
-  xy: 2, 508
-  size: 512, 502
-  orig: 512, 512
-  offset: 0, 8
+  rotate: true
+  xy: 2, 874
+  size: 205, 192
+  orig: 205, 205
+  offset: 0, 3
   index: -1
 Lig
-  rotate: true
-  xy: 938, 258
-  size: 110, 105
-  orig: 128, 114
-  offset: 9, 9
+  rotate: false
+  xy: 155, 518
+  size: 43, 42
+  orig: 51, 46
+  offset: 4, 4
   index: -1
 fangshe02
-  rotate: true
-  xy: 280, 321
-  size: 185, 179
-  orig: 200, 200
-  offset: 9, 12
+  rotate: false
+  xy: 2, 3
+  size: 73, 71
+  orig: 80, 80
+  offset: 4, 5
   index: -1
 fish_01a
   rotate: true
-  xy: 516, 132
-  size: 379, 420
-  orig: 379, 420
+  xy: 31, 244
+  size: 152, 168
+  orig: 152, 168
   offset: 0, 0
   index: -1
 fish_01b
   rotate: true
-  xy: 1062, 125
-  size: 411, 450
-  orig: 411, 450
+  xy: 2, 363
+  size: 164, 180
+  orig: 164, 180
   offset: 0, 0
   index: -1
 fish_02a
   rotate: false
-  xy: 422, 165
-  size: 69, 41
-  orig: 69, 41
+  xy: 145, 4
+  size: 28, 16
+  orig: 28, 16
   offset: 0, 0
   index: -1
 fish_02b
   rotate: true
-  xy: 816, 34
-  size: 96, 71
-  orig: 99, 71
-  offset: 2, 0
+  xy: 173, 173
+  size: 39, 28
+  orig: 40, 28
+  offset: 1, 0
   index: -1
 fish_03a
-  rotate: false
-  xy: 422, 208
-  size: 92, 111
-  orig: 92, 111
+  rotate: 180
+  xy: 170, 472
+  size: 37, 44
+  orig: 37, 44
   offset: 0, 0
   index: -1
 fish_03b
   rotate: false
-  xy: 938, 370
-  size: 114, 141
-  orig: 123, 143
-  offset: 4, 2
+  xy: 155, 562
+  size: 46, 57
+  orig: 49, 57
+  offset: 1, 0
   index: -1
 fish_04a
-  rotate: false
-  xy: 164, 9
-  size: 94, 103
-  orig: 94, 104
-  offset: 0, 1
+  rotate: 180
+  xy: 170, 73
+  size: 38, 42
+  orig: 38, 42
+  offset: 0, 0
   index: -1
 fish_04b
-  rotate: true
-  xy: 681, 5
-  size: 125, 133
-  orig: 125, 135
-  offset: 0, 2
+  rotate: 180
+  xy: 154, 389
+  size: 50, 54
+  orig: 50, 54
+  offset: 0, 0
   index: -1
 fish_05a
-  rotate: false
-  xy: 2, 15
-  size: 160, 97
-  orig: 161, 97
+  rotate: 270
+  xy: 162, 617
+  size: 64, 39
+  orig: 64, 39
   offset: 0, 0
   index: -1
 fish_05b
-  rotate: false
-  xy: 488, 2
-  size: 191, 128
-  orig: 192, 128
+  rotate: true
+  xy: 151, 217
+  size: 77, 51
+  orig: 77, 51
   offset: 0, 0
   index: -1
 fish_06a
   rotate: true
-  xy: 938, 80
-  size: 176, 98
-  orig: 176, 98
+  xy: 161, 106
+  size: 70, 39
+  orig: 70, 39
   offset: 0, 0
   index: -1
 fish_06b
-  rotate: false
-  xy: 280, 25
-  size: 206, 128
-  orig: 206, 130
-  offset: 0, 2
+  rotate: 270
+  xy: 145, 7
+  size: 82, 52
+  orig: 82, 52
+  offset: 0, 0
   index: -1
 fish_06f
-  rotate: true
-  xy: 516, 513
-  size: 497, 544
-  orig: 506, 552
-  offset: 5, 6
+  rotate: false
+  xy: 2, 1081
+  size: 198, 218
+  orig: 202, 221
+  offset: 2, 2
   index: -1
 fish_07a
   rotate: false
-  xy: 1536, 765
-  size: 367, 245
-  orig: 367, 245
+  xy: 26, 70
+  size: 147, 98
+  orig: 147, 98
   offset: 0, 0
   index: -1
 fish_07b
-  rotate: true
-  xy: 2, 114
-  size: 392, 276
-  orig: 398, 276
-  offset: 1, 0
+  rotate: false
+  xy: 16, 148
+  size: 157, 110
+  orig: 159, 110
+  offset: 0, 0
   index: -1
 圖層 1
-  rotate: true
-  xy: 280, 155
-  size: 164, 140
-  orig: 164, 140
+  rotate: false
+  xy: 77, 12
+  size: 66, 56
+  orig: 66, 56
   offset: 0, 0
   index: -1
 圖層 18
   rotate: false
-  xy: 1062, 538
-  size: 472, 472
-  orig: 474, 474
-  offset: 1, 1
+  xy: 2, 682
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
   index: -1
 圖層 19
   rotate: false
-  xy: 1514, 160
-  size: 376, 376
-  orig: 378, 378
-  offset: 1, 1
+  xy: 2, 529
+  size: 151, 151
+  orig: 151, 151
+  offset: 0, 0
   index: -1
