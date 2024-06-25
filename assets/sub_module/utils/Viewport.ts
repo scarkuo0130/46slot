@@ -64,6 +64,8 @@ export class Viewport {
         }
     }
 
+    public static get Orientation (): Orientation { return Viewport.instance.getCurrentOrientation();}
+
     public getCurrentOrientation (): Orientation { return this.orientation; }
 
     public addOrientationChangeEventHandler ( event: EventHandler ) {

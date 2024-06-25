@@ -468,11 +468,23 @@ export class Reel extends Component {
         let amount             = 0;
 
         for(let i=0;i<wSymbols.length;i++) {
-            // if ( wSymbols[i].SymID !== symbol_id ) continue;
             if ( symbol_id.indexOf(wSymbols[i].SymID) === -1 ) continue;
             symbols.push(this.moveToShowDropSymbol(wheelID, wSymbols[i]));
             amount++;
             if ( amount >= max_amount ) break;
+        }
+
+        return symbols;
+    }
+
+    public showWinSymbol(symbolID:number) : Node[] {
+        let symbols = [];
+        let wheels = this.getWheels();
+        for(let i=0;i<wheels.length;i++) {
+            const wSymbols = this.moveToShowWinContainer(i, [symbolID]);
+            if ( wSymbols == null ) continue;
+            if ( wSymbols.length === 0 ) continue;
+            symbols = [...symbols, ...wSymbols];
         }
 
         return symbols;

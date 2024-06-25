@@ -1,6 +1,6 @@
 import { _decorator, Sprite, Component, Node, Vec3, tween, Label, EventHandler, EventTarget, JsonAsset, ccenum, UIOpacity, CCInteger, CCFloat, Color } from 'cc';
 import { Reel } from '../Reel';
-import { Utils, DATE_TYPE } from '../../../utils/Utils';
+import { Utils, DATA_TYPE } from '../../../utils/Utils';
 import { Machine } from '../Machine';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
@@ -19,13 +19,13 @@ export class Paytable extends Component {
     private initData = {
         'ui' : {
             // 顯示得獎分數
-            'labelWinScore'       : { [DATE_TYPE.TYPE] : Label,  [DATE_TYPE.NODE_PATH] : 'labelWinScore' },
+            'labelWinScore'       : { [DATA_TYPE.TYPE] : Label,  [DATA_TYPE.NODE_PATH] : 'labelWinScore' },
             // 單項得獎分數
-            'labelSingleWinScore' : { [DATE_TYPE.TYPE] : Label,  [DATE_TYPE.NODE_PATH] : 'labelSingleWinScore' },
+            'labelSingleWinScore' : { [DATA_TYPE.TYPE] : Label,  [DATA_TYPE.NODE_PATH] : 'labelSingleWinScore' },
         },
     };
 
-    private properties = {
+    protected properties = {
         'machine' : null,
         'gameResult' : null, // 一個盤面的結果
         'maskEvent' : null,

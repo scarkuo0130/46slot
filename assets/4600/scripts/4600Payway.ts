@@ -1,106 +1,167 @@
-import { _decorator, Component, Node, tween, Vec3 } from 'cc';
+import { _decorator, Color, Component, Node, Sprite, sp, Vec3, tween, Button, ParticleSystem2D } from 'cc';
 import { Paytable } from '../../sub_module/game/machine/pay/PayTable';
-import { Utils } from '../../sub_module/utils/Utils';
+import { Utils, DATA_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
 import { Machine } from '../../sub_module/game/machine/Machine';
+import { Payway } from '../../sub_module/game/machine/pay/Payway';
+import { Viewport, Orientation } from '../../sub_module/utils/Viewport';
+import { ObjectPool } from '../../sub_module/game/ObjectPool';
 const { ccclass, property } = _decorator;
 
-@ccclass('Payway')
-export class Payway extends Paytable {
+export enum JP_TYPE {
+    GRAND = 0,
+    MAJOR = 1,
+    MINOR = 2,
+    MINI = 3,
+    POT = 4,
+}
 
-    protected onload() { return; }
+export var WildID = 0;
 
+@ccclass('Payway4600')
+export class Payway4600 extends Payway {
+
+    public jp(type:number) { return this.properties['jp'][type]; }
+
+    private readonly onloadData = {
+        'preload' : {
+            'mask'     : { [DATA_TYPE.TYPE] : Sprite,        [DATA_TYPE.SCENE_PATH] : 'Canvas/PreLoad/Mask'  },
+            'pDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/PreLoad/Portrait/door'  },
+            'lDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/PreLoad/Landscape/door'  },
+        },
+    
+        'jp' : {
+            'grand_ani' : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Grand'  },
+            'major_ani' : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Major'  },
+            'minor_ani' : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Minor'  },
+            'mini_ani'  : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Mini'  },
+            'pot_ani'   : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Treasure Pot'  },
+            'wild_soul' : { [DATA_TYPE.TYPE] : ParticleSystem2D,[DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/Wild Soul'  },
+        },
+
+        'buyFeature' : {
+            'button'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Buy Feature Game'  },
+        }
+    };
+
+    protected onload() { 
+        Utils.initData(this.onloadData, this);
+        this.properties['preload']['mask'].node.active = true;
+        this.properties['preload']['pDoor'].node.active = true;
+        this.properties['preload']['lDoor'].node.active = true;
+        this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
+        this.properties['jp']['grand_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
+        this.properties['jp']['major_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
+        this.properties['jp']['minor_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
+        this.properties['jp']['mini_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
+        this.properties['jp'][JP_TYPE.GRAND] = { 'ani' : this.properties['jp']['grand_ani'] };
+        this.properties['jp'][JP_TYPE.MAJOR] = { 'ani' : this.properties['jp']['major_ani'] };
+        this.properties['jp'][JP_TYPE.MINOR] = { 'ani' : this.properties['jp']['minor_ani'] };
+        this.properties['jp'][JP_TYPE.MINI]  = { 'ani' : this.properties['jp']['mini_ani'] };
+        this.properties['jp'][JP_TYPE.POT]   = { 'ani' : this.properties['jp']['pot_ani'] };
+
+        ObjectPool.registerNode('soul', this.properties['jp']['wild_soul'].node);
+        this.properties['jp']['wild_soul'].node.active = false;
+
+    }
     // 給予專案 start 使用
-    protected onstart() { return; }
+    protected onstart() { 
+        this.machine.controller.addDisableButtons(this.properties['buyFeature']['button'].component);
+        Utils.AddHandHoverEvent(this.properties['buyFeature']['button'].node);
+        console.log(this);
+        this.preload_open_door();       // 開門動畫
+        return; 
+    }
 
     /**
      * 進入報獎流程
      * @override 可覆寫
-     * @todo 如果有中獎的話, 進入報獎流程
-     * @todo 報獎完畢後，如果分數高於 BigWin 分數，進入 BigWin 流程
-     * @todo 如果玩家沒有中斷報獎流程，則進入輪播報獎流程
      */
-    public async processWinningScore() {
-        const gameResult = this.gameResult;
-        console.log(gameResult);
+    private async processWinningScore() {
+        await this.absorbWildSymbolIntoTreasurePot();
+        // 回到原本流程 
+        return super.processWinningScore();
+    }
 
-        const { extra, pay_credit_total } = gameResult;
+    private async absorbWildSymbolIntoTreasurePot() {
+        // 盤面是否有 Wild Symbol
+        const wilds = this.reel.showWinSymbol(WildID);
+        if (wilds.length === 0) return;
 
-        if ( pay_credit_total === 0 ) return;
-        if ( extra?.ways.length === 0 ) return;
+        let self = this;
+        // 打開遮罩
+        // this.reelMaskActive(true);
+        wilds.forEach( async (wild) => {
+            const symbol = wild.getComponent(Symbol);
+            const spine = symbol.spine;
+            spine.setAnimation(0, 'play02', false);
+            await Utils.delay(300);
+
+            const soul = ObjectPool.Get('soul');
+            soul.parent = self.reel.showWinContainer;
+            soul.worldPosition = wild.worldPosition;
+            soul.active = true;
+            const toPos = self.jp(JP_TYPE.POT).ani.node.worldPosition;
+            
+            tween(soul).to(0.3, { worldPosition: toPos }, { onComplete:(s:Node)=> {ObjectPool.Put('soul', s);} }).start();
+        });
+
+        // 等待動畫播完
+        await Utils.delay(1000);
+        this.reel.moveBackToWheel();
+        this.jp(JP_TYPE.POT).ani.component.setAnimation(0, 'play', false);
+
+        /// 沒有得分, 關閉遮罩
+        // if ( this.gameResult?.pay_credit_total === 0 ) this.reelMaskActive(false);
         
-        return await super.processWinningScore();
+    }
+
+
+    /** 開場動畫 */
+    private async preload_open_door() {
+        const orientation = Viewport.Orientation;
+        await Utils.commonFadeIn(this.properties['preload']['mask'].node, true, [new Color(0,0,0,0), new Color(0,0,0,255)]);
+        
+        if ( Orientation.PORTRAIT === orientation ) {
+            // this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT].setAnimation(0, 'play02', false);
+        } else {
+            // this.properties['preload']['lDoor'][DATA_TYPE.COMPONENT].setAnimation(0, 'play02', false);
+        }
+        await Utils.delay(2000);
+        this.properties['preload']['pDoor'].node.active = false;
+        this.properties['preload']['lDoor'].node.active = false;
+
+        this.jp(JP_TYPE.GRAND).ani.component.setAnimation(0, 'play03', false);
+        this.jp(JP_TYPE.MAJOR).ani.component.setAnimation(0, 'play03', false);
+        this.jp(JP_TYPE.MINOR).ani.component.setAnimation(0, 'play03', false);
+        this.jp(JP_TYPE.MINI).ani.component.setAnimation(0, 'play03', false);
+        this.play_pot_ani(1);
+        this.loop_play_jp_ani();
+    }
+
+    private TYPE_POT_LEVEL = { 0: 'default', 1: 'level1', 2: 'level2', 3: 'level3', 4: 'level4'};
+    private async play_pot_ani(level:number) {
+        const skeleton : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
+        let from = level - 1;
+        if ( from < 0 ) from = 4;
+        skeleton.setSkin(this.TYPE_POT_LEVEL[from]);
+        skeleton.setAnimation(0, 'play03', false);
+        await Utils.delay(1200);
+        skeleton.setSkin(this.TYPE_POT_LEVEL[level]);
+        skeleton.setAnimation(0, 'play02', false);
     }
 
     /**
-     * 播放全部獎項
+     * 輪播 JP 發光動態
      */
-    public async performAllPayline() {
-        const { extra, pay_credit_total } = this.gameResult;
-        const { ways } = extra;
-        const totalWinLabel = this.totalWinLabel;
+    private async loop_play_jp_ani() {
+        await Utils.delay(Utils.Random(5000,10000));
+        let type = Utils.Random(0,3);
+        this.jp(type).ani.component.setAnimation(0, 'play', false);
 
-        await this.reelMaskActive(true);        // 打開遮罩
-
-        // 播放全部獎項
-        let max_wait_sec = 1;
-        for(let i = 0; i < ways.length; i++) {
-            let way = ways[i];
-            let sec = await this.performSingleLine(way);
-            if ( sec > max_wait_sec ) max_wait_sec = sec;
-        }
-        
-        Utils.commonTweenNumber(totalWinLabel, 0, pay_credit_total, max_wait_sec); // 播放總得分
-        const waitSec = (max_wait_sec + 1) * 1000;
-        await Utils.delay(waitSec); 
-
-        this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
-        totalWinLabel.string = '';              // 關閉總得分
-        this.machine.controller.changeTotalWin(pay_credit_total); // 更新總得分
-        this.machine.controller.refreshBalance(); // 更新餘額
+        this.loop_play_jp_ani();
     }
 
-    // way {"symbol_id": 7,"way": 3,"ways": [1,1,1],"pay_credit": 500}
-    public async performSingleLine(way: any, isWaiting: boolean=false) : Promise<number> {
-        const { symbol_id, ways, pay_credit } = way;
-        const { reel } = this;
 
-        let wSymbols = [];
-        for(let i=0;i<ways.length;i++) {
-            wSymbols.push(reel.moveToShowWinContainer(i, [symbol_id, 0], ways[i]));
-        }
-
-        let winSec = wSymbols[0][0].getComponent(Symbol).getAnimationDuration();
-        if ( winSec < 1 ) winSec = 1;
-        wSymbols.forEach( w=>w.forEach( symbol=> symbol.getComponent(Symbol).win()));
-        
-        if ( isWaiting ) {
-            this.displaySingleWinNumber(pay_credit, wSymbols[0][0].worldPosition);
-            await Utils.delay(winSec * 1000);
-            this.displaySingleWinNumber(0);
-        }
-        return winSec;
-    }
-
-    /**
-     * 單獎輪播
-     */
-    public async performSingleLineLoop() {
-        const { extra, pay_credit_total } = this.gameResult;
-        const { ways } = extra;
-
-        if ( pay_credit_total === 0 ) return;
-        if ( extra?.ways.length === 0 ) return;
-
-        await this.reelMaskActive(true);        // 打開遮罩
-        let idx = 0;
-        while(true) {
-            await this.performSingleLine(ways[idx], true);
-            if ( this.machine.state !== Machine.SPIN_STATE.IDLE ) return;
-            this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
-            idx++;
-            if ( idx >= ways.length ) idx = 0;
-        }
-    }
 }
 

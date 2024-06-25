@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, game, Button, EventTarget, Vec3, tween, Color, Sprite, Label } from 'cc';
-import { Utils, DATE_TYPE } from '../../../utils/Utils';
+import { Utils, DATA_TYPE } from '../../../utils/Utils';
 import { Orientation, Viewport } from '../../../utils/Viewport';
 import { AutoSpin } from '../../AutoSpin';
 import { Machine } from '../Machine';
@@ -12,41 +12,41 @@ export class Controller extends Component {
 
     private initData = {
         "buttons" : {
-            'TotalBetIncrease'  : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Total Bet/Increase',         [DATE_TYPE.CLICK_EVENT]: this.clickTotalBetIncrease, 'busyDisable':true  },
-            'TotalBetDecrease'  : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Total Bet/Decrease',         [DATE_TYPE.CLICK_EVENT]: this.clickTotalBetDecrease, 'busyDisable':true },
-            'Information'       : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Information', [DATE_TYPE.CLICK_EVENT]: this.clickInformation,      'busyDisable':true },
-            'Option'            : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Option',      [DATE_TYPE.CLICK_EVENT]: this.clickOption,           'busyDisable':true },
-            'SpeedMode'         : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed',       [DATE_TYPE.CLICK_EVENT]: this.clickSpeedMode,        'busyDisable':true },
-            'AutoSpin'          : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Auto',        [DATE_TYPE.CLICK_EVENT]: this.clickAutoSpin,         'busyDisable':true },
-            'InGameMenu'        : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Buttons/InGameMenu',  [DATE_TYPE.CLICK_EVENT]: this.clickInGameMenu,       'busyDisable':true },
-            'Record'            : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Buttons/Record',      [DATE_TYPE.CLICK_EVENT]: this.clickRecord,           'busyDisable':true },
-            'Fullscreen'        : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Buttons/Screen',      [DATE_TYPE.CLICK_EVENT]: this.clickFullscreen,       'busyDisable':true },
-            'OptionBack'        : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Buttons/Back',        [DATE_TYPE.CLICK_EVENT]: this.clickOptionBack,       'busyDisable':true },
-            'Spin'              : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Spin',        [DATE_TYPE.CLICK_EVENT]: this.clickSpin,             'busyDisable':true },
-            'Sound'             : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Buttons/Sound',       [DATE_TYPE.CLICK_EVENT]: this.clickSound,            'busyDisable':true },
+            'TotalBetIncrease'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Total Bet/Increase',         [DATA_TYPE.CLICK_EVENT]: this.clickTotalBetIncrease, 'busyDisable':true  },
+            'TotalBetDecrease'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Total Bet/Decrease',         [DATA_TYPE.CLICK_EVENT]: this.clickTotalBetDecrease, 'busyDisable':true },
+            'Information'       : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Information', [DATA_TYPE.CLICK_EVENT]: this.clickInformation,      'busyDisable':true },
+            'Option'            : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Option',      [DATA_TYPE.CLICK_EVENT]: this.clickOption,           'busyDisable':true },
+            'SpeedMode'         : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed',       [DATA_TYPE.CLICK_EVENT]: this.clickSpeedMode,        'busyDisable':true },
+            'AutoSpin'          : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Auto',        [DATA_TYPE.CLICK_EVENT]: this.clickAutoSpin,         'busyDisable':true },
+            'InGameMenu'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/InGameMenu',  [DATA_TYPE.CLICK_EVENT]: this.clickInGameMenu,       'busyDisable':true },
+            'Record'            : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Record',      [DATA_TYPE.CLICK_EVENT]: this.clickRecord,           'busyDisable':true },
+            'Fullscreen'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Screen',      [DATA_TYPE.CLICK_EVENT]: this.clickFullscreen,       'busyDisable':true },
+            'OptionBack'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Back',        [DATA_TYPE.CLICK_EVENT]: this.clickOptionBack,       'busyDisable':true },
+            'Spin'              : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Spin',        [DATA_TYPE.CLICK_EVENT]: this.clickSpin,             'busyDisable':true },
+            'Sound'             : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound',       [DATA_TYPE.CLICK_EVENT]: this.clickSound,            'busyDisable':true },
 
             // ====== 橫版按鈕 ======
-            'OptionLandscape'   : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Landscape/Option',             [DATE_TYPE.CLICK_EVENT]: this.clickOption,     'busyDisable':true },
-            'RecordLandscape'   : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Landscape/Content/Record',     [DATE_TYPE.CLICK_EVENT]: this.clickRecord,     'busyDisable':true },
-            'SoundLandscape'    : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound',      [DATE_TYPE.CLICK_EVENT]: this.clickSound,      'busyDisable':true },
-            'InGameMenuLandscape':{ [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Landscape/Content/InGameMenu', [DATE_TYPE.CLICK_EVENT]: this.clickInGameMenu, 'busyDisable':true },
-            'ScreenLandscape'   : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen',     [DATE_TYPE.CLICK_EVENT]: this.clickFullscreen, 'busyDisable':true },
+            'OptionLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Option',             [DATA_TYPE.CLICK_EVENT]: this.clickOption,     'busyDisable':true },
+            'RecordLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Record',     [DATA_TYPE.CLICK_EVENT]: this.clickRecord,     'busyDisable':true },
+            'SoundLandscape'    : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound',      [DATA_TYPE.CLICK_EVENT]: this.clickSound,      'busyDisable':true },
+            'InGameMenuLandscape':{ [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/InGameMenu', [DATA_TYPE.CLICK_EVENT]: this.clickInGameMenu, 'busyDisable':true },
+            'ScreenLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen',     [DATA_TYPE.CLICK_EVENT]: this.clickFullscreen, 'busyDisable':true },
             'INIT_EVENT'        : this.initButton
         },
 
         'speedMode' : {
-            [Machine.SPEED_MODE.NORMAL] : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Normal', 'next':Machine.SPEED_MODE.QUICK },
-            [Machine.SPEED_MODE.QUICK]  : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Quick',  'next':Machine.SPEED_MODE.TURBO },
-            [Machine.SPEED_MODE.TURBO]  : { [DATE_TYPE.TYPE] : Sprite, [DATE_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Turbo',  'next':Machine.SPEED_MODE.NORMAL},
+            [Machine.SPEED_MODE.NORMAL] : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Normal', 'next':Machine.SPEED_MODE.QUICK },
+            [Machine.SPEED_MODE.QUICK]  : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Quick',  'next':Machine.SPEED_MODE.TURBO },
+            [Machine.SPEED_MODE.TURBO]  : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Turbo',  'next':Machine.SPEED_MODE.NORMAL},
         },
 
         'ui' : {
-            'balance' : { [DATE_TYPE.TYPE] : Label, [DATE_TYPE.NODE_PATH] : 'Balance/Value',   'lastValue' : 0, },      // 顯示餘額
-            'totalBet': { [DATE_TYPE.TYPE] : Label, [DATE_TYPE.NODE_PATH] : 'Total Bet/Value', 'lastValue' : 0,  },    // 顯示總押注
-            'totalWin': { [DATE_TYPE.TYPE] : Label, [DATE_TYPE.NODE_PATH] : 'Total Win/Value', 'lastValue' : 0, },    // 顯示總贏分
+            'balance' : { [DATA_TYPE.TYPE] : Label, [DATA_TYPE.NODE_PATH] : 'Balance/Value',   'lastValue' : 0, },      // 顯示餘額
+            'totalBet': { [DATA_TYPE.TYPE] : Label, [DATA_TYPE.NODE_PATH] : 'Total Bet/Value', 'lastValue' : 0,  },    // 顯示總押注
+            'totalWin': { [DATA_TYPE.TYPE] : Label, [DATA_TYPE.NODE_PATH] : 'Total Win/Value', 'lastValue' : 0, },    // 顯示總贏分
             'mask'    : { // 共用遮罩
-                [DATE_TYPE.TYPE] : Sprite,
-                [DATE_TYPE.NODE_PATH] : '---- Common Mask ----',
+                [DATA_TYPE.TYPE] : Sprite,
+                [DATA_TYPE.NODE_PATH] : '---- Common Mask ----',
                 'alpha' : 200,          // 遮罩透明度
                 'event' : null,         // 遮罩事件
                 'tweenSec' : 0.3,       // 遮罩動畫時間
@@ -55,14 +55,14 @@ export class Controller extends Component {
         },
 
         'optionButtons' : { // Option 按鈕
-            'portraitBottom' : { [DATE_TYPE.TYPE]: Node, [DATE_TYPE.NODE_PATH]: 'Bottom Buttons' },
-            'portraitOption' : { [DATE_TYPE.TYPE]: Node, [DATE_TYPE.NODE_PATH]: 'Option Buttons' },
-            'landscapeOption': { [DATE_TYPE.TYPE]: Node, [DATE_TYPE.NODE_PATH]: 'Option Landscape/Content' },
+            'portraitBottom' : { [DATA_TYPE.TYPE]: Node, [DATA_TYPE.NODE_PATH]: 'Bottom Buttons' },
+            'portraitOption' : { [DATA_TYPE.TYPE]: Node, [DATA_TYPE.NODE_PATH]: 'Option Buttons' },
+            'landscapeOption': { [DATA_TYPE.TYPE]: Node, [DATA_TYPE.NODE_PATH]: 'Option Landscape/Content' },
         },
 
         'autoSpin' : {
-            'button'        : { [DATE_TYPE.TYPE]: Button, [DATE_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin', [DATE_TYPE.CLICK_EVENT]: AutoSpin.StopAutoSpin },
-            'label'         : { [DATE_TYPE.TYPE]: Label,  [DATE_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin/Label' },
+            'button'        : { [DATA_TYPE.TYPE]: Button, [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin', [DATA_TYPE.CLICK_EVENT]: AutoSpin.StopAutoSpin },
+            'label'         : { [DATA_TYPE.TYPE]: Label,  [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin/Label' },
         }
     };
 
@@ -97,8 +97,8 @@ export class Controller extends Component {
         
     };
 
-    get autoSpinButton() { return this.properties['autoSpin']['button'][DATE_TYPE.COMPONENT]; }
-    get autoSpinLabel()  { return this.properties['autoSpin']['label'][DATE_TYPE.COMPONENT]; }
+    get autoSpinButton() { return this.properties['autoSpin']['button'][DATA_TYPE.COMPONENT]; }
+    get autoSpinLabel()  { return this.properties['autoSpin']['label'][DATA_TYPE.COMPONENT]; }
 
     get autoSpin() { return AutoSpin.Instance; }
 
@@ -118,12 +118,14 @@ export class Controller extends Component {
         for(let i=0;i<keys.length;i++) {
             const key = keys[i];
             const data = buttonsData[key];
-            const button = data[DATE_TYPE.COMPONENT];
+            const button = data[DATA_TYPE.COMPONENT];
             if ( button == null ) continue;
             busyDisableButtons.push(button);
         }
         this.props['BusyDisableButtons'] = busyDisableButtons;
     }
+
+    public addDisableButtons(button:Button) { this.props['BusyDisableButtons'].push(button); }
 
     private initUIValue() {
         this.props['ui']['balance']['event'] = new EventTarget();
@@ -137,8 +139,8 @@ export class Controller extends Component {
     private initOptionButton() {
         const optionData = this.props['OptionData'];
         const optionButtons = this.props['optionButtons'];
-        optionData[Orientation.PORTRAIT]['fromPos'] = new Vec3(optionButtons['portraitOption'][DATE_TYPE.NODE].position);
-        optionData[Orientation.PORTRAIT]['toPos'] = new Vec3(optionButtons['portraitBottom'][DATE_TYPE.NODE].position);
+        optionData[Orientation.PORTRAIT]['fromPos'] = new Vec3(optionButtons['portraitOption'][DATA_TYPE.NODE].position);
+        optionData[Orientation.PORTRAIT]['toPos'] = new Vec3(optionButtons['portraitBottom'][DATA_TYPE.NODE].position);
     }
 
     // #region [[rgba(0, 0, 0, 0)]] 遮罩相關功能
@@ -147,7 +149,7 @@ export class Controller extends Component {
      */
     private initMask() {
         this.props.ui.mask['event']  = new EventTarget();
-        this.props.ui.mask[DATE_TYPE.NODE].active = false;
+        this.props.ui.mask[DATA_TYPE.NODE].active = false;
     }
 
     /**
@@ -157,7 +159,7 @@ export class Controller extends Component {
      */
     public async maskActive(active:boolean) {
         const maskData = this.props.ui.mask;
-        const [sprite, fadeIn, event, tweenSec ] = [maskData[DATE_TYPE.COMPONENT], maskData['alpha'], maskData['event'], maskData['tweenSec']];
+        const [sprite, fadeIn, event, tweenSec ] = [maskData[DATA_TYPE.COMPONENT], maskData['alpha'], maskData['event'], maskData['tweenSec']];
         if ( event && event['running'] ) return;
         
         event.removeAll('done');
@@ -243,8 +245,8 @@ export class Controller extends Component {
         const optionButtons = this.props['optionButtons'];
         let [ oFromPos, oToPos, isActive, running ] = [ optionData['fromPos'], optionData['toPos'], optionData['active'], optionData['running'], optionData['bottomNode'] ];
         
-        const node       = (orientation === Orientation.PORTRAIT) ? optionButtons['portraitOption'][DATE_TYPE.NODE] : optionButtons['landscapeOption'][DATE_TYPE.NODE];
-        const bottomNode = (orientation === Orientation.PORTRAIT) ? optionButtons['portraitBottom'][DATE_TYPE.NODE] : null;
+        const node       = (orientation === Orientation.PORTRAIT) ? optionButtons['portraitOption'][DATA_TYPE.NODE] : optionButtons['landscapeOption'][DATA_TYPE.NODE];
+        const bottomNode = (orientation === Orientation.PORTRAIT) ? optionButtons['portraitBottom'][DATA_TYPE.NODE] : null;
 
         if ( node    == null )      return console.error('Option Node is null', optionData);
         if ( running === true )     return;
@@ -293,8 +295,8 @@ export class Controller extends Component {
         const lastMode = this.machine.SpeedMode;
         if ( lastMode === mode ) return;
 
-        speedMode[mode][DATE_TYPE.NODE].active = true;
-        speedMode[lastMode][DATE_TYPE.NODE].active = false;
+        speedMode[mode][DATA_TYPE.NODE].active = true;
+        speedMode[lastMode][DATA_TYPE.NODE].active = false;
 
         return this.machine.setSpeedMode(mode);
     }
@@ -353,7 +355,7 @@ export class Controller extends Component {
      * @returns {void}
      */
     public setBalance(balance:number) {
-        const balanceLabel:Label = this.props['ui']['balance'][DATE_TYPE.COMPONENT];
+        const balanceLabel:Label = this.props['ui']['balance'][DATA_TYPE.COMPONENT];
         const currencySymbol = gameInformation._currencySymbol;
         this.props['ui']['balance']['lastValue'] = balance;
         balanceLabel.string = `${currencySymbol} ${Utils.numberComma(balance)}`;
@@ -381,7 +383,7 @@ export class Controller extends Component {
      */
 
     public setTotalWin(totalWin:number) {
-        const totalWinLabel:Label = this.props['ui']['totalWin'][DATE_TYPE.COMPONENT];
+        const totalWinLabel:Label = this.props['ui']['totalWin'][DATA_TYPE.COMPONENT];
         const currencySymbol      = gameInformation._currencySymbol;
 
         this.props['ui']['totalWin']['lastValue'] = totalWin;
@@ -436,7 +438,7 @@ export class Controller extends Component {
      * @returns {void}
      */
     private setTotalBet(totalBet:number) {
-        const totalBetLabel:Label = this.props['ui']['totalBet'][DATE_TYPE.COMPONENT];
+        const totalBetLabel:Label = this.props['ui']['totalBet'][DATA_TYPE.COMPONENT];
         const currencySymbol = gameInformation._currencySymbol;
 
         this.props['ui']['totalBet']['lastValue'] = totalBet;

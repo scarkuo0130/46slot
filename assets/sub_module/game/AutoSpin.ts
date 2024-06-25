@@ -2,7 +2,7 @@ import { _decorator, Button, Component, Node, Label } from 'cc';
 import { switchButton } from '../utils/SwitchButton/switchButton';
 import { LanguageLabel } from './Language/LanguageLabel';
 import { dropDown } from '../utils/DropDown/dropDown';
-import { Utils, DATE_TYPE } from '../utils/Utils';
+import { Utils, DATA_TYPE } from '../utils/Utils';
 import { Controller } from './machine/controller_folder/Controller';
 import { Machine } from './machine/Machine';
 const { ccclass, property } = _decorator;
@@ -12,28 +12,28 @@ export class AutoSpin extends Component {
 
     private readonly initData = {
         'autoSpin' : {
-            'close'     : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Background/Close', [DATE_TYPE.CLICK_EVENT]: this.closeUI  },
-            'start'     : { [DATE_TYPE.TYPE] : Button,        [DATE_TYPE.NODE_PATH] : 'Background/Start', [DATE_TYPE.CLICK_EVENT]: this.clickStart  },
+            'close'     : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Background/Close', [DATA_TYPE.CLICK_EVENT]: this.closeUI  },
+            'start'     : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Background/Start', [DATA_TYPE.CLICK_EVENT]: this.clickStart  },
         },
         'spinTimes'     : {
-            'switch'    : { [DATE_TYPE.TYPE] : switchButton,  [DATE_TYPE.NODE_PATH] : 'Background/Spin Times/SwitchButton' },
-            'label'     : { [DATE_TYPE.TYPE] : LanguageLabel, [DATE_TYPE.NODE_PATH] : 'Background/Spin Times/Label' },
-            'dropdown'  : { [DATE_TYPE.TYPE] : dropDown,      [DATE_TYPE.NODE_PATH] : 'Background/Spin Times/DropDown'},
+            'switch'    : { [DATA_TYPE.TYPE] : switchButton,  [DATA_TYPE.NODE_PATH] : 'Background/Spin Times/SwitchButton' },
+            'label'     : { [DATA_TYPE.TYPE] : LanguageLabel, [DATA_TYPE.NODE_PATH] : 'Background/Spin Times/Label' },
+            'dropdown'  : { [DATA_TYPE.TYPE] : dropDown,      [DATA_TYPE.NODE_PATH] : 'Background/Spin Times/DropDown'},
         },
 
         'untilFeature'  : {
-            'switch'    : { [DATE_TYPE.TYPE] : switchButton,  [DATE_TYPE.NODE_PATH] : 'Background/Settings/UNTIL FEATURE/SwitchButton'},
-            'label'     : { [DATE_TYPE.TYPE] : LanguageLabel, [DATE_TYPE.NODE_PATH] : 'Background/Settings/UNTIL FEATURE' },
+            'switch'    : { [DATA_TYPE.TYPE] : switchButton,  [DATA_TYPE.NODE_PATH] : 'Background/Settings/UNTIL FEATURE/SwitchButton'},
+            'label'     : { [DATA_TYPE.TYPE] : LanguageLabel, [DATA_TYPE.NODE_PATH] : 'Background/Settings/UNTIL FEATURE' },
         },
 
         'quickSpin'     : {
-            'switch'    : { [DATE_TYPE.TYPE] : switchButton,  [DATE_TYPE.NODE_PATH] : 'Background/Settings/QUICK SPIN/SwitchButton'},
-            'label'     : { [DATE_TYPE.TYPE] : LanguageLabel, [DATE_TYPE.NODE_PATH] : 'Background/Settings/QUICK SPIN' },
+            'switch'    : { [DATA_TYPE.TYPE] : switchButton,  [DATA_TYPE.NODE_PATH] : 'Background/Settings/QUICK SPIN/SwitchButton'},
+            'label'     : { [DATA_TYPE.TYPE] : LanguageLabel, [DATA_TYPE.NODE_PATH] : 'Background/Settings/QUICK SPIN' },
         },
         
         'turboSpin'     : {
-            'switch'    : { [DATE_TYPE.TYPE] : switchButton,  [DATE_TYPE.NODE_PATH] : 'Background/Settings/TURBO SPIN/SwitchButton'},
-            'label'     : { [DATE_TYPE.TYPE] : LanguageLabel, [DATE_TYPE.NODE_PATH] : 'Background/Settings/TURBO SPIN' },
+            'switch'    : { [DATA_TYPE.TYPE] : switchButton,  [DATA_TYPE.NODE_PATH] : 'Background/Settings/TURBO SPIN/SwitchButton'},
+            'label'     : { [DATA_TYPE.TYPE] : LanguageLabel, [DATA_TYPE.NODE_PATH] : 'Background/Settings/TURBO SPIN' },
         },
     };
 
@@ -79,6 +79,7 @@ export class AutoSpin extends Component {
         if ( this.machine.isBusy ) return;
         await this.activeUI(true);
         this.changeSpeedMode(this.machine.SpeedMode); 
+        this.properties['spinTimes'].switch[DATA_TYPE.COMPONENT].switch(false);
     }
     public static OpenUI() { AutoSpin.Instance.openUI(); }
     public static CloseUI() { AutoSpin.Instance.closeUI(); }
@@ -111,16 +112,16 @@ export class AutoSpin extends Component {
         let type = Machine.SPEED_MODE;
         switch(mode) {
             case type.QUICK:  
-                this.initData.turboSpin.switch[DATE_TYPE.COMPONENT].switch(false); 
-                this.initData.quickSpin.switch[DATE_TYPE.COMPONENT].switch(true);
+                this.initData.turboSpin.switch[DATA_TYPE.COMPONENT].switch(false); 
+                this.initData.quickSpin.switch[DATA_TYPE.COMPONENT].switch(true);
                 break;
             case type.TURBO:  
-                this.initData.quickSpin.switch[DATE_TYPE.COMPONENT].switch(false);
-                this.initData.turboSpin.switch[DATE_TYPE.COMPONENT].switch(true); 
+                this.initData.quickSpin.switch[DATA_TYPE.COMPONENT].switch(false);
+                this.initData.turboSpin.switch[DATA_TYPE.COMPONENT].switch(true); 
                 break;
             default:
-                this.initData.quickSpin.switch[DATE_TYPE.COMPONENT].switch(false);
-                this.initData.turboSpin.switch[DATE_TYPE.COMPONENT].switch(false);
+                this.initData.quickSpin.switch[DATA_TYPE.COMPONENT].switch(false);
+                this.initData.turboSpin.switch[DATA_TYPE.COMPONENT].switch(false);
                 break;
         }
     }
@@ -129,16 +130,16 @@ export class AutoSpin extends Component {
 
     public dropDownSpinTimes(item, itemName, idx, customData, customEventData) {
         console.log('dropDownSpinTimes', customData);
-        this.initData.spinTimes.switch[DATE_TYPE.COMPONENT].switch(true);
+        this.initData.spinTimes.switch[DATA_TYPE.COMPONENT].switch(true);
     }
 
     public clickStart() {
         this.closeUI();
         if ( this.machine.isBusy ) return;
 
-        const spinTimesData                = this.initData.spinTimes.dropdown[DATE_TYPE.COMPONENT].getPickData();
-        const spinTimeActive      :boolean = this.initData.spinTimes.switch[DATE_TYPE.COMPONENT].Active;
-        const untilFeatureActive  :boolean = this.initData.untilFeature.switch[DATE_TYPE.COMPONENT].Active;
+        const spinTimesData                = this.properties['spinTimes'].dropdown[DATA_TYPE.COMPONENT].getPickData();
+        const spinTimeActive      :boolean = this.properties['spinTimes'].switch[DATA_TYPE.COMPONENT].Active;
+        const untilFeatureActive  :boolean = this.properties['untilFeature'].switch[DATA_TYPE.COMPONENT].Active;
         const spinTimes           :number  = parseInt(spinTimesData.customData);
         const active              = (spinTimeActive || untilFeatureActive);
         

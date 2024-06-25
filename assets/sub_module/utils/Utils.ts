@@ -1,6 +1,5 @@
-import { EventHandler, JsonAsset, resources, CurveRange, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label } from "cc";
+import { EventHandler, JsonAsset, resources, CurveRange, find, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label } from "cc";
 import { PREVIEW, EDITOR } from "cc/env";
-import { Game } from "../game/Game";
 import { Config, GameConfig } from '../game/GameConfig';
 import { gameInformation } from '../game/GameInformation';
 const { ccclass, property } = _decorator;
@@ -23,27 +22,28 @@ export namespace _utilsDecorator {
     }
 }
 
-export enum DATE_TYPE {
+export enum DATA_TYPE {
     NODE = 0, // object node
     COMPONENT = 1, // object component
     TYPE = 2, // object component type
     NODE_PATH = 3, // node path for init object
     CLICK_EVENT = 4, // click event
+    SCENE_PATH = 5, // scene path
 }
 
 export class Utils {
     public static initPropertyData<T>(component: T) {
         return {
-            [DATE_TYPE.NODE]        : Node,
-            [DATE_TYPE.COMPONENT]   : component,
-            [DATE_TYPE.TYPE]        : null,
-            [DATE_TYPE.NODE_PATH]   : "",
-            [DATE_TYPE.CLICK_EVENT] : Function,
+            [DATA_TYPE.NODE]        : Node,
+            [DATA_TYPE.COMPONENT]   : component,
+            [DATA_TYPE.TYPE]        : null,
+            [DATA_TYPE.NODE_PATH]   : "",
+            [DATA_TYPE.CLICK_EVENT] : Function,
 
-            get node()      { return this[DATE_TYPE.NODE]; },
-            get component() { return this[DATE_TYPE.COMPONENT]; },
-            get type()      { return this[DATE_TYPE.TYPE]; },
-            get clickEvent(){ return this[DATE_TYPE.CLICK_EVENT]; },
+            get node()      { return this[DATA_TYPE.NODE]; },
+            get component() { return this[DATA_TYPE.COMPONENT]; },
+            get type()      { return this[DATA_TYPE.TYPE]; },
+            get clickEvent(){ return this[DATA_TYPE.CLICK_EVENT]; },
         };
     }
 
@@ -59,17 +59,28 @@ export class Utils {
                 haveInitEvent = boundSubProperty;
                 continue;
             }
+            let node: any, path : string;
 
-            const path = subProperty[DATE_TYPE.NODE_PATH];
-            if ( path == null || typeof(path) !== 'string' ) continue;
+            if ( subProperty[DATA_TYPE.SCENE_PATH] != null ) {
+                path = subProperty[DATA_TYPE.SCENE_PATH];
+                if ( path == null || typeof(path) !== 'string' ) continue;
+                node = find(path);
+                if ( node == null ) {
+                    console.error('Node not found: ' + subProperty[DATA_TYPE.SCENE_PATH]);
+                    continue;
+                }
+            } else {
+                path = subProperty[DATA_TYPE.NODE_PATH];
+                if ( path == null || typeof(path) !== 'string' ) continue;
 
-            const node = bindComponent.node.getChildByPath(path);
-            if ( node == null ) {
-                // console.error('Node not found: ' + subProperty[DATE_TYPE.NODE_PATH]);
-                continue;
+                node = bindComponent.node.getChildByPath(path);
+                if ( node == null ) {
+                    console.error('Node not found: ' + subProperty[DATA_TYPE.NODE_PATH]);
+                    continue;
+                }
             }
 
-            const t = subProperty[DATE_TYPE.TYPE];
+            const t = subProperty[DATA_TYPE.TYPE];
             const component = ( t == Node ) ? node : node.getComponent(t);
             
             if ( component == null ) {
@@ -79,23 +90,23 @@ export class Utils {
 
             let propertiesData = Utils.initPropertyData(component);
 
-            if ( subProperty[DATE_TYPE.CLICK_EVENT] != null ) {
-                node.on(Node.EventType.TOUCH_END, subProperty[DATE_TYPE.CLICK_EVENT], bindComponent);
+            if ( subProperty[DATA_TYPE.CLICK_EVENT] != null ) {
+                node.on(Node.EventType.TOUCH_END, subProperty[DATA_TYPE.CLICK_EVENT], bindComponent);
                 Utils.AddHandHoverEvent(node);
             }
 
-            propertiesData[DATE_TYPE.NODE]        = node;
-            propertiesData[DATE_TYPE.COMPONENT]   = component;
-            propertiesData[DATE_TYPE.TYPE]        = t;
-            propertiesData[DATE_TYPE.NODE_PATH]   = path;
-            propertiesData[DATE_TYPE.CLICK_EVENT] = subProperty[DATE_TYPE.CLICK_EVENT];
+            propertiesData[DATA_TYPE.NODE]        = node;
+            propertiesData[DATA_TYPE.COMPONENT]   = component;
+            propertiesData[DATA_TYPE.TYPE]        = t;
+            propertiesData[DATA_TYPE.NODE_PATH]   = path;
+            propertiesData[DATA_TYPE.CLICK_EVENT] = subProperty[DATA_TYPE.CLICK_EVENT];
 
             const otherData = subProperty;
-            delete otherData[DATE_TYPE.NODE];
-            delete otherData[DATE_TYPE.COMPONENT];
-            delete otherData[DATE_TYPE.TYPE];
-            delete otherData[DATE_TYPE.NODE_PATH];
-            delete otherData[DATE_TYPE.CLICK_EVENT];
+            delete otherData[DATA_TYPE.NODE];
+            delete otherData[DATA_TYPE.COMPONENT];
+            delete otherData[DATA_TYPE.TYPE];
+            delete otherData[DATA_TYPE.NODE_PATH];
+            delete otherData[DATA_TYPE.CLICK_EVENT];
             if ( Object.keys(otherData).length > 0 ) propertiesData = Utils.mergeJsonData(propertiesData, otherData);
 
             if ( !property[key] || !property[key][subKey] ) property[subKey] = propertiesData;
@@ -499,21 +510,27 @@ export class Utils {
         return await Utils.delayEvent(eventTarget);
     }
 
-    public static async commonFadeIn( ui:Node, fadeout:boolean ) {
+    public static async commonFadeIn( ui:Node, fadeout:boolean, color: Color[]=null ) {
         if ( ui == null ) return;
         if (this.activeUIEventTarget?.['running'] === true) return;
 
         const sprite = ui.getComponent(Sprite);
         if ( sprite == null ) return;
-
-        let fromColor = fadeout ? this.activeUIAlpha[ 1 ] : this.activeUIAlpha[ 0 ];
-        let toColor   = fadeout ? this.activeUIAlpha[ 0 ] : this.activeUIAlpha[ 1 ];
+        const refColor = color ?? this.activeUIAlpha;
+        console.log(refColor);
+        let fromColor = fadeout ? refColor[1] : refColor[0];
+        let toColor   = fadeout ? refColor[0] : refColor[1];
 
         this.activeUIEventTarget = this.activeUIEventTarget ?? new EventTarget();
         this.activeUIEventTarget.removeAll('done');
         this.activeUIEventTarget['running'] = true;
         sprite.color = fromColor;
-        tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
+        let alpha = { value: fromColor.a };
+        tween(alpha).to(0.3, { value: toColor.a }, { easing: 'smooth',
+            onUpdate:   () => { sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
+            onComplete: () => { this.activeUIEventTarget.emit('done'); }
+         }).start();
+        //tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
         await this.delayEvent( this.activeUIEventTarget );
         this.activeUIEventTarget['running'] = false;
         ui.active = fadeout;

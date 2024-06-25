@@ -51,7 +51,7 @@ export class Wheel extends WheelLibrary {
 
     protected start(): void {
         this.initNodeData();
-        Utils.delay(1000).then(() => this.startPutSymbol());
+        this.startPutSymbol();
     }
 
     private initNodeData() {
