@@ -1,6 +1,6 @@
 import { _decorator, Color, Component, Node, Sprite, sp, Vec3, tween, Button, ParticleSystem2D } from 'cc';
 import { Paytable } from '../../sub_module/game/machine/pay/PayTable';
-import { Utils, DATA_TYPE } from '../../sub_module/utils/Utils';
+import { Utils, DATA_TYPE, TWEEN_EASING_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
 import { Machine } from '../../sub_module/game/machine/Machine';
 import { Payway } from '../../sub_module/game/machine/pay/Payway';
@@ -36,12 +36,16 @@ export class Payway4600 extends Payway {
             'minor_ani' : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Minor'  },
             'mini_ani'  : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Mini'  },
             'pot_ani'   : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Treasure Pot'  },
-            'wild_soul' : { [DATA_TYPE.TYPE] : ParticleSystem2D,[DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/Wild Soul'  },
+            'wild_soul' : { [DATA_TYPE.TYPE] : Node,            [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/Wild Soul'  },
         },
 
         'buyFeature' : {
-            'button'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Buy Feature Game'  },
-        }
+            'button'  : { [DATA_TYPE.TYPE] : Button,            [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Buy Feature Game'  },
+        },
+
+        'perform' : {
+            'score_board' : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Reel/RewardWindow'  },
+        },
     };
 
     protected onload() { 
@@ -68,10 +72,14 @@ export class Payway4600 extends Payway {
     protected onstart() { 
         this.machine.controller.addDisableButtons(this.properties['buyFeature']['button'].component);
         Utils.AddHandHoverEvent(this.properties['buyFeature']['button'].node);
+        this.scoreBoard.node.active = false;
         console.log(this);
         this.preload_open_door();       // 開門動畫
         return; 
     }
+
+    // 顯示分數的背板
+    protected get scoreBoard() : sp.Skeleton { return this.properties['perform']['score_board'].component; }
 
     /**
      * 進入報獎流程
@@ -84,6 +92,19 @@ export class Payway4600 extends Payway {
     }
 
     /**
+     * 播放全部獎項
+     */
+    protected async performAllPayline() {
+        this.scoreBoard.node.active = true;
+        await Utils.commonFadeIn(this.scoreBoard.node, false, null, this.scoreBoard);
+        this.scoreBoard.setAnimation(0, 'play', false);
+        // await Utils.commonFadeIn(this.scoreBoard.node, false, null, this.scoreBoard);
+        await super.performAllPayline();
+        this.scoreBoard.node.active = false;
+        // await Utils.commonFadeIn(this.scoreBoard.node, true, null, this.scoreBoard);
+    }
+
+    /**
      *  聚寶盆吸收 Wild Symbol動畫
      */
     private async absorbWildSymbolIntoTreasurePot() {
@@ -93,6 +114,7 @@ export class Payway4600 extends Payway {
 
         console.log('absorbWildSymbolIntoTreasurePot', wilds.length);
         let self = this;
+        let machine = this.machine.node;
         // 打開遮罩
         // this.reelMaskActive(true);
         wilds.forEach( async (wild) => {
@@ -102,12 +124,15 @@ export class Payway4600 extends Payway {
             await Utils.delay(300);
 
             const soul = ObjectPool.Get('soul');
-            soul.parent = self.reel.showWinContainer;
+            soul.parent = machine;
             soul.worldPosition = wild.worldPosition;
             soul.active = true;
-            const toPos = self.jp(JP_TYPE.POT).ani.node.worldPosition;
-            
-            tween(soul).to(0.3, { worldPosition: toPos }, { onComplete:(s:Node)=> {ObjectPool.Put('soul', s);} }).start();
+            const toPos = self.jp(JP_TYPE.POT).ani.node.worldPosition.clone();
+            toPos.x += Utils.Random(-25, 25);
+            toPos.y += Utils.Random(-25, 25);
+
+            let onFinished = ()=>{ Utils.delay(1000).then(()=>{ObjectPool.Put('soul', soul)}) };
+            Utils.tweenBezierCurve(soul, toPos, 1, onFinished, true);
         });
 
         // 等待動畫播完
@@ -161,7 +186,7 @@ export class Payway4600 extends Payway {
      * 輪播發光動畫
      */
     private async loop_play_jp_ani() {
-        await Utils.delay(Utils.Random(3000,8000));
+        await Utils.delay(Utils.Random(3000,6000));
         let type = Utils.Random(JP_TYPE.GRAND, JP_TYPE.POT);
         this.jp(type).ani.component.setAnimation(0, 'play', false);
 

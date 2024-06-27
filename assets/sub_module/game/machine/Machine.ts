@@ -1,8 +1,7 @@
-import { _decorator, Component, EventHandler, EventTarget } from 'cc';
+import { _decorator, Component, find, Mask, EventTarget, Graphics } from 'cc';
 import { AutoSpin } from '../AutoSpin';
 import { Controller } from './controller_folder/Controller';
 import { gameInformation } from '../GameInformation';
-import { UserData } from '../../data/UserData';
 import { DataManager } from '../../data/DataManager';
 import { DialogUI } from '../DialogUI';
 import { Reel } from './Reel';
@@ -91,7 +90,11 @@ export class Machine extends Component {
     protected start() {
         this.properties['controller'] = Controller.Instance;
         Viewport.lockResizeHandler();
-    }
+        const mask = find('Canvas')?.getComponent(Mask);
+        if ( mask ) {
+            mask.enabled = true;
+            mask.node.getComponent(Graphics).enabled = true;
+    }   }
 
     public startAutoSpin() {
         console.log('startAutoSpin');

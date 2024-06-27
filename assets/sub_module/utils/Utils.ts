@@ -1,4 +1,4 @@
-import { EventHandler, JsonAsset, resources, CurveRange, find, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label } from "cc";
+import { EventHandler, bezier, JsonAsset, resources, CurveRange, find, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label, TweenEasing } from "cc";
 import { PREVIEW, EDITOR } from "cc/env";
 import { Config, GameConfig } from '../game/GameConfig';
 import { gameInformation } from '../game/GameInformation';
@@ -115,7 +115,12 @@ export class Utils {
 
         return { property, haveInitEvent };
     }
-
+    /**
+     * 預載資料初始化
+     * @param initData 
+     * @param bindComponent 
+     * @returns 
+     */
     public static initData( initData:any, bindComponent: any ) {
         if ( initData == null ) return;
         if ( bindComponent == null ) return;
@@ -134,6 +139,71 @@ export class Utils {
 
             if ( haveInitEvent != null ) haveInitEvent();
         }
+    }
+
+    public static twoBezier(t:number, p1:Vec3, cp1:Vec3, cp2:Vec3, p2:Vec3) {
+        //const x = (1-t)*(1-t)*p1.x + 2*(1-t)*t*cp.x + t*t*p2.x;
+        //const y = (1-t)*(1-t)*p1.y + 2*(1-t)*t*cp.y + t*t*p2.y;
+        //return new Vec3(x, y, 0);
+
+        const x = bezier(p1.x, cp1.x, cp2.x, p2.x, t);
+        const y = bezier(p1.y, cp1.y, cp2.y, p2.y, t);
+        return new Vec3(x, y, 0);
+    }
+
+    /**
+     * 
+     * @param target 
+     * @param toPos 
+     * @param duration 
+     * @param middlePos 
+     */
+    public static async tweenBezierCurve(target: Node, toPos: Vec3, duration: number, onFinish: Function = null, isWorldPos: boolean = false, middlePos: Vec3 = null, middlePos2:Vec3 = null) {
+        const fromPos = isWorldPos ? target.worldPosition : target.position.clone();
+        if (middlePos == null) {
+            // 找出中間點 附上一點點的隨機值
+            middlePos = fromPos.clone();
+            middlePos.add(toPos).multiplyScalar(0.5);
+            const xDistance = Math.abs(fromPos.x - toPos.x) * 0.3;
+            const yDistance = Math.abs(fromPos.y - toPos.y) * 0.3;
+            middlePos.x += Utils.Random(-xDistance, xDistance);
+            middlePos.y += Utils.Random(-yDistance, yDistance);
+
+            console.log(fromPos, middlePos, toPos);
+        }
+
+        if ( middlePos2 == null ) {
+            middlePos2 = middlePos.clone();
+            middlePos2.add(toPos).multiplyScalar(0.5);
+        }
+        let eventTarget = new EventTarget();
+        let tValue = { t: 0 }; // 用於跟踪 t 的值
+        let onUpdate = (obj) => {
+            const movePos = Utils.twoBezier(obj.t, fromPos, middlePos,middlePos2, toPos);
+            if (isWorldPos) target.worldPosition = movePos;
+            else target.position = movePos;
+        };
+        let onComplete = () => { eventTarget.emit('done'); };
+    
+        tween(tValue).to(duration, { t: 1 }, { onUpdate: () => onUpdate(tValue), onComplete: onComplete }).start();
+        await Utils.delayEvent(eventTarget);
+        eventTarget.removeAll('done');
+        eventTarget = null;
+        if (onFinish != null) onFinish();
+    }
+
+    public static async tweenBezierCurve2(target:Node, toPos:Vec3, duration:number, onFinish:Function, isWorldPos:boolean, easing:any = 'smooth') {
+        let eventTarget = new EventTarget();
+        let onComplete = () => { eventTarget.emit('done'); };
+        if ( isWorldPos ) {
+            tween(target).to(duration, { worldPosition: toPos }, { easing: easing, onComplete: onComplete }).start();
+        } else {
+            tween(target).to(duration, { position: toPos }, { easing: easing, onComplete: onComplete }).start();
+        }
+        await Utils.delayEvent(eventTarget);
+        eventTarget.removeAll('done');
+        eventTarget = null;
+        if (onFinish != null) onFinish();
     }
 
     /**
@@ -510,11 +580,12 @@ export class Utils {
         return await Utils.delayEvent(eventTarget);
     }
 
-    public static async commonFadeIn( ui:Node, fadeout:boolean, color: Color[]=null ) {
+    public static async commonFadeIn( ui:Node, fadeout:boolean=false, color: Color[]=null, colorComponent=null ) {
         if ( ui == null ) return;
         if (this.activeUIEventTarget?.['running'] === true) return;
+        let sprite = colorComponent;
+        if ( sprite == null ) sprite = ui.getComponent(Sprite);
 
-        const sprite = ui.getComponent(Sprite);
         if ( sprite == null ) return;
         const refColor = color ?? this.activeUIAlpha;
         console.log(refColor);
@@ -533,7 +604,7 @@ export class Utils {
         //tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
         await this.delayEvent( this.activeUIEventTarget );
         this.activeUIEventTarget['running'] = false;
-        ui.active = fadeout;
+        ui.active = !fadeout;
     }
 }
 

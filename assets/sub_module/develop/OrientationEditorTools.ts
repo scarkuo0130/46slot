@@ -60,25 +60,28 @@ export class OrientationEditorTools extends Component {
     public set orientation(value: Orientation) {
         this._orientation = value;
         this.onOrientationChange(value);
-        this.backupOrientationData();
+        // this.backupOrientationData();
         if ( this.isMainController === true ) {
             OrientationEditorTools.subOrientationController.forEach( (controller:OrientationEditorTools) => controller.subOrientation(value) );
         }
     }
-    public get orientation() { return this._orientation; }
+    public get orientation() { 
+        if ( this.isMainController === true ) return this._orientation;
+        return OrientationEditorTools.instance.orientation;
+    }
 
     public subOrientation(orientation:Orientation) {
-        this.backupOrientationData();
+        // this.backupOrientationData();
         this.onOrientationChange(orientation);
     }
 
     public backupOrientationData() {
         if ( EDITOR !== true ) return;
         const nodes = this.saveNodes;
-        log('backup nodes', nodes.length);
         if ( nodes.length === 0 ) return;
 
         for(let i=0; i<nodes.length; i++) {
+            if ( nodes[i] == null ) continue;
             const backupNode = instantiate(nodes[i]);
             backupNode.active = false;
             backupNode.name = nodes[i].name + '_backup';
@@ -88,14 +91,14 @@ export class OrientationEditorTools extends Component {
 
     @property({type:CCBoolean, displayName: '儲存轉向資料', tooltip: '是否儲存轉向資料'})
     public set SaveOrientationData(value: boolean) {
-        console.log('SaveOrientationData');
+        let orientation = this.orientation;
+        console.log('SaveOrientationData', orientation);
         if ( this.saveNodes.length === 0 ) return;
-        // let self = this;
-        // this.saveNodes.forEach( (node:Node) => self.onCheckOrientationNode(this._orientation, node, self.saveOrientationData, node.getPathInHierarchy()) );
         for(let i=0; i<this.saveNodes.length; i++) {
-            this.onCheckOrientationNode(OrientationEditorTools.instance._orientation, this.saveNodes[i], this.saveOrientationData.bind(this), this.saveNodes[i].getPathInHierarchy());
+            this.onCheckOrientationNode(orientation, this.saveNodes[i], this.saveOrientationData.bind(this), this.saveNodes[i].getPathInHierarchy());
         }
-    
+        
+        console.log('SaveOrientationData', this.LandscapeData);
     }
     public get SaveOrientationData() { return false; }
 
@@ -133,6 +136,7 @@ export class OrientationEditorTools extends Component {
             if ( orientationData == null ) return;
 
             orientationData.forEach( (item:OrientationData) => {
+                // console.log('item', item.nodePath);
                 let node = find(item.nodePath);
                 if ( node == null ) return;
 
@@ -148,12 +152,11 @@ export class OrientationEditorTools extends Component {
                     uiTransform.anchorPoint = item.anchorPoint;
                 }
             });
-        } catch(e) { 
-            log(e); 
-        }
+        } catch(e) { log(e); }
     }
 
     onCheckOrientationNode( orientation: Orientation, node:Node, callEvent:Function, parentPath:string ): void {
+        if ( node == null ) return;
         callEvent(orientation, node, parentPath);
 
         let children = node.children;

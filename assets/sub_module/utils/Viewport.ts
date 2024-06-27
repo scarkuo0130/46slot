@@ -1,5 +1,5 @@
 import { Node, director, _decorator, AsyncDelegate, ResolutionPolicy, view, screen, EventHandler } from 'cc';
-import { PREVIEW } from 'cc/env';
+import { EDITOR, PREVIEW } from 'cc/env';
 const { ccclass, property } = _decorator;
 
 export enum Orientation {
@@ -82,6 +82,7 @@ export class Viewport {
     }
 
     protected resizeHandler ( lockOrientation = null ): void {
+        if ( EDITOR === true ) return;
         console.log( 'resizeHandler');
         window.setTimeout( ( event ) => {
             console.log( 'resizeHandler', [ this.orientation, this.previousOrientation ] );
