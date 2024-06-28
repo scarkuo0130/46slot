@@ -63,7 +63,11 @@ export class Controller extends Component {
         'autoSpin' : {
             'button'        : { [DATA_TYPE.TYPE]: Button, [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin', [DATA_TYPE.CLICK_EVENT]: AutoSpin.StopAutoSpin },
             'label'         : { [DATA_TYPE.TYPE]: Label,  [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/AutoSpin/Label' },
-        }
+        },
+
+        'spin' : {
+            'image'         : { [DATA_TYPE.TYPE]: Sprite, [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/Image' },
+        },
     };
 
     /**
@@ -207,13 +211,27 @@ export class Controller extends Component {
 
     public get machine() :Machine { return this.props['machine']; }
 
+    private spinButtonEvent : EventTarget = new EventTarget();
+    private async buttonSpinning() {
+        const spinImage = this.props['spin']['image'].node;
+        
+        this.spinButtonEvent['tween'] = tween(spinImage).repeatForever(tween().by(0.5, { angle: -360 }, { easing:'linear' })).start();
+        await Utils.delayEvent(this.spinButtonEvent);
+        this.spinButtonEvent['tween'].stop();
+    }
+
+    private async clickSpinButtonAnimation() {
+        const spinImage = this.props['spin']['image'].node;
+        tween(spinImage).to(0.1, { scale: new Vec3(1.2,1.2,1) }).to(0.1, { scale: Vec3.ONE }).start();
+    }
+
     /**
      * Spin 按鈕事件
      */
     public async clickSpin() {
 
         if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
-
+        this.clickSpinButtonAnimation() ;
         if ( this.machine.spinning ) {
             this.machine.fastStopping = true;
             return false;
@@ -222,9 +240,11 @@ export class Controller extends Component {
         this.clickOption(null, false); // 關閉 Option 功能
         // 禁用所有按鈕
         this.activeBusyButtons(false);
+        this.buttonSpinning();
         // 等待 Spin 結束
         await this.machine.clickSpin();
         // 啟用所有按鈕
+        this.spinButtonEvent.emit('done');
         this.activeBusyButtons(true);
 
         // 如果有 AutoSpin 則繼續
