@@ -1,27 +1,27 @@
 
 turn_FtoM_02.png
-size: 2048,512
+size: 1024,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 GU01
   rotate: false
-  xy: 897, 268
-  size: 201, 202
-  orig: 216, 216
-  offset: 6, 6
+  xy: 630, 185
+  size: 146, 146
+  orig: 151, 151
+  offset: 2, 1
   index: -1
 GU02
   rotate: false
-  xy: 897, 191
-  size: 74, 75
-  orig: 90, 80
-  offset: 9, 3
+  xy: 630, 132
+  size: 51, 51
+  orig: 63, 56
+  offset: 7, 3
   index: -1
 turn_FtoM_02
   rotate: false
   xy: 2, 2
-  size: 893, 468
-  orig: 898, 474
-  offset: 1, 5
+  size: 626, 329
+  orig: 629, 332
+  offset: 0, 3
   index: -1

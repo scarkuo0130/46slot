@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "fvUV8il6dbip33pdekIK2W93koA",
+	"hash": "G8Lv7Kj1AKWnTHcRId+PojNopCc",
 	"spine": "3.8.75",
 	"x": -129,
 	"y": -53,
@@ -25,7 +25,7 @@
 	{ "name": "MINI_BM2", "bone": "MINI_BM2", "color": "ffffff00", "attachment": "MINI_BM3", "blend": "additive" },
 	{ "name": "MINI_KAO", "bone": "MINI_KAO", "attachment": "MINI_KAO" },
 	{ "name": "MINI_KAO2", "bone": "MINI_KAO2", "attachment": "GRAND_KAO", "blend": "additive" },
-	{ "name": "MINI_CH", "bone": "MINI_CH", "attachment": "MINI_CH", "blend": "additive" },
+	{ "name": "MINI_CH", "bone": "MINI_CH", "blend": "additive" },
 	{ "name": "KBO_01", "bone": "KBO", "attachment": "KBO_01" },
 	{ "name": "KBO_02", "bone": "KBO", "attachment": "KBO_02" },
 	{ "name": "KBO_03", "bone": "KBO", "attachment": "KBO_03" },
@@ -71,8 +71,7 @@
 				"KBO_05": { "x": 0.5, "width": 257, "height": 106 }
 			},
 			"MINI_CH": {
-				"MINI_CH": { "x": 16, "y": -19.5, "width": 222, "height": 35 },
-				"MINI_CH": { "y": 0.5, "rotation": 0.42, "width": 222, "height": 35 }
+				"MINI_CH": { "x": 16, "y": -19.5, "width": 222, "height": 35 }
 			},
 			"KBO_07": {
 				"KBO_07": { "x": 0.5, "width": 257, "height": 106 }
@@ -727,9 +726,7 @@
 			},
 			"MINI_KAO2": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffffdf" },
-					{ "time": 0.7667, "color": "ffffff00" }
+					{ "color": "ffffff00" }
 				]
 			},
 			"KBO_01": {
@@ -1036,9 +1033,7 @@
 			},
 			"MINI_KAO2": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffffdf" },
-					{ "time": 0.7667, "color": "ffffff00" }
+					{ "color": "ffffff00" }
 				]
 			},
 			"KBO_01": {

@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "E7uS4EnYWiFx7/e6WQckBfZyE5c",
+	"hash": "gwOW3tBj/mTrOjiUXRrU3LmQ5co",
 	"spine": "3.8.75",
 	"x": -449,
 	"y": -248,
@@ -73,12 +73,12 @@
 					{ "color": "ffffff00" }
 				]
 			},
-			"GU02": {
+			"GU01": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"GU01": {
+			"GU02": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -97,6 +97,13 @@
 	},
 	"play": {
 		"slots": {
+			"GU4": {
+				"color": [
+					{ "time": 0.6667, "color": "ffffff00" },
+					{ "time": 1.3333, "color": "ffffff91" },
+					{ "time": 1.8333, "color": "ffffff00" }
+				]
+			},
 			"GU01-2": {
 				"color": [
 					{ "color": "ffffff00" },
@@ -106,11 +113,20 @@
 					{ "time": 2, "color": "ffffff00" }
 				]
 			},
-			"GU4": {
+			"GU5": {
 				"color": [
-					{ "time": 0.6667, "color": "ffffff00" },
-					{ "time": 1.3333, "color": "ffffff91" },
-					{ "time": 1.8333, "color": "ffffff00" }
+					{ "time": 0.9333, "color": "ffffff00" },
+					{ "time": 1.5667, "color": "ffffff91" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"GU01": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff3b" },
+					{ "time": 0.8333, "color": "ffffff1e" },
+					{ "time": 1.5, "color": "ffffff46" },
+					{ "time": 2, "color": "ffffff00" }
 				]
 			},
 			"GU02": {
@@ -118,6 +134,13 @@
 					{ "color": "ffffff00" },
 					{ "time": 0.6667, "color": "ffffff91" },
 					{ "time": 1.1667, "color": "ffffff00" }
+				]
+			},
+			"GU2": {
+				"color": [
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 1.1667, "color": "ffffff91" },
+					{ "time": 1.6667, "color": "ffffff00" }
 				]
 			},
 			"GU6": {
@@ -131,29 +154,6 @@
 				"color": [
 					{ "time": 0.8333, "color": "ffffff00" },
 					{ "time": 1.5, "color": "ffffff91" },
-					{ "time": 2, "color": "ffffff00" }
-				]
-			},
-			"GU5": {
-				"color": [
-					{ "time": 0.9333, "color": "ffffff00" },
-					{ "time": 1.5667, "color": "ffffff91" },
-					{ "time": 2, "color": "ffffff00" }
-				]
-			},
-			"GU2": {
-				"color": [
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 1.1667, "color": "ffffff91" },
-					{ "time": 1.6667, "color": "ffffff00" }
-				]
-			},
-			"GU01": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff3b" },
-					{ "time": 0.8333, "color": "ffffff1e" },
-					{ "time": 1.5, "color": "ffffff46" },
 					{ "time": 2, "color": "ffffff00" }
 				]
 			}

@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "mNXv7fRvxUjNAjJnxLAeVkK8Xsg",
+	"hash": "wRtnTVyQ24ODPZA/QxrodyihRXg",
 	"spine": "3.8.75",
 	"x": -129,
 	"y": -53,
@@ -833,9 +833,7 @@
 			},
 			"GRAND_KAO2": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffffdf" },
-					{ "time": 0.7667, "color": "ffffff00" }
+					{ "color": "ffffff00" }
 				]
 			},
 			"KBO_09": {
@@ -1147,9 +1145,7 @@
 			},
 			"GRAND_KAO2": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffffdf" },
-					{ "time": 0.7667, "color": "ffffff00" }
+					{ "color": "ffffff00" }
 				]
 			},
 			"KBO_09": {

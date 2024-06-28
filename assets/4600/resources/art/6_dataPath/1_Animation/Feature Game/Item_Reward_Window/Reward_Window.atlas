@@ -6,127 +6,127 @@ filter: Linear,Linear
 repeat: none
 Reward_Window_00
   rotate: true
-  xy: 369, 11
-  size: 94, 128
-  orig: 646, 200
-  offset: 64, 36
+  xy: 493, 5
+  size: 65, 90
+  orig: 452, 140
+  offset: 45, 25
   index: -1
 Reward_Window_01
-  rotate: true
-  xy: 1530, 36
-  size: 142, 132
-  orig: 646, 200
-  offset: 64, 35
+  rotate: false
+  xy: 150, 15
+  size: 99, 93
+  orig: 452, 140
+  offset: 45, 24
   index: -1
 Reward_Window_02
-  rotate: true
-  xy: 1290, 296
-  size: 210, 134
-  orig: 646, 200
-  offset: 45, 34
+  rotate: false
+  xy: 2, 13
+  size: 146, 95
+  orig: 452, 140
+  offset: 32, 23
   index: -1
 Reward_Window_03
   rotate: true
-  xy: 837, 96
-  size: 275, 148
-  orig: 646, 200
-  offset: 28, 26
+  xy: 643, 166
+  size: 193, 107
+  orig: 452, 140
+  offset: 19, 17
   index: -1
 Reward_Window_04
-  rotate: true
-  xy: 1098, 175
-  size: 331, 190
-  orig: 646, 200
-  offset: 20, 0
+  rotate: false
+  xy: 386, 260
+  size: 231, 133
+  orig: 452, 140
+  offset: 14, 0
   index: -1
 Reward_Window_05
   rotate: false
-  xy: 2, 235
-  size: 343, 136
-  orig: 646, 200
-  offset: 57, 32
+  xy: 252, 69
+  size: 239, 95
+  orig: 452, 140
+  offset: 40, 22
   index: -1
 Reward_Window_06
   rotate: false
-  xy: 2, 42
-  size: 365, 131
-  orig: 646, 200
-  offset: 83, 32
+  xy: 386, 166
+  size: 255, 92
+  orig: 452, 140
+  offset: 58, 22
   index: -1
 Reward_Window_07
   rotate: false
-  xy: 347, 240
-  size: 355, 131
-  orig: 646, 200
-  offset: 143, 32
+  xy: 2, 110
+  size: 248, 92
+  orig: 452, 140
+  offset: 100, 22
   index: -1
 Reward_Window_08
-  rotate: true
-  xy: 704, 45
-  size: 326, 131
-  orig: 646, 200
-  offset: 215, 32
+  rotate: false
+  xy: 493, 72
+  size: 229, 92
+  orig: 452, 140
+  offset: 150, 22
   index: -1
 Reward_Window_09
-  rotate: false
-  xy: 369, 107
-  size: 311, 131
-  orig: 646, 200
-  offset: 264, 32
+  rotate: true
+  xy: 752, 142
+  size: 217, 92
+  orig: 452, 140
+  offset: 185, 22
   index: -1
 Reward_Window_10
-  rotate: false
-  xy: 987, 42
-  size: 291, 131
-  orig: 646, 200
-  offset: 312, 32
+  rotate: true
+  xy: 846, 156
+  size: 203, 92
+  orig: 452, 140
+  offset: 219, 22
   index: -1
 Reward_Window_11
   rotate: false
-  xy: 1280, 42
-  size: 248, 131
-  orig: 646, 200
-  offset: 361, 32
+  xy: 724, 48
+  size: 173, 92
+  orig: 452, 140
+  offset: 253, 22
   index: -1
 Reward_Window_12
   rotate: true
-  xy: 1426, 305
-  size: 201, 130
-  orig: 646, 200
-  offset: 409, 32
+  xy: 899, 13
+  size: 141, 91
+  orig: 452, 140
+  offset: 286, 22
   index: -1
 Reward_Window_13
-  rotate: false
-  xy: 1426, 180
-  size: 152, 123
-  orig: 646, 200
-  offset: 458, 32
+  rotate: true
+  xy: 940, 156
+  size: 107, 86
+  orig: 452, 140
+  offset: 320, 22
   index: -1
 Reward_Window_14
-  rotate: true
-  xy: 499, 2
-  size: 103, 97
-  orig: 646, 200
-  offset: 506, 34
+  rotate: false
+  xy: 585, 2
+  size: 72, 68
+  orig: 452, 140
+  offset: 354, 24
   index: -1
 bm
   rotate: false
-  xy: 551, 373
-  size: 545, 133
-  orig: 550, 136
-  offset: 2, 2
+  xy: 2, 299
+  size: 382, 94
+  orig: 385, 95
+  offset: 1, 1
   index: -1
 dp
-  rotate: true
-  xy: 1290, 181
-  size: 113, 125
-  orig: 116, 129
-  offset: 1, 2
+  rotate: false
+  xy: 940, 265
+  size: 79, 88
+  orig: 81, 90
+  offset: 1, 1
   index: -1
 kao
   rotate: false
-  xy: 2, 373
-  size: 547, 133
-  orig: 552, 135
+  xy: 2, 204
+  size: 382, 93
+  orig: 386, 95
   offset: 2, 1
   index: -1

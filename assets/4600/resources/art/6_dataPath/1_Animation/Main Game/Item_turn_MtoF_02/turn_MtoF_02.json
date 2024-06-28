@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "NJEzLWFObB6miL+AL510vLXPLHo",
+	"hash": "odokQeA1QMlHHxOTbkGs3QWpWK8",
 	"spine": "3.8.75",
 	"x": -433,
 	"y": -217.19,
@@ -58,17 +58,7 @@
 "animations": {
 	"idle": {
 		"slots": {
-			"GU01": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
 			"GU01-3": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"GU03": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -79,6 +69,16 @@
 				]
 			},
 			"GU01-2": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"GU03": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"GU01": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -114,26 +114,10 @@
 	},
 	"play": {
 		"slots": {
-			"GU01": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 1.3333, "color": "ffffffeb" },
-					{ "time": 2, "color": "ffffff00" }
-				]
-			},
 			"GU01-3": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 1.1667, "color": "ffffffaa" },
-					{ "time": 2, "color": "ffffff00" }
-				]
-			},
-			"GU03": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff35" },
-					{ "time": 1, "color": "ffffff1a" },
-					{ "time": 1.5, "color": "ffffff7e" },
 					{ "time": 2, "color": "ffffff00" }
 				]
 			},
@@ -150,6 +134,22 @@
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 1.1667, "color": "ffffffaa" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"GU03": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff35" },
+					{ "time": 1, "color": "ffffff1a" },
+					{ "time": 1.5, "color": "ffffff7e" },
+					{ "time": 2, "color": "ffffff00" }
+				]
+			},
+			"GU01": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 1.3333, "color": "ffffffeb" },
 					{ "time": 2, "color": "ffffff00" }
 				]
 			}
