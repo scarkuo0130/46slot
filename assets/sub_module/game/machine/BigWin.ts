@@ -51,6 +51,7 @@ export class BigWin extends Component {
         'value': {
             'label' : { [DATA_TYPE.TYPE]:Label, [DATA_TYPE.NODE_PATH]:'Score/Value' },
             'show'  : { [DATA_TYPE.TYPE]:Label, [DATA_TYPE.NODE_PATH]:'Score/Show' },
+            'board' : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'Score/Board' },
         },
     };
 
@@ -73,6 +74,7 @@ export class BigWin extends Component {
         this.spine(this.BIGWIN_TYPE.BIG_WIN).node.active = false;
         this.spine(this.BIGWIN_TYPE.SUPER_WIN).node.active = false;
         this.spine(this.BIGWIN_TYPE.MEGA_WIN).node.active = false;
+        this.valueBoard.node.active = false;
         this.label.string = '';
         this.properties['value']['show'][DATA_TYPE.COMPONENT].string = '';
         this.properties['event'] = new EventTarget();
@@ -101,13 +103,18 @@ export class BigWin extends Component {
         this.properties['score'] = value;
         this.label.string = Utils.numberComma(value); 
     }
-    public get playingSprite() { return this.InitData[this.playing]['node'][DATA_TYPE.COMPONENT]; }
+    public get playingSprite() { 
+        if ( this.playing === this.BIGWIN_TYPE.NONE ) return null;
+        return this.properties[this.playing]['node'].component; 
+    }
 
     public get lastType() { return this.properties['lastType']; }
     public set lastType(value:number) { this.properties['lastType'] = value; }
 
     public get playValue() { return this.properties['playValue']; }
     public set playValue(value:number[]) { this.properties['playValue'] = value; }
+
+    public get valueBoard() { return this.properties['value']['board'][DATA_TYPE.COMPONENT]; }
 
     public async play(type:number, quick:boolean=false) {
         if ( type === this.playing ) return;
@@ -141,7 +148,7 @@ export class BigWin extends Component {
         if ( playing === this.BIGWIN_TYPE.NONE ) return false;
 
         await Utils.commonFadeIn(this.playingSprite.node, true, null, this.playingSprite);
-        this.playingSprite.node.active = false;
+        if (this.playingSprite != null) this.playingSprite.node.active = false;
         this.playing = this.BIGWIN_TYPE.NONE;
         return true;
     }
@@ -154,8 +161,8 @@ export class BigWin extends Component {
         showLabel.color = Color.WHITE;
         await Utils.delay(100);
 
-        tween(showLabel.node).to(1, { scale: new Vec3(3, 3, 1) }).start();
-        await Utils.commonFadeIn(showLabel.node, true, [new Color(255,255,255,0), new Color(255,255,255,128)], showLabel, 1);
+        tween(showLabel.node).to(1, { scale: new Vec3(3.5, 3.5, 1) }).start();
+        await Utils.commonFadeIn(showLabel.node, true, [new Color(255,255,255,0), new Color(255,255,255,90)], showLabel, 1);
         await Utils.delay(1000);
 
         showLabel.string = '';
@@ -163,6 +170,9 @@ export class BigWin extends Component {
 
     /** 結束播放 */
     public async end() {
+        if ( this.properties['ending'] === true ) return;
+        this.properties['ending'] = true;
+
         const playing = this.playing;
         if ( playing === this.BIGWIN_TYPE.NONE ) return;
 
@@ -171,8 +181,11 @@ export class BigWin extends Component {
         let spine = this.spine(playing);
         spine.node.active = true;
         this.label.string = '';
+        await Utils.commonFadeIn(this.valueBoard.node, true, null, this.valueBoard, 0.2);
         spine.setAnimation(0, this.ANIMATION_TYPE.END, false);
         spine.setCompleteListener((track)=>{ this.break(); });
+        this.properties['ending'] = false;
+        await this.machine.controller.maskActive(false);
     }
 
     /** 快速結束 */
@@ -186,7 +199,7 @@ export class BigWin extends Component {
 
         if ( tweenScore && tweenScore['done'] === true ) {
             tweenScore.stop();
-            tweenScore.destroySelf();
+            // tweenScore.destroySelf();
             this.event.emit('done_'+playing, playing); 
         }
         await this.play(this.lastType, true);
@@ -227,6 +240,9 @@ export class BigWin extends Component {
         event['quickStop']  = false;
         event['preQuickStop'] = false;
         event.removeAll('done');
+
+        await this.machine.controller.maskActive(true);
+        Utils.commonFadeIn(this.valueBoard.node, false, null, this.valueBoard, 0.2);
         
         while(true) {
             if ( type === this.BIGWIN_TYPE.BIG_WIN ) await this.play(type);

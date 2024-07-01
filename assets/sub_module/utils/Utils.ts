@@ -580,31 +580,33 @@ export class Utils {
         return await Utils.delayEvent(eventTarget);
     }
 
-    public static async commonFadeIn( ui:Node, fadeout:boolean=false, color: Color[]=null, colorComponent=null, duration:number=0.3 ) {
+    public static async commonFadeIn( ui:Node, fadeout:boolean=false, color: Color[]=null, colorComponent=null, duration:number=0.3, eventTarget:EventTarget=null) {
         if ( ui == null ) return;
+        if ( eventTarget && eventTarget['running'] === true) return;
         if (this.activeUIEventTarget?.['running'] === true) return;
         let sprite = colorComponent;
         if ( sprite == null ) sprite = ui.getComponent(Sprite);
 
         if ( sprite == null ) return;
         const refColor = color ?? this.activeUIAlpha;
-        console.log(refColor);
         let fromColor = fadeout ? refColor[1] : refColor[0];
         let toColor   = fadeout ? refColor[0] : refColor[1];
 
-        this.activeUIEventTarget = this.activeUIEventTarget ?? new EventTarget();
-        this.activeUIEventTarget.removeAll('done');
-        this.activeUIEventTarget['running'] = true;
+        if ( eventTarget == null ) eventTarget = new EventTarget();
+        eventTarget.removeAll('done');
+        eventTarget['running'] = true;
+        
         sprite.color = fromColor;
         let alpha = { value: fromColor.a };
         tween(alpha).to(duration, { value: toColor.a }, { easing: 'smooth',
             onUpdate:   () => { sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
-            onComplete: () => { this.activeUIEventTarget.emit('done'); }
+            onComplete: () => { eventTarget.emit('done'); }
          }).start();
         //tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
-        await this.delayEvent( this.activeUIEventTarget );
-        this.activeUIEventTarget['running'] = false;
+        await this.delayEvent( eventTarget );
+        eventTarget['running'] = false;
         ui.active = !fadeout;
+        eventTarget = null;
     }
 }
 
