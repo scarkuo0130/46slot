@@ -1,219 +1,275 @@
-import { _decorator, Component, tween, sp, Color, Label, EventHandler, Vec3, AudioSource, AudioClip } from 'cc';
-import { gameInformation } from '../GameInformation';
-import { Utils } from '../../utils/Utils';
-import { SimpleAudioClipData, SoundManager } from './SoundManager';
-import { SpineRepeatTool } from '../../utils/SpineRepeatTool';
+import { _decorator, Component, Label, sp, Sprite, EventTarget, tween, Vec3, Color, System, Tween} from 'cc';
+import { Utils, DATA_TYPE } from '../../utils/Utils';
 import { Machine } from './Machine';
-const { ccclass, property } = _decorator;
+import { gameInformation } from '../GameInformation';
+import { t } from 'xstate';
 
-export enum BIGWIN_TYPE {
-    NONE = 0,
-    BIG_WIN = 1,
-    SUPER_WIN = 2,
-    MEGA_WIN = 3,
-}
+const { ccclass, property } = _decorator;
 
 @ccclass('BigWin')
 export class BigWin extends Component {
-    @property({ type: sp.Skeleton, displayName:'BigWinSpine', group:{name:'setting', id:'0'}})
-    public bigWibSpine : sp.Skeleton;
 
-    @property({ type:Label, displayName:'NumberLabel', group:{name:'setting', id:'0'}})
-    public numberLabel : Label;
+    public readonly BIGWIN_TYPE = {
+        NONE        : 0,
+        BIG_WIN     : 1,
+        SUPER_WIN   : 2,
+        MEGA_WIN    : 3,
+        length      : 4,
+    };
 
-    @property({ type:sp.Skeleton, displayName:'CrazyCashDropSpin', group:{name:'setting', id:'0'}})
-    public crazyCashDropSpin : sp.Skeleton;
+    /** 播放動畫名稱 */
+    public readonly ANIMATION_TYPE = {
+        START      : 'in',
+        LOOP       : 'loop',
+        END        : 'out',
+    };
 
-    @property({ type:sp.Skeleton, displayName:'CoinSpin', group:{name:'setting', id:'0'}})
-    public coinSpine : sp.Skeleton;
+    /** 預設播放秒數  */
+    public readonly durationMap = {
+        [this.BIGWIN_TYPE.BIG_WIN]   : 4000,
+        [this.BIGWIN_TYPE.SUPER_WIN] : 4000,
+        [this.BIGWIN_TYPE.MEGA_WIN]  : 4000,
+        'QuickEnd'                   : 1000,
+    }
 
-    @property({ type:sp.Skeleton, displayName:'JackpotSpine', group:{name:'setting', id:'0'}})
-    public jackptSpine : sp.Skeleton;
+    private InitData = {
+        [this.BIGWIN_TYPE.BIG_WIN] : {
+            'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'BigWin' },
+            'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'BigWin/Spine' },
+        },
 
-    @property({ type:sp.Skeleton, displayName:'TournamentSpin', group:{name:'setting', id:'0'}})
-    public tournamentSpin : sp.Skeleton;
+        [this.BIGWIN_TYPE.SUPER_WIN] : {
+            'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'SuperWin' },
+            'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'SuperWin/Spine' },
+        },
 
-    @property({type:AudioSource, displayName:'SoundSource', group:{name:'setting', id:'0'}})
-    public audioSource: AudioSource;
+        [this.BIGWIN_TYPE.MEGA_WIN] : {
+            'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'MegaWin' },
+            'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'MegaWin/Spine' },
+        },
 
-    @property({type:AudioClip, displayName:'EndWinBGM', group:{name:'setting', id:'0'} })
-    public endWinBGM: AudioClip;
+        'value': {
+            'label' : { [DATA_TYPE.TYPE]:Label, [DATA_TYPE.NODE_PATH]:'Score/Value' },
+            'show'  : { [DATA_TYPE.TYPE]:Label, [DATA_TYPE.NODE_PATH]:'Score/Show' },
+        },
+    };
 
-    @property({type:AudioClip, displayName:'BGM', group:{name:'BigWin', id:'1'} })
-    public bigWinBGM: AudioClip;
-
-    @property({displayName:'PlaySec', tooltip:'播放秒數', group:{name:'BigWin', id:'1'}})
-    public bigWinPlaySec = 7;
-    @property({displayName:'BreakSec', tooltip:'中斷秒數', group:{name:'BigWin', id:'1'}})
-    public bigWinBreakSec = 7;
-
-    @property({type:AudioClip, displayName:'BGM', group:{name:'SuperWin', id:'1'} })
-    public superWinBGM: AudioClip;
-    @property({displayName:'PlaySec', tooltip:'播放秒數', group:{name:'SuperWin', id:'1'}})
-    public superWinPlaySec = 13;
-    @property({displayName:'BreakSec', tooltip:'中斷秒數', group:{name:'SuperWin', id:'1'}})
-    public superWinBreakSec = 7;
-
-    @property({type:AudioClip, displayName:'BGM', group:{name:'MegaWin', id:'1'} })
-    public megaWinBGM: AudioClip;
-    @property({displayName:'PlaySec', tooltip:'播放秒數', group:{name:'MegaWin', id:'1'}})
-    public megaWinPlaySec = 12;
-    @property({displayName:'BreakSec', tooltip:'中斷秒數', group:{name:'MegaWin', id:'1'}})
-    public megaWinBreakSec = 7;
+    private properties = {
+        'playing' : this.BIGWIN_TYPE.NONE, // 正在播放的動畫
+        'event'   : null,
+        'tween'   : null,
+        'lastType': this.BIGWIN_TYPE.NONE,
+        'playValue' : [0, 0, 0, 0],
+        'score'   : 0,
+    };
 
     public static Instance : BigWin;
-    
-    public machine:Machine;
-    public setMachine(machine:Machine) { this.machine = machine; }
 
-    public spineTool : SpineRepeatTool;
-
-    /// 播放動態資料
-    public BigWinSpineType;
-
-    /// 音樂與播放秒數資料
-    public playData;
-
-    /// 正在滾動Label的 tween
-    public tweenLabel;
-
-    public onLoad() {
-        this.BigWinSpineType = {
-            'main': {},
-            'coin': {},
-        };
-        this.BigWinSpineType['main'][BIGWIN_TYPE.BIG_WIN]   = 'play01';
-        this.BigWinSpineType['main'][BIGWIN_TYPE.SUPER_WIN] = 'play02';
-        this.BigWinSpineType['main'][BIGWIN_TYPE.MEGA_WIN]  = 'play03';
-        this.BigWinSpineType['coin'][BIGWIN_TYPE.BIG_WIN]   = 'play01';
-        this.BigWinSpineType['coin'][BIGWIN_TYPE.SUPER_WIN] = 'play02';
-        this.BigWinSpineType['coin'][BIGWIN_TYPE.MEGA_WIN]  = 'play02';
-        
-        this.playData = {};
-        this.playData[BIGWIN_TYPE.BIG_WIN]   = { clip: this.bigWinBGM,   sec:this.bigWinPlaySec,   break:this.bigWinBreakSec };
-        this.playData[BIGWIN_TYPE.SUPER_WIN] = { clip: this.superWinBGM, sec:this.superWinPlaySec, break:this.superWinBreakSec };
-        this.playData[BIGWIN_TYPE.MEGA_WIN]  = { clip: this.megaWinBGM,  sec:this.megaWinPlaySec,      break:this.megaWinBreakSec };
-
+    protected onLoad(): void {
         BigWin.Instance = this;
-        this.spineTool = this.node.getComponent(SpineRepeatTool);
-        this.close();
+        this.node.setPosition(0, 0, 0);
+        Utils.initData(this.InitData, this);
+
+        this.spine(this.BIGWIN_TYPE.BIG_WIN).node.active = false;
+        this.spine(this.BIGWIN_TYPE.SUPER_WIN).node.active = false;
+        this.spine(this.BIGWIN_TYPE.MEGA_WIN).node.active = false;
+        this.label.string = '';
+        this.properties['value']['show'][DATA_TYPE.COMPONENT].string = '';
+        this.properties['event'] = new EventTarget();
+        this.node.on('click', ()=>{ this.quickEnd(); });
+        Utils.AddHandHoverEvent(this.node);
     }
 
-    public close() {
-        this.node.active = false;
-        this.numberLabel.string          = '';
-        this.bigWibSpine.animation       = 'idle';
-        //this.crazyCashDropSpin.animation = 'idle';
-        //this.jackptSpine.animation       = 'idle';
-        //this.tournamentSpin.animation    = 'idle';
-        this.coinSpine.animation         = 'idle';
-
-        this.bigWibSpine.paused          = true;
-        //this.crazyCashDropSpin.paused    = true;
-        //this.jackptSpine.paused          = true;
-        //this.tournamentSpin.paused       = true;
-        this.coinSpine.paused            = true;
-        this.node.scale = Vec3.ONE;
+    /** 取得spine */
+    public spine(type:number) : sp.Skeleton {
+        if ( !this.InitData[type] ) return null;
+        return this.InitData[type]['spine'][DATA_TYPE.COMPONENT];
     }
 
-    public isBigWin(totalWin:number=0) : BIGWIN_TYPE {
+    public get machine() { return Machine.Instance; }
 
-        if (totalWin === 0) return BIGWIN_TYPE.NONE;
+    public get event() :EventTarget { return this.properties['event']; }
+
+    public get playing () : number { return this.properties['playing']; }
+    public set playing (value:number) { this.properties['playing'] = value; }
+
+    /** 取得Label */
+    public get label() : Label { return this.InitData['value']['label'][DATA_TYPE.COMPONENT]; }
+
+    public get score() { return this.properties['score']; }
+    public set score(value:number) { 
+        this.properties['score'] = value;
+        this.label.string = Utils.numberComma(value); 
+    }
+    public get playingSprite() { return this.InitData[this.playing]['node'][DATA_TYPE.COMPONENT]; }
+
+    public get lastType() { return this.properties['lastType']; }
+    public set lastType(value:number) { this.properties['lastType'] = value; }
+
+    public get playValue() { return this.properties['playValue']; }
+    public set playValue(value:number[]) { this.properties['playValue'] = value; }
+
+    public async play(type:number, quick:boolean=false) {
+        if ( type === this.playing ) return;
+
+        // 如果正在播放中，則中斷播放
+        if ( this.playing !== this.BIGWIN_TYPE.NONE ) await this.break();
+        
+        this.playing = type;
+        this.playingSprite.node.active = true;
+        
+        let spine = this.spine(type);
+        spine.node.active = true;
+
+        if ( quick ) {
+            spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true);
+            spine.setCompleteListener((track)=>{});
+           
+        } else {
+            spine.setAnimation(0, this.ANIMATION_TYPE.START, false);
+            spine.setCompleteListener((track)=>{ spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true); });
+        }
+
+        await Utils.commonFadeIn(this.playingSprite.node, false, null, this.playingSprite, 0.2);
+        
+
+    }
+
+    /** 中斷播放 */
+    public async break() : Promise<boolean> {
+        const playing = this.playing;
+        if ( playing === this.BIGWIN_TYPE.NONE ) return false;
+
+        await Utils.commonFadeIn(this.playingSprite.node, true, null, this.playingSprite);
+        this.playingSprite.node.active = false;
+        this.playing = this.BIGWIN_TYPE.NONE;
+        return true;
+    }
+
+    public async showValue() {
+        let showLabel = this.properties['value']['show'][DATA_TYPE.COMPONENT];
+        showLabel.string = this.label.string;
+        showLabel.node.scale = Vec3.ONE;
+        showLabel.node.active = true;
+        showLabel.color = Color.WHITE;
+        await Utils.delay(100);
+
+        tween(showLabel.node).to(1, { scale: new Vec3(3, 3, 1) }).start();
+        await Utils.commonFadeIn(showLabel.node, true, [new Color(255,255,255,0), new Color(255,255,255,128)], showLabel, 1);
+        await Utils.delay(1000);
+
+        showLabel.string = '';
+    }
+
+    /** 結束播放 */
+    public async end() {
+        const playing = this.playing;
+        if ( playing === this.BIGWIN_TYPE.NONE ) return;
+
+        await this.showValue();
+
+        let spine = this.spine(playing);
+        spine.node.active = true;
+        this.label.string = '';
+        spine.setAnimation(0, this.ANIMATION_TYPE.END, false);
+        spine.setCompleteListener((track)=>{ this.break(); });
+    }
+
+    /** 快速結束 */
+    public async quickEnd() {
+        if ( this.event['quickStop'] === true ) return;
+        this.event['quickStop'] = true;
+
+        let playValue = this.playValue;
+        let playing = this.playing;
+        let tweenScore = this.properties['tween'];
+
+        if ( tweenScore && tweenScore['done'] === true ) {
+            tweenScore.stop();
+            tweenScore.destroySelf();
+            this.event.emit('done_'+playing, playing); 
+        }
+        await this.play(this.lastType, true);
+        this.event['preQuickStop'] = true;
+        await this.tweenScore(this.durationMap['QuickEnd'], this.score, playValue[this.lastType]);
+        await this.end();
+    }
+
+    public isBigWin(totalWin:number=0) : number {
+
+        if (totalWin === 0) return this.BIGWIN_TYPE.NONE;
         let totalBet = this.machine.totalBet;
 
-        if ( totalBet === 0 ) return BIGWIN_TYPE.NONE;
+        if ( totalBet === 0 ) return this.BIGWIN_TYPE.NONE;
         let winLevelRate = gameInformation._winLevelRate;
 
         let several = totalWin / totalBet;
-        if ( several < winLevelRate['BIG_WIN'] )  return BIGWIN_TYPE.NONE;
-        if ( several > winLevelRate['MEGA_WIN'])  return BIGWIN_TYPE.MEGA_WIN;
-        if ( several > winLevelRate['SUPER_WIN']) return BIGWIN_TYPE.SUPER_WIN;
+        if ( several < winLevelRate['BIG_WIN'] )  return this.BIGWIN_TYPE.NONE;
+        if ( several > winLevelRate['MEGA_WIN'])  return this.BIGWIN_TYPE.MEGA_WIN;
+        if ( several > winLevelRate['SUPER_WIN']) return this.BIGWIN_TYPE.SUPER_WIN;
 
-        return BIGWIN_TYPE.BIG_WIN;
+        return this.BIGWIN_TYPE.BIG_WIN;
     }
 
-    public showBigWin(type: BIGWIN_TYPE, fromValue:number, finishValue:number) {
-        let data = { value: fromValue };
-        let bigWinAni = this.BigWinSpineType['main'][type];
-        let coinAni = this.BigWinSpineType['coin'][type];
-        let clip = this.playData[type].clip;
-        // 0.5 是 BigWin 淡入動態，這時不適合出現數字 Label
-        let playSec = this.playData[type].sec - 0.3;
+    public async playBigWin(totalWin:number) {
+        let lastType = this.isBigWin(totalWin);
+        if ( lastType === this.BIGWIN_TYPE.NONE ) return;
 
-        // 設定播放時間
-        let wait = (playSec + 1.3 ) * 1000;
+        let totalBet        = this.machine.totalBet;
+        let winLevelRate    = gameInformation._winLevelRate;
+        let playValue       = [ 0, totalBet * winLevelRate["BIG_WIN"], totalBet * winLevelRate["SUPER_WIN"], totalBet * winLevelRate["MEGA_WIN"]];
+        let event           = this.event;
+        let type            = this.BIGWIN_TYPE.BIG_WIN;
+        
+        playValue[lastType] = totalWin;
+        this.playValue      = playValue;
+        this.lastType       = lastType;
+        event['quickStop']  = false;
+        event['preQuickStop'] = false;
+        event.removeAll('done');
+        
+        while(true) {
+            if ( type === this.BIGWIN_TYPE.BIG_WIN ) await this.play(type);
+            else this.play(type);
 
-        this.audioSource.stop();
-        this.audioSource.clip = clip;
-        this.audioSource.play();
+            await this.tweenScore(this.durationMap[type], playValue[type-1], playValue[type]);
+            console.log(event['quickStop']);
+            if ( event['quickStop'] ) return; // 快速結束 由 quickEnd 觸發執行到結束
+            if ( type === lastType )  break;  // 最後一次
+            type++;
+        }
 
-        //let track: sp.spine.TrackEntry = this.bigWibSpine.setAnimation(0, bigWinAni, false);
-        let track : sp.spine.TrackEntry = this.spineTool.play(bigWinAni);
-        this.coinSpine.setAnimation(0, coinAni, true);
-        this.bigWibSpine.paused    = false;
-        this.coinSpine.paused      = false;
+        await this.end(); // 結束
+    }
 
-        this.tweenLabel = tween(data).delay(0.3).to(playSec,{ value:finishValue }, {
-            onStart:(target:object) => {
-                data.value = fromValue;
-                BigWin.Instance.numberLabel.string = Utils.numberComma(fromValue);
-                console.log(data, finishValue);
+    public async tweenScore(duration:number, from:number, to:number) {
+        console.log('tweenScore', duration, from, to);
+        let data        = { value:from };
+        let playSec     = duration / 1000;
+        let finishValue  = to;
+        let event       = this.event;
+        let playing     = this.playing;
+        this.score      = from;
+
+        this.properties['tween'] = tween(data).to(playSec,{ value:finishValue }, {
+            onUpdate    :(target)=> { 
+                if ( event['quickStop'] && event['preQuickStop'] === false ) this.properties['tween'].stop();
+                this.score = data.value; 
             },
-            onUpdate:(target:object)=> {
-                let value = Math.floor(data.value);
-                BigWin.Instance.numberLabel.string = Utils.numberComma(value);
-            },
-            onComplete(target) {
-                BigWin.showBigWinDone();
-                // BigWin.Instance.bigWibSpine.setAnimation(0, 'idle', false);
+            onComplete  :(target)=> { 
+                event.emit('done_'+playing, playing); 
+                this.properties['tween']['done'] = true;
             },
         }).start();
 
-        return wait ;
+        await Utils.delayEvent(event, 'done_'+playing);
+        this.properties['tween']['done'] = true;
+        this.properties['tween'].destroySelf();
     }
 
-    public static showBigWinDone() {
-        this.Instance.spineTool.repeatEnd();
-        // console.log('先這樣');
+    start() {
+        console.log('BigWin', this);
     }
 
-    public async activeBigWin(totalWin:number=0, onCompleteCallBack:EventHandler) {
-        this.node.active = true;
-
-        let type = this.isBigWin(totalWin);
-        if ( type === BIGWIN_TYPE.NONE ) return onCompleteCallBack.emit([onCompleteCallBack.customEventData]);
-        
-        let totalBet = this.machine.totalBet;
-        let winLevelRate = gameInformation._winLevelRate;
-        let bigWinValue = totalBet * winLevelRate["BIG_WIN"];
-        let superWinValue = totalBet * winLevelRate["SUPER_WIN"];
-        let megaWinValue = totalBet * winLevelRate["MEGA_WIN"];
-        let completeValue = (totalWin >= superWinValue) ? bigWinValue : totalWin;
-        
-        // 停止目前的音樂
-        SoundManager.pauseMusic(1);
-        await Utils.delay(1000);
-        await Utils.delay(this.showBigWin(BIGWIN_TYPE.BIG_WIN, 0, completeValue));
-
-        if ( totalWin >= superWinValue ) {
-            completeValue = (totalWin >= megaWinValue) ? superWinValue : totalWin;
-            await Utils.delay(this.showBigWin(BIGWIN_TYPE.SUPER_WIN, bigWinValue, completeValue));
-        }
-
-        if ( totalWin >= megaWinValue ) {
-            await Utils.delay(this.showBigWin(BIGWIN_TYPE.MEGA_WIN, superWinValue, totalWin));
-        }
-
-        SoundManager.resumeMusic();
-        BigWin.Instance.coinSpine.setAnimation(0, 'idle', true);
-        tween(this.node).delay(2).to(0.3,{scale: Vec3.ZERO}, {
-            easing:"backIn",
-            onComplete:(target:Node)=>{
-                BigWin.Instance.close();
-                return onCompleteCallBack.emit([onCompleteCallBack.customEventData]);
-            }
-        }).start();
-
-        return;
-    }
 }
+

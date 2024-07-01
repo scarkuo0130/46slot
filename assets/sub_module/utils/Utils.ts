@@ -580,7 +580,7 @@ export class Utils {
         return await Utils.delayEvent(eventTarget);
     }
 
-    public static async commonFadeIn( ui:Node, fadeout:boolean=false, color: Color[]=null, colorComponent=null ) {
+    public static async commonFadeIn( ui:Node, fadeout:boolean=false, color: Color[]=null, colorComponent=null, duration:number=0.3 ) {
         if ( ui == null ) return;
         if (this.activeUIEventTarget?.['running'] === true) return;
         let sprite = colorComponent;
@@ -597,7 +597,7 @@ export class Utils {
         this.activeUIEventTarget['running'] = true;
         sprite.color = fromColor;
         let alpha = { value: fromColor.a };
-        tween(alpha).to(0.3, { value: toColor.a }, { easing: 'smooth',
+        tween(alpha).to(duration, { value: toColor.a }, { easing: 'smooth',
             onUpdate:   () => { sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
             onComplete: () => { this.activeUIEventTarget.emit('done'); }
          }).start();

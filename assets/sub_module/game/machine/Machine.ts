@@ -10,6 +10,7 @@ import { slotData } from '../SlotData';
 import { Utils, _utilsDecorator } from '../../utils/Utils';
 import { Paytable } from './pay/PayTable';
 import { Viewport } from '../../utils/Viewport';
+import { BigWin } from './BigWin';
 const { ccclass, property } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -42,6 +43,8 @@ export class Machine extends Component {
 
     public get reel() : Reel { return this.properties.reel; }
     public set reel(value) { this.properties.reel = value; }
+
+    public get bigwin() :BigWin { return BigWin.Instance; }
     public static SetReel(reel) { Machine.Instance.reel = reel; }
 
     protected properties = {
