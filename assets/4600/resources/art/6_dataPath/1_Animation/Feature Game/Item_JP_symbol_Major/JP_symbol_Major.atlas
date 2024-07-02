@@ -6,406 +6,427 @@ filter: Linear,Linear
 repeat: none
 Comp 1_00000
   rotate: false
-  xy: 2031, 1232
+  xy: 2032, 1246
   size: 3, 3
   orig: 125, 125
   offset: 15, 97
   index: -1
 Comp 1_00001
   rotate: false
-  xy: 2028, 1123
+  xy: 2028, 1138
   size: 16, 14
   orig: 125, 125
   offset: 14, 94
   index: -1
 Comp 1_00002
-  rotate: true
-  xy: 2001, 623
+  rotate: false
+  xy: 2001, 639
   size: 44, 43
   orig: 125, 125
   offset: 6, 76
   index: -1
 Comp 1_00003
   rotate: false
-  xy: 1991, 359
+  xy: 1991, 315
   size: 50, 44
   orig: 125, 125
   offset: 5, 75
   index: -1
 Comp 1_00004
-  rotate: true
-  xy: 1562, 308
+  rotate: false
+  xy: 1991, 361
   size: 54, 57
   orig: 125, 125
   offset: 5, 62
   index: -1
 Comp 1_00005
   rotate: false
-  xy: 1901, 85
+  xy: 656, 56
   size: 60, 58
   orig: 125, 125
   offset: 5, 61
   index: -1
 Comp 1_00006
   rotate: false
-  xy: 1970, 96
+  xy: 519, 42
   size: 65, 72
   orig: 125, 125
   offset: 5, 47
   index: -1
 Comp 1_00007
   rotate: false
-  xy: 1970, 170
+  xy: 447, 40
   size: 70, 74
   orig: 125, 125
   offset: 6, 45
   index: -1
 Comp 1_00008
-  rotate: true
-  xy: 1226, 136
+  rotate: false
+  xy: 1709, 60
   size: 73, 79
   orig: 125, 125
   offset: 6, 38
   index: -1
 Comp 1_00009
   rotate: false
-  xy: 1913, 321
+  xy: 1913, 336
   size: 76, 82
   orig: 125, 125
   offset: 6, 33
   index: -1
 Comp 1_00010
   rotate: false
-  xy: 748, 478
+  xy: 748, 492
   size: 85, 81
   orig: 125, 125
   offset: 6, 32
   index: -1
 Comp 1_00011
   rotate: false
-  xy: 748, 561
+  xy: 748, 575
   size: 88, 85
   orig: 125, 125
   offset: 6, 27
   index: -1
 Comp 1_00012
   rotate: false
-  xy: 748, 648
+  xy: 748, 662
   size: 93, 88
   orig: 125, 125
   offset: 10, 22
   index: -1
 Comp 1_00013
   rotate: false
-  xy: 1913, 758
+  xy: 1913, 773
   size: 96, 89
   orig: 125, 125
   offset: 11, 18
   index: -1
 Comp 1_00014
   rotate: false
-  xy: 1913, 669
+  xy: 1913, 684
   size: 97, 87
   orig: 125, 125
   offset: 13, 17
   index: -1
 Comp 1_00015
   rotate: false
-  xy: 748, 738
+  xy: 748, 752
   size: 92, 92
   orig: 125, 125
   offset: 20, 12
   index: -1
 Comp 1_00016
   rotate: false
-  xy: 1934, 849
+  xy: 1934, 864
   size: 92, 94
   orig: 125, 125
   offset: 20, 10
   index: -1
 Comp 1_00017
-  rotate: true
-  xy: 1934, 1139
+  rotate: false
+  xy: 1934, 1154
   size: 96, 95
   orig: 125, 125
   offset: 21, 8
   index: -1
 Comp 1_00018
   rotate: false
-  xy: 1934, 945
+  xy: 1934, 960
   size: 93, 93
   orig: 125, 125
   offset: 25, 7
   index: -1
 Comp 1_00019
   rotate: false
-  xy: 1913, 576
+  xy: 1913, 591
   size: 86, 91
   orig: 125, 125
   offset: 32, 5
   index: -1
 Comp 1_00020
   rotate: false
-  xy: 1913, 488
+  xy: 1913, 503
   size: 85, 86
   orig: 125, 125
   offset: 33, 5
   index: -1
 Comp 1_00021
   rotate: false
-  xy: 1913, 405
+  xy: 1913, 420
   size: 83, 81
   orig: 125, 125
   offset: 38, 5
   index: -1
 Comp 1_00022
   rotate: false
-  xy: 1562, 364
+  xy: 1562, 378
   size: 79, 79
   orig: 125, 125
   offset: 42, 4
   index: -1
 Comp 1_00023
   rotate: false
-  xy: 1970, 246
+  xy: 374, 41
   size: 71, 73
   orig: 125, 125
   offset: 50, 4
   index: -1
 Comp 1_00024
   rotate: false
-  xy: 1831, 83
+  xy: 586, 54
   size: 68, 60
   orig: 125, 125
   offset: 53, 5
   index: -1
 Comp 1_00025
   rotate: false
-  xy: 1226, 76
+  xy: 1784, 50
   size: 60, 58
   orig: 125, 125
   offset: 61, 5
   index: -1
 Comp 1_00026
   rotate: false
-  xy: 1998, 440
+  xy: 1998, 455
   size: 46, 46
   orig: 125, 125
   offset: 67, 6
   index: -1
 Comp 1_00027
   rotate: false
-  xy: 1248, 805
+  xy: 1248, 819
   size: 35, 33
   orig: 125, 125
   offset: 76, 8
   index: -1
 Comp 1_00028
-  rotate: true
-  xy: 2028, 1107
+  rotate: false
+  xy: 2028, 1121
   size: 14, 15
   orig: 125, 125
   offset: 91, 15
   index: -1
+JP_symbol_Major_Body
+  rotate: 180
+  xy: 1830, 66
+  size: 216, 232
+  orig: 250, 250
+  offset: 11, 9
+  index: -1
+JP_symbol_Major_Fin
+  rotate: true
+  xy: 1168, 13
+  size: 154, 157
+  orig: 250, 250
+  offset: 92, 56
+  index: -1
+JP_symbol_Major_Foot
+  rotate: false
+  xy: 1611, 327
+  size: 76, 73
+  orig: 250, 250
+  offset: 8, 95
+  index: -1
 Phoenix_01
   rotate: false
-  xy: 1096, 211
+  xy: 1096, 225
   size: 231, 232
   orig: 233, 232
   offset: 2, 0
   index: -1
 Phoenix_02
   rotate: false
-  xy: 1329, 215
+  xy: 1329, 229
   size: 231, 228
   orig: 231, 228
   offset: 0, 0
   index: -1
 Phoenix_03
   rotate: false
-  xy: 737, 2
+  xy: 737, 16
   size: 217, 217
   orig: 217, 217
   offset: 0, 0
   index: -1
 Thunder_Loop2_00010
   rotate: false
-  xy: 2, 454
+  xy: 2, 468
   size: 371, 376
   orig: 960, 540
   offset: 297, 65
   index: -1
 Thunder_Loop2_00011
   rotate: false
-  xy: 375, 454
+  xy: 375, 468
   size: 371, 376
   orig: 960, 540
   offset: 297, 65
   index: -1
 Thunder_Loop2_00031
   rotate: false
-  xy: 375, 454
+  xy: 375, 468
   size: 371, 376
   orig: 960, 540
   offset: 297, 65
   index: -1
 Thunder_Loop2_00012
   rotate: true
-  xy: 956, 45
+  xy: 956, 59
   size: 164, 268
   orig: 960, 540
   offset: 467, 165
   index: -1
 Thunder_Loop2_00032
   rotate: true
-  xy: 956, 45
+  xy: 956, 59
   size: 164, 268
   orig: 960, 540
   offset: 467, 165
   index: -1
 Thunder_Loop2_00013
   rotate: false
-  xy: 862, 446
+  xy: 862, 460
   size: 384, 392
   orig: 960, 540
   offset: 283, 67
   index: -1
 Thunder_Loop2_00033
   rotate: false
-  xy: 862, 446
+  xy: 862, 460
   size: 384, 392
   orig: 960, 540
   offset: 283, 67
   index: -1
 Thunder_Loop2_00014
   rotate: false
-  xy: 862, 840
+  xy: 862, 854
   size: 423, 395
   orig: 960, 540
   offset: 273, 70
   index: -1
 Thunder_Loop2_00034
   rotate: false
-  xy: 862, 840
+  xy: 862, 854
   size: 423, 395
   orig: 960, 540
   offset: 273, 70
   index: -1
 Thunder_Loop2_00035
   rotate: false
-  xy: 862, 840
+  xy: 862, 854
   size: 423, 395
   orig: 960, 540
   offset: 273, 70
   index: -1
 Thunder_Loop2_00015
   rotate: false
-  xy: 1689, 307
+  xy: 1689, 321
   size: 222, 299
   orig: 960, 540
   offset: 371, 125
   index: -1
 Thunder_Loop2_00016
   rotate: false
-  xy: 1700, 928
+  xy: 1700, 942
   size: 232, 307
   orig: 960, 540
   offset: 366, 121
   index: -1
 Thunder_Loop2_00017
   rotate: false
-  xy: 2, 832
+  xy: 2, 846
   size: 433, 403
   orig: 960, 540
   offset: 267, 61
   index: -1
 Thunder_Loop2_00018
   rotate: true
-  xy: 737, 221
+  xy: 737, 235
   size: 223, 357
   orig: 960, 540
   offset: 350, 59
   index: -1
 Thunder_Loop2_00019
   rotate: false
-  xy: 437, 832
+  xy: 437, 846
   size: 423, 403
   orig: 960, 540
   offset: 271, 59
   index: -1
 Thunder_Loop2_00020
   rotate: false
-  xy: 1700, 608
+  xy: 1700, 622
   size: 211, 318
   orig: 960, 540
   offset: 322, 80
   index: -1
 Thunder_Loop2_00021
   rotate: false
-  xy: 1287, 445
+  xy: 1287, 459
   size: 400, 399
   orig: 960, 540
   offset: 284, 55
   index: -1
 Thunder_Loop2_00022
   rotate: true
-  xy: 1562, 127
+  xy: 1562, 141
   size: 178, 267
   orig: 960, 540
   offset: 308, 97
   index: -1
 Thunder_Loop2_00023
   rotate: true
-  xy: 1287, 846
+  xy: 1287, 860
   size: 389, 411
   orig: 960, 540
   offset: 291, 49
   index: -1
 Thunder_Loop2_00024
   rotate: true
-  xy: 1329, 65
+  xy: 1329, 79
   size: 148, 216
   orig: 960, 540
   offset: 301, 114
   index: -1
 Thunder_Loop2_00025
   rotate: true
-  xy: 1329, 65
+  xy: 1329, 79
   size: 148, 216
   orig: 960, 540
   offset: 301, 114
   index: -1
 Thunder_Loop2_00026
   rotate: false
-  xy: 2, 90
+  xy: 2, 104
   size: 370, 362
   orig: 960, 540
   offset: 304, 54
   index: -1
 Thunder_Loop2_00027
   rotate: false
-  xy: 1934, 1040
+  xy: 1934, 1055
   size: 92, 97
   orig: 960, 540
   offset: 304, 174
   index: -1
 Thunder_Loop2_00028
   rotate: true
-  xy: 374, 102
+  xy: 374, 116
   size: 350, 361
   orig: 960, 540
   offset: 318, 65
   index: -1
 Thunder_Loop2_00029
-  rotate: false
-  xy: 1831, 145
+  rotate: true
+  xy: 1547, 2
   size: 137, 160
   orig: 960, 540
   offset: 507, 242
   index: -1
 Thunder_Loop2_00030
-  rotate: false
-  xy: 1831, 145
+  rotate: true
+  xy: 1547, 2
   size: 137, 160
   orig: 960, 540
   offset: 507, 242

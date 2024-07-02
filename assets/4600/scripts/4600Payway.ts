@@ -1,4 +1,4 @@
-import { _decorator, Color, Component, Node, Sprite, sp, Vec3, tween, Button, ParticleSystem2D } from 'cc';
+import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, Button, ParticleSystem2D } from 'cc';
 import { Paytable } from '../../sub_module/game/machine/pay/PayTable';
 import { Utils, DATA_TYPE, TWEEN_EASING_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
@@ -21,6 +21,14 @@ export var WildID = 0;
 @ccclass('Payway4600')
 export class Payway4600 extends Payway {
 
+    //多福(GRAND)-10000x、多財(MAJOR)-1000x、多喜(MINOR)-100x、多壽(MINI)-10x
+    public JP_REWARD = {
+        [JP_TYPE.GRAND] : 10000,
+        [JP_TYPE.MAJOR] : 1000,
+        [JP_TYPE.MINOR] : 100,
+        [JP_TYPE.MINI]  : 10,
+    };
+
     public jp(type:number) { return this.properties['jp'][type]; }
 
     private readonly onloadData = {
@@ -37,6 +45,10 @@ export class Payway4600 extends Payway {
             'mini_ani'  : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Mini'  },
             'pot_ani'   : { [DATA_TYPE.TYPE] : sp.Skeleton,     [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Treasure Pot'  },
             'wild_soul' : { [DATA_TYPE.TYPE] : Node,            [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/Wild Soul'  },
+            'grand'     : { [DATA_TYPE.TYPE] : Label,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Grand/Value'},
+            'major'     : { [DATA_TYPE.TYPE] : Label,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Major/Value'},
+            'minor'     : { [DATA_TYPE.TYPE] : Label,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Minor/Value'},
+            'mini'      : { [DATA_TYPE.TYPE] : Label,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Mini/Value'},
         },
 
         'buyFeature' : {
@@ -58,10 +70,10 @@ export class Payway4600 extends Payway {
         this.properties['jp']['major_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
         this.properties['jp']['minor_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
         this.properties['jp']['mini_ani'][DATA_TYPE.COMPONENT].setAnimation(0, 'idle', false);
-        this.properties['jp'][JP_TYPE.GRAND] = { 'ani' : this.properties['jp']['grand_ani'] };
-        this.properties['jp'][JP_TYPE.MAJOR] = { 'ani' : this.properties['jp']['major_ani'] };
-        this.properties['jp'][JP_TYPE.MINOR] = { 'ani' : this.properties['jp']['minor_ani'] };
-        this.properties['jp'][JP_TYPE.MINI]  = { 'ani' : this.properties['jp']['mini_ani'] };
+        this.properties['jp'][JP_TYPE.GRAND] = { 'ani' : this.properties['jp']['grand_ani'], 'value': this.properties['jp']['grand'] };
+        this.properties['jp'][JP_TYPE.MAJOR] = { 'ani' : this.properties['jp']['major_ani'], 'value': this.properties['jp']['major'] };
+        this.properties['jp'][JP_TYPE.MINOR] = { 'ani' : this.properties['jp']['minor_ani'], 'value': this.properties['jp']['minor'] };
+        this.properties['jp'][JP_TYPE.MINI]  = { 'ani' : this.properties['jp']['mini_ani'],  'value': this.properties['jp']['mini'] };
         this.properties['jp'][JP_TYPE.POT]   = { 'ani' : this.properties['jp']['pot_ani'] };
 
         ObjectPool.registerNode('soul', this.properties['jp']['wild_soul'].node);
@@ -76,6 +88,10 @@ export class Payway4600 extends Payway {
         console.log(this);
         this.preload_open_door();       // 開門動畫
         return; 
+    }
+
+    public enterGame() {
+
     }
 
     // 顯示分數的背板
@@ -193,6 +209,12 @@ export class Payway4600 extends Payway {
         this.loop_play_jp_ani();
     }
 
-
+    public changeTotalBet( totalBet: number ) {
+        console.log('changeTotalBet', totalBet);
+        this.jp(JP_TYPE.GRAND).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.GRAND]);
+        this.jp(JP_TYPE.MAJOR).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MAJOR]);
+        this.jp(JP_TYPE.MINOR).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MINOR]);
+        this.jp(JP_TYPE.MINI).value.component.string  = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MINI]);
+    }
 }
 

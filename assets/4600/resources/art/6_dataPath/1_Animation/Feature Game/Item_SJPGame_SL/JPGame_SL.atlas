@@ -1,0 +1,90 @@
+
+JPGame_SL.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BM
+  rotate: true
+  xy: 2, 2
+  size: 720, 1280
+  orig: 722, 1282
+  offset: 1, 1
+  index: -1
+BM02A
+  rotate: true
+  xy: 2, 1281
+  size: 207, 1280
+  orig: 209, 1282
+  offset: 1, 1
+  index: -1
+BM02B
+  rotate: true
+  xy: 2, 1026
+  size: 253, 1280
+  orig: 255, 1282
+  offset: 1, 1
+  index: -1
+BM03
+  rotate: false
+  xy: 306, 1494
+  size: 720, 150
+  orig: 722, 152
+  offset: 1, 1
+  index: -1
+BM04A
+  rotate: true
+  xy: 1028, 1490
+  size: 154, 264
+  orig: 156, 266
+  offset: 1, 1
+  index: -1
+BM04B
+  rotate: true
+  xy: 2, 724
+  size: 300, 785
+  orig: 302, 787
+  offset: 1, 1
+  index: -1
+DOA1
+  rotate: true
+  xy: 1294, 1442
+  size: 202, 211
+  orig: 204, 213
+  offset: 1, 1
+  index: -1
+DOA2
+  rotate: true
+  xy: 112, 1574
+  size: 70, 80
+  orig: 103, 82
+  offset: 23, 1
+  index: -1
+DOA3
+  rotate: true
+  xy: 2, 1598
+  size: 46, 108
+  orig: 48, 110
+  offset: 1, 1
+  index: -1
+Lig
+  rotate: false
+  xy: 194, 1539
+  size: 110, 105
+  orig: 128, 114
+  offset: 9, 9
+  index: -1
+SF
+  rotate: true
+  xy: 1284, 914
+  size: 507, 509
+  orig: 548, 552
+  offset: 21, 21
+  index: -1
+UN01
+  rotate: false
+  xy: 1507, 1423
+  size: 381, 221
+  orig: 395, 233
+  offset: 6, 6
+  index: -1

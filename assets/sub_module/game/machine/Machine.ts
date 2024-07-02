@@ -111,6 +111,8 @@ export class Machine extends Component {
         this.controller.setTotalWin(0);
         this.controller.betIdx = gameInformation._coinValueDefaultIndex;
         this.controller.refreshTotalBet();
+        this.paytable.changeTotalBet(this.totalBet);
+        this.paytable.enterGame();
     }
 
 
@@ -169,4 +171,7 @@ export class Machine extends Component {
         event.emit('done');
     }
 
+    public eventChangeTotalBet() {
+        this.paytable?.changeTotalBet(this.totalBet);
+    }
 }

@@ -1,4 +1,4 @@
-import { _decorator, Component, Label, sp, Sprite, EventTarget, tween, Vec3, Color, System, Tween} from 'cc';
+import { _decorator, Component, Label, sp, Sprite, EventTarget, tween, Vec3, Color, System, Tween, ParticleSystem, Node} from 'cc';
 import { Utils, DATA_TYPE } from '../../utils/Utils';
 import { Machine } from './Machine';
 import { gameInformation } from '../GameInformation';
@@ -36,16 +36,19 @@ export class BigWin extends Component {
         [this.BIGWIN_TYPE.BIG_WIN] : {
             'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'BigWin' },
             'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'BigWin/Spine' },
+            'particle' : { [DATA_TYPE.TYPE]:Node, [DATA_TYPE.NODE_PATH]:'BigWin/Particle' },
         },
 
         [this.BIGWIN_TYPE.SUPER_WIN] : {
             'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'SuperWin' },
             'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'SuperWin/Spine' },
+            'particle' : { [DATA_TYPE.TYPE]:Node, [DATA_TYPE.NODE_PATH]:'SuperWin/Particle' },
         },
 
         [this.BIGWIN_TYPE.MEGA_WIN] : {
             'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'MegaWin' },
             'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'MegaWin/Spine' },
+            'particle' : { [DATA_TYPE.TYPE]:Node, [DATA_TYPE.NODE_PATH]:'MegaWin/Particle' },
         },
 
         'value': {
@@ -66,6 +69,17 @@ export class BigWin extends Component {
 
     public static Instance : BigWin;
 
+    private activeParticle(active:boolean) {
+        const playing = this.playing;
+        const particles = this.properties[playing].particles;
+        console.log('activeParticle', active, this.playing, particles);
+        if ( !particles ) return;
+
+        if ( active === true ) particles.forEach((particle)=>{ particle.play(); });
+        else particles.forEach((particle)=>{ particle.stop(); });
+    }
+
+
     protected onLoad(): void {
         BigWin.Instance = this;
         this.node.setPosition(0, 0, 0);
@@ -78,6 +92,11 @@ export class BigWin extends Component {
         this.label.string = '';
         this.properties['value']['show'][DATA_TYPE.COMPONENT].string = '';
         this.properties['event'] = new EventTarget();
+
+        this.properties[this.BIGWIN_TYPE.BIG_WIN].particles = this.properties[this.BIGWIN_TYPE.BIG_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
+        this.properties[this.BIGWIN_TYPE.SUPER_WIN].particles = this.properties[this.BIGWIN_TYPE.SUPER_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
+        this.properties[this.BIGWIN_TYPE.MEGA_WIN].particles = this.properties[this.BIGWIN_TYPE.MEGA_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
+
         this.node.on('click', ()=>{ this.quickEnd(); });
         Utils.AddHandHoverEvent(this.node);
     }
@@ -124,7 +143,8 @@ export class BigWin extends Component {
         
         this.playing = type;
         this.playingSprite.node.active = true;
-        
+        this.activeParticle(true);
+
         let spine = this.spine(type);
         spine.node.active = true;
 
@@ -146,7 +166,8 @@ export class BigWin extends Component {
     public async break() : Promise<boolean> {
         const playing = this.playing;
         if ( playing === this.BIGWIN_TYPE.NONE ) return false;
-
+        
+        this.activeParticle(false);
         await Utils.commonFadeIn(this.playingSprite.node, true, null, this.playingSprite);
         if (this.playingSprite != null) this.playingSprite.node.active = false;
         this.playing = this.BIGWIN_TYPE.NONE;

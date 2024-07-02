@@ -349,6 +349,13 @@ export class Utils {
         return Number( value.toFixed( decimalPoint ) ).toLocaleString( "en", { minimumFractionDigits: decimalPoint } );
     }
 
+    public static numberCommaM( value:number ) {
+        if ( value < 1000000 ) return Utils.numberComma( value );
+        let decimalPoint = gameInformation.currencyDecimalPoint;
+        let result = Number( ( value / 1000000 ).toFixed( decimalPoint ) );
+        return result.toLocaleString( "en", { minimumFractionDigits: decimalPoint } ) + 'M';
+    }
+
     public static numberCommaFloat ( value: number,decimalPoint:number = 1 ) {
         let result = Number(value.toFixed(decimalPoint));
         if (result % 1 === 0) {//沒有小於1的值

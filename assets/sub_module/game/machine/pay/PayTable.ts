@@ -179,5 +179,11 @@ export class Paytable extends Component {
         this.singleWinLabel.node.worldPosition = wPos;
     }
 
+    /** 改變Bet事件呼叫  */
+    public changeTotalBet( totalBet: number ) {}
+
+    /** 進入遊戲事件 */
+    public enterGame() {}
+
 }
 

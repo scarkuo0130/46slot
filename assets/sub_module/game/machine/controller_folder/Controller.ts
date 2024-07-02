@@ -508,6 +508,7 @@ export class Controller extends Component {
         if ( idx < 0 ) idx = length - 1;
         this.betIdx = idx;
         this.refreshTotalBet();
+        this.machine.eventChangeTotalBet();
     }
 
     //#endregion TotalBet 相關功能
