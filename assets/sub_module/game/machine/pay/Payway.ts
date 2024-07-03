@@ -50,7 +50,6 @@ export class Payway extends Paytable {
             if ( sec > max_wait_sec ) max_wait_sec = sec;
         }
         
-        console.log('max_wait_sec', max_wait_sec);
         Utils.commonTweenNumber(totalWinLabel, 0, pay_credit_total, (max_wait_sec/2) ); // 播放總得分
         const waitSec = max_wait_sec * 1000;
         await Utils.delay(waitSec); 

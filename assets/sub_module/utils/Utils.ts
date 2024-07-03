@@ -524,7 +524,7 @@ export class Utils {
 
         let animationState: sp.spine.AnimationState = target.getState()!;
         const animation: sp.spine.Animation = animationState?.data.skeletonData.findAnimation( animationName );
-        return animation?.duration ?? 0;//空值合并，当左侧的操作数为 null 或者 undefined 时，返回其右侧操作，否则返回左侧。
+        return animation?.duration ?? 0;
     }
 
     public static readonly activeUIScale = [ new Vec3( 0.5, 0.5, 1 ), new Vec3( 1, 1, 1 )];
@@ -557,6 +557,21 @@ export class Utils {
         await this.delayEvent( this.activeUIEventTarget );
         this.activeUIEventTarget['running'] = false;
         ui.active = active;
+    }
+
+    /** 等待播放完畢 Spine 動畫  */
+    public static async playSpine(spine:sp.Skeleton, animationName:string, loop:boolean = false) {
+        if ( spine == null ) return;
+        if ( animationName == null ) return;
+        
+        let duration = this.getAnimationDuration(spine, animationName) * 1000 ;
+        let track : sp.spine.TrackEntry = spine.setAnimation(0, animationName, loop);
+        
+        spine['track'] = track;
+        spine['isPlaying'] = true;
+        spine.setCompleteListener((trackEntry) => { spine['isPlaying'] = false; });
+
+        await Utils.delay(duration);
     }
 
     /**

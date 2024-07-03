@@ -153,8 +153,9 @@ export class BigWin extends Component {
             spine.setCompleteListener((track)=>{});
            
         } else {
-            spine.setAnimation(0, this.ANIMATION_TYPE.START, false);
-            spine.setCompleteListener((track)=>{ spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true); });
+            Utils.playSpine(spine, this.ANIMATION_TYPE.START).then(()=>{ Utils.playSpine(spine, this.ANIMATION_TYPE.LOOP, true);});
+            // spine.setAnimation(0, this.ANIMATION_TYPE.START, false);
+            // spine.setCompleteListener((track)=>{ spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true); });
         }
 
         await Utils.commonFadeIn(this.playingSprite.node, false, null, this.playingSprite, 0.2);

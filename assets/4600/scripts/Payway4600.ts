@@ -1,11 +1,10 @@
 import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, Button, ParticleSystem2D } from 'cc';
-import { Paytable } from '../../sub_module/game/machine/pay/PayTable';
 import { Utils, DATA_TYPE, TWEEN_EASING_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
-import { Machine } from '../../sub_module/game/machine/Machine';
 import { Payway } from '../../sub_module/game/machine/pay/Payway';
 import { Viewport, Orientation } from '../../sub_module/utils/Viewport';
 import { ObjectPool } from '../../sub_module/game/ObjectPool';
+import { JpGame4600 } from './jp_game/JpGame4600';
 const { ccclass, property } = _decorator;
 
 export enum JP_TYPE {
@@ -22,7 +21,7 @@ export var WildID = 0;
 export class Payway4600 extends Payway {
 
     //多福(GRAND)-10000x、多財(MAJOR)-1000x、多喜(MINOR)-100x、多壽(MINI)-10x
-    public JP_REWARD = {
+    public readonly JP_REWARD = {
         [JP_TYPE.GRAND] : 10000,
         [JP_TYPE.MAJOR] : 1000,
         [JP_TYPE.MINOR] : 100,
@@ -30,6 +29,12 @@ export class Payway4600 extends Payway {
     };
 
     public jp(type:number) { return this.properties['jp'][type]; }
+
+    // 目前聚寶盆等級
+    public get JP_LEVEL() : number { return this.properties['jp_level']; }
+    public set JP_LEVEL(value:number) { this.properties['jp_level'] = value; }
+
+    public get jpGame(): JpGame4600 { return this.properties['jp']['game'].component; }
 
     private readonly onloadData = {
         'preload' : {
@@ -49,6 +54,7 @@ export class Payway4600 extends Payway {
             'major'     : { [DATA_TYPE.TYPE] : Label,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Major/Value'},
             'minor'     : { [DATA_TYPE.TYPE] : Label,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Minor/Value'},
             'mini'      : { [DATA_TYPE.TYPE] : Label,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Items/JP Mini/Value'},
+            'game'      : { [DATA_TYPE.TYPE] : JpGame4600,      [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game'  },
         },
 
         'buyFeature' : {
@@ -79,19 +85,21 @@ export class Payway4600 extends Payway {
         ObjectPool.registerNode('soul', this.properties['jp']['wild_soul'].node);
         this.properties['jp']['wild_soul'].node.active = false;
 
+        this.doorSpine.node.active = true;
+        this.doorSpine.setAnimation(0, 'idle', false);
     }
     // 給予專案 start 使用
     protected onstart() { 
         this.machine.controller.addDisableButtons(this.properties['buyFeature']['button'].component);
         Utils.AddHandHoverEvent(this.properties['buyFeature']['button'].node);
-        this.scoreBoard.node.active = false;
-        console.log(this);
-        this.preload_open_door();       // 開門動畫
-        return; 
     }
 
+    /**
+     * 進入遊戲
+     */
     public enterGame() {
-
+        this.scoreBoard.node.active = false;
+        this.preload_open_door();       // 開門動畫
     }
 
     // 顯示分數的背板
@@ -100,9 +108,10 @@ export class Payway4600 extends Payway {
     /**
      * 進入報獎流程
      * @override 可覆寫
+     * @from paytable.spin()
      */
     private async processWinningScore() {
-        await this.absorbWildSymbolIntoTreasurePot();
+        await this.absorbWildSymbolIntoTreasurePot(); // 聚寶盆吸收 Wild Symbol動畫
         // 回到原本流程 
         return super.processWinningScore();
     }
@@ -114,10 +123,8 @@ export class Payway4600 extends Payway {
         this.scoreBoard.node.active = true;
         await Utils.commonFadeIn(this.scoreBoard.node, false, null, this.scoreBoard);
         this.scoreBoard.setAnimation(0, 'play', false);
-        // await Utils.commonFadeIn(this.scoreBoard.node, false, null, this.scoreBoard);
         await super.performAllPayline();
         this.scoreBoard.node.active = false;
-        // await Utils.commonFadeIn(this.scoreBoard.node, true, null, this.scoreBoard);
     }
 
     /**
@@ -128,7 +135,6 @@ export class Payway4600 extends Payway {
         const wilds = this.reel.showWinSymbol(WildID);
         if (wilds.length === 0) return;
 
-        console.log('absorbWildSymbolIntoTreasurePot', wilds.length);
         let self = this;
         let machine = this.machine.node;
         // 打開遮罩
@@ -155,17 +161,33 @@ export class Payway4600 extends Payway {
         await Utils.delay(1000);
         this.reel.moveBackToWheel();
 
-        /// 沒有得分, 關閉遮罩
-        // if ( this.gameResult?.pay_credit_total === 0 ) this.reelMaskActive(false);
-        
+        await Utils.delay(1000);
+        if ( this.gameResult.extra?.jp_prize > 0 ) { 
+            return await this.jpGame.enter_jp_game();
+        }
+
+        return this.play_pot_ani(this.gameResult.extra.jp_level);
+    }
+
+    /**
+     * 進入JP遊戲
+     */
+    private async enter_jp_game() {
+        console.log('entrer_jp_game');
+        await this.play_pot_ani(5);
+
+        let door = this.doorSpine;
+        door.node.active = true;
+        console.log('door', door);
+
+        await Utils.playSpine(door, 'play', false); // 關門動畫
     }
 
 
     /** 開場動畫 */
     private async preload_open_door() {
-        const orientation = Viewport.Orientation;
-        const door : sp.Skeleton = orientation === Orientation.PORTRAIT ? this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT] : this.properties['preload']['lDoor'][DATA_TYPE.COMPONENT];
-
+        let door = this.doorSpine;
+        
         this.properties['preload']['mask'].node.active = true;
         door.node.active = true;
         door.setAnimation(0, 'play02', false);
@@ -182,29 +204,42 @@ export class Payway4600 extends Payway {
         this.jp(JP_TYPE.MAJOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINI).ani.component.setAnimation(0, 'play03', false);
-        this.play_pot_ani(1);
+        this.play_pot_ani(0);
         this.loop_play_jp_ani();
     }
 
-    private TYPE_POT_LEVEL = { 0: 'default', 1: 'level1', 2: 'level2', 3: 'level3', 4: 'level4'};
-    private async play_pot_ani(level:number) {
-        const skeleton : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
-        let from = level - 1;
-        if ( from < 0 ) from = 4;
-        skeleton.setSkin(this.TYPE_POT_LEVEL[from]);
-        skeleton.setAnimation(0, 'play03', false);
-        await Utils.delay(1200);
-        skeleton.setSkin(this.TYPE_POT_LEVEL[level]);
-        skeleton.setAnimation(0, 'play02', false);
+    public get doorSpine() : sp.Skeleton { return Viewport.Orientation === Orientation.PORTRAIT ? this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT] : this.properties['preload']['lDoor'][DATA_TYPE.COMPONENT]; }
+
+    private TYPE_POT_LEVEL = { 0: 'default', 1: 'level1', 2: 'level2', 3: 'level3', 4: 'level4', };
+    public async play_pot_ani(level:number) {
+        this.JP_LEVEL = level;
+        const spine : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
+        await Utils.playSpine(spine, 'play03', false);
+        console.log('play_pot_ani', level);
+        if ( level > 4 ) return;
+        spine.setSkin(this.TYPE_POT_LEVEL[level]);
+        return Utils.playSpine(spine, 'play02', false);
     }
 
     /**
      * 輪播發光動畫
      */
     private async loop_play_jp_ani() {
-        await Utils.delay(Utils.Random(3000,6000));
-        let type = Utils.Random(JP_TYPE.GRAND, JP_TYPE.POT);
-        this.jp(type).ani.component.setAnimation(0, 'play', false);
+        const wait = Utils.Random(6000,8000) - (this.JP_LEVEL * 1000);
+        await Utils.delay(wait);
+
+        let alltypes = [JP_TYPE.GRAND, JP_TYPE.MAJOR, JP_TYPE.MINOR, JP_TYPE.MINI, JP_TYPE.POT];
+
+        for(let i=this.JP_LEVEL;i>=0;i--) {
+            let type = Utils.Random(0, alltypes.length);
+            let jp = alltypes[type];
+            let spine : sp.Skeleton = this.jp(jp)?.ani?.component;
+            if ( spine == null ) continue;
+            alltypes.splice(type, 1);
+
+            if ( spine['isPlaying'] === true ) continue;
+            Utils.playSpine(spine, 'play', false);
+        }
 
         this.loop_play_jp_ani();
     }

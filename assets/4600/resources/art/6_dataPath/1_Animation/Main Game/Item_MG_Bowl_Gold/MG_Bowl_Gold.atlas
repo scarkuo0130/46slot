@@ -1,650 +1,650 @@
 
 MG_Bowl_Gold.png
-size: 2048,1024
+size: 2048,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-coin0000
+CoinSeq/coin0000
   rotate: false
-  xy: 238, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
+  xy: 20, 303
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
   index: -1
-coin0001
+CoinSeq/coin0001
   rotate: false
-  xy: 1300, 410
-  size: 115, 116
-  orig: 256, 192
-  offset: 72, 38
+  xy: 28, 408
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
   index: -1
-coin0002
+CoinSeq/coin0002
   rotate: false
-  xy: 356, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 71, 38
+  xy: 2, 198
+  size: 102, 102
+  orig: 224, 168
+  offset: 62, 33
   index: -1
-coin0003
+CoinSeq/coin0003
+  rotate: false
+  xy: 312, 200
+  size: 100, 102
+  orig: 224, 168
+  offset: 62, 33
+  index: -1
+CoinSeq/coin0004
+  rotate: false
+  xy: 703, 203
+  size: 98, 101
+  orig: 224, 168
+  offset: 62, 33
+  index: -1
+CoinSeq/coin0005
   rotate: true
-  xy: 238, 294
-  size: 114, 116
-  orig: 256, 192
-  offset: 71, 38
+  xy: 954, 3
+  size: 95, 100
+  orig: 224, 168
+  offset: 63, 33
   index: -1
-coin0004
+CoinSeq/coin0006
   rotate: true
-  xy: 1296, 296
-  size: 112, 115
-  orig: 256, 192
-  offset: 71, 38
+  xy: 502, 2
+  size: 92, 96
+  orig: 224, 168
+  offset: 64, 34
   index: -1
-coin0005
+CoinSeq/coin0007
   rotate: true
-  xy: 2, 188
-  size: 108, 114
-  orig: 256, 192
-  offset: 72, 38
+  xy: 1417, 129
+  size: 91, 86
+  orig: 224, 168
+  offset: 65, 38
   index: -1
-coin0006
+CoinSeq/coin0008
   rotate: true
-  xy: 941, 187
-  size: 105, 109
-  orig: 256, 192
-  offset: 73, 39
+  xy: 1287, 316
+  size: 95, 67
+  orig: 224, 168
+  offset: 64, 47
   index: -1
-coin0007
-  rotate: false
-  xy: 1052, 88
-  size: 104, 98
-  orig: 256, 192
-  offset: 74, 44
-  index: -1
-coin0008
-  rotate: false
-  xy: 108, 19
-  size: 109, 77
-  orig: 256, 192
-  offset: 73, 54
-  index: -1
-coin0009
+CoinSeq/coin0009
   rotate: true
-  xy: 2001, 293
-  size: 115, 42
-  orig: 256, 192
-  offset: 72, 73
+  xy: 893, 100
+  size: 101, 37
+  orig: 224, 168
+  offset: 63, 64
   index: -1
-coin0010
-  rotate: false
-  xy: 1513, 9
-  size: 117, 18
-  orig: 256, 192
-  offset: 71, 88
-  index: -1
-coin0011
-  rotate: false
-  xy: 1513, 29
-  size: 113, 61
-  orig: 256, 192
-  offset: 72, 69
-  index: -1
-coin0012
-  rotate: false
-  xy: 570, 92
-  size: 105, 94
-  orig: 256, 192
-  offset: 74, 53
-  index: -1
-coin0013
+CoinSeq/coin0010
   rotate: true
-  xy: 591, 188
-  size: 105, 110
-  orig: 256, 192
-  offset: 73, 44
+  xy: 2, 302
+  size: 103, 16
+  orig: 224, 168
+  offset: 62, 77
   index: -1
-coin0014
+CoinSeq/coin0011
   rotate: true
-  xy: 1060, 296
-  size: 112, 116
-  orig: 256, 192
-  offset: 71, 39
+  xy: 1126, 309
+  size: 99, 54
+  orig: 224, 168
+  offset: 63, 60
   index: -1
-coin0015
-  rotate: false
-  xy: 2, 409
-  size: 116, 117
-  orig: 256, 192
-  offset: 72, 38
-  index: -1
-coin0016
+CoinSeq/coin0012
   rotate: true
-  xy: 1413, 296
-  size: 112, 115
-  orig: 256, 192
-  offset: 76, 40
+  xy: 1347, 222
+  size: 92, 83
+  orig: 224, 168
+  offset: 65, 46
   index: -1
-coin0017
+CoinSeq/coin0013
   rotate: true
-  xy: 1529, 188
-  size: 106, 110
-  orig: 256, 192
-  offset: 80, 44
+  xy: 403, 2
+  size: 92, 97
+  orig: 224, 168
+  offset: 64, 38
   index: -1
-coin0018
+CoinSeq/coin0014
   rotate: false
-  xy: 1526, 92
-  size: 105, 94
-  orig: 256, 192
-  offset: 80, 53
+  xy: 439, 408
+  size: 98, 102
+  orig: 224, 168
+  offset: 62, 34
   index: -1
-coin0019
+CoinSeq/coin0015
   rotate: false
-  xy: 219, 29
-  size: 113, 61
-  orig: 256, 192
-  offset: 74, 69
+  xy: 2, 94
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
   index: -1
-coin0020
+CoinSeq/coin0016
   rotate: false
-  xy: 790, 8
-  size: 117, 18
-  orig: 256, 192
-  offset: 71, 88
+  xy: 732, 306
+  size: 98, 101
+  orig: 224, 168
+  offset: 66, 35
   index: -1
-coin0021
+CoinSeq/coin0017
+  rotate: false
+  xy: 1247, 413
+  size: 93, 97
+  orig: 224, 168
+  offset: 70, 38
+  index: -1
+CoinSeq/coin0018
   rotate: true
-  xy: 2001, 410
-  size: 116, 42
-  orig: 256, 192
-  offset: 72, 73
+  xy: 1356, 322
+  size: 92, 83
+  orig: 224, 168
+  offset: 70, 46
   index: -1
-coin0022
-  rotate: false
-  xy: 337, 23
-  size: 110, 77
-  orig: 256, 192
-  offset: 76, 54
-  index: -1
-coin0023
-  rotate: false
-  xy: 703, 90
-  size: 105, 98
-  orig: 256, 192
-  offset: 80, 44
-  index: -1
-coin0024
+CoinSeq/coin0019
   rotate: true
-  xy: 237, 187
-  size: 105, 109
-  orig: 256, 192
-  offset: 81, 39
+  xy: 1140, 411
+  size: 99, 54
+  orig: 224, 168
+  offset: 65, 60
   index: -1
-coin0025
+CoinSeq/coin0020
   rotate: true
-  xy: 1764, 188
-  size: 108, 114
-  orig: 256, 192
-  offset: 79, 38
+  xy: 539, 408
+  size: 102, 16
+  orig: 224, 168
+  offset: 62, 77
   index: -1
-coin0026
+CoinSeq/coin0021
   rotate: true
-  xy: 1530, 296
-  size: 112, 115
-  orig: 256, 192
-  offset: 76, 38
+  xy: 901, 203
+  size: 101, 37
+  orig: 224, 168
+  offset: 63, 64
   index: -1
-coin0027
-  rotate: false
-  xy: 1417, 410
-  size: 115, 116
-  orig: 256, 192
-  offset: 73, 38
-  index: -1
-coin0028
-  rotate: false
-  xy: 474, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
-  index: -1
-coin0029
-  rotate: false
-  xy: 592, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
-  index: -1
-coin0000
+CoinSeq/coin0022
   rotate: true
-  xy: 1633, 95
-  size: 91, 106
-  orig: 256, 192
-  offset: 88, 41
+  xy: 884, 2
+  size: 96, 68
+  orig: 224, 168
+  offset: 67, 47
   index: -1
-coin0001
+CoinSeq/coin0023
   rotate: true
-  xy: 2, 90
-  size: 96, 104
-  orig: 256, 192
-  offset: 85, 41
+  xy: 1329, 121
+  size: 92, 86
+  orig: 224, 168
+  offset: 70, 38
   index: -1
-coin0002
-  rotate: false
-  xy: 457, 190
-  size: 106, 102
-  orig: 256, 192
-  offset: 80, 42
-  index: -1
-coin0003
-  rotate: false
-  xy: 1294, 192
-  size: 115, 102
-  orig: 256, 192
-  offset: 73, 41
-  index: -1
-coin0004
-  rotate: false
-  xy: 120, 298
-  size: 115, 109
-  orig: 256, 192
-  offset: 71, 39
-  index: -1
-coin0005
+CoinSeq/coin0024
   rotate: true
-  xy: 1882, 299
-  size: 108, 116
-  orig: 256, 192
-  offset: 72, 38
+  xy: 600, 2
+  size: 92, 96
+  orig: 224, 168
+  offset: 71, 34
   index: -1
-coin0006
+CoinSeq/coin0025
+  rotate: false
+  xy: 940, 205
+  size: 95, 100
+  orig: 224, 168
+  offset: 69, 33
+  index: -1
+CoinSeq/coin0026
+  rotate: false
+  xy: 761, 409
+  size: 98, 101
+  orig: 224, 168
+  offset: 66, 33
+  index: -1
+CoinSeq/coin0027
+  rotate: false
+  xy: 329, 304
+  size: 100, 102
+  orig: 224, 168
+  offset: 64, 33
+  index: -1
+CoinSeq/coin0028
+  rotate: false
+  xy: 105, 94
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq/coin0029
+  rotate: false
+  xy: 106, 199
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq2/coin0000
+  rotate: false
+  xy: 1437, 418
+  size: 80, 92
+  orig: 224, 168
+  offset: 77, 36
+  index: -1
+CoinSeq2/coin0001
+  rotate: false
+  xy: 1432, 229
+  size: 84, 91
+  orig: 224, 168
+  offset: 75, 36
+  index: -1
+CoinSeq2/coin0002
+  rotate: false
+  xy: 205, 3
+  size: 93, 89
+  orig: 224, 168
+  offset: 70, 37
+  index: -1
+CoinSeq2/coin0003
+  rotate: false
+  xy: 2, 3
+  size: 100, 89
+  orig: 224, 168
+  offset: 64, 36
+  index: -1
+CoinSeq2/coin0004
   rotate: true
-  xy: 1641, 188
-  size: 106, 109
-  orig: 256, 192
-  offset: 73, 45
+  xy: 832, 306
+  size: 101, 95
+  orig: 224, 168
+  offset: 62, 34
   index: -1
-coin0007
+CoinSeq2/coin0005
+  rotate: false
+  xy: 532, 304
+  size: 95, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq2/coin0006
+  rotate: false
+  xy: 789, 2
+  size: 93, 96
+  orig: 224, 168
+  offset: 64, 39
+  index: -1
+CoinSeq2/coin0007
   rotate: true
-  xy: 1958, 70
-  size: 114, 75
-  orig: 256, 192
-  offset: 71, 64
+  xy: 965, 103
+  size: 100, 66
+  orig: 224, 168
+  offset: 62, 56
   index: -1
-coin0008
-  rotate: false
-  xy: 1036, 4
-  size: 116, 35
-  orig: 256, 192
-  offset: 72, 81
-  index: -1
-coin0009
-  rotate: false
-  xy: 564, 24
-  size: 105, 66
-  orig: 256, 192
-  offset: 76, 62
-  index: -1
-coin0010
+CoinSeq2/coin0008
   rotate: true
-  xy: 236, 92
-  size: 93, 99
-  orig: 256, 192
-  offset: 80, 44
+  xy: 932, 100
+  size: 101, 31
+  orig: 224, 168
+  offset: 63, 71
   index: -1
-coin0011
+CoinSeq2/coin0009
   rotate: true
-  xy: 1411, 96
-  size: 95, 113
-  orig: 256, 192
-  offset: 77, 38
+  xy: 1316, 15
+  size: 93, 58
+  orig: 224, 168
+  offset: 66, 54
   index: -1
-coin0012
+CoinSeq2/coin0010
+  rotate: false
+  xy: 1519, 424
+  size: 82, 86
+  orig: 224, 168
+  offset: 70, 39
+  index: -1
+CoinSeq2/coin0011
+  rotate: false
+  xy: 1095, 105
+  size: 84, 99
+  orig: 224, 168
+  offset: 67, 33
+  index: -1
+CoinSeq2/coin0012
   rotate: true
-  xy: 709, 190
-  size: 104, 115
-  orig: 256, 192
-  offset: 73, 38
+  xy: 300, 2
+  size: 91, 101
+  orig: 224, 168
+  offset: 64, 33
   index: -1
-coin0013
+CoinSeq2/coin0013
+  rotate: false
+  xy: 515, 200
+  size: 96, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq2/coin0014
+  rotate: false
+  xy: 414, 96
+  size: 98, 102
+  orig: 224, 168
+  offset: 62, 33
+  index: -1
+CoinSeq2/coin0015
+  rotate: false
+  xy: 414, 200
+  size: 99, 102
+  orig: 224, 168
+  offset: 62, 33
+  index: -1
+CoinSeq2/coin0016
+  rotate: false
+  xy: 337, 408
+  size: 100, 102
+  orig: 224, 168
+  offset: 62, 33
+  index: -1
+CoinSeq2/coin0017
+  rotate: false
+  xy: 208, 95
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq2/coin0018
+  rotate: false
+  xy: 660, 409
+  size: 99, 101
+  orig: 224, 168
+  offset: 65, 35
+  index: -1
+CoinSeq2/coin0019
+  rotate: false
+  xy: 1056, 2
+  size: 97, 99
+  orig: 224, 168
+  offset: 67, 37
+  index: -1
+CoinSeq2/coin0020
   rotate: true
-  xy: 2, 298
-  size: 109, 116
-  orig: 256, 192
-  offset: 72, 38
+  xy: 1155, 6
+  size: 97, 86
+  orig: 224, 168
+  offset: 67, 45
   index: -1
-coin0014
+CoinSeq2/coin0021
   rotate: true
-  xy: 709, 296
-  size: 112, 117
-  orig: 256, 192
-  offset: 71, 38
+  xy: 1033, 103
+  size: 100, 60
+  orig: 224, 168
+  offset: 64, 58
   index: -1
-coin0015
+CoinSeq2/coin0022
   rotate: true
-  xy: 591, 295
-  size: 113, 116
-  orig: 256, 192
-  offset: 71, 38
+  xy: 2, 407
+  size: 103, 24
+  orig: 224, 168
+  offset: 62, 74
   index: -1
-coin0016
+CoinSeq2/coin0023
   rotate: true
-  xy: 356, 294
-  size: 114, 116
-  orig: 256, 192
-  offset: 71, 38
+  xy: 1037, 206
+  size: 100, 40
+  orig: 224, 168
+  offset: 64, 63
   index: -1
-coin0017
-  rotate: false
-  xy: 710, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
-  index: -1
-coin0018
+CoinSeq2/coin0024
   rotate: true
-  xy: 474, 294
-  size: 114, 115
-  orig: 256, 192
-  offset: 74, 40
+  xy: 1376, 27
+  size: 92, 73
+  orig: 224, 168
+  offset: 69, 44
   index: -1
-coin0019
+CoinSeq2/coin0025
+  rotate: false
+  xy: 698, 2
+  size: 89, 92
+  orig: 224, 168
+  offset: 72, 35
+  index: -1
+CoinSeq2/coin0026
+  rotate: false
+  xy: 1031, 308
+  size: 93, 100
+  orig: 224, 168
+  offset: 70, 33
+  index: -1
+CoinSeq2/coin0027
+  rotate: false
+  xy: 754, 100
+  size: 97, 101
+  orig: 224, 168
+  offset: 67, 33
+  index: -1
+CoinSeq2/coin0028
+  rotate: false
+  xy: 123, 304
+  size: 101, 102
+  orig: 224, 168
+  offset: 64, 33
+  index: -1
+CoinSeq2/coin0029
+  rotate: false
+  xy: 131, 408
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq2/coin0030
+  rotate: false
+  xy: 209, 200
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq3/coin0000
   rotate: true
-  xy: 1882, 186
-  size: 111, 112
-  orig: 256, 192
-  offset: 77, 43
+  xy: 1238, 312
+  size: 98, 47
+  orig: 224, 168
+  offset: 65, 63
   index: -1
-coin0020
-  rotate: false
-  xy: 826, 91
-  size: 110, 97
-  orig: 256, 192
-  offset: 77, 52
-  index: -1
-coin0021
-  rotate: false
-  xy: 1741, 28
-  size: 115, 68
-  orig: 256, 192
-  offset: 73, 67
-  index: -1
-coin0022
-  rotate: false
-  xy: 671, 5
-  size: 117, 27
-  orig: 256, 192
-  offset: 71, 85
-  index: -1
-coin0023
-  rotate: false
-  xy: 1036, 41
-  size: 114, 45
-  orig: 256, 192
-  offset: 73, 72
-  index: -1
-coin0024
-  rotate: false
-  xy: 1851, 101
-  size: 105, 83
-  orig: 256, 192
-  offset: 79, 51
-  index: -1
-coin0025
+CoinSeq3/coin0001
   rotate: true
-  xy: 1294, 88
-  size: 102, 105
-  orig: 256, 192
-  offset: 82, 40
+  xy: 1196, 412
+  size: 98, 49
+  orig: 224, 168
+  offset: 65, 62
   index: -1
-coin0026
+CoinSeq3/coin0002
   rotate: true
-  xy: 1178, 188
-  size: 106, 114
-  orig: 256, 192
-  offset: 80, 38
+  xy: 1182, 311
+  size: 98, 54
+  orig: 224, 168
+  offset: 65, 60
   index: -1
-coin0027
+CoinSeq3/coin0003
   rotate: true
-  xy: 1647, 296
-  size: 112, 115
-  orig: 256, 192
-  offset: 76, 38
+  xy: 1266, 110
+  size: 97, 61
+  orig: 224, 168
+  offset: 66, 57
   index: -1
-coin0028
-  rotate: false
-  xy: 1534, 410
-  size: 115, 116
-  orig: 256, 192
-  offset: 73, 38
-  index: -1
-coin0029
-  rotate: false
-  xy: 828, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
-  index: -1
-coin0030
-  rotate: false
-  xy: 946, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
-  index: -1
-coin0000
-  rotate: false
-  xy: 671, 34
-  size: 111, 54
-  orig: 256, 192
-  offset: 75, 72
-  index: -1
-coin0001
-  rotate: false
-  xy: 923, 32
-  size: 111, 56
-  orig: 256, 192
-  offset: 75, 71
-  index: -1
-coin0002
-  rotate: false
-  xy: 810, 28
-  size: 111, 61
-  orig: 256, 192
-  offset: 75, 69
-  index: -1
-coin0003
-  rotate: false
-  xy: 1401, 24
-  size: 110, 70
-  orig: 256, 192
-  offset: 76, 65
-  index: -1
-coin0004
-  rotate: false
-  xy: 337, 102
-  size: 111, 82
-  orig: 256, 192
-  offset: 76, 60
-  index: -1
-coin0005
-  rotate: false
-  xy: 457, 94
-  size: 111, 94
-  orig: 256, 192
-  offset: 76, 54
-  index: -1
-coin0006
-  rotate: false
-  xy: 1060, 188
-  size: 112, 106
-  orig: 256, 192
-  offset: 76, 47
-  index: -1
-coin0007
-  rotate: false
-  xy: 828, 294
-  size: 114, 114
-  orig: 256, 192
-  offset: 74, 41
-  index: -1
-coin0008
-  rotate: false
-  xy: 1064, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
-  index: -1
-coin0009
-  rotate: false
-  xy: 1178, 296
-  size: 116, 112
-  orig: 256, 192
-  offset: 71, 38
-  index: -1
-coin0010
-  rotate: false
-  xy: 826, 190
-  size: 113, 102
-  orig: 256, 192
-  offset: 71, 41
-  index: -1
-coin0011
-  rotate: false
-  xy: 1741, 98
-  size: 108, 88
-  orig: 256, 192
-  offset: 73, 48
-  index: -1
-coin0012
-  rotate: false
-  xy: 1633, 16
-  size: 100, 77
-  orig: 256, 192
-  offset: 78, 56
-  index: -1
-coin0013
-  rotate: false
-  xy: 1858, 17
-  size: 94, 82
-  orig: 256, 192
-  offset: 83, 56
-  index: -1
-coin0014
-  rotate: false
-  xy: 938, 90
-  size: 97, 95
-  orig: 256, 192
-  offset: 84, 52
-  index: -1
-coin0015
+CoinSeq3/coin0004
   rotate: true
-  xy: 348, 186
-  size: 106, 107
-  orig: 256, 192
-  offset: 80, 46
+  xy: 1243, 11
+  size: 97, 71
+  orig: 224, 168
+  offset: 67, 53
   index: -1
-coin0016
+CoinSeq3/coin0005
+  rotate: true
+  xy: 1181, 110
+  size: 97, 83
+  orig: 224, 168
+  offset: 67, 47
+  index: -1
+CoinSeq3/coin0006
+  rotate: true
+  xy: 1173, 209
+  size: 98, 93
+  orig: 224, 168
+  offset: 66, 41
+  index: -1
+CoinSeq3/coin0007
   rotate: false
-  xy: 944, 294
-  size: 114, 114
-  orig: 256, 192
-  offset: 74, 41
+  xy: 929, 307
+  size: 100, 100
+  orig: 224, 168
+  offset: 65, 36
   index: -1
-coin0017
+CoinSeq3/coin0008
   rotate: false
-  xy: 120, 409
-  size: 116, 117
-  orig: 256, 192
-  offset: 71, 38
+  xy: 226, 304
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
   index: -1
-coin0018
+CoinSeq3/coin0009
   rotate: true
-  xy: 120, 188
-  size: 108, 115
-  orig: 256, 192
-  offset: 72, 38
+  xy: 514, 96
+  size: 102, 98
+  orig: 224, 168
+  offset: 62, 33
   index: -1
-coin0019
-  rotate: true
-  xy: 1158, 97
-  size: 89, 114
-  orig: 256, 192
-  offset: 80, 38
-  index: -1
-coin0020
-  rotate: true
-  xy: 449, 29
-  size: 63, 113
-  orig: 256, 192
-  offset: 94, 39
-  index: -1
-coin0021
-  rotate: true
-  xy: 1276, 2
-  size: 39, 114
-  orig: 256, 192
-  offset: 109, 39
-  index: -1
-coin0022
-  rotate: true
-  xy: 1276, 43
-  size: 43, 116
-  orig: 256, 192
-  offset: 111, 39
-  index: -1
-coin0023
-  rotate: true
-  xy: 1158, 28
-  size: 67, 116
-  orig: 256, 192
-  offset: 101, 39
-  index: -1
-coin0024
-  rotate: true
-  xy: 118, 98
-  size: 88, 116
-  orig: 256, 192
-  offset: 91, 39
-  index: -1
-coin0025
-  rotate: true
-  xy: 1411, 193
-  size: 101, 116
-  orig: 256, 192
-  offset: 83, 39
-  index: -1
-coin0026
-  rotate: true
-  xy: 1764, 298
-  size: 110, 116
-  orig: 256, 192
-  offset: 78, 39
-  index: -1
-coin0027
+CoinSeq3/coin0010
   rotate: false
-  xy: 1885, 409
-  size: 114, 117
-  orig: 256, 192
-  offset: 74, 38
+  xy: 104, 3
+  size: 99, 89
+  orig: 224, 168
+  offset: 62, 36
   index: -1
-coin0028
+CoinSeq3/coin0011
   rotate: true
-  xy: 1651, 410
-  size: 116, 115
-  orig: 256, 192
-  offset: 72, 39
+  xy: 1268, 215
+  size: 95, 77
+  orig: 224, 168
+  offset: 64, 42
   index: -1
-coin0029
+CoinSeq3/coin0012
+  rotate: true
+  xy: 1441, 328
+  size: 88, 68
+  orig: 224, 168
+  offset: 68, 49
+  index: -1
+CoinSeq3/coin0013
+  rotate: true
+  xy: 1451, 45
+  size: 82, 72
+  orig: 224, 168
+  offset: 73, 49
+  index: -1
+CoinSeq3/coin0014
+  rotate: true
+  xy: 1511, 330
+  size: 86, 83
+  orig: 224, 168
+  offset: 73, 46
+  index: -1
+CoinSeq3/coin0015
   rotate: false
-  xy: 1182, 410
-  size: 116, 116
-  orig: 256, 192
-  offset: 72, 38
+  xy: 1342, 416
+  size: 93, 94
+  orig: 224, 168
+  offset: 70, 40
   index: -1
-coin0030
-  rotate: true
-  xy: 1768, 410
-  size: 116, 115
-  orig: 256, 192
-  offset: 72, 39
+CoinSeq3/coin0016
+  rotate: false
+  xy: 958, 410
+  size: 100, 100
+  orig: 224, 168
+  offset: 65, 36
+  index: -1
+CoinSeq3/coin0017
+  rotate: false
+  xy: 234, 408
+  size: 101, 102
+  orig: 224, 168
+  offset: 62, 33
+  index: -1
+CoinSeq3/coin0018
+  rotate: false
+  xy: 861, 409
+  size: 95, 101
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq3/coin0019
+  rotate: false
+  xy: 1060, 410
+  size: 78, 100
+  orig: 224, 168
+  offset: 70, 33
+  index: -1
+CoinSeq3/coin0020
+  rotate: false
+  xy: 1115, 207
+  size: 56, 99
+  orig: 224, 168
+  offset: 82, 34
+  index: -1
+CoinSeq3/coin0021
+  rotate: false
+  xy: 1079, 206
+  size: 34, 100
+  orig: 224, 168
+  offset: 95, 34
+  index: -1
+CoinSeq3/coin0022
+  rotate: false
+  xy: 853, 100
+  size: 38, 101
+  orig: 224, 168
+  offset: 97, 34
+  index: -1
+CoinSeq3/coin0023
+  rotate: false
+  xy: 693, 96
+  size: 59, 102
+  orig: 224, 168
+  offset: 88, 34
+  index: -1
+CoinSeq3/coin0024
+  rotate: false
+  xy: 614, 96
+  size: 77, 102
+  orig: 224, 168
+  offset: 79, 34
+  index: -1
+CoinSeq3/coin0025
+  rotate: false
+  xy: 613, 200
+  size: 88, 102
+  orig: 224, 168
+  offset: 73, 34
+  index: -1
+CoinSeq3/coin0026
+  rotate: false
+  xy: 803, 203
+  size: 96, 101
+  orig: 224, 168
+  offset: 68, 34
+  index: -1
+CoinSeq3/coin0027
+  rotate: false
+  xy: 431, 304
+  size: 99, 102
+  orig: 224, 168
+  offset: 65, 33
+  index: -1
+CoinSeq3/coin0028
+  rotate: false
+  xy: 557, 409
+  size: 101, 101
+  orig: 224, 168
+  offset: 63, 34
+  index: -1
+CoinSeq3/coin0029
+  rotate: false
+  xy: 311, 96
+  size: 101, 102
+  orig: 224, 168
+  offset: 63, 33
+  index: -1
+CoinSeq3/coin0030
+  rotate: false
+  xy: 629, 306
+  size: 101, 101
+  orig: 224, 168
+  offset: 63, 34
   index: -1

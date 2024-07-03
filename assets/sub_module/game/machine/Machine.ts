@@ -19,6 +19,7 @@ export class Machine extends Component {
     public static readonly SPEED_MODE = { NORMAL: 0, TURBO: 2, QUICK: 1, DEFAULT:1, MAX:2 };
 
     public static readonly SPIN_STATE = { 
+        PRELOAD       : -1,     // 預載中
         IDLE          : 0,      // 閒置中
         PERFORM_SCORE : 1,      // 閒置中, 輪流顯示分數
         SPINNING      : 2,      // SPIN中
@@ -29,7 +30,7 @@ export class Machine extends Component {
     public get spinning() { return this.properties.spinState > Machine.SPIN_STATE.PERFORM_SCORE; }
 
     // 是否忙碌中
-    public get isBusy() : boolean { return this.properties.spinState > Machine.SPIN_STATE.IDLE; }
+    public get isBusy() : boolean { return (this.properties.spinState == Machine.SPIN_STATE.IDLE); }
     public set state(value:number) { this.properties.spinState = value; }
     public get state() { return this.properties.spinState; }
 
