@@ -30,7 +30,10 @@ export class Machine extends Component {
     public get spinning() { return this.properties.spinState > Machine.SPIN_STATE.PERFORM_SCORE; }
 
     // 是否忙碌中
-    public get isBusy() : boolean { return (this.properties.spinState == Machine.SPIN_STATE.IDLE); }
+    public get isBusy() : boolean { 
+        if ( this.featureGame ) return true;
+        return this.spinning;
+    }
     public set state(value:number) { this.properties.spinState = value; }
     public get state() { return this.properties.spinState; }
 
@@ -59,6 +62,7 @@ export class Machine extends Component {
         'featureGame' : false,
         'spinEvent' : null,
         'spinData' : null,
+
     };
 
     public setSpeedMode(mode:number) {

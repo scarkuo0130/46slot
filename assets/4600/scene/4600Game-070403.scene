@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "4600Game",
+    "_name": "4600Game-070403",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -26,7 +26,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 2152
+      "__id__": 2150
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -57,9 +57,9 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 2153
+      "__id__": 2151
     },
-    "_id": "93bac65e-151a-4fe2-8054-2b3a77ce582e"
+    "_id": "1f31a734-b6dd-4e94-afaf-e825a93e2c7c"
   },
   {
     "__type__": "cc.Node",
@@ -77,19 +77,19 @@
         "__id__": 5
       },
       {
-        "__id__": 2144
+        "__id__": 2142
       },
       {
-        "__id__": 2147
+        "__id__": 2145
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 2150
+        "__id__": 2148
       },
       {
-        "__id__": 2151
+        "__id__": 2149
       }
     ],
     "_prefab": null,
@@ -3183,34 +3183,34 @@
     },
     "_children": [
       {
-        "__id__": 1849
+        "__id__": 1847
       },
       {
-        "__id__": 1852
+        "__id__": 1850
       },
       {
-        "__id__": 1855
+        "__id__": 1853
       },
       {
-        "__id__": 1896
+        "__id__": 1894
       },
       {
-        "__id__": 2116
+        "__id__": 2114
       },
       {
-        "__id__": 2119
+        "__id__": 2117
       },
       {
-        "__id__": 2128
+        "__id__": 2126
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 2142
+        "__id__": 2140
       },
       {
-        "__id__": 2143
+        "__id__": 2141
       }
     ],
     "_prefab": null,
@@ -3290,12 +3290,6 @@
       },
       {
         "__id__": 1846
-      },
-      {
-        "__id__": 1847
-      },
-      {
-        "__id__": 1848
       }
     ],
     "_prefab": null,
@@ -3387,7 +3381,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 360,
+    "_orthoHeight": 640,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -54277,62 +54271,6 @@
     "_id": "c5V1EV8IpMtrIvY1OE9t2u"
   },
   {
-    "__type__": "cc.Mask",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 94
-    },
-    "_enabled": false,
-    "__prefab": null,
-    "_type": 0,
-    "_inverted": false,
-    "_segments": 64,
-    "_alphaThreshold": 0.1,
-    "_id": "73czYVaONG0I2Iu74C6HAO"
-  },
-  {
-    "__type__": "cc.Graphics",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 94
-    },
-    "_enabled": false,
-    "__prefab": null,
-    "_customMaterial": null,
-    "_srcBlendFactor": 2,
-    "_dstBlendFactor": 4,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_lineWidth": 1,
-    "_strokeColor": {
-      "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
-      "a": 255
-    },
-    "_lineJoin": 2,
-    "_lineCap": 0,
-    "_fillColor": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 0
-    },
-    "_miterLimit": 10,
-    "_id": "e53n5kLbRPLJxInvTRggYA"
-  },
-  {
     "__type__": "cc.Node",
     "_name": "background_landscape",
     "_objFlags": 512,
@@ -54344,10 +54282,10 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 1850
+        "__id__": 1848
       },
       {
-        "__id__": 1851
+        "__id__": 1849
       }
     ],
     "_prefab": null,
@@ -54386,7 +54324,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1849
+      "__id__": 1847
     },
     "_enabled": true,
     "__prefab": null,
@@ -54408,7 +54346,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1849
+      "__id__": 1847
     },
     "_enabled": true,
     "__prefab": null,
@@ -54453,10 +54391,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 1853
+        "__id__": 1851
       },
       {
-        "__id__": 1854
+        "__id__": 1852
       }
     ],
     "_prefab": null,
@@ -54495,7 +54433,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1852
+      "__id__": 1850
     },
     "_enabled": true,
     "__prefab": null,
@@ -54517,7 +54455,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1852
+      "__id__": 1850
     },
     "_enabled": true,
     "__prefab": null,
@@ -54560,31 +54498,31 @@
     },
     "_children": [
       {
-        "__id__": 1856
+        "__id__": 1854
       },
       {
-        "__id__": 1859
+        "__id__": 1857
       },
       {
-        "__id__": 1862
+        "__id__": 1860
       },
       {
-        "__id__": 1868
+        "__id__": 1866
       },
       {
-        "__id__": 1874
+        "__id__": 1872
       },
       {
-        "__id__": 1880
+        "__id__": 1878
       },
       {
-        "__id__": 1886
+        "__id__": 1884
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1895
+        "__id__": 1893
       }
     ],
     "_prefab": null,
@@ -54623,16 +54561,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1857
+        "__id__": 1855
       },
       {
-        "__id__": 1858
+        "__id__": 1856
       }
     ],
     "_prefab": null,
@@ -54671,7 +54609,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1856
+      "__id__": 1854
     },
     "_enabled": true,
     "__prefab": null,
@@ -54693,7 +54631,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1856
+      "__id__": 1854
     },
     "_enabled": true,
     "__prefab": null,
@@ -54732,16 +54670,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1860
+        "__id__": 1858
       },
       {
-        "__id__": 1861
+        "__id__": 1859
       }
     ],
     "_prefab": null,
@@ -54780,7 +54718,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1859
+      "__id__": 1857
     },
     "_enabled": true,
     "__prefab": null,
@@ -54802,7 +54740,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1859
+      "__id__": 1857
     },
     "_enabled": true,
     "__prefab": null,
@@ -54841,20 +54779,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_children": [
       {
-        "__id__": 1863
+        "__id__": 1861
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1866
+        "__id__": 1864
       },
       {
-        "__id__": 1867
+        "__id__": 1865
       }
     ],
     "_prefab": null,
@@ -54893,16 +54831,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1862
+      "__id__": 1860
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1864
+        "__id__": 1862
       },
       {
-        "__id__": 1865
+        "__id__": 1863
       }
     ],
     "_prefab": null,
@@ -54941,7 +54879,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1863
+      "__id__": 1861
     },
     "_enabled": true,
     "__prefab": null,
@@ -54963,7 +54901,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1863
+      "__id__": 1861
     },
     "_enabled": true,
     "__prefab": null,
@@ -55028,7 +54966,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1862
+      "__id__": 1860
     },
     "_enabled": true,
     "__prefab": null,
@@ -55050,7 +54988,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1862
+      "__id__": 1860
     },
     "_enabled": true,
     "__prefab": null,
@@ -55089,20 +55027,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_children": [
       {
-        "__id__": 1869
+        "__id__": 1867
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1872
+        "__id__": 1870
       },
       {
-        "__id__": 1873
+        "__id__": 1871
       }
     ],
     "_prefab": null,
@@ -55141,16 +55079,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1868
+      "__id__": 1866
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1870
+        "__id__": 1868
       },
       {
-        "__id__": 1871
+        "__id__": 1869
       }
     ],
     "_prefab": null,
@@ -55189,7 +55127,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1869
+      "__id__": 1867
     },
     "_enabled": true,
     "__prefab": null,
@@ -55211,7 +55149,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1869
+      "__id__": 1867
     },
     "_enabled": true,
     "__prefab": null,
@@ -55276,7 +55214,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1868
+      "__id__": 1866
     },
     "_enabled": true,
     "__prefab": null,
@@ -55298,7 +55236,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1868
+      "__id__": 1866
     },
     "_enabled": true,
     "__prefab": null,
@@ -55337,20 +55275,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_children": [
       {
-        "__id__": 1875
+        "__id__": 1873
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1878
+        "__id__": 1876
       },
       {
-        "__id__": 1879
+        "__id__": 1877
       }
     ],
     "_prefab": null,
@@ -55389,16 +55327,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1874
+      "__id__": 1872
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1876
+        "__id__": 1874
       },
       {
-        "__id__": 1877
+        "__id__": 1875
       }
     ],
     "_prefab": null,
@@ -55437,7 +55375,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1875
+      "__id__": 1873
     },
     "_enabled": true,
     "__prefab": null,
@@ -55459,7 +55397,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1875
+      "__id__": 1873
     },
     "_enabled": true,
     "__prefab": null,
@@ -55524,7 +55462,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1874
+      "__id__": 1872
     },
     "_enabled": true,
     "__prefab": null,
@@ -55546,7 +55484,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1874
+      "__id__": 1872
     },
     "_enabled": true,
     "__prefab": null,
@@ -55585,20 +55523,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_children": [
       {
-        "__id__": 1881
+        "__id__": 1879
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1884
+        "__id__": 1882
       },
       {
-        "__id__": 1885
+        "__id__": 1883
       }
     ],
     "_prefab": null,
@@ -55637,16 +55575,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1880
+      "__id__": 1878
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1882
+        "__id__": 1880
       },
       {
-        "__id__": 1883
+        "__id__": 1881
       }
     ],
     "_prefab": null,
@@ -55685,7 +55623,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1881
+      "__id__": 1879
     },
     "_enabled": true,
     "__prefab": null,
@@ -55707,7 +55645,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1881
+      "__id__": 1879
     },
     "_enabled": true,
     "__prefab": null,
@@ -55772,7 +55710,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1880
+      "__id__": 1878
     },
     "_enabled": true,
     "__prefab": null,
@@ -55794,7 +55732,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1880
+      "__id__": 1878
     },
     "_enabled": true,
     "__prefab": null,
@@ -55833,20 +55771,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_children": [
       {
-        "__id__": 1887
+        "__id__": 1885
       },
       {
-        "__id__": 1890
+        "__id__": 1888
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1894
+        "__id__": 1892
       }
     ],
     "_prefab": null,
@@ -55885,16 +55823,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1886
+      "__id__": 1884
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1888
+        "__id__": 1886
       },
       {
-        "__id__": 1889
+        "__id__": 1887
       }
     ],
     "_prefab": null,
@@ -55933,7 +55871,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1887
+      "__id__": 1885
     },
     "_enabled": true,
     "__prefab": null,
@@ -55955,7 +55893,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1887
+      "__id__": 1885
     },
     "_enabled": true,
     "__prefab": null,
@@ -56063,19 +56001,19 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1886
+      "__id__": 1884
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
+        "__id__": 1889
+      },
+      {
+        "__id__": 1890
+      },
+      {
         "__id__": 1891
-      },
-      {
-        "__id__": 1892
-      },
-      {
-        "__id__": 1893
       }
     ],
     "_prefab": null,
@@ -56114,7 +56052,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1890
+      "__id__": 1888
     },
     "_enabled": true,
     "__prefab": null,
@@ -56136,7 +56074,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1890
+      "__id__": 1888
     },
     "_enabled": true,
     "__prefab": null,
@@ -56175,7 +56113,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1890
+      "__id__": 1888
     },
     "_enabled": true,
     "__prefab": null,
@@ -56187,7 +56125,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1886
+      "__id__": 1884
     },
     "_enabled": true,
     "__prefab": null,
@@ -56209,7 +56147,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1855
+      "__id__": 1853
     },
     "_enabled": true,
     "__prefab": null,
@@ -56235,31 +56173,31 @@
     },
     "_children": [
       {
-        "__id__": 1897
+        "__id__": 1895
       },
       {
-        "__id__": 1900
+        "__id__": 1898
       },
       {
-        "__id__": 2099
+        "__id__": 2097
       },
       {
-        "__id__": 2102
+        "__id__": 2100
+      },
+      {
+        "__id__": 2103
       },
       {
         "__id__": 2105
-      },
-      {
-        "__id__": 2107
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 2110
+        "__id__": 2108
       },
       {
-        "__id__": 2111
+        "__id__": 2109
       }
     ],
     "_prefab": null,
@@ -56298,16 +56236,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1898
+        "__id__": 1896
       },
       {
-        "__id__": 1899
+        "__id__": 1897
       }
     ],
     "_prefab": null,
@@ -56346,7 +56284,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1897
+      "__id__": 1895
     },
     "_enabled": true,
     "__prefab": null,
@@ -56368,7 +56306,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1897
+      "__id__": 1895
     },
     "_enabled": true,
     "__prefab": null,
@@ -56407,35 +56345,35 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_children": [
       {
-        "__id__": 1901
+        "__id__": 1899
       },
       {
-        "__id__": 1940
+        "__id__": 1938
       },
       {
-        "__id__": 1979
+        "__id__": 1977
       },
       {
-        "__id__": 2018
+        "__id__": 2016
       },
       {
-        "__id__": 2057
+        "__id__": 2055
       }
     ],
     "_active": true,
     "_components": [
       {
+        "__id__": 2094
+      },
+      {
+        "__id__": 2095
+      },
+      {
         "__id__": 2096
-      },
-      {
-        "__id__": 2097
-      },
-      {
-        "__id__": 2098
       }
     ],
     "_prefab": null,
@@ -56474,20 +56412,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_children": [
       {
-        "__id__": 1902
+        "__id__": 1900
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1904
+        "__id__": 1902
       },
       {
-        "__id__": 1905
+        "__id__": 1903
       }
     ],
     "_prefab": null,
@@ -56526,13 +56464,13 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1901
+      "__id__": 1899
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1903
+        "__id__": 1901
       }
     ],
     "_prefab": null,
@@ -56571,7 +56509,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1902
+      "__id__": 1900
     },
     "_enabled": true,
     "__prefab": null,
@@ -56593,7 +56531,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1901
+      "__id__": 1899
     },
     "_enabled": true,
     "__prefab": null,
@@ -56615,24 +56553,24 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1901
+      "__id__": 1899
     },
     "_enabled": true,
     "__prefab": null,
     "baseInscept": {
-      "__id__": 1906
+      "__id__": 1904
     },
     "audioInscpect": {
-      "__id__": 1907
+      "__id__": 1905
     },
     "startRolling": {
-      "__id__": 1911
+      "__id__": 1909
     },
     "rollingInscept": {
-      "__id__": 1918
+      "__id__": 1916
     },
     "nearMissInscept": {
-      "__id__": 1939
+      "__id__": 1937
     },
     "_id": "45VfAWPbJAwL4YNgIHVWSx"
   },
@@ -56650,7 +56588,7 @@
       "height": 1
     },
     "container": {
-      "__id__": 1902
+      "__id__": 1900
     },
     "startPutSymbol": true,
     "rollingSymbols": [
@@ -56669,13 +56607,13 @@
   {
     "__type__": "AudioInscept",
     "startAudio": {
-      "__id__": 1908
+      "__id__": 1906
     },
     "stopAudio": {
-      "__id__": 1909
+      "__id__": 1907
     },
     "nearAudio": {
-      "__id__": 1910
+      "__id__": 1908
     }
   },
   {
@@ -56700,16 +56638,16 @@
     "__type__": "StartRollingInscept",
     "startRollingType": 2,
     "startRolling1": {
-      "__id__": 1912
+      "__id__": 1910
     },
     "startRolling2": {
-      "__id__": 1914
+      "__id__": 1912
     }
   },
   {
     "__type__": "StartRolling1",
     "spinEvent": {
-      "__id__": 1913
+      "__id__": 1911
     }
   },
   {
@@ -56725,21 +56663,21 @@
     "preRollingMoveUpDuration": 0.5,
     "preRollingMoveValue": 70,
     "curve": {
-      "__id__": 1915
+      "__id__": 1913
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1916
+      "__id__": 1914
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1917
+      "__id__": 1915
     },
     "multiplier": 1
   },
@@ -56782,22 +56720,22 @@
     "__type__": "RollingInscept",
     "rollingType": 1,
     "rolling": {
-      "__id__": 1919
+      "__id__": 1917
     },
     "rolling1": {
-      "__id__": 1922
+      "__id__": 1920
     },
     "rolling2": {
-      "__id__": 1929
+      "__id__": 1927
     }
   },
   {
     "__type__": "RollingType",
     "spinEvent": {
-      "__id__": 1920
+      "__id__": 1918
     },
     "stopRollingEvent": {
-      "__id__": 1921
+      "__id__": 1919
     }
   },
   {
@@ -56822,25 +56760,25 @@
     "rollingSpeed_q": 3000,
     "rollingSpeed_t": 3500,
     "rollingDownCurve": {
-      "__id__": 1923
+      "__id__": 1921
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 1926
+      "__id__": 1924
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1924
+      "__id__": 1922
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1925
+      "__id__": 1923
     },
     "multiplier": 1
   },
@@ -56883,14 +56821,14 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1927
+      "__id__": 1925
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1928
+      "__id__": 1926
     },
     "multiplier": 1
   },
@@ -56932,7 +56870,7 @@
   {
     "__type__": "RollingType2",
     "preStartRollingDown": {
-      "__id__": 1930
+      "__id__": 1928
     },
     "preStartRollingDownSec_n": 0.5,
     "preStartRollingDownSec_q": 0.3,
@@ -56941,75 +56879,25 @@
     "rollingSpeed_q": 800,
     "rollingSpeed_t": 1000,
     "rollingDownCurve": {
-      "__id__": 1933
+      "__id__": 1931
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 1936
-    }
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
-      "__id__": 1931
-    }
-  },
-  {
-    "__type__": "cc.CurveRange",
-    "mode": 1,
-    "spline": {
-      "__id__": 1932
-    },
-    "multiplier": 1
-  },
-  {
-    "__type__": "cc.RealCurve",
-    "_times": [
-      0,
-      1
-    ],
-    "_values": [
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      },
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      }
-    ],
-    "preExtrapolation": 1,
-    "postExtrapolation": 1
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
       "__id__": 1934
     }
   },
   {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 1929
+    }
+  },
+  {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1935
+      "__id__": 1930
     },
     "multiplier": 1
   },
@@ -57052,14 +56940,64 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1937
+      "__id__": 1932
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1938
+      "__id__": 1933
+    },
+    "multiplier": 1
+  },
+  {
+    "__type__": "cc.RealCurve",
+    "_times": [
+      0,
+      1
+    ],
+    "_values": [
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      },
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  },
+  {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 1935
+    }
+  },
+  {
+    "__type__": "cc.CurveRange",
+    "mode": 1,
+    "spline": {
+      "__id__": 1936
     },
     "multiplier": 1
   },
@@ -57110,20 +57048,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_children": [
       {
-        "__id__": 1941
+        "__id__": 1939
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1943
+        "__id__": 1941
       },
       {
-        "__id__": 1944
+        "__id__": 1942
       }
     ],
     "_prefab": null,
@@ -57162,13 +57100,13 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1940
+      "__id__": 1938
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1942
+        "__id__": 1940
       }
     ],
     "_prefab": null,
@@ -57207,7 +57145,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1941
+      "__id__": 1939
     },
     "_enabled": true,
     "__prefab": null,
@@ -57229,7 +57167,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1940
+      "__id__": 1938
     },
     "_enabled": true,
     "__prefab": null,
@@ -57251,24 +57189,24 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1940
+      "__id__": 1938
     },
     "_enabled": true,
     "__prefab": null,
     "baseInscept": {
-      "__id__": 1945
+      "__id__": 1943
     },
     "audioInscpect": {
-      "__id__": 1946
+      "__id__": 1944
     },
     "startRolling": {
-      "__id__": 1950
+      "__id__": 1948
     },
     "rollingInscept": {
-      "__id__": 1957
+      "__id__": 1955
     },
     "nearMissInscept": {
-      "__id__": 1978
+      "__id__": 1976
     },
     "_id": "9cLwTqT0ZDeZdjLbIRefdC"
   },
@@ -57286,7 +57224,7 @@
       "height": 1
     },
     "container": {
-      "__id__": 1941
+      "__id__": 1939
     },
     "startPutSymbol": true,
     "rollingSymbols": [
@@ -57305,13 +57243,13 @@
   {
     "__type__": "AudioInscept",
     "startAudio": {
-      "__id__": 1947
+      "__id__": 1945
     },
     "stopAudio": {
-      "__id__": 1948
+      "__id__": 1946
     },
     "nearAudio": {
-      "__id__": 1949
+      "__id__": 1947
     }
   },
   {
@@ -57333,16 +57271,16 @@
     "__type__": "StartRollingInscept",
     "startRollingType": 2,
     "startRolling1": {
-      "__id__": 1951
+      "__id__": 1949
     },
     "startRolling2": {
-      "__id__": 1953
+      "__id__": 1951
     }
   },
   {
     "__type__": "StartRolling1",
     "spinEvent": {
-      "__id__": 1952
+      "__id__": 1950
     }
   },
   {
@@ -57358,21 +57296,21 @@
     "preRollingMoveUpDuration": 0.5,
     "preRollingMoveValue": 70,
     "curve": {
-      "__id__": 1954
+      "__id__": 1952
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1955
+      "__id__": 1953
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1956
+      "__id__": 1954
     },
     "multiplier": 1
   },
@@ -57415,22 +57353,22 @@
     "__type__": "RollingInscept",
     "rollingType": 1,
     "rolling": {
-      "__id__": 1958
+      "__id__": 1956
     },
     "rolling1": {
-      "__id__": 1961
+      "__id__": 1959
     },
     "rolling2": {
-      "__id__": 1968
+      "__id__": 1966
     }
   },
   {
     "__type__": "RollingType",
     "spinEvent": {
-      "__id__": 1959
+      "__id__": 1957
     },
     "stopRollingEvent": {
-      "__id__": 1960
+      "__id__": 1958
     }
   },
   {
@@ -57455,25 +57393,25 @@
     "rollingSpeed_q": 3000,
     "rollingSpeed_t": 3500,
     "rollingDownCurve": {
-      "__id__": 1962
+      "__id__": 1960
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 1965
+      "__id__": 1963
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1963
+      "__id__": 1961
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1964
+      "__id__": 1962
     },
     "multiplier": 1
   },
@@ -57516,14 +57454,14 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1966
+      "__id__": 1964
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1967
+      "__id__": 1965
     },
     "multiplier": 1
   },
@@ -57565,7 +57503,7 @@
   {
     "__type__": "RollingType2",
     "preStartRollingDown": {
-      "__id__": 1969
+      "__id__": 1967
     },
     "preStartRollingDownSec_n": 0.5,
     "preStartRollingDownSec_q": 0.3,
@@ -57574,75 +57512,25 @@
     "rollingSpeed_q": 800,
     "rollingSpeed_t": 1000,
     "rollingDownCurve": {
-      "__id__": 1972
+      "__id__": 1970
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 1975
-    }
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
-      "__id__": 1970
-    }
-  },
-  {
-    "__type__": "cc.CurveRange",
-    "mode": 1,
-    "spline": {
-      "__id__": 1971
-    },
-    "multiplier": 1
-  },
-  {
-    "__type__": "cc.RealCurve",
-    "_times": [
-      0,
-      1
-    ],
-    "_values": [
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      },
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      }
-    ],
-    "preExtrapolation": 1,
-    "postExtrapolation": 1
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
       "__id__": 1973
     }
   },
   {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 1968
+    }
+  },
+  {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1974
+      "__id__": 1969
     },
     "multiplier": 1
   },
@@ -57685,14 +57573,64 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1976
+      "__id__": 1971
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1977
+      "__id__": 1972
+    },
+    "multiplier": 1
+  },
+  {
+    "__type__": "cc.RealCurve",
+    "_times": [
+      0,
+      1
+    ],
+    "_values": [
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      },
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  },
+  {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 1974
+    }
+  },
+  {
+    "__type__": "cc.CurveRange",
+    "mode": 1,
+    "spline": {
+      "__id__": 1975
     },
     "multiplier": 1
   },
@@ -57742,20 +57680,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_children": [
       {
-        "__id__": 1980
+        "__id__": 1978
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 1982
+        "__id__": 1980
       },
       {
-        "__id__": 1983
+        "__id__": 1981
       }
     ],
     "_prefab": null,
@@ -57794,13 +57732,13 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1979
+      "__id__": 1977
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 1981
+        "__id__": 1979
       }
     ],
     "_prefab": null,
@@ -57839,7 +57777,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1980
+      "__id__": 1978
     },
     "_enabled": true,
     "__prefab": null,
@@ -57861,7 +57799,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1979
+      "__id__": 1977
     },
     "_enabled": true,
     "__prefab": null,
@@ -57883,24 +57821,24 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1979
+      "__id__": 1977
     },
     "_enabled": true,
     "__prefab": null,
     "baseInscept": {
-      "__id__": 1984
+      "__id__": 1982
     },
     "audioInscpect": {
-      "__id__": 1985
+      "__id__": 1983
     },
     "startRolling": {
-      "__id__": 1989
+      "__id__": 1987
     },
     "rollingInscept": {
-      "__id__": 1996
+      "__id__": 1994
     },
     "nearMissInscept": {
-      "__id__": 2017
+      "__id__": 2015
     },
     "_id": "5134FgJRtKOqMJjEt4H3Kf"
   },
@@ -57918,7 +57856,7 @@
       "height": 1
     },
     "container": {
-      "__id__": 1980
+      "__id__": 1978
     },
     "startPutSymbol": true,
     "rollingSymbols": [
@@ -57937,13 +57875,13 @@
   {
     "__type__": "AudioInscept",
     "startAudio": {
-      "__id__": 1986
+      "__id__": 1984
     },
     "stopAudio": {
-      "__id__": 1987
+      "__id__": 1985
     },
     "nearAudio": {
-      "__id__": 1988
+      "__id__": 1986
     }
   },
   {
@@ -57965,16 +57903,16 @@
     "__type__": "StartRollingInscept",
     "startRollingType": 2,
     "startRolling1": {
-      "__id__": 1990
+      "__id__": 1988
     },
     "startRolling2": {
-      "__id__": 1992
+      "__id__": 1990
     }
   },
   {
     "__type__": "StartRolling1",
     "spinEvent": {
-      "__id__": 1991
+      "__id__": 1989
     }
   },
   {
@@ -57990,21 +57928,21 @@
     "preRollingMoveUpDuration": 0.5,
     "preRollingMoveValue": 70,
     "curve": {
-      "__id__": 1993
+      "__id__": 1991
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 1994
+      "__id__": 1992
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 1995
+      "__id__": 1993
     },
     "multiplier": 1
   },
@@ -58047,22 +57985,22 @@
     "__type__": "RollingInscept",
     "rollingType": 1,
     "rolling": {
-      "__id__": 1997
+      "__id__": 1995
     },
     "rolling1": {
-      "__id__": 2000
+      "__id__": 1998
     },
     "rolling2": {
-      "__id__": 2007
+      "__id__": 2005
     }
   },
   {
     "__type__": "RollingType",
     "spinEvent": {
-      "__id__": 1998
+      "__id__": 1996
     },
     "stopRollingEvent": {
-      "__id__": 1999
+      "__id__": 1997
     }
   },
   {
@@ -58087,25 +58025,25 @@
     "rollingSpeed_q": 3000,
     "rollingSpeed_t": 3500,
     "rollingDownCurve": {
-      "__id__": 2001
+      "__id__": 1999
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 2004
+      "__id__": 2002
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2002
+      "__id__": 2000
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2003
+      "__id__": 2001
     },
     "multiplier": 1
   },
@@ -58148,14 +58086,14 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2005
+      "__id__": 2003
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2006
+      "__id__": 2004
     },
     "multiplier": 1
   },
@@ -58197,7 +58135,7 @@
   {
     "__type__": "RollingType2",
     "preStartRollingDown": {
-      "__id__": 2008
+      "__id__": 2006
     },
     "preStartRollingDownSec_n": 0.5,
     "preStartRollingDownSec_q": 0.3,
@@ -58206,75 +58144,25 @@
     "rollingSpeed_q": 800,
     "rollingSpeed_t": 1000,
     "rollingDownCurve": {
-      "__id__": 2011
+      "__id__": 2009
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 2014
-    }
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
-      "__id__": 2009
-    }
-  },
-  {
-    "__type__": "cc.CurveRange",
-    "mode": 1,
-    "spline": {
-      "__id__": 2010
-    },
-    "multiplier": 1
-  },
-  {
-    "__type__": "cc.RealCurve",
-    "_times": [
-      0,
-      1
-    ],
-    "_values": [
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      },
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      }
-    ],
-    "preExtrapolation": 1,
-    "postExtrapolation": 1
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
       "__id__": 2012
     }
   },
   {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 2007
+    }
+  },
+  {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2013
+      "__id__": 2008
     },
     "multiplier": 1
   },
@@ -58317,14 +58205,64 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2015
+      "__id__": 2010
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2016
+      "__id__": 2011
+    },
+    "multiplier": 1
+  },
+  {
+    "__type__": "cc.RealCurve",
+    "_times": [
+      0,
+      1
+    ],
+    "_values": [
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      },
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  },
+  {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 2013
+    }
+  },
+  {
+    "__type__": "cc.CurveRange",
+    "mode": 1,
+    "spline": {
+      "__id__": 2014
     },
     "multiplier": 1
   },
@@ -58374,20 +58312,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_children": [
       {
-        "__id__": 2019
+        "__id__": 2017
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 2021
+        "__id__": 2019
       },
       {
-        "__id__": 2022
+        "__id__": 2020
       }
     ],
     "_prefab": null,
@@ -58426,13 +58364,13 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 2018
+      "__id__": 2016
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2020
+        "__id__": 2018
       }
     ],
     "_prefab": null,
@@ -58471,7 +58409,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2019
+      "__id__": 2017
     },
     "_enabled": true,
     "__prefab": null,
@@ -58493,7 +58431,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2018
+      "__id__": 2016
     },
     "_enabled": true,
     "__prefab": null,
@@ -58515,24 +58453,24 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2018
+      "__id__": 2016
     },
     "_enabled": true,
     "__prefab": null,
     "baseInscept": {
-      "__id__": 2023
+      "__id__": 2021
     },
     "audioInscpect": {
-      "__id__": 2024
+      "__id__": 2022
     },
     "startRolling": {
-      "__id__": 2028
+      "__id__": 2026
     },
     "rollingInscept": {
-      "__id__": 2035
+      "__id__": 2033
     },
     "nearMissInscept": {
-      "__id__": 2056
+      "__id__": 2054
     },
     "_id": "dc1j0l4sRC5KcHV3kd9Fo9"
   },
@@ -58550,7 +58488,7 @@
       "height": 1
     },
     "container": {
-      "__id__": 2019
+      "__id__": 2017
     },
     "startPutSymbol": true,
     "rollingSymbols": [
@@ -58569,13 +58507,13 @@
   {
     "__type__": "AudioInscept",
     "startAudio": {
-      "__id__": 2025
+      "__id__": 2023
     },
     "stopAudio": {
-      "__id__": 2026
+      "__id__": 2024
     },
     "nearAudio": {
-      "__id__": 2027
+      "__id__": 2025
     }
   },
   {
@@ -58597,16 +58535,16 @@
     "__type__": "StartRollingInscept",
     "startRollingType": 2,
     "startRolling1": {
-      "__id__": 2029
+      "__id__": 2027
     },
     "startRolling2": {
-      "__id__": 2031
+      "__id__": 2029
     }
   },
   {
     "__type__": "StartRolling1",
     "spinEvent": {
-      "__id__": 2030
+      "__id__": 2028
     }
   },
   {
@@ -58622,21 +58560,21 @@
     "preRollingMoveUpDuration": 0.5,
     "preRollingMoveValue": 70,
     "curve": {
-      "__id__": 2032
+      "__id__": 2030
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2033
+      "__id__": 2031
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2034
+      "__id__": 2032
     },
     "multiplier": 1
   },
@@ -58679,22 +58617,22 @@
     "__type__": "RollingInscept",
     "rollingType": 1,
     "rolling": {
-      "__id__": 2036
+      "__id__": 2034
     },
     "rolling1": {
-      "__id__": 2039
+      "__id__": 2037
     },
     "rolling2": {
-      "__id__": 2046
+      "__id__": 2044
     }
   },
   {
     "__type__": "RollingType",
     "spinEvent": {
-      "__id__": 2037
+      "__id__": 2035
     },
     "stopRollingEvent": {
-      "__id__": 2038
+      "__id__": 2036
     }
   },
   {
@@ -58719,25 +58657,25 @@
     "rollingSpeed_q": 3000,
     "rollingSpeed_t": 3500,
     "rollingDownCurve": {
-      "__id__": 2040
+      "__id__": 2038
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 2043
+      "__id__": 2041
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2041
+      "__id__": 2039
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2042
+      "__id__": 2040
     },
     "multiplier": 1
   },
@@ -58780,14 +58718,14 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2044
+      "__id__": 2042
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2045
+      "__id__": 2043
     },
     "multiplier": 1
   },
@@ -58829,7 +58767,7 @@
   {
     "__type__": "RollingType2",
     "preStartRollingDown": {
-      "__id__": 2047
+      "__id__": 2045
     },
     "preStartRollingDownSec_n": 0.5,
     "preStartRollingDownSec_q": 0.3,
@@ -58838,75 +58776,25 @@
     "rollingSpeed_q": 800,
     "rollingSpeed_t": 1000,
     "rollingDownCurve": {
-      "__id__": 2050
+      "__id__": 2048
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 2053
-    }
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
-      "__id__": 2048
-    }
-  },
-  {
-    "__type__": "cc.CurveRange",
-    "mode": 1,
-    "spline": {
-      "__id__": 2049
-    },
-    "multiplier": 1
-  },
-  {
-    "__type__": "cc.RealCurve",
-    "_times": [
-      0,
-      1
-    ],
-    "_values": [
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      },
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      }
-    ],
-    "preExtrapolation": 1,
-    "postExtrapolation": 1
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
       "__id__": 2051
     }
   },
   {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 2046
+    }
+  },
+  {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2052
+      "__id__": 2047
     },
     "multiplier": 1
   },
@@ -58949,14 +58837,64 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2054
+      "__id__": 2049
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2055
+      "__id__": 2050
+    },
+    "multiplier": 1
+  },
+  {
+    "__type__": "cc.RealCurve",
+    "_times": [
+      0,
+      1
+    ],
+    "_values": [
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      },
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  },
+  {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 2052
+    }
+  },
+  {
+    "__type__": "cc.CurveRange",
+    "mode": 1,
+    "spline": {
+      "__id__": 2053
     },
     "multiplier": 1
   },
@@ -59006,20 +58944,20 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_children": [
       {
-        "__id__": 2058
+        "__id__": 2056
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 2060
+        "__id__": 2058
       },
       {
-        "__id__": 2061
+        "__id__": 2059
       }
     ],
     "_prefab": null,
@@ -59058,13 +58996,13 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 2057
+      "__id__": 2055
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2059
+        "__id__": 2057
       }
     ],
     "_prefab": null,
@@ -59103,7 +59041,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2058
+      "__id__": 2056
     },
     "_enabled": true,
     "__prefab": null,
@@ -59125,7 +59063,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2057
+      "__id__": 2055
     },
     "_enabled": true,
     "__prefab": null,
@@ -59147,24 +59085,24 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2057
+      "__id__": 2055
     },
     "_enabled": true,
     "__prefab": null,
     "baseInscept": {
-      "__id__": 2062
+      "__id__": 2060
     },
     "audioInscpect": {
-      "__id__": 2063
+      "__id__": 2061
     },
     "startRolling": {
-      "__id__": 2067
+      "__id__": 2065
     },
     "rollingInscept": {
-      "__id__": 2074
+      "__id__": 2072
     },
     "nearMissInscept": {
-      "__id__": 2095
+      "__id__": 2093
     },
     "_id": "ccrupVF09MvLtuBpxx/4ac"
   },
@@ -59182,7 +59120,7 @@
       "height": 1
     },
     "container": {
-      "__id__": 2058
+      "__id__": 2056
     },
     "startPutSymbol": true,
     "rollingSymbols": [
@@ -59201,13 +59139,13 @@
   {
     "__type__": "AudioInscept",
     "startAudio": {
-      "__id__": 2064
+      "__id__": 2062
     },
     "stopAudio": {
-      "__id__": 2065
+      "__id__": 2063
     },
     "nearAudio": {
-      "__id__": 2066
+      "__id__": 2064
     }
   },
   {
@@ -59229,16 +59167,16 @@
     "__type__": "StartRollingInscept",
     "startRollingType": 2,
     "startRolling1": {
-      "__id__": 2068
+      "__id__": 2066
     },
     "startRolling2": {
-      "__id__": 2070
+      "__id__": 2068
     }
   },
   {
     "__type__": "StartRolling1",
     "spinEvent": {
-      "__id__": 2069
+      "__id__": 2067
     }
   },
   {
@@ -59254,21 +59192,21 @@
     "preRollingMoveUpDuration": 0.5,
     "preRollingMoveValue": 70,
     "curve": {
-      "__id__": 2071
+      "__id__": 2069
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2072
+      "__id__": 2070
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2073
+      "__id__": 2071
     },
     "multiplier": 1
   },
@@ -59311,22 +59249,22 @@
     "__type__": "RollingInscept",
     "rollingType": 1,
     "rolling": {
-      "__id__": 2075
+      "__id__": 2073
     },
     "rolling1": {
-      "__id__": 2078
+      "__id__": 2076
     },
     "rolling2": {
-      "__id__": 2085
+      "__id__": 2083
     }
   },
   {
     "__type__": "RollingType",
     "spinEvent": {
-      "__id__": 2076
+      "__id__": 2074
     },
     "stopRollingEvent": {
-      "__id__": 2077
+      "__id__": 2075
     }
   },
   {
@@ -59351,25 +59289,25 @@
     "rollingSpeed_q": 3000,
     "rollingSpeed_t": 3500,
     "rollingDownCurve": {
-      "__id__": 2079
+      "__id__": 2077
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 2082
+      "__id__": 2080
     }
   },
   {
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2080
+      "__id__": 2078
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2081
+      "__id__": 2079
     },
     "multiplier": 1
   },
@@ -59412,14 +59350,14 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2083
+      "__id__": 2081
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2084
+      "__id__": 2082
     },
     "multiplier": 1
   },
@@ -59461,7 +59399,7 @@
   {
     "__type__": "RollingType2",
     "preStartRollingDown": {
-      "__id__": 2086
+      "__id__": 2084
     },
     "preStartRollingDownSec_n": 0.5,
     "preStartRollingDownSec_q": 0.3,
@@ -59470,75 +59408,25 @@
     "rollingSpeed_q": 800,
     "rollingSpeed_t": 1000,
     "rollingDownCurve": {
-      "__id__": 2089
+      "__id__": 2087
     },
     "rollingDownMultiple": 1,
     "rollingBackCurve": {
-      "__id__": 2092
-    }
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
-      "__id__": 2087
-    }
-  },
-  {
-    "__type__": "cc.CurveRange",
-    "mode": 1,
-    "spline": {
-      "__id__": 2088
-    },
-    "multiplier": 1
-  },
-  {
-    "__type__": "cc.RealCurve",
-    "_times": [
-      0,
-      1
-    ],
-    "_values": [
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      },
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 2,
-        "tangentWeightMode": 0,
-        "value": 1,
-        "rightTangent": 0,
-        "rightTangentWeight": 0,
-        "leftTangent": 0,
-        "leftTangentWeight": 0,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      }
-    ],
-    "preExtrapolation": 1,
-    "postExtrapolation": 1
-  },
-  {
-    "__type__": "CurveProperty",
-    "curveType": 6,
-    "curveRange": {
       "__id__": 2090
     }
   },
   {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 2085
+    }
+  },
+  {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2091
+      "__id__": 2086
     },
     "multiplier": 1
   },
@@ -59581,14 +59469,64 @@
     "__type__": "CurveProperty",
     "curveType": 6,
     "curveRange": {
-      "__id__": 2093
+      "__id__": 2088
     }
   },
   {
     "__type__": "cc.CurveRange",
     "mode": 1,
     "spline": {
-      "__id__": 2094
+      "__id__": 2089
+    },
+    "multiplier": 1
+  },
+  {
+    "__type__": "cc.RealCurve",
+    "_times": [
+      0,
+      1
+    ],
+    "_values": [
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      },
+      {
+        "__type__": "cc.RealKeyframeValue",
+        "interpolationMode": 2,
+        "tangentWeightMode": 0,
+        "value": 1,
+        "rightTangent": 0,
+        "rightTangentWeight": 0,
+        "leftTangent": 0,
+        "leftTangentWeight": 0,
+        "easingMethod": 0,
+        "__editorExtras__": null
+      }
+    ],
+    "preExtrapolation": 1,
+    "postExtrapolation": 1
+  },
+  {
+    "__type__": "CurveProperty",
+    "curveType": 6,
+    "curveRange": {
+      "__id__": 2091
+    }
+  },
+  {
+    "__type__": "cc.CurveRange",
+    "mode": 1,
+    "spline": {
+      "__id__": 2092
     },
     "multiplier": 1
   },
@@ -59638,7 +59576,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_enabled": true,
     "__prefab": null,
@@ -59660,7 +59598,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_enabled": true,
     "__prefab": null,
@@ -59676,7 +59614,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "_enabled": true,
     "__prefab": null,
@@ -59716,16 +59654,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2100
+        "__id__": 2098
       },
       {
-        "__id__": 2101
+        "__id__": 2099
       }
     ],
     "_prefab": null,
@@ -59764,7 +59702,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2099
+      "__id__": 2097
     },
     "_enabled": true,
     "__prefab": null,
@@ -59786,7 +59724,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2099
+      "__id__": 2097
     },
     "_enabled": true,
     "__prefab": null,
@@ -59825,16 +59763,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2103
+        "__id__": 2101
       },
       {
-        "__id__": 2104
+        "__id__": 2102
       }
     ],
     "_prefab": null,
@@ -59873,7 +59811,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2102
+      "__id__": 2100
     },
     "_enabled": true,
     "__prefab": null,
@@ -59895,7 +59833,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2102
+      "__id__": 2100
     },
     "_enabled": true,
     "__prefab": null,
@@ -59934,13 +59872,13 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2106
+        "__id__": 2104
       }
     ],
     "_prefab": null,
@@ -59979,7 +59917,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2105
+      "__id__": 2103
     },
     "_enabled": true,
     "__prefab": null,
@@ -60001,16 +59939,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_children": [],
     "_active": false,
     "_components": [
       {
-        "__id__": 2108
+        "__id__": 2106
       },
       {
-        "__id__": 2109
+        "__id__": 2107
       }
     ],
     "_prefab": null,
@@ -60049,7 +59987,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2107
+      "__id__": 2105
     },
     "_enabled": true,
     "__prefab": null,
@@ -60071,7 +60009,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2107
+      "__id__": 2105
     },
     "_enabled": true,
     "__prefab": null,
@@ -60110,7 +60048,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_enabled": true,
     "__prefab": null,
@@ -60132,24 +60070,24 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 1896
+      "__id__": 1894
     },
     "_enabled": true,
     "__prefab": null,
     "wheelController": {
-      "__id__": 1900
+      "__id__": 1898
     },
     "startRollingInspect": {
-      "__id__": 2112
+      "__id__": 2110
     },
     "stopRollingInspect": {
-      "__id__": 2113
+      "__id__": 2111
     },
     "rollingInspect": {
-      "__id__": 2114
+      "__id__": 2112
     },
     "symbolInspect": {
-      "__id__": 2115
+      "__id__": 2113
     },
     "_id": "e2ofyUdGNGaKx1g5oChPXX"
   },
@@ -60219,7 +60157,7 @@
     "__type__": "SymbolInspect",
     "isDropSymbol": [],
     "container": {
-      "__id__": 2105
+      "__id__": 2103
     },
     "symbolNearMiss": []
   },
@@ -60235,10 +60173,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 2117
+        "__id__": 2115
       },
       {
-        "__id__": 2118
+        "__id__": 2116
       }
     ],
     "_prefab": null,
@@ -60277,7 +60215,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2116
+      "__id__": 2114
     },
     "_enabled": true,
     "__prefab": null,
@@ -60299,7 +60237,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2116
+      "__id__": 2114
     },
     "_enabled": true,
     "__prefab": null,
@@ -60342,19 +60280,19 @@
     },
     "_children": [
       {
-        "__id__": 2120
+        "__id__": 2118
       },
       {
-        "__id__": 2123
+        "__id__": 2121
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 2126
+        "__id__": 2124
       },
       {
-        "__id__": 2127
+        "__id__": 2125
       }
     ],
     "_prefab": null,
@@ -60393,16 +60331,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 2119
+      "__id__": 2117
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2121
+        "__id__": 2119
       },
       {
-        "__id__": 2122
+        "__id__": 2120
       }
     ],
     "_prefab": null,
@@ -60441,7 +60379,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2120
+      "__id__": 2118
     },
     "_enabled": true,
     "__prefab": null,
@@ -60463,7 +60401,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2120
+      "__id__": 2118
     },
     "_enabled": true,
     "__prefab": null,
@@ -60528,16 +60466,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 2119
+      "__id__": 2117
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2124
+        "__id__": 2122
       },
       {
-        "__id__": 2125
+        "__id__": 2123
       }
     ],
     "_prefab": null,
@@ -60576,7 +60514,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2123
+      "__id__": 2121
     },
     "_enabled": true,
     "__prefab": null,
@@ -60598,7 +60536,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2123
+      "__id__": 2121
     },
     "_enabled": true,
     "__prefab": null,
@@ -60663,7 +60601,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2119
+      "__id__": 2117
     },
     "_enabled": true,
     "__prefab": null,
@@ -60685,12 +60623,12 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2119
+      "__id__": 2117
     },
     "_enabled": true,
     "__prefab": null,
     "reelMask": {
-      "__id__": 2099
+      "__id__": 2097
     },
     "winNumberSinglePos": {
       "__type__": "cc.Vec3",
@@ -60710,25 +60648,25 @@
     },
     "_children": [
       {
-        "__id__": 2129
+        "__id__": 2127
       },
       {
-        "__id__": 2133
+        "__id__": 2131
       },
       {
-        "__id__": 2136
+        "__id__": 2134
       }
     ],
     "_active": true,
     "_components": [
       {
+        "__id__": 2137
+      },
+      {
+        "__id__": 2138
+      },
+      {
         "__id__": 2139
-      },
-      {
-        "__id__": 2140
-      },
-      {
-        "__id__": 2141
       }
     ],
     "_prefab": null,
@@ -60767,19 +60705,19 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 2128
+      "__id__": 2126
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
+        "__id__": 2128
+      },
+      {
+        "__id__": 2129
+      },
+      {
         "__id__": 2130
-      },
-      {
-        "__id__": 2131
-      },
-      {
-        "__id__": 2132
       }
     ],
     "_prefab": null,
@@ -60818,7 +60756,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2129
+      "__id__": 2127
     },
     "_enabled": true,
     "__prefab": null,
@@ -60840,7 +60778,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2129
+      "__id__": 2127
     },
     "_enabled": true,
     "__prefab": null,
@@ -60879,7 +60817,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2129
+      "__id__": 2127
     },
     "_enabled": true,
     "__prefab": null,
@@ -60902,16 +60840,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 2128
+      "__id__": 2126
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2134
+        "__id__": 2132
       },
       {
-        "__id__": 2135
+        "__id__": 2133
       }
     ],
     "_prefab": null,
@@ -60950,7 +60888,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2133
+      "__id__": 2131
     },
     "_enabled": true,
     "__prefab": null,
@@ -60972,7 +60910,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2133
+      "__id__": 2131
     },
     "_enabled": true,
     "__prefab": null,
@@ -61011,16 +60949,16 @@
     "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
-      "__id__": 2128
+      "__id__": 2126
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 2137
+        "__id__": 2135
       },
       {
-        "__id__": 2138
+        "__id__": 2136
       }
     ],
     "_prefab": null,
@@ -61059,7 +60997,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2136
+      "__id__": 2134
     },
     "_enabled": true,
     "__prefab": null,
@@ -61081,7 +61019,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2136
+      "__id__": 2134
     },
     "_enabled": true,
     "__prefab": null,
@@ -61120,7 +61058,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2128
+      "__id__": 2126
     },
     "_enabled": true,
     "__prefab": null,
@@ -61142,7 +61080,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2128
+      "__id__": 2126
     },
     "_enabled": true,
     "__prefab": null,
@@ -61181,7 +61119,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2128
+      "__id__": 2126
     },
     "_enabled": true,
     "__prefab": null,
@@ -61271,7 +61209,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 2145
+        "__id__": 2143
       }
     ],
     "_prefab": null,
@@ -61310,13 +61248,13 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2144
+      "__id__": 2142
     },
     "_enabled": true,
     "__prefab": null,
     "soundList": [
       {
-        "__id__": 2146
+        "__id__": 2144
       }
     ],
     "defaultMusicId": "",
@@ -61344,7 +61282,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 2148
+        "__id__": 2146
       }
     ],
     "_prefab": null,
@@ -61383,13 +61321,13 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 2147
+      "__id__": 2145
     },
     "_enabled": true,
     "__prefab": null,
     "languageData": [
       {
-        "__id__": 2149
+        "__id__": 2147
       }
     ],
     "_id": "8fP5n9UNpH4Y3I8Me6/8nr"
@@ -61398,7 +61336,7 @@
     "__type__": "i18nLanguageData",
     "id": "default",
     "jsonFile": {
-      "__uuid__": "2df8a9a8-5c4e-4baa-9502-a6e1b9132bf8",
+      "__uuid__": "842471fb-53c2-46df-be10-9ad8e46f4ebd",
       "__expectedType__": "cc.JsonAsset"
     }
   },
@@ -61448,28 +61386,28 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 2154
+      "__id__": 2152
     },
     "shadows": {
-      "__id__": 2155
+      "__id__": 2153
     },
     "_skybox": {
-      "__id__": 2156
+      "__id__": 2154
     },
     "fog": {
-      "__id__": 2157
+      "__id__": 2155
     },
     "octree": {
-      "__id__": 2158
+      "__id__": 2156
     },
     "skin": {
-      "__id__": 2159
+      "__id__": 2157
     },
     "lightProbeInfo": {
-      "__id__": 2160
+      "__id__": 2158
     },
     "postSettings": {
-      "__id__": 2161
+      "__id__": 2159
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

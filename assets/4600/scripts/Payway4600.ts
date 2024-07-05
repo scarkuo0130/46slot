@@ -13,6 +13,7 @@ export enum JP_TYPE {
     MINOR = 2,
     MINI = 3,
     POT = 4,
+    NONE = -1,
 }
 
 export var WildID = 0;
@@ -86,7 +87,7 @@ export class Payway4600 extends Payway {
         this.properties['jp']['wild_soul'].node.active = false;
 
         this.doorSpine.node.active = true;
-        this.doorSpine.setAnimation(0, 'idle', false);
+        Utils.playSpine(this.doorSpine, 'idle', false, 1, true);
     }
     // 給予專案 start 使用
     protected onstart() { 
@@ -112,6 +113,7 @@ export class Payway4600 extends Payway {
      */
     private async processWinningScore() {
         await this.absorbWildSymbolIntoTreasurePot(); // 聚寶盆吸收 Wild Symbol動畫
+        
         // 回到原本流程 
         return super.processWinningScore();
     }
@@ -158,15 +160,21 @@ export class Payway4600 extends Payway {
         });
 
         // 等待動畫播完
-        await Utils.delay(1000);
+        await Utils.delay(400);
         this.reel.moveBackToWheel();
 
-        await Utils.delay(1000);
-        if ( this.gameResult.extra?.jp_prize > 0 ) { 
-            return await this.jpGame.enter_jp_game();
+        if ( this.gameResult.extra?.jp_prize > 0 ) {             
+            const {jp_type, jp_prize} = this.gameResult.extra;
+            await Utils.delay(1000);
+            return await this.jpGame.enter_jp_game(jp_type, jp_prize);
         }
 
         return this.play_pot_ani(this.gameResult.extra.jp_level);
+    }
+
+    public async exit_jp_game() {
+        this.play_pot_ani(0);
+        console.log('exit_jp_game');
     }
 
     /**

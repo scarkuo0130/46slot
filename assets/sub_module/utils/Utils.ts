@@ -1,4 +1,4 @@
-import { EventHandler, bezier, JsonAsset, resources, CurveRange, find, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label, TweenEasing } from "cc";
+import { EventHandler, bezier, JsonAsset, resources, CurveRange, find, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label, TweenEasing, instantiate } from "cc";
 import { PREVIEW, EDITOR } from "cc/env";
 import { Config, GameConfig } from '../game/GameConfig';
 import { gameInformation } from '../game/GameInformation';
@@ -73,7 +73,9 @@ export class Utils {
                 path = subProperty[DATA_TYPE.NODE_PATH];
                 if ( path == null || typeof(path) !== 'string' ) continue;
 
-                node = bindComponent.node.getChildByPath(path);
+                if ( path === '' ) node = bindComponent.node;
+                else node = bindComponent.node.getChildByPath(path);
+
                 if ( node == null ) {
                     console.error('Node not found: ' + subProperty[DATA_TYPE.NODE_PATH]);
                     continue;
@@ -559,19 +561,52 @@ export class Utils {
         ui.active = active;
     }
 
-    /** 等待播放完畢 Spine 動畫  */
-    public static async playSpine(spine:sp.Skeleton, animationName:string, loop:boolean = false) {
+    /** (async)播放 Spine 動畫  */
+    public static async playSpine(spine:sp.Skeleton, animationName:string, loop:boolean = false, timeScale:number = 1.0, autoActive:boolean = false) {
         if ( spine == null ) return;
         if ( animationName == null ) return;
+        if ( autoActive ) {
+            spine.node.parent.active = true;
+            spine.node.active = true;
+        }
         
-        let duration = this.getAnimationDuration(spine, animationName) * 1000 ;
+        spine.timeScale = timeScale;
+        spine.setCompleteListener((trackEntry) => { spine['isPlaying'] = false; });
+
+        let duration = this.getAnimationDuration(spine, animationName) * 1000 / timeScale;
         let track : sp.spine.TrackEntry = spine.setAnimation(0, animationName, loop);
         
         spine['track'] = track;
         spine['isPlaying'] = true;
-        spine.setCompleteListener((trackEntry) => { spine['isPlaying'] = false; });
-
         await Utils.delay(duration);
+    }
+
+    /**
+     * (async) 震動放大效果
+     */
+    public static async scaleFade(colorComponent: Sprite | Label | sp.Skeleton , fadeoutSec:number=1, scale:number=3, onFinish:Function=null) {
+        if ( colorComponent == null ) return;
+        let copyNode = instantiate(colorComponent.node);
+        copyNode.parent     = colorComponent.node.parent;
+        copyNode.position   = colorComponent.node.position;
+        copyNode.active     = true;
+        
+        let sprite : Sprite | Label | sp.Skeleton = copyNode.getComponent(colorComponent.constructor as any);
+        let fromColor   = new Color(255, 255, 255, 128);
+        let toColor     = new Color(255, 255, 255, 0);
+        let toScale     = new Vec3(scale, scale, 1);
+        let waitTime    = fadeoutSec * 1000 + 500;
+
+        sprite.color    = fromColor;
+        let alpha = { value: fromColor.a };
+        tween(alpha).to(fadeoutSec, { value: toColor.a }, { easing: 'smooth',
+            onUpdate:   () => {  sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
+            onComplete: () => { onFinish?.() }
+        }).start();
+        
+        tween(copyNode).to(fadeoutSec, { scale: toScale }, { easing: 'backOut' }).start();
+        await Utils.delay(waitTime);
+        copyNode.destroy();
     }
 
     /**
@@ -592,14 +627,13 @@ export class Utils {
         if ( numberStringFunc == null ) numberStringFunc = Utils.numberComma;
         label.string = numberStringFunc(from);
 
-
         const t = tween(data).to(duration, { value: to }, { easing: 'smooth',
             onUpdate:   () => { label.string = numberStringFunc(data.value); },
             onComplete: () => { eventTarget?.emit('done'); }
          }).start();
 
-        if ( eventTarget == null ) return;
-        return await Utils.delayEvent(eventTarget);
+        
+        return await Utils.delay(duration * 1000);
     }
 
     public static async commonFadeIn( ui:Node, fadeout:boolean=false, color: Color[]=null, colorComponent=null, duration:number=0.3, eventTarget:EventTarget=null) {

@@ -92,8 +92,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 360,
-      "y": 640,
+      "x": 640,
+      "y": 360.00000000000006,
       "z": 0
     },
     "_lrot": {
@@ -178,7 +178,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 640,
+    "_orthoHeight": 360,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -270,13 +270,13 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 105.5,
-      "height": 112.5
+      "width": 234.8300018310547,
+      "height": 170.88999938964844
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0.5004897068639989,
+      "y": 0.5006729350118805
     },
     "_id": "e3CFUz4LxDbJhj07thB2+t"
   },
@@ -301,11 +301,11 @@
       "a": 255
     },
     "_skeletonData": {
-      "__uuid__": "d40f85a9-429c-46fc-a5b0-d77d62671025",
+      "__uuid__": "72bb5e60-1c5c-4e63-8751-8565fdd6ecce",
       "__expectedType__": "sp.SkeletonData"
     },
-    "defaultSkin": "default",
-    "defaultAnimation": "play",
+    "defaultSkin": "",
+    "defaultAnimation": "",
     "_premultipliedAlpha": true,
     "_timeScale": 1,
     "_preCacheMode": 0,
@@ -331,8 +331,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 720,
-      "height": 1280
+      "width": 1280,
+      "height": 720
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
