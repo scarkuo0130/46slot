@@ -29,7 +29,8 @@ export class Payway extends Paytable {
         if ( pay_credit_total === 0 ) return;
         if ( extra?.ways.length === 0 ) return;
         
-        return await super.processWinningScore();
+        await super.processWinningScore();
+        await super.processBigWin(pay_credit_total);
     }
 
     /**

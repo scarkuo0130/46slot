@@ -2,6 +2,7 @@ import { _decorator, Sprite, Component, Node, Vec3, tween, Label, EventHandler, 
 import { Reel } from '../Reel';
 import { Utils, DATA_TYPE } from '../../../utils/Utils';
 import { Machine } from '../Machine';
+import { BigWin } from '../BigWin';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
 @ccclass( 'Paytable' )
@@ -112,7 +113,20 @@ export class Paytable extends Component {
      * @todo 報獎完畢後，如果分數高於 BigWin 分數，進入 BigWin 流程
      * @todo 如果玩家沒有中斷報獎流程，則進入輪播報獎流程
      */
-    public async processWinningScore() { return await this.performAllPayline(); }
+    public async processWinningScore() { 
+        return await this.performAllPayline(); 
+    }
+
+    /**
+     * 播放 BigWin
+     * @param score { number } 分數
+     */
+    public async processBigWin(score:number) {
+        if ( this.machine.bigwin?.isBigWin(score) != BigWin.BIGWIN_TYPE.NONE ) {
+            this.machine.bigwin.playBigWin(score);
+            await this.machine.bigwin.waitingBigWin();
+        }
+    }
 
     /**
      * 播放全部獎項

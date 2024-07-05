@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, sp, Label, Color, Sprite } from 'cc';
+import { _decorator, Component, Node, sp, Label, Color, Sprite, EventTarget } from 'cc';
 import { Machine } from '../../../sub_module/game/machine/Machine';
 import { Payway4600, JP_TYPE } from '.././Payway4600';
 import { Utils, DATA_TYPE } from '../../../sub_module/utils/Utils';
@@ -9,7 +9,7 @@ const { ccclass, property } = _decorator;
 export class JpGame4600 extends Component {
     public properties = {
         'clicked_type' : { [JP_TYPE.GRAND] : 0, [JP_TYPE.MAJOR] : 0, [JP_TYPE.MINOR] : 0, [JP_TYPE.MINI] : 0, },
-        'jp_board_animation_type' : [ 'idle', 'play02', 'play03' ],
+        'jp_board_animation_type' : [ 'idle', 'idle', 'play02', 'play03' ],
     };
 
     private get background() : Node { return this.properties['Background']['node'].node; }
@@ -105,8 +105,12 @@ export class JpGame4600 extends Component {
     private get reward_label() : Label { return this.properties['reward_label'][this.jp_type].component; }
     private get reward_spine() : sp.Skeleton { return this.properties['reward_spine'][this.jp_type].component; }
 
+    private get jp_event() : EventTarget { return this.properties['jp_event']; }
+    private set jp_event(value:EventTarget) { this.properties['jp_event'] = value; }
+
     private play_jp_board_animation(type:JP_TYPE, index:number) {
         const loop = index === 0 ? false : true;
+        console.log('play_jp_board_animation', type, index);
         this.jp_board_spine(type).setAnimation(0, this.properties['jp_board_animation_type'][index], loop);
     }
 
@@ -171,6 +175,8 @@ export class JpGame4600 extends Component {
     }
 
     public async enter_jp_game(jp_type:JP_TYPE, jp_prize:number) {
+        let jp_event = new EventTarget();
+        this.jp_event = jp_event;
         this.machine.featureGame = true;
         this.jp_type = jp_type;
         this.jp_prize = jp_prize;
@@ -184,6 +190,8 @@ export class JpGame4600 extends Component {
         });
 
         this.isBusy = false;
+        await Utils.delayEvent(jp_event);
+        jp_event = null;
     }
 
     private update_jp_value() {
@@ -216,7 +224,7 @@ export class JpGame4600 extends Component {
             // 安全措施
             if ( count >= 20 ) return this.jp_type;
 
-            let random = Utils.Random(0, 4);
+            let random = Utils.Random(0, 3);
             let type = this.JP_BOARDS[random][0];
             let times = this.get_clicked_type(type);
             if ( times === 2  && this.jp_type !== type ) continue;
@@ -290,6 +298,7 @@ export class JpGame4600 extends Component {
             this.node.active = false;
         });
         this.machine.featureGame = false;
+        this.jp_event.emit('done');
         this.machine.paytable.exit_jp_game();
     }
 

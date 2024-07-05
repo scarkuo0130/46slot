@@ -66,13 +66,13 @@ export class HttpRequest {
                     reject( '404' );
                 } else {
                     if ( HttpRequest.xhr.readyState === READY_STATE_CONNECT ) {
-                        console.log( 'readyState = READY_STATE_CONNECT' );
+                        // console.log( 'readyState = READY_STATE_CONNECT' );
                     } else if ( HttpRequest.xhr.readyState === READY_STATE_ARRIVED ) {
-                        console.log( 'readyState = READY_STATE_ARRIVED' );
+                        // console.log( 'readyState = READY_STATE_ARRIVED' );
                     } else if ( HttpRequest.xhr.readyState === READY_STATE_PROCESS ) {
-                        console.log( 'readyState = READY_STATE_PROCESS' );
+                        // console.log( 'readyState = READY_STATE_PROCESS' );
                     } else if ( HttpRequest.xhr.readyState === READY_STATE_SUCCESS ) {
-                        console.log( 'readyState = READY_STATE_SUCCESS' );
+                        // console.log( 'readyState = READY_STATE_SUCCESS' );
                         let response = HttpRequest.xhr.response;
                         if ( response == null ) {
                             console.log( 'ERROR_INTERNET' );
@@ -107,7 +107,7 @@ export class HttpRequest {
             };
             HttpRequest.xhr.open( 'POST', gameInformation.serverurl );
             HttpRequest.xhr.responseType = 'json';
-            console.log( JSON.parse( data ).command );
+            // console.log( JSON.parse( data ).command );
             HttpRequest.xhr.send( data );
         } );
     }

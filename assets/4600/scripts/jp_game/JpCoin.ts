@@ -15,6 +15,7 @@ export class JpCoin extends Component {
     public async click_type(value: JP_TYPE, isLast: boolean=false) {
         this.jp_type = value;
 
+        console.log('click_type', value, isLast);
         const coin_spine = this.properties['coin']['default'].component;
         const jp_spine = this.properties['coin'][value].component;
 

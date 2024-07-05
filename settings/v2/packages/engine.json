@@ -1,8 +1,11 @@
 {
-  "__version__": "1.0.9",
+  "__version__": "1.0.7",
   "modules": {
     "cache": {
       "base": {
+        "_value": true
+      },
+      "graphcis": {
         "_value": true
       },
       "gfx-webgl": {
@@ -18,9 +21,6 @@
         "_value": true
       },
       "3d": {
-        "_value": true
-      },
-      "meshopt": {
         "_value": true
       },
       "2d": {
@@ -118,13 +118,13 @@
       "marionette": {
         "_value": true
       },
-      "procedural-animation": {
-        "_value": true
-      },
       "custom-pipeline": {
         "_value": true
       },
-      "graphcis": {
+      "meshopt": {
+        "_value": true
+      },
+      "procedural-animation": {
         "_value": true
       },
       "graphics": {
@@ -143,12 +143,10 @@
       "gfx-webgl2",
       "intersection-2d",
       "marionette",
-      "meshopt",
       "particle",
       "particle-2d",
       "physics-2d-box2d",
       "physics-ammo",
-      "procedural-animation",
       "profiler",
       "skeletal-animation",
       "spine",

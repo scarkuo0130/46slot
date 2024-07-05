@@ -9,7 +9,7 @@ const { ccclass, property } = _decorator;
 @ccclass('BigWin')
 export class BigWin extends Component {
 
-    public readonly BIGWIN_TYPE = {
+    public static readonly BIGWIN_TYPE = {
         NONE        : 0,
         BIG_WIN     : 1,
         SUPER_WIN   : 2,
@@ -26,26 +26,26 @@ export class BigWin extends Component {
 
     /** 預設播放秒數  */
     public readonly durationMap = {
-        [this.BIGWIN_TYPE.BIG_WIN]   : 4000,
-        [this.BIGWIN_TYPE.SUPER_WIN] : 4000,
-        [this.BIGWIN_TYPE.MEGA_WIN]  : 4000,
+        [BigWin.BIGWIN_TYPE.BIG_WIN]   : 4000,
+        [BigWin.BIGWIN_TYPE.SUPER_WIN] : 4000,
+        [BigWin.BIGWIN_TYPE.MEGA_WIN]  : 4000,
         'QuickEnd'                   : 1000,
     }
 
     private InitData = {
-        [this.BIGWIN_TYPE.BIG_WIN] : {
+        [BigWin.BIGWIN_TYPE.BIG_WIN] : {
             'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'BigWin' },
             'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'BigWin/Spine' },
             'particle' : { [DATA_TYPE.TYPE]:Node, [DATA_TYPE.NODE_PATH]:'BigWin/Particle' },
         },
 
-        [this.BIGWIN_TYPE.SUPER_WIN] : {
+        [BigWin.BIGWIN_TYPE.SUPER_WIN] : {
             'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'SuperWin' },
             'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'SuperWin/Spine' },
             'particle' : { [DATA_TYPE.TYPE]:Node, [DATA_TYPE.NODE_PATH]:'SuperWin/Particle' },
         },
 
-        [this.BIGWIN_TYPE.MEGA_WIN] : {
+        [BigWin.BIGWIN_TYPE.MEGA_WIN] : {
             'node'  : { [DATA_TYPE.TYPE]:Sprite, [DATA_TYPE.NODE_PATH]:'MegaWin' },
             'spine' : { [DATA_TYPE.TYPE]:sp.Skeleton, [DATA_TYPE.NODE_PATH]:'MegaWin/Spine' },
             'particle' : { [DATA_TYPE.TYPE]:Node, [DATA_TYPE.NODE_PATH]:'MegaWin/Particle' },
@@ -59,10 +59,10 @@ export class BigWin extends Component {
     };
 
     private properties = {
-        'playing' : this.BIGWIN_TYPE.NONE, // 正在播放的動畫
+        'playing' : BigWin.BIGWIN_TYPE.NONE, // 正在播放的動畫
         'event'   : null,
         'tween'   : null,
-        'lastType': this.BIGWIN_TYPE.NONE,
+        'lastType': BigWin.BIGWIN_TYPE.NONE,
         'playValue' : [0, 0, 0, 0],
         'score'   : 0,
     };
@@ -72,7 +72,6 @@ export class BigWin extends Component {
     private activeParticle(active:boolean) {
         const playing = this.playing;
         const particles = this.properties[playing].particles;
-        console.log('activeParticle', active, this.playing, particles);
         if ( !particles ) return;
 
         if ( active === true ) particles.forEach((particle)=>{ particle.play(); });
@@ -85,20 +84,23 @@ export class BigWin extends Component {
         this.node.setPosition(0, 0, 0);
         Utils.initData(this.InitData, this);
 
-        this.spine(this.BIGWIN_TYPE.BIG_WIN).node.active = false;
-        this.spine(this.BIGWIN_TYPE.SUPER_WIN).node.active = false;
-        this.spine(this.BIGWIN_TYPE.MEGA_WIN).node.active = false;
+        this.spine(BigWin.BIGWIN_TYPE.BIG_WIN).node.active = false;
+        this.spine(BigWin.BIGWIN_TYPE.SUPER_WIN).node.active = false;
+        this.spine(BigWin.BIGWIN_TYPE.MEGA_WIN).node.active = false;
         this.valueBoard.node.active = false;
         this.label.string = '';
         this.properties['value']['show'][DATA_TYPE.COMPONENT].string = '';
         this.properties['event'] = new EventTarget();
 
-        this.properties[this.BIGWIN_TYPE.BIG_WIN].particles = this.properties[this.BIGWIN_TYPE.BIG_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
-        this.properties[this.BIGWIN_TYPE.SUPER_WIN].particles = this.properties[this.BIGWIN_TYPE.SUPER_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
-        this.properties[this.BIGWIN_TYPE.MEGA_WIN].particles = this.properties[this.BIGWIN_TYPE.MEGA_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
-
-        this.node.on('click', ()=>{ this.quickEnd(); });
-        Utils.AddHandHoverEvent(this.node);
+        this.properties[BigWin.BIGWIN_TYPE.BIG_WIN].particles   = this.properties[BigWin.BIGWIN_TYPE.BIG_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
+        this.properties[BigWin.BIGWIN_TYPE.SUPER_WIN].particles = this.properties[BigWin.BIGWIN_TYPE.SUPER_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
+        this.properties[BigWin.BIGWIN_TYPE.MEGA_WIN].particles  = this.properties[BigWin.BIGWIN_TYPE.MEGA_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
+        this.spine(BigWin.BIGWIN_TYPE.BIG_WIN).node.on('click', ()=>{ this.quickEnd(); });
+        this.spine(BigWin.BIGWIN_TYPE.SUPER_WIN).node.on('click', ()=>{ this.quickEnd(); });
+        this.spine(BigWin.BIGWIN_TYPE.MEGA_WIN).node.on('click', ()=>{ this.quickEnd(); });
+        Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.BIG_WIN).node);
+        Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.SUPER_WIN).node);
+        Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.MEGA_WIN).node);
     }
 
     /** 取得spine */
@@ -123,7 +125,7 @@ export class BigWin extends Component {
         this.label.string = Utils.numberComma(value); 
     }
     public get playingSprite() { 
-        if ( this.playing === this.BIGWIN_TYPE.NONE ) return null;
+        if ( this.playing === BigWin.BIGWIN_TYPE.NONE ) return null;
         return this.properties[this.playing]['node'].component; 
     }
 
@@ -135,11 +137,13 @@ export class BigWin extends Component {
 
     public get valueBoard() { return this.properties['value']['board'][DATA_TYPE.COMPONENT]; }
 
+    public async waitingBigWin() { await Utils.delayEvent(this.event, 'done'); }
+
     public async play(type:number, quick:boolean=false) {
         if ( type === this.playing ) return;
 
         // 如果正在播放中，則中斷播放
-        if ( this.playing !== this.BIGWIN_TYPE.NONE ) await this.break();
+        if ( this.playing !== BigWin.BIGWIN_TYPE.NONE ) await this.break();
         
         this.playing = type;
         this.playingSprite.node.active = true;
@@ -154,8 +158,6 @@ export class BigWin extends Component {
            
         } else {
             Utils.playSpine(spine, this.ANIMATION_TYPE.START).then(()=>{ Utils.playSpine(spine, this.ANIMATION_TYPE.LOOP, true);});
-            // spine.setAnimation(0, this.ANIMATION_TYPE.START, false);
-            // spine.setCompleteListener((track)=>{ spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true); });
         }
 
         await Utils.commonFadeIn(this.playingSprite.node, false, null, this.playingSprite, 0.2);
@@ -166,12 +168,13 @@ export class BigWin extends Component {
     /** 中斷播放 */
     public async break() : Promise<boolean> {
         const playing = this.playing;
-        if ( playing === this.BIGWIN_TYPE.NONE ) return false;
+        if ( playing === BigWin.BIGWIN_TYPE.NONE ) return false;
         
         this.activeParticle(false);
         await Utils.commonFadeIn(this.playingSprite.node, true, null, this.playingSprite);
+        this.spine(playing).node.active = false;
         if (this.playingSprite != null) this.playingSprite.node.active = false;
-        this.playing = this.BIGWIN_TYPE.NONE;
+        this.playing = BigWin.BIGWIN_TYPE.NONE;
         return true;
     }
 
@@ -196,7 +199,7 @@ export class BigWin extends Component {
         this.properties['ending'] = true;
 
         const playing = this.playing;
-        if ( playing === this.BIGWIN_TYPE.NONE ) return;
+        if ( playing === BigWin.BIGWIN_TYPE.NONE ) return;
 
         await this.showValue();
 
@@ -208,11 +211,14 @@ export class BigWin extends Component {
         spine.setCompleteListener((track)=>{ this.break(); });
         this.properties['ending'] = false;
         await this.machine.controller.maskActive(false);
+        this.event?.emit('done');
     }
 
     /** 快速結束 */
     public async quickEnd() {
+        console.log('quickEnd', this.playing, this.lastType);
         if ( this.event['quickStop'] === true ) return;
+        if ( this.playing === this.lastType ) return;
         this.event['quickStop'] = true;
 
         let playValue = this.playValue;
@@ -230,31 +236,40 @@ export class BigWin extends Component {
         await this.end();
     }
 
+    public bigWinLabel() { return gameInformation._winLevelRate; }
+    public setBigWinLabel(vBig, vSuper, vMega) { 
+        gameInformation._winLevelRate['BIG_WIN'] = vBig;
+        gameInformation._winLevelRate['SUPER_WIN'] = vSuper;
+        gameInformation._winLevelRate['MEGA_WIN'] = vMega;
+
+        return this.bigWinLabel();
+    }
+
     public isBigWin(totalWin:number=0) : number {
 
-        if (totalWin === 0) return this.BIGWIN_TYPE.NONE;
+        if (totalWin === 0) return BigWin.BIGWIN_TYPE.NONE;
         let totalBet = this.machine.totalBet;
 
-        if ( totalBet === 0 ) return this.BIGWIN_TYPE.NONE;
+        if ( totalBet === 0 ) return BigWin.BIGWIN_TYPE.NONE;
         let winLevelRate = gameInformation._winLevelRate;
 
         let several = totalWin / totalBet;
-        if ( several < winLevelRate['BIG_WIN'] )  return this.BIGWIN_TYPE.NONE;
-        if ( several > winLevelRate['MEGA_WIN'])  return this.BIGWIN_TYPE.MEGA_WIN;
-        if ( several > winLevelRate['SUPER_WIN']) return this.BIGWIN_TYPE.SUPER_WIN;
+        if ( several < winLevelRate['BIG_WIN'] )  return BigWin.BIGWIN_TYPE.NONE;
+        if ( several > winLevelRate['MEGA_WIN'])  return BigWin.BIGWIN_TYPE.MEGA_WIN;
+        if ( several > winLevelRate['SUPER_WIN']) return BigWin.BIGWIN_TYPE.SUPER_WIN;
 
-        return this.BIGWIN_TYPE.BIG_WIN;
+        return BigWin.BIGWIN_TYPE.BIG_WIN;
     }
 
     public async playBigWin(totalWin:number) {
         let lastType = this.isBigWin(totalWin);
-        if ( lastType === this.BIGWIN_TYPE.NONE ) return;
+        if ( lastType === BigWin.BIGWIN_TYPE.NONE ) return;
 
         let totalBet        = this.machine.totalBet;
         let winLevelRate    = gameInformation._winLevelRate;
         let playValue       = [ 0, totalBet * winLevelRate["BIG_WIN"], totalBet * winLevelRate["SUPER_WIN"], totalBet * winLevelRate["MEGA_WIN"]];
         let event           = this.event;
-        let type            = this.BIGWIN_TYPE.BIG_WIN;
+        let type            = BigWin.BIGWIN_TYPE.BIG_WIN;
         
         playValue[lastType] = totalWin;
         this.playValue      = playValue;
@@ -267,7 +282,7 @@ export class BigWin extends Component {
         Utils.commonFadeIn(this.valueBoard.node, false, null, this.valueBoard, 0.2);
         
         while(true) {
-            if ( type === this.BIGWIN_TYPE.BIG_WIN ) await this.play(type);
+            if ( type === BigWin.BIGWIN_TYPE.BIG_WIN ) await this.play(type);
             else this.play(type);
 
             await this.tweenScore(this.durationMap[type], playValue[type-1], playValue[type]);

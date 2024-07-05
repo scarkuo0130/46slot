@@ -2,11 +2,11 @@
   "name": "46slot",
   "uuid": "c141efdc-17d0-40e6-b8ec-264d7f3a9ad1",
   "creator": {
-    "version": "3.8.3"
+    "version": "3.7.4"
   },
   "dependencies": {
     "joe": "^2.0.2",
     "mobx": "^6.10.0",
     "xstate": "^4.38.2"
- }
+  }
 }

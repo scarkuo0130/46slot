@@ -41,7 +41,7 @@ export class Develop4600 extends Component {
         // 有沒有 wild
         if ( this.haveWild(spinData) ) {
             let jp_level = this.machine.paytable.JP_LEVEL + 1;
-            if ( jp_level > 4 ) {
+            if ( jp_level > 1 ) {
                 jp_level = 4;
                 let jp = Utils.Random(0, 3);
                 let jp_prize = this.machine.totalBet * this.machine.paytable.JP_REWARD[jp];

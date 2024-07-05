@@ -112,8 +112,10 @@ export class Payway4600 extends Payway {
      * @from paytable.spin()
      */
     private async processWinningScore() {
+        const {jp_level, jp_prize} = this.gameResult.extra;
+        if ( jp_prize > 0 ) this.machine.featureGame = true;
+
         await this.absorbWildSymbolIntoTreasurePot(); // 聚寶盆吸收 Wild Symbol動畫
-        
         // 回到原本流程 
         return super.processWinningScore();
     }
@@ -161,19 +163,19 @@ export class Payway4600 extends Payway {
 
         // 等待動畫播完
         await Utils.delay(400);
-        this.reel.moveBackToWheel();
-
         if ( this.gameResult.extra?.jp_prize > 0 ) {             
             const {jp_type, jp_prize} = this.gameResult.extra;
             await Utils.delay(1000);
             return await this.jpGame.enter_jp_game(jp_type, jp_prize);
         }
 
+        this.reel.moveBackToWheel();
         return this.play_pot_ani(this.gameResult.extra.jp_level);
     }
 
     public async exit_jp_game() {
         this.play_pot_ani(0);
+        this.machine.featureGame = false;
         console.log('exit_jp_game');
     }
 
