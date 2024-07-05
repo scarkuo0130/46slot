@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "4600Game",
+    "_name": "4600Game-002",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -59,7 +59,7 @@
     "_globals": {
       "__id__": 2335
     },
-    "_id": "86f53183-8790-4bbe-a032-1ff6cd63b176"
+    "_id": "8a968843-cbe3-416a-9b54-565608cb306b"
   },
   {
     "__type__": "cc.Node",
@@ -61912,7 +61912,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 9.298,
+      "y": -28.149,
       "z": 0
     },
     "_lrot": {
@@ -61924,8 +61924,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.1764705882352942,
+      "y": 1.1764705882352942,
       "z": 1
     },
     "_mobility": 0,
@@ -62030,12 +62030,12 @@
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.1764705882352942,
+      "y": 1.1764705882352942,
       "z": 1
     },
-    "affectActive": false,
-    "active": false,
+    "affectActive": true,
+    "active": true,
     "parentNode": {
       "__id__": 1996
     },
@@ -62057,13 +62057,13 @@
     "position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 9.298,
+      "y": -28.149,
       "z": 0
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.1764705882352942,
+      "y": 1.1764705882352942,
       "z": 1
     },
     "affectActive": false,
@@ -63437,8 +63437,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 25.647,
-      "y": 28.335,
+      "x": 29.558,
+      "y": -2.625,
       "z": 0
     },
     "_lrot": {
@@ -63476,7 +63476,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
+      "width": 370,
       "height": 50
     },
     "_anchorPoint": {
@@ -63561,7 +63561,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "enable": true,
+    "enable": false,
     "autoSave": true,
     "landscapeData": {
       "__id__": 2304
@@ -63576,8 +63576,8 @@
     "enable": true,
     "position": {
       "__type__": "cc.Vec3",
-      "x": 16.857,
-      "y": 167.665,
+      "x": 10.346,
+      "y": 165.642,
       "z": 0
     },
     "scale": {
@@ -63594,7 +63594,7 @@
     "hasUITransform": true,
     "contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
+      "width": 370,
       "height": 50
     },
     "anchorPoint": {
@@ -63608,8 +63608,8 @@
     "enable": true,
     "position": {
       "__type__": "cc.Vec3",
-      "x": 25.647,
-      "y": 28.335,
+      "x": 29.558,
+      "y": -2.625,
       "z": 0
     },
     "scale": {
@@ -63626,7 +63626,7 @@
     "hasUITransform": true,
     "contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
+      "width": 370,
       "height": 50
     },
     "anchorPoint": {
@@ -63938,7 +63938,7 @@
     "parentNode": {
       "__id__": 7
     },
-    "hasUITransform": false,
+    "hasUITransform": true,
     "contentSize": {
       "__type__": "cc.Size",
       "width": 100,

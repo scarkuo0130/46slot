@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "4600Game",
+    "_name": "4600Game-003",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_native": "",
@@ -59,7 +59,7 @@
     "_globals": {
       "__id__": 2335
     },
-    "_id": "86f53183-8790-4bbe-a032-1ff6cd63b176"
+    "_id": "d4f47790-82d3-4fcd-b6f7-a12c7f220e2c"
   },
   {
     "__type__": "cc.Node",
@@ -61896,7 +61896,7 @@
       "__id__": 1996
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 2253
@@ -61912,7 +61912,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 9.298,
+      "y": 10.674,
       "z": 0
     },
     "_lrot": {
@@ -62034,8 +62034,8 @@
       "y": 1,
       "z": 1
     },
-    "affectActive": false,
-    "active": false,
+    "affectActive": true,
+    "active": true,
     "parentNode": {
       "__id__": 1996
     },
@@ -62057,7 +62057,7 @@
     "position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 9.298,
+      "y": -28.149,
       "z": 0
     },
     "scale": {
@@ -63476,7 +63476,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
+      "width": 310,
       "height": 50
     },
     "_anchorPoint": {
@@ -63509,7 +63509,7 @@
     "_string": "123,456,789",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 8,
+    "_actualFontSize": 7,
     "_fontSize": 8,
     "_fontFamily": "Arial",
     "_lineHeight": 50,
@@ -63626,7 +63626,7 @@
     "hasUITransform": true,
     "contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
+      "width": 310,
       "height": 50
     },
     "anchorPoint": {

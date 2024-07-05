@@ -222,11 +222,17 @@ export class Payway4600 extends Payway {
     public async play_pot_ani(level:number) {
         this.JP_LEVEL = level;
         const spine : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
+        
+        if ( level < 5 ) {
+            await Utils.delay(1000);
+            Utils.playSpine(spine, 'play04', false);
+            await Utils.delay(1000);
+            spine.setSkin(this.TYPE_POT_LEVEL[level]);
+            return;
+        }
+        spine.setSkin(this.TYPE_POT_LEVEL[4]);
         await Utils.playSpine(spine, 'play03', false);
-        console.log('play_pot_ani', level);
-        if ( level > 4 ) return;
-        spine.setSkin(this.TYPE_POT_LEVEL[level]);
-        return Utils.playSpine(spine, 'play02', false);
+        return;
     }
 
     /**

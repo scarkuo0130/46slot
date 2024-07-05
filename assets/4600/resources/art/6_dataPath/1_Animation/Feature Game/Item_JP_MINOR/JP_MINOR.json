@@ -1,7 +1,7 @@
 {
 "skeleton": {
-	"hash": "ROg3DxPzXDH4AtFSCBg59tqP5rc",
-	"spine": "3.8.75",
+	"hash": "HJ0sMZnhLCYb87fm75GUI70cR30",
+	"spine": "3.8.72",
 	"x": -129,
 	"y": -53,
 	"width": 258,
@@ -13,7 +13,6 @@
 	{ "name": "root" },
 	{ "name": "MINOR", "parent": "root", "x": -2.79, "y": 29.96 },
 	{ "name": "MINOR_BM", "parent": "root" },
-	{ "name": "MINOR_CH", "parent": "root", "rotation": -0.42, "x": 13.71, "y": -17.58 },
 	{ "name": "MINOR_KAO", "parent": "root" },
 	{ "name": "KBO", "parent": "root" },
 	{ "name": "MINOR_KAO2", "parent": "root" },
@@ -25,7 +24,6 @@
 	{ "name": "MINOR_BM2", "bone": "MINOR_BM2", "color": "ffffff00", "attachment": "MINOR_BM", "blend": "additive" },
 	{ "name": "MINOR_KAO", "bone": "MINOR_KAO", "attachment": "MINOR_KAO" },
 	{ "name": "MINOR_KAO2", "bone": "MINOR_KAO2", "attachment": "GRAND_KAO", "blend": "additive" },
-	{ "name": "MINOR_CH", "bone": "MINOR_CH", "attachment": "MINOR_CH2", "blend": "additive" },
 	{ "name": "KBO_01", "bone": "KBO", "attachment": "KBO_01" },
 	{ "name": "KBO_02", "bone": "KBO", "attachment": "KBO_02" },
 	{ "name": "KBO_03", "bone": "KBO", "attachment": "KBO_03" },
@@ -134,10 +132,6 @@
 				"GRAND": { "x": 2.5, "y": 28.5, "width": 122, "height": 35 },
 				"MINOR": { "y": 0.5, "width": 122, "height": 35 },
 				"MINOR2": { "path": "MINOR", "y": 0.5, "width": 122, "height": 35 }
-			},
-			"MINOR_CH": {
-				"MINOR_CH": { "x": 16, "y": -19.5, "width": 222, "height": 35 },
-				"MINOR_CH2": { "path": "MINOR_CH", "y": 0.5, "width": 222, "height": 35 }
 			}
 		}
 	}
@@ -145,12 +139,32 @@
 "animations": {
 	"idle": {
 		"slots": {
-			"KBO_12": {
+			"KBO_08": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_04": {
+			"KBO_18": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_07": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_03": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_16": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_01": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -170,42 +184,7 @@
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_02": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"KBO_03": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"KBO_19": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"KBO_07": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"KBO_11": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
 			"KBO_14": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"KBO_08": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"KBO_05": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -215,12 +194,7 @@
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_01": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
-			"KBO_06": {
+			"KBO_04": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -230,22 +204,42 @@
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_09": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
 			"KBO_13": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_18": {
+			"KBO_06": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_16": {
+			"KBO_12": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_02": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_11": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_09": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_19": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"KBO_05": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
@@ -261,7 +255,22 @@
 	},
 	"play": {
 		"slots": {
-			"KBO_12": {
+			"KBO_08": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.4, "color": "ffffffff" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_18": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 0.0667, "color": "ffffff00" },
@@ -272,16 +281,63 @@
 					{ "time": 0.4667, "color": "ffffff00" },
 					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffffff" },
-					{ "time": 0.6667, "color": "ffffff00" }
+					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.7333, "color": "ffffff00" },
+					{ "time": 0.7667, "color": "ffffff00" },
+					{ "time": 0.9667, "color": "ffffffff" },
+					{ "time": 1, "color": "ffffff00" }
 				]
 			},
-			"KBO_04": {
+			"KBO_07": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 0.0667, "color": "ffffff00" },
 					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffffff" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_03": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffffff" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_16": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.7333, "color": "ffffff00" },
+					{ "time": 0.7667, "color": "ffffff00" },
+					{ "time": 0.8667, "color": "ffffffff" },
+					{ "time": 0.9, "color": "ffffff00" }
+				]
+			},
+			"KBO_01": {
+				"color": [
+					{ "time": 0.0667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffff00" },
 					{ "time": 0.2, "color": "ffffff00" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.4667, "color": "ffffff00" },
@@ -321,79 +377,6 @@
 					{ "time": 0.6, "color": "ffffff00" }
 				]
 			},
-			"KBO_02": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffffff" },
-					{ "time": 0.1, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_03": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffffff" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_19": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.7333, "color": "ffffff00" },
-					{ "time": 0.7667, "color": "ffffff00" },
-					{ "time": 0.9667, "color": "ffffff00" },
-					{ "time": 1, "color": "ffffffff" }
-				]
-			},
-			"KBO_07": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffffff" },
-					{ "time": 0.4, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_11": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffffff" },
-					{ "time": 0.6, "color": "ffffff00" }
-				]
-			},
 			"KBO_14": {
 				"color": [
 					{ "color": "ffffff00" },
@@ -411,58 +394,18 @@
 					{ "time": 0.7667, "color": "ffffff00" }
 				]
 			},
-			"KBO_08": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.3333, "color": "ffffff00" },
-					{ "time": 0.4, "color": "ffffffff" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_05": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffffff" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
 			"MINOR_KAO2": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_01": {
-				"color": [
-					{ "time": 0.0667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_06": {
+			"KBO_04": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 0.0667, "color": "ffffff00" },
 					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffffff" },
 					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffffff" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.4667, "color": "ffffff00" },
 					{ "time": 0.5, "color": "ffffff00" },
@@ -484,20 +427,6 @@
 					{ "time": 0.7333, "color": "ffffff00" },
 					{ "time": 0.7667, "color": "ffffffff" },
 					{ "time": 0.8667, "color": "ffffff00" }
-				]
-			},
-			"KBO_09": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4, "color": "ffffff00" },
-					{ "time": 0.4667, "color": "ffffffff" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
 				]
 			},
 			"MINOR_BM2": {
@@ -521,6 +450,126 @@
 					{ "time": 0.7333, "color": "ffffff00" }
 				]
 			},
+			"KBO_06": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffffff" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_12": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffffff" },
+					{ "time": 0.6667, "color": "ffffff00" }
+				]
+			},
+			"KBO_02": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffffff" },
+					{ "time": 0.1, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_11": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffffff" },
+					{ "time": 0.6, "color": "ffffff00" }
+				]
+			},
+			"KBO_09": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4, "color": "ffffff00" },
+					{ "time": 0.4667, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_19": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.7333, "color": "ffffff00" },
+					{ "time": 0.7667, "color": "ffffff00" },
+					{ "time": 0.9667, "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffff" }
+				]
+			},
+			"KBO_05": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffffff" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"play02": {
+		"slots": {
+			"KBO_08": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.4, "color": "ffffffff" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
 			"KBO_18": {
 				"color": [
 					{ "color": "ffffff00" },
@@ -537,6 +586,34 @@
 					{ "time": 0.7667, "color": "ffffff00" },
 					{ "time": 0.9667, "color": "ffffffff" },
 					{ "time": 1, "color": "ffffff00" }
+				]
+			},
+			"KBO_07": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_03": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffffff" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
 				]
 			},
 			"KBO_16": {
@@ -556,32 +633,11 @@
 					{ "time": 0.8667, "color": "ffffffff" },
 					{ "time": 0.9, "color": "ffffff00" }
 				]
-			}
-		}
-	},
-	"play02": {
-		"slots": {
-			"KBO_12": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffffff" },
-					{ "time": 0.6667, "color": "ffffff00" }
-				]
 			},
-			"KBO_04": {
+			"KBO_01": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffffff" },
+					{ "time": 0.0667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffff00" },
 					{ "time": 0.2, "color": "ffffff00" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.4667, "color": "ffffff00" },
@@ -621,79 +677,6 @@
 					{ "time": 0.6, "color": "ffffff00" }
 				]
 			},
-			"KBO_02": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffffff" },
-					{ "time": 0.1, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_03": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffffff" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_19": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.7333, "color": "ffffff00" },
-					{ "time": 0.7667, "color": "ffffff00" },
-					{ "time": 0.9667, "color": "ffffff00" },
-					{ "time": 1, "color": "ffffffff" }
-				]
-			},
-			"KBO_07": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffffff" },
-					{ "time": 0.4, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_11": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffffff" },
-					{ "time": 0.6, "color": "ffffff00" }
-				]
-			},
 			"KBO_14": {
 				"color": [
 					{ "color": "ffffff00" },
@@ -711,91 +694,20 @@
 					{ "time": 0.7667, "color": "ffffff00" }
 				]
 			},
-			"KBO_08": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.3333, "color": "ffffff00" },
-					{ "time": 0.4, "color": "ffffffff" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_05": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffffff" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
 			"MINOR_KAO2": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_01": {
+			"KBO_04": {
 				"color": [
-					{ "time": 0.0667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.1667, "color": "ffffff00" },
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffffff" },
 					{ "time": 0.2, "color": "ffffff00" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_06": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffffff" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_15": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.7333, "color": "ffffff00" },
-					{ "time": 0.7667, "color": "ffffffff" },
-					{ "time": 0.8667, "color": "ffffff00" }
-				]
-			},
-			"KBO_09": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4, "color": "ffffff00" },
-					{ "time": 0.4667, "color": "ffffffff" },
 					{ "time": 0.5, "color": "ffffff00" },
 					{ "time": 0.5667, "color": "ffffff00" }
 				]
@@ -807,6 +719,23 @@
 					{ "time": 0.9, "color": "ffffff00" }
 				]
 			},
+			"KBO_15": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.7333, "color": "ffffff00" },
+					{ "time": 0.7667, "color": "ffffffff" },
+					{ "time": 0.8667, "color": "ffffff00" }
+				]
+			},
 			"MINOR_BM2": {
 				"attachment": [
 					{ "name": "GRAND_BM" }
@@ -828,6 +757,126 @@
 					{ "time": 0.7333, "color": "ffffff00" }
 				]
 			},
+			"KBO_06": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffffff" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_12": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffffff" },
+					{ "time": 0.6667, "color": "ffffff00" }
+				]
+			},
+			"KBO_02": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffffff" },
+					{ "time": 0.1, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_11": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffffff" },
+					{ "time": 0.6, "color": "ffffff00" }
+				]
+			},
+			"KBO_09": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4, "color": "ffffff00" },
+					{ "time": 0.4667, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_19": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.7333, "color": "ffffff00" },
+					{ "time": 0.7667, "color": "ffffff00" },
+					{ "time": 0.9667, "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffff" }
+				]
+			},
+			"KBO_05": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffffff" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"play03": {
+		"slots": {
+			"KBO_08": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.4, "color": "ffffffff" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
 			"KBO_18": {
 				"color": [
 					{ "color": "ffffff00" },
@@ -844,6 +893,34 @@
 					{ "time": 0.7667, "color": "ffffff00" },
 					{ "time": 0.9667, "color": "ffffffff" },
 					{ "time": 1, "color": "ffffff00" }
+				]
+			},
+			"KBO_07": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_03": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffffff" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
 				]
 			},
 			"KBO_16": {
@@ -863,32 +940,11 @@
 					{ "time": 0.8667, "color": "ffffffff" },
 					{ "time": 0.9, "color": "ffffff00" }
 				]
-			}
-		}
-	},
-	"play03": {
-		"slots": {
-			"KBO_12": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffffff" },
-					{ "time": 0.6667, "color": "ffffff00" }
-				]
 			},
-			"KBO_04": {
+			"KBO_01": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffffff" },
+					{ "time": 0.0667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffff00" },
 					{ "time": 0.2, "color": "ffffff00" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.4667, "color": "ffffff00" },
@@ -928,79 +984,6 @@
 					{ "time": 0.6, "color": "ffffff00" }
 				]
 			},
-			"KBO_02": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffffff" },
-					{ "time": 0.1, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_03": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffffff" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_19": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.7333, "color": "ffffff00" },
-					{ "time": 0.7667, "color": "ffffff00" },
-					{ "time": 0.9667, "color": "ffffff00" },
-					{ "time": 1, "color": "ffffffff" }
-				]
-			},
-			"KBO_07": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00" },
-					{ "time": 0.3333, "color": "ffffffff" },
-					{ "time": 0.4, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_11": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffffff" },
-					{ "time": 0.6, "color": "ffffff00" }
-				]
-			},
 			"KBO_14": {
 				"color": [
 					{ "color": "ffffff00" },
@@ -1018,91 +1001,20 @@
 					{ "time": 0.7667, "color": "ffffff00" }
 				]
 			},
-			"KBO_08": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.3333, "color": "ffffff00" },
-					{ "time": 0.4, "color": "ffffffff" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_05": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00" },
-					{ "time": 0.2, "color": "ffffffff" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
 			"MINOR_KAO2": {
 				"color": [
 					{ "color": "ffffff00" }
 				]
 			},
-			"KBO_01": {
+			"KBO_04": {
 				"color": [
-					{ "time": 0.0667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.1667, "color": "ffffff00" },
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffffff" },
 					{ "time": 0.2, "color": "ffffff00" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_06": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffffff" },
-					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00" },
-					{ "time": 0.5667, "color": "ffffff00" }
-				]
-			},
-			"KBO_15": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.7333, "color": "ffffff00" },
-					{ "time": 0.7667, "color": "ffffffff" },
-					{ "time": 0.8667, "color": "ffffff00" }
-				]
-			},
-			"KBO_09": {
-				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.0667, "color": "ffffff00" },
-					{ "time": 0.1, "color": "ffffff00" },
-					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.4, "color": "ffffff00" },
-					{ "time": 0.4667, "color": "ffffffff" },
 					{ "time": 0.5, "color": "ffffff00" },
 					{ "time": 0.5667, "color": "ffffff00" }
 				]
@@ -1112,6 +1024,23 @@
 					{ "color": "ffffff00" },
 					{ "time": 0.5667, "color": "ffffffbd" },
 					{ "time": 0.9, "color": "ffffff00" }
+				]
+			},
+			"KBO_15": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.7333, "color": "ffffff00" },
+					{ "time": 0.7667, "color": "ffffffff" },
+					{ "time": 0.8667, "color": "ffffff00" }
 				]
 			},
 			"MINOR_BM2": {
@@ -1140,25 +1069,77 @@
 					{ "time": 0.7333, "color": "ffffff00" }
 				]
 			},
-			"KBO_18": {
+			"KBO_06": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 0.0667, "color": "ffffff00" },
 					{ "time": 0.1, "color": "ffffff00" },
 					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.2, "color": "ffffff00" },
-					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3, "color": "ffffffff" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.4667, "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.5667, "color": "ffffff00" },
-					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 0.7333, "color": "ffffff00" },
-					{ "time": 0.7667, "color": "ffffff00" },
-					{ "time": 0.9667, "color": "ffffffff" },
-					{ "time": 1, "color": "ffffff00" }
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
 				]
 			},
-			"KBO_16": {
+			"KBO_12": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5667, "color": "ffffff00" },
+					{ "time": 0.6, "color": "ffffffff" },
+					{ "time": 0.6667, "color": "ffffff00" }
+				]
+			},
+			"KBO_02": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffffff" },
+					{ "time": 0.1, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_11": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffffff" },
+					{ "time": 0.6, "color": "ffffff00" }
+				]
+			},
+			"KBO_09": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4, "color": "ffffff00" },
+					{ "time": 0.4667, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
+				]
+			},
+			"KBO_19": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 0.0667, "color": "ffffff00" },
@@ -1172,8 +1153,21 @@
 					{ "time": 0.6, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.7333, "color": "ffffff00" },
 					{ "time": 0.7667, "color": "ffffff00" },
-					{ "time": 0.8667, "color": "ffffffff" },
-					{ "time": 0.9, "color": "ffffff00" }
+					{ "time": 0.9667, "color": "ffffff00" },
+					{ "time": 1, "color": "ffffffff" }
+				]
+			},
+			"KBO_05": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffffff" },
+					{ "time": 0.3, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffff00" },
+					{ "time": 0.5667, "color": "ffffff00" }
 				]
 			}
 		},
