@@ -29,7 +29,7 @@ export class BigWin extends Component {
         [BigWin.BIGWIN_TYPE.BIG_WIN]   : 4000,
         [BigWin.BIGWIN_TYPE.SUPER_WIN] : 4000,
         [BigWin.BIGWIN_TYPE.MEGA_WIN]  : 4000,
-        'QuickEnd'                   : 1000,
+        'QuickEnd'                     : 1000,
     }
 
     private InitData = {
@@ -208,10 +208,17 @@ export class BigWin extends Component {
         this.label.string = '';
         await Utils.commonFadeIn(this.valueBoard.node, true, null, this.valueBoard, 0.2);
         spine.setAnimation(0, this.ANIMATION_TYPE.END, false);
-        spine.setCompleteListener((track)=>{ this.break(); });
+        spine.setCompleteListener( async (track)=> { this.FadeOutBreak(); });
         this.properties['ending'] = false;
         await this.machine.controller.maskActive(false);
         this.event?.emit('done');
+    }
+
+    public async FadeOutBreak() {
+        if ( this.playing === BigWin.BIGWIN_TYPE.NONE ) return;
+        this.activeParticle(false);
+        await Utils.commonFadeIn(this.playingSprite.node, true, null, this.playingSprite, 1);
+        this.break(); 
     }
 
     /** 快速結束 */

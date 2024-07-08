@@ -176,19 +176,16 @@ export class Payway4600 extends Payway {
     public async exit_jp_game() {
         this.play_pot_ani(0);
         this.machine.featureGame = false;
-        console.log('exit_jp_game');
     }
 
     /**
      * 進入JP遊戲
      */
     private async enter_jp_game() {
-        console.log('entrer_jp_game');
         await this.play_pot_ani(5);
 
         let door = this.doorSpine;
         door.node.active = true;
-        console.log('door', door);
 
         await Utils.playSpine(door, 'play', false); // 關門動畫
     }
@@ -261,7 +258,6 @@ export class Payway4600 extends Payway {
     }
 
     public changeTotalBet( totalBet: number ) {
-        console.log('changeTotalBet', totalBet);
         this.jp(JP_TYPE.GRAND).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.GRAND]);
         this.jp(JP_TYPE.MAJOR).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MAJOR]);
         this.jp(JP_TYPE.MINOR).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MINOR]);

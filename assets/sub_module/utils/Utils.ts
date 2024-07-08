@@ -32,6 +32,7 @@ export enum DATA_TYPE {
 }
 
 export class Utils {
+
     public static initPropertyData<T>(component: T) {
         return {
             [DATA_TYPE.NODE]        : Node,
@@ -586,7 +587,11 @@ export class Utils {
      */
     public static async scaleFade(colorComponent: Sprite | Label | sp.Skeleton , fadeoutSec:number=1, scale:number=3, onFinish:Function=null) {
         if ( colorComponent == null ) return;
-        let copyNode = instantiate(colorComponent.node);
+        const fromNode = colorComponent.node;
+        let copyNode = instantiate(fromNode);
+
+        if ( copyNode == null ) return console.error('cannot instantiate node',fromNode);
+
         copyNode.parent     = colorComponent.node.parent;
         copyNode.position   = colorComponent.node.position;
         copyNode.active     = true;
@@ -599,12 +604,12 @@ export class Utils {
 
         sprite.color    = fromColor;
         let alpha = { value: fromColor.a };
-        tween(alpha).to(fadeoutSec, { value: toColor.a }, { easing: 'smooth',
-            onUpdate:   () => {  sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
+        tween(alpha).to(fadeoutSec, { value: toColor.a }, { easing: 'quartOut',
+            onUpdate:   () => { sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
             onComplete: () => { onFinish?.() }
         }).start();
         
-        tween(copyNode).to(fadeoutSec, { scale: toScale }, { easing: 'backOut' }).start();
+        tween(copyNode).to(fadeoutSec, { scale: toScale }, { easing: 'quartOut' }).start();
         await Utils.delay(waitTime);
         copyNode.destroy();
     }

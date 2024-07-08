@@ -12,10 +12,9 @@ export class JpCoin extends Component {
     public get jp_type() : JP_TYPE { return this.properties['jp_type']; }
     public set jp_type(value : JP_TYPE) { this.properties['jp_type'] = value; }
 
-    public async click_type(value: JP_TYPE, isLast: boolean=false) {
+    public async click_type(value: JP_TYPE, isLast: boolean=false, isAnswer: boolean=false) {
         this.jp_type = value;
 
-        console.log('click_type', value, isLast);
         const coin_spine = this.properties['coin']['default'].component;
         const jp_spine = this.properties['coin'][value].component;
 
@@ -24,6 +23,7 @@ export class JpCoin extends Component {
         coin_spine.node.active = false;
         jp_spine.node.active = true;
 
+        if ( isAnswer ) Utils.scaleFade(jp_spine, 1, 5);
         await Utils.playSpine(jp_spine, 'play02', false, 2);
     }
 

@@ -72,7 +72,6 @@ export class JpGame4600 extends Component {
     public onLoad(): void {
         this.node.setPosition(0, 0, 0);
         Utils.initData(this.initData, this);
-        console.log('JpGame4600.onLoad', this);
 
         this.node.active = false;
     }
@@ -110,7 +109,6 @@ export class JpGame4600 extends Component {
 
     private play_jp_board_animation(type:JP_TYPE, index:number) {
         const loop = index === 0 ? false : true;
-        console.log('play_jp_board_animation', type, index);
         this.jp_board_spine(type).setAnimation(0, this.properties['jp_board_animation_type'][index], loop);
     }
 
@@ -197,7 +195,6 @@ export class JpGame4600 extends Component {
     private update_jp_value() {
         const JP_REWARD = this.paytable.JP_REWARD;
         const totalBet = this.machine.totalBet;
-        console.log('grand', this.properties['jp']['grand'].component);
         this.properties['jp']['grand'].component.string = Utils.numberCommaM(totalBet * JP_REWARD[JP_TYPE.GRAND]);
         this.properties['jp']['major'].component.string = Utils.numberCommaM(totalBet * JP_REWARD[JP_TYPE.MAJOR]);
         this.properties['jp']['minor'].component.string = Utils.numberCommaM(totalBet * JP_REWARD[JP_TYPE.MINOR]);
@@ -250,7 +247,7 @@ export class JpGame4600 extends Component {
         for (let i = 0; i < 12; i++) {
             if ( this.properties['coin'][i].component.jp_type != JP_TYPE.NONE ) continue;
             this.properties['coin'][i].component.click_type(this.get_last_type(), true);
-            await Utils.delay(300);
+            // await Utils.delay(300);
         }
     }
 
@@ -261,11 +258,12 @@ export class JpGame4600 extends Component {
         this.isBusy = true;
         const type = this.get_random_type();
         const times = this.add_clicked_type(type);
+        const isAnswer = times >= 3;
 
-        await coin.click_type(type);
+        await coin.click_type(type, false, isAnswer);
         this.play_jp_board_animation(type, times);
 
-        if ( times < 3 ) { // 還沒有結束
+        if ( isAnswer === false ) { // 還沒有結束
             this.isBusy = false;
             return;
         }
