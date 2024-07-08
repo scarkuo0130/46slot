@@ -127,7 +127,7 @@ export class Utils {
     public static initData( initData:any, bindComponent: any ) {
         if ( initData == null ) return;
         if ( bindComponent == null ) return;
-        if ( bindComponent.node == null ) return;
+        // if ( bindComponent.node == null ) return;
 
         let properties = bindComponent['properties'];
         if ( properties == null ) properties = {};
@@ -145,10 +145,6 @@ export class Utils {
     }
 
     public static twoBezier(t:number, p1:Vec3, cp1:Vec3, cp2:Vec3, p2:Vec3) {
-        //const x = (1-t)*(1-t)*p1.x + 2*(1-t)*t*cp.x + t*t*p2.x;
-        //const y = (1-t)*(1-t)*p1.y + 2*(1-t)*t*cp.y + t*t*p2.y;
-        //return new Vec3(x, y, 0);
-
         const x = bezier(p1.x, cp1.x, cp2.x, p2.x, t);
         const y = bezier(p1.y, cp1.y, cp2.y, p2.y, t);
         return new Vec3(x, y, 0);

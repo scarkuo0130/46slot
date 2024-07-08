@@ -56,9 +56,6 @@ export class Develop4600 extends Component {
             spinData['main_game']['extra']['jp_level'] = jp_level;
         }
 
-        console.log('developSpinResponse', spinData);
-        // this.saveStorage('spin'+this.nowDateTime(), spinData);
-
         // 以下是原本的 machine.spinResponse
         let event = this.machine.properties['spinEvent'];
         event['result'] = spinData;

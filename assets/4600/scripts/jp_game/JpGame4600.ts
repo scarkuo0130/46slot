@@ -52,16 +52,16 @@ export class JpGame4600 extends Component {
         },
 
         'coin' : { // 總共有 12 個
-            0 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-000' },
-            1 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-001' },
-            2 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-002' },
-            3 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-003' },
-            4 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-004' },
-            5 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-005' },
-            6 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-006' },
-            7 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-007' },
-            8 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-008' },
-            9 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-009' },
+            0  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-000' },
+            1  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-001' },
+            2  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-002' },
+            3  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-003' },
+            4  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-004' },
+            5  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-005' },
+            6  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-006' },
+            7  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-007' },
+            8  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-008' },
+            9  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-009' },
             10 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-010' },
             11 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-011' },
         }
@@ -141,7 +141,7 @@ export class JpGame4600 extends Component {
         this.jp_board_spine(JP_TYPE.GRAND).color = Color.WHITE;
         this.jp_board_spine(JP_TYPE.MAJOR).color = Color.WHITE;
         this.jp_board_spine(JP_TYPE.MINOR).color = Color.WHITE;
-        this.jp_board_spine(JP_TYPE.MINI).color = Color.WHITE;
+        this.jp_board_spine(JP_TYPE.MINI).color  = Color.WHITE;
     }
 
     private reset_game() {
@@ -149,7 +149,7 @@ export class JpGame4600 extends Component {
         this.properties['reward_ui'][JP_TYPE.GRAND].node.active = false;
         this.properties['reward_ui'][JP_TYPE.MAJOR].node.active = false;
         this.properties['reward_ui'][JP_TYPE.MINOR].node.active = false;
-        this.properties['reward_ui'][JP_TYPE.MINI].node.active = false;
+        this.properties['reward_ui'][JP_TYPE.MINI].node.active  = false;
         this.isDone = false;
         this.isBusy = true;
         this.reset_jp_board();

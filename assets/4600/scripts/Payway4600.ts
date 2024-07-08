@@ -7,6 +7,7 @@ import { ObjectPool } from '../../sub_module/game/ObjectPool';
 import { JpGame4600 } from './jp_game/JpGame4600';
 const { ccclass, property } = _decorator;
 
+
 export enum JP_TYPE {
     GRAND = 0,
     MAJOR = 1,
@@ -93,6 +94,7 @@ export class Payway4600 extends Payway {
     protected onstart() { 
         this.machine.controller.addDisableButtons(this.properties['buyFeature']['button'].component);
         Utils.AddHandHoverEvent(this.properties['buyFeature']['button'].node);
+        console.log(this);
     }
 
     /**

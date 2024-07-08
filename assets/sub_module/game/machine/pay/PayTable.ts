@@ -1,9 +1,38 @@
-import { _decorator, Sprite, Component, Node, Vec3, tween, Label, EventHandler, EventTarget, JsonAsset, ccenum, UIOpacity, CCInteger, CCFloat, Color } from 'cc';
+import { _decorator, Sprite, Component, Node, Vec3, tween, Label, Button, EventTarget, JsonAsset, ccenum, UIOpacity, CCInteger, CCFloat, Color } from 'cc';
 import { Reel } from '../Reel';
 import { Utils, DATA_TYPE } from '../../../utils/Utils';
 import { Machine } from '../Machine';
 import { BigWin } from '../BigWin';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
+
+
+@ccclass( 'PaytableInspector' )
+export class PaytableInspector {
+    
+    // regin BuyFeatureGame 設定 id:1
+    @property( { type: Node, displayName: '主遊戲購買按鈕', tooltip: 'mainGameBuyFeatureGameButtonNode', group: { name: 'BuyFeatureGameUI', id: '1' } } )
+    public mainGameBuyFeatureGameButtonNode: Node;
+
+    @property( { type: Node, displayName: '購買FeatureGame介面', tooltip: 'buyFeatureGameUI', group: { name: 'BuyFeatureGameUI', id: '1' } } )
+    public buyFeatureGameUI : Node;
+
+    @property( { type: Node, displayName: '購買按鈕', tooltip: 'buyButtonNode', group: { name: 'BuyFeatureGameUI', id: '1' } } )
+    public buyButtonNode : Node;
+
+    @property( { type: Node, displayName: '關閉按鈕', tooltip: 'closeButtonNode', group: { name: 'BuyFeatureGameUI', id: '1' } } )
+    public closeButtonNode : Node;
+
+    @property( { type: Node, displayName: 'TotalBetLabel', tooltip: 'buyButtonLabelNode', group: { name: 'BuyFeatureGameUI', id: '1' } } )
+    public valueLabelNode : Node;
+
+    @property( { type: Node, displayName: '增加Bet按鈕', tooltip: 'addBetButtonNode', group: { name: 'BuyFeatureGameUI', id: '1' } } )
+    public addBetButtonNode : Node;
+
+    @property( { type: Node, displayName: '減少Bet按鈕', tooltip: 'subBetButtonNode', group: { name: 'BuyFeatureGameUI', id: '1' } } )
+    public subBetButtonNode : Node;
+    // endregion
+
+}
 
 @ccclass( 'Paytable' )
 @disallowMultiple( true )
@@ -16,6 +45,9 @@ export class Paytable extends Component {
 
     @property( { displayName: '單線中獎的分數Label位移', tooltip: 'winNumberSinglePos', group: { name: 'settings', id: '0' } } )
     public winNumberSinglePos: Vec3 = new Vec3();
+
+    @property({ type:PaytableInspector, displayName: '機台設定', tooltip: 'Inspector', group: { name: 'settings', id: '0' }})
+    public inspector: PaytableInspector = new PaytableInspector();
 
     private initData = {
         'ui' : {
@@ -30,8 +62,13 @@ export class Paytable extends Component {
         'machine' : null,
         'gameResult' : null, // 一個盤面的結果
         'maskEvent' : null,
-        'ui' : {},
+        'ui' : {
+            'labelWinScore':{},
+            'labelSingleWinScore':{},
+        },
     };
+
+    public buyFeatureGame: BuyFeatureGameUI = new BuyFeatureGameUI();
 
     public get machine () : Machine { return this.properties['machine']; }
 
@@ -53,6 +90,7 @@ export class Paytable extends Component {
 
     onLoad () {
         this.init();
+        this.initBuyFeatureGameUI();
         this.onload();
     }
 
@@ -61,6 +99,12 @@ export class Paytable extends Component {
         this.totalWinLabel.string = '';
         this.singleWinLabel.string = '';
         this.onstart();
+    }
+
+    protected initBuyFeatureGameUI() {
+        if ( this.inspector.buyFeatureGameUI == null ) return console.warn('Paytable 未設定 BuyFeatureGameUI');
+        if ( this.inspector.mainGameBuyFeatureGameButtonNode == null ) return console.warn('Paytable 未設定 mainGameBuyFeatureGameButtonNode');
+        this.buyFeatureGame.init(this.inspector);
     }
 
     private init() {
@@ -201,3 +245,56 @@ export class Paytable extends Component {
 
 }
 
+/**
+ * 購買FeatureGame介面操作
+ */
+@ccclass( 'BuyFeatureGameUI' )
+export class BuyFeatureGameUI {
+    public get machine () : Machine { return Machine.Instance }
+
+    public get reel (): Reel { return this.machine.reel; }
+
+    public get paytable () : Paytable { return this.machine.paytable; }
+
+    public properties = {
+        'BuyFeatureGameUI' : {
+            'ui' : null,
+            'buyButton' : null,
+            'closeButton' : null,
+            'valueLabel' : null,
+            'addBetButton' : null,
+            'subBetButton' : null,
+         },
+    };
+
+    public get node() { return this.properties.BuyFeatureGameUI['ui'].node; }
+
+    public init(inspector:any) {
+        const onLoadData = {
+            'BuyFeatureGameUI' : {
+                'ui'            : { [DATA_TYPE.TYPE] : Node,   [DATA_TYPE.SCENE_PATH] : inspector.buyFeatureGameUI.getPathInHierarchy()},
+                'valueLabel'    : { [DATA_TYPE.TYPE] : Label,  [DATA_TYPE.SCENE_PATH] : inspector.valueLabelNode.getPathInHierarchy()  },
+                'buyButton'     : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.buyButtonNode.getPathInHierarchy()   },
+                'closeButton'   : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.closeButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.onClickClose, },
+                'addBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.addBetButtonNode.getPathInHierarchy()},
+                'subBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.subBetButtonNode.getPathInHierarchy()},
+                'openButton'    : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.mainGameBuyFeatureGameButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.onClickOpenUI },
+            }
+        };
+
+        Utils.initData(onLoadData, this);
+        this.node.active = false;
+        this.node.setPosition(0, 0, 0);
+    }
+
+    public onClickClose() { 
+        this.machine.controller.maskActive(false);
+        Utils.commonActiveUITween(this.node, false); 
+    }
+
+    public onClickOpenUI() { 
+        this.machine.controller.maskActive(true);
+        Utils.commonActiveUITween(this.node, true); 
+    }
+
+}
