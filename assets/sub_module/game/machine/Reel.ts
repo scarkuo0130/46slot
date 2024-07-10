@@ -426,7 +426,7 @@ export class Reel extends Component {
                 if ( !this.isFastStoping || time > 0 ) {
                     await Utils.delay(time);
                 }
-                console.log('stopRolling',(Date.now()-dt) , id, time);
+                // console.log('stopRolling',(Date.now()-dt) , id, time);
                 wheel.stopRolling(result[id]); // 一般停輪
                 dt = Date.now();
             }

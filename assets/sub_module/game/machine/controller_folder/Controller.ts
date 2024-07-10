@@ -397,12 +397,24 @@ export class Controller extends Component {
     }
 
     /**
+     * 累加總贏分 (非同步)
+     * @param value 
+     * @returns 
+     */
+    public async addTotalWin(value:number) {
+        console.log('addTotalWin', value,this.props['ui']['totalWin']['lastValue']);
+        const totalWin = this.props['ui']['totalWin']['lastValue'];
+        return await this.changeTotalWin(totalWin + value);
+    }
+
+    /**
      * 顯示總贏分
      * @param totalWin 顯示總贏分
      * @returns { void }
      */
 
     public setTotalWin(totalWin:number) {
+        
         const totalWinLabel:Label = this.props['ui']['totalWin'][DATA_TYPE.COMPONENT];
         const currencySymbol      = gameInformation._currencySymbol;
 

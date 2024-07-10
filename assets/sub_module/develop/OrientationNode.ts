@@ -14,7 +14,7 @@ export class OrientationItem {
     public position: Vec3 = new Vec3(0, 0, 0);
     
     @property({displayName: '縮放', tooltip: '節點縮放', visible:function(this:OrientationItem) { return this.enable === true;}})
-    public scale: Vec3 = new Vec3(0, 0, 0);
+    public scale: Vec3 = new Vec3(1, 1, 1);
 
     @property({displayName: '運作中不操作Active', tooltip: 'affectActive', visible:function(this:OrientationItem) { return this.enable === true;}})
     public affectActive: boolean = false;

@@ -13,7 +13,7 @@ export class WildSoul extends Component {
         
         const random = Utils.Random(0, this.animation_list.length);
         const animation = this.animation_list[random];
-        console.log('animation:', animation);
+        // console.log('animation:', animation);
         Utils.playSpine(this.skeleton, animation, true);
     }
 }

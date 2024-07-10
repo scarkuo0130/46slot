@@ -88,6 +88,7 @@ export class Develop4600 extends Component {
         let pay_credit_total = 0;
         for(let i = 0; i < 10; i++) {
             let mainGame = mainGameList[i];
+            mainGame.extra['free_spin_times'] = 0;
             pay_credit_total += mainGame['pay_credit_total'];
             result.push(mainGame);
         }

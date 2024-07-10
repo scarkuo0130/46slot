@@ -175,7 +175,6 @@ export class JpGame4600 extends Component {
     public async enter_jp_game(jp_type:JP_TYPE, jp_prize:number) {
         let jp_event = new EventTarget();
         this.jp_event = jp_event;
-        this.machine.featureGame = true;
         this.jp_type = jp_type;
         this.jp_prize = jp_prize;
         this.reset_game();
@@ -295,7 +294,7 @@ export class JpGame4600 extends Component {
             this.machine.controller.node.active = true;
             this.node.active = false;
         });
-        this.machine.featureGame = false;
+
         this.jp_event.emit('done');
         this.machine.paytable.exit_jp_game();
     }

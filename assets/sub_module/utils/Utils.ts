@@ -2,6 +2,7 @@ import { EventHandler, bezier, JsonAsset, resources, CurveRange, find, _decorato
 import { PREVIEW, EDITOR } from "cc/env";
 import { Config, GameConfig } from '../game/GameConfig';
 import { gameInformation } from '../game/GameInformation';
+import { get } from "mobx";
 const { ccclass, property } = _decorator;
 
 export namespace _utilsDecorator {
@@ -167,7 +168,7 @@ export class Utils {
             middlePos.x += Utils.Random(-xDistance, xDistance);
             middlePos.y += Utils.Random(-yDistance, yDistance);
 
-            console.log(fromPos, middlePos, toPos);
+            // console.log(fromPos, middlePos, toPos);
         }
 
         if ( middlePos2 == null ) {
@@ -619,7 +620,7 @@ export class Utils {
      * @param eventTarget       { EventTarget }      指定等待結束事件
      * @returns 
      */
-    public static async commonTweenNumber(label:Label, from:number=0, to:number, duration:number, numberStringFunc:Function=null, eventTarget:EventTarget=null) : Promise<any>{
+    public static async commonTweenNumber(label:Label, from:number=0, to:number, duration:number, numberStringFunc:Function=null, eventTarget:EventTarget=null): Promise<{ tween: any, eventPromise?: Promise<void>, data:{value:number} }>  {
         if ( label == null ) return;
         
         let data = { value: from };
@@ -631,9 +632,14 @@ export class Utils {
             onUpdate:   () => { label.string = numberStringFunc(data.value); },
             onComplete: () => { eventTarget?.emit('done'); }
          }).start();
+         t['isDone'] = get => { return data.value === to; };
 
-        
-        return await Utils.delay(duration * 1000);
+        if ( eventTarget ) {
+            const eventPromise = new Promise<void>((resolve) => { eventTarget.once('done', () => resolve()); });
+            return { tween: t, eventPromise, data:data};
+        }
+        await Utils.delay(duration * 1000);
+        return { tween: t, data:data };
     }
 
     public static async commonFadeIn( ui:Node, fadeout:boolean=false, color: Color[]=null, colorComponent=null, duration:number=0.3, eventTarget:EventTarget=null) {

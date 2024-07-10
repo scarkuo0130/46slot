@@ -74,6 +74,8 @@ export class Paytable extends Component {
 
     public get machine () : Machine { return this.properties['machine']; }
 
+    public get controller() : Controller { return this.machine.controller; }
+
     public get reel (): Reel { return this.machine.reel; }
 
     public get gameResult () { return this.properties['gameResult']; }
@@ -117,13 +119,21 @@ export class Paytable extends Component {
     }
 
     /**
-     * 從 Server 取得的結果
+     ** 從 Server 取得的結果
+     * @override 可以覆寫
      * @param result 
      */
-    public async spinResult ( result ) {
-        let gameResult = result['main_game'];
-        this.properties['gameResult'] = gameResult; // 設定本盤面結果
-        return this.setGameResult();
+    public spinResult ( result ) { return this.setGameResult(result['main_game']); }
+    
+    /**
+     ** 設定 gameResult
+     * @param gameResult 
+     * @override 可以覆寫
+     * @returns 
+     */
+    public setGameResult(gameResult) {
+        this.properties['gameResult'] = gameResult;
+        return this.setReelResult();
     }
 
     /**
@@ -131,7 +141,7 @@ export class Paytable extends Component {
      * @override 可以覆寫
      * @param reelResult 
      */
-    public setGameResult( ) {
+    public setReelResult( ) {
         let reelResult = this.gameResult['game_result'];
         this.reel.setResult(reelResult);
     }
@@ -142,13 +152,14 @@ export class Paytable extends Component {
      * @todo 處理報獎流程
      * @override 可覆寫
      */
-    public async spin() {
+    public async spin(eventTarget:EventTarget=null) {
         this.breakPerformSingleLineLoop();          // 取消報獎流程
         this.machine.state = Machine.SPIN_STATE.SPINNING;
         await this.reel.spin();                     // 等待 SPIN 結束
         this.machine.state = Machine.SPIN_STATE.STOPPING;
         await this.processWinningScore();           // 執行報獎流程
         this.machine.state = Machine.SPIN_STATE.IDLE;
+        eventTarget?.emit('done');
         this.performSingleLineLoop();               // 執行單項報獎流程
     }
 
@@ -225,7 +236,7 @@ export class Paytable extends Component {
     public breakPerformSingleLineLoop() {
         this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
         this.reelMaskActive(false);         // 關閉遮罩
-        this.machine.controller.setTotalWin(0);
+        if ( this.machine.featureGame === false) this.controller.setTotalWin(0);
         this.displaySingleWinNumber(0);
     }
 

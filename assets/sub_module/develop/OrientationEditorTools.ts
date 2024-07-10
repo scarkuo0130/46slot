@@ -25,10 +25,16 @@ export class OrientationEditorTools extends Component {
             OrientationEditorTools.subOrientationController.forEach( (controller:OrientationEditorTools) => controller.subOrientation(value) );
         }
     }
+
     public get orientation() { 
         if ( this.isMainController === true ) return this._orientation;
         return OrientationEditorTools.instance.orientation;
     }
+
+    @property({type:Enum(Orientation), displayName: '不轉向切換設定', tooltip: '不會執行轉向功能'})
+    public set changeOrientation(value: Orientation) { this._orientation = value; }
+    public get changeOrientation() { return this._orientation; }
+    
 
     public subOrientation(orientation:Orientation) {
         // this.backupOrientationData();

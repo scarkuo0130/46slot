@@ -56,8 +56,13 @@ export class Payway extends Paytable {
 
         this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
         totalWinLabel.string = '';              // 關閉總得分
-        this.machine.controller.changeTotalWin(pay_credit_total); // 更新總得分
-        this.machine.controller.refreshBalance(); // 更新餘額
+
+        if ( this.machine.featureGame === false ) {
+            this.controller.addTotalWin(pay_credit_total);    // 增加總得分
+        } else {
+            this.controller.changeTotalWin(pay_credit_total); // 更新總得分
+            this.controller.refreshBalance();                 // 更新餘額
+        }
     }
 
     // way {"symbol_id": 7,"way": 3,"ways": [1,1,1],"pay_credit": 500}

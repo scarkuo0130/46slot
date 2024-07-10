@@ -1,4 +1,4 @@
-import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, Button, ParticleSystem2D } from 'cc';
+import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, Button, EventTarget, Tween } from 'cc';
 import { Utils, DATA_TYPE, TWEEN_EASING_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
 import { Payway } from '../../sub_module/game/machine/pay/Payway';
@@ -71,6 +71,10 @@ export class Payway4600 extends Payway {
         'freeGame' : {
             'main' : { [DATA_TYPE.TYPE] : Node,                 [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI'  },
             'trigger_ui' : { [DATA_TYPE.TYPE] : sp.Skeleton,    [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Trigger Game'  },
+            'start_ui'   : { [DATA_TYPE.TYPE] : sp.Skeleton,    [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Start Game'  },
+            'end_ui'     : { [DATA_TYPE.TYPE] : sp.Skeleton,    [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game'  },
+            'endTimes'   : { [DATA_TYPE.TYPE] : Label,          [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/Times'  },
+            'endTotalWin': { [DATA_TYPE.TYPE] : Label,          [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/Value'  },
         },
 
         'background' : {
@@ -95,6 +99,8 @@ export class Payway4600 extends Payway {
         this.properties['jp'][JP_TYPE.MINI]  = { 'ani' : this.properties['jp']['mini_ani'],  'value': this.properties['jp']['mini'] };
         this.properties['jp'][JP_TYPE.POT]   = { 'ani' : this.properties['jp']['pot_ani'] };
         this.properties['freeGame']['main'].node.setPosition(0, 0, 0);
+        this.properties['freeGame']['start_ui'].node.setPosition(0, 0, 0);
+        this.properties['freeGame']['end_ui'].node.setPosition(0, 0, 0);
         this.properties['background']['freeGame'].node.active = false;
 
         ObjectPool.registerNode('soul', this.properties['jp']['wild_soul'].node);
@@ -106,6 +112,8 @@ export class Payway4600 extends Payway {
     // 給予專案 start 使用
     protected onstart() { 
         this.properties['freeGame']['trigger_ui'].node.active = false;
+        this.properties['freeGame']['start_ui'].node.active = false;
+        this.properties['freeGame']['end_ui'].node.active = false;
 
         this.machine.controller.addDisableButtons(this.properties['buyFeature']['button'].component);
         Utils.AddHandHoverEvent(this.properties['buyFeature']['button'].node);
@@ -132,10 +140,10 @@ export class Payway4600 extends Payway {
         const gameResult = this.gameResult;
         const free_game : boolean = gameResult.extra.free_spin_times > 0;
 
-        console.log('gameResult', gameResult);
+        console.log('gameResult', free_game, gameResult);
 
         // 聚寶盆動畫，如果有JP遊戲，先進去玩
-        await this.absorbWildSymbolIntoTreasurePot();
+        await this.absorbWildSymbolIntoTreasurePot(free_game);
         
         if ( !free_game ) { // 假如沒有 free_game, 就回去報獎流程
             return super.processWinningScore();
@@ -143,6 +151,8 @@ export class Payway4600 extends Payway {
 
         // 進入JP遊戲
         console.log('進入JP遊戲');
+        await Utils.delay(3000);
+        await this.start_free_game();
     }
 
     /**
@@ -159,7 +169,7 @@ export class Payway4600 extends Payway {
     /**
      *  聚寶盆吸收 Wild Symbol動畫
      */
-    private async absorbWildSymbolIntoTreasurePot() {
+    private async absorbWildSymbolIntoTreasurePot(fullWait:boolean=false) {
         // 盤面是否有 Wild Symbol
         const wilds = this.reel.showWinSymbol(WildID);
         if (wilds.length === 0) return false;
@@ -190,19 +200,23 @@ export class Payway4600 extends Payway {
 
         // 等待動畫播完
         await Utils.delay(400);
-        if ( this.gameResult.extra?.jp_prize > 0 ) {             
-            const {jp_type, jp_prize} = this.gameResult.extra;
+        if ( this.gameResult.extra?.jp_prize > 0 ) {    
+            this.machine.featureGame = true;
             await Utils.delay(1000);
+            const {jp_type, jp_prize} = this.gameResult.extra;
             return await this.jpGame.enter_jp_game(jp_type, jp_prize);
         }
 
         this.reel.moveBackToWheel();
-        this.play_pot_ani(this.gameResult.extra.jp_level);
+        if ( fullWait ) await this.play_pot_ani(this.gameResult.extra.jp_level);
+        else this.play_pot_ani(this.gameResult.extra.jp_level);
+
         return true;
     }
 
     public async exit_jp_game() {
         this.play_pot_ani(0);
+        if ( this.isFreeGame ) return;
         this.machine.featureGame = false;
     }
 
@@ -266,6 +280,7 @@ export class Payway4600 extends Payway {
      * 輪播發光動畫
      */
     private async loop_play_jp_ani() {
+        if ( this.isFreeGame ) return;
         const wait = Utils.Random(6000,8000) - (this.JP_LEVEL * 1000);
         await Utils.delay(wait);
 
@@ -296,37 +311,145 @@ export class Payway4600 extends Payway {
     /**
      * 進入 Free Game 流程
      */
-    public async trigger_free_game() {
-        const triggerUI = this.properties['freeGame']['trigger_ui'].component;
+    public async start_free_game() {
+
+        await this.trigger_free_game_ui();
+        if ( this.isFreeGame ) return;  // 如果已經在 Free Game 中，不用做任何事，回到 FreeGame
+        this.machine.featureGame = true;
         this.isFreeGame = true;
-
-        // #regine 顯示 Free Game UI
-        this.machine.controller.maskActive(true);
-        triggerUI.node.active = true;
-        Utils.commonFadeIn(triggerUI.node, false, [new Color(255,255,255,0),Color.WHITE], triggerUI);
-        await Utils.playSpine(triggerUI, 'play', false);
-        Utils.playSpine(triggerUI, 'play02', true);
-        await Utils.delay(3000);
-        Utils.commonFadeIn(triggerUI.node, true, [new Color(255,255,255,0),Color.WHITE], triggerUI);
-        triggerUI.setAnimation(0, 'idle', false);
-        // #endregine 顯示 Free Game UI
-
-        // #regine 開關門
-        await this.jpGame.open_door(()=>{
-            this.machine.controller.maskActive(false);
-            this.properties['background']['freeGame'].node.active = true;
-        });
-        await Utils.delay(1000);
+        const sub_game = this.machine.spinData['sub_game'];
 
         // 開始 Free Game
-        await FreeGame.StartFreeGame(this.machine.spinData['sub_game']); // 等待 Free Game 結束
-        await Utils.delay(1000);
+        await FreeGame.StartFreeGame(   // 等待 Free Game 結束
+            sub_game['result'],
+            async (roundData:any) => {  // 每一輪的callBack, 可await
+                await Utils.delay(1000);
+            }
+        ); 
 
-        
+        // Free Game 已經結束
+        await Utils.delay(1000); // 發呆一下
+        await this.end_free_game_ui(sub_game); // 結束 Free Game UI
 
         this.isFreeGame = false;
-        return; // 回到 processWinningScore
+        this.machine.featureGame = false;
+        return; // 回到正常遊戲 processWinningScore
         
+    }
+
+    // 觸發 Free Game UI
+    public async trigger_free_game_ui() {
+
+        this.reel.closeNearMissMask();
+        this.machine.controller.maskActive(true);
+
+        if ( this.isFreeGame ) { // 如果已經在 Free Game 中，顯示觸發 UI
+            const triggerUI = this.properties['freeGame']['trigger_ui'].component;
+            triggerUI.node.active = true;
+            Utils.commonFadeIn(triggerUI.node, false, [new Color(255,255,255,0),Color.WHITE], triggerUI);
+            await Utils.playSpine(triggerUI, 'play', false);
+            Utils.playSpine(triggerUI, 'play02', true);
+            await Utils.delay(3000);
+            Utils.commonFadeIn(triggerUI.node, true, [new Color(255,255,255,0),Color.WHITE], triggerUI);
+            triggerUI.setAnimation(0, 'idle', false);
+
+        } else { // 如果不在 Free Game 中，直接進入 Free Game UI
+            const startUI = this.properties['freeGame']['start_ui'].component;
+            let clickEvent = new EventTarget();
+            startUI.node.active = true;
+
+            Utils.commonFadeIn(startUI.node, false, [new Color(255,255,255,0),Color.WHITE], startUI);
+            await Utils.commonActiveUITween(startUI.node, true);
+            startUI.node.on(Node.EventType.TOUCH_END, ()=> { 
+                clickEvent.emit('done'); 
+            });
+            await Utils.delayEvent(clickEvent); // 等待玩家點擊螢幕
+            startUI.node.off(Node.EventType.TOUCH_END);
+
+            Utils.commonFadeIn(startUI.node, true, [new Color(255,255,255,0),Color.WHITE], startUI);
+            await Utils.commonActiveUITween(startUI.node, false); // 關閉 UI
+            await this.jpGame.open_door(()=> { // 關門轉場 
+                this.machine.controller.maskActive(false);
+                this.properties['background']['freeGame'].node.active = true;
+                this.reel.closeNearMissMask();
+            });
+        }
+    }
+
+    /**
+     * 結束 Free Game UI
+     */
+    public async end_free_game_ui(subGameData:any) {
+        const endUI = this.properties['freeGame']['end_ui'].component;
+        const [ times, total_win ] = [ subGameData['result'].length, subGameData['pay_credit_total'] ];
+        const [ timesLabel, totalWinLabel ] = [
+            this.properties['freeGame']['endTimes'].component,
+            this.properties['freeGame']['endTotalWin'].component,
+        ];
+        timesLabel.string = '';
+        totalWinLabel.string = '';
+
+        this.reel.closeNearMissMask();
+        this.machine.controller.maskActive(true);
+        // 打開結束 UI
+        Utils.commonFadeIn(endUI.node, false, [new Color(255,255,255,0),Color.WHITE], endUI); 
+        await Utils.commonActiveUITween(endUI.node, true);
+        
+        timesLabel.string = subGameData['result'].length; // 顯示次數
+
+        // 滾動總得分
+        let clickEvent = new EventTarget();
+
+        // 開始滾分, 十秒
+        let waiting = await Utils.commonTweenNumber(totalWinLabel, 0, total_win, 5, null, clickEvent);
+        waiting['time'] = Date.now();
+
+        // 打開按鈕
+        endUI.node.on(Node.EventType.TOUCH_END, async ()=> {
+            // 如果 tween 還沒結束，就直接結束
+            let tween = waiting.tween;
+            if ( tween == null ) return clickEvent.emit('done');
+            if ( tween.isDone === true ) return clickEvent.emit('done');
+
+            // 還在滾分
+            let lastTime = Date.now() - waiting['time'];
+            
+            // 剩下不到一秒，不理他，等自然結束
+            if ( lastTime < 1000 ) return;
+
+            // 停止滾分
+            tween.stop();
+
+            // 剩餘分數，一秒內滾完
+            const last = waiting.data.value;
+            await Utils.commonTweenNumber(totalWinLabel, last, total_win, 1);
+            clickEvent.emit('done');
+        });
+
+        await Utils.delayEvent(clickEvent); // 等待滾完
+        endUI.node.off(Node.EventType.TOUCH_END); // 移除滾分點擊
+
+        // 最後放大數字效果
+        await Utils.delay(500);
+        await Utils.scaleFade(totalWinLabel);
+        await Utils.delay(1000); // 發呆一下
+        
+        clickEvent.removeAll('done');             // 移除滾分事件
+        endUI.node.on(Node.EventType.TOUCH_END, ()=> { // 增加關閉事件
+            clickEvent.emit('done');
+        });
+
+        await Utils.delayEvent(clickEvent); // 等待玩家 click
+        endUI.node.off(Node.EventType.TOUCH_END);
+
+        // 關閉介面
+        Utils.commonFadeIn(endUI.node, true, [new Color(255,255,255,0),Color.WHITE], endUI, 0.3);
+        await Utils.commonActiveUITween(endUI.node, false);
+
+        await this.jpGame.open_door(()=> { // 關門轉場 
+            this.machine.controller.maskActive(false);
+            this.properties['background']['freeGame'].node.active = false;
+        });
     }
 }
 
