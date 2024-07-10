@@ -1,5 +1,4 @@
-import { _decorator, Component, sys } from 'cc';
-import { set } from 'mobx';
+import { _decorator, Component, sys,Button } from 'cc';
 import { Utils, _utilsDecorator } from '../../sub_module/utils/Utils';
 const { ccclass, property } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
@@ -7,11 +6,12 @@ const { isDevelopFunction } = _utilsDecorator;
 @ccclass('Develop4600')
 export class Develop4600 extends Component {
 
-    @property({type:cc.boolean, displayName:'模擬覆寫 machine.spinResponse'})
+    @property({displayName:'模擬覆寫 machine.spinResponse'})
     public isOverrideSpinResponse:boolean = false;
 
 
     public static Instance: Develop4600 = null;
+    public simulateFeatureGame:boolean = false;
 
     @isDevelopFunction(true)
     onLoad() {
@@ -31,9 +31,21 @@ export class Develop4600 extends Component {
 
     /** 開發期間的覆寫函式 */
     @isDevelopFunction(true)
-    private developOverrideFunction() {
+    private async developOverrideFunction() {
         if ( !this.isOverrideSpinResponse ) return;
         this.machine.spinResponse = this.developSpinResponse.bind(this);
+
+        // 移除 onclick 
+        let buttonNode : Node = this.machine.paytable.buyFeatureGame.properties.BuyFeatureGameUI.buyButton.node;
+        buttonNode.on('click', this.DevelopClickBuyFeatureGame, this);
+    }
+
+    /**
+     * 攔截 paytable buyFeatureGameUI 的 clickBuyFeatureGame
+     */
+    private DevelopClickBuyFeatureGame() {
+        this.simulateFeatureGame = true;
+        return this.machine.controller.clickSpin();
     }
 
     /** 開發期間複寫 machine.spinResponse */
@@ -41,8 +53,12 @@ export class Develop4600 extends Component {
     public developSpinResponse(spinData:any) {
 
         let mainGames = this.saveMainGame(spinData);
-        console.log('mainGame list', mainGames);
         
+        if ( this.simulateFeatureGame ) {
+            this.make_subGameResponse(spinData);
+            this.simulateFeatureGame = false;
+        }
+
         // 有沒有 wild
         if ( this.haveWild(spinData) ) {
             let jp_level = this.machine.paytable.JP_LEVEL + 1;
@@ -56,6 +72,7 @@ export class Develop4600 extends Component {
             spinData['main_game']['extra']['jp_level'] = jp_level;
         }
 
+        console.log('spinData', spinData);
         // 以下是原本的 machine.spinResponse
         let event = this.machine.properties['spinEvent'];
         event['result'] = spinData;
@@ -76,6 +93,16 @@ export class Develop4600 extends Component {
         }
 
         return { 'pay_credit_total' : pay_credit_total, 'result' : result };
+    }
+
+    private make_subGameResponse(spinData) {
+        spinData['sub_game'] = this.simulateFeatureGameSpinResponse();
+        spinData['get_sub_game'] = true;
+        spinData['main_game']['extra']['free_spin_times'] = 10;
+
+        spinData['main_game']['game_result'][0][1] = 12;
+        spinData['main_game']['game_result'][2][1] = 12;
+        spinData['main_game']['game_result'][4][1] = 12;
     }
 
     private saveMainGame(spinData:any) {

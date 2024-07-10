@@ -42,7 +42,13 @@ export class RollingType1 extends wheelModule implements _RollingType {
      * 取得 Spin 速度
      * @returns 
      */
-    protected get getSpinSpeed() { return this.rollingSpeed[this.wheel.reel.getSpinMode()]; }
+    protected get getSpinSpeed() {
+        const speed = this.rollingSpeed[this.wheel.reel.spinMode];
+        return speed;
+    }
+
+    /** 是否為 NearMiss */
+    public _isNearMiss: boolean = false;
 
     /** 定義盤面結果 */
     public _result: any;
@@ -51,13 +57,13 @@ export class RollingType1 extends wheelModule implements _RollingType {
     public setResult(result: any): void { this.propertys._result = result;}
 
     /** 接收到停輪指令 */
-    public _rollingStoping : boolean;
+    public _rollingStopping : boolean;
 
     /** 取得模組資料 */
-    protected get propertys() { return this.wheel.rollingInscept.rolling1; }
+    protected get propertys() { return this.wheel.rollingInspect.rolling1; }
 
     /** 是否停止捲動補充盤面完成 */
-    public _isStopingFillDone: boolean = false;
+    public _isStoppingFillDone: boolean = false;
 
     /**
      * 初始化滾動捲軸屬性
@@ -68,9 +74,9 @@ export class RollingType1 extends wheelModule implements _RollingType {
     public initProperty(wheel: Wheel) { 
         super.initProperty(wheel);
         this.rollingSpeed = {
-            [SPIN_MODE.NORMAL_MODE] : wheel.rollingInscept.rolling1.rollingSpeed_n,
-            [SPIN_MODE.QUICK_MODE]  : wheel.rollingInscept.rolling1.rollingSpeed_q,
-            [SPIN_MODE.TURBO_MODE]  : wheel.rollingInscept.rolling1.rollingSpeed_t,
+            [SPIN_MODE.NORMAL_MODE] : wheel.rollingInspect.rolling1.rollingSpeed_n,
+            [SPIN_MODE.QUICK_MODE]  : wheel.rollingInspect.rolling1.rollingSpeed_q,
+            [SPIN_MODE.TURBO_MODE]  : wheel.rollingInspect.rolling1.rollingSpeed_t,
         }
     }
 
@@ -78,8 +84,9 @@ export class RollingType1 extends wheelModule implements _RollingType {
      * 重設滾輪屬性
      */
     protected reset() {
-        this.propertys._isStopingFillDone = false;
-        this.propertys._rollingStoping = false;
+        this.propertys._isNearMiss = false;
+        this.propertys._isStoppingFillDone = false;
+        this.propertys._rollingStopping = false;
         this.propertys._result = null;
     }
 
@@ -96,12 +103,13 @@ export class RollingType1 extends wheelModule implements _RollingType {
             await this.moveDown();  // 往下捲動滾輪
             this.refreshSymbol();   // 移動完成後更新 Symbol
 
-            if ( this.propertys._isStopingFillDone ) break;
+            if ( this.propertys._isStoppingFillDone ) break;
         }
 
         this.wheel.allNormalSymbol(); // 設定所有 Symbol 取消模糊狀態
         // 停止捲動，回彈動態
         await this.stopRollingMove();
+        this.wheel.allDropSymbol();   // 設定所有 Symbol 為 Drop 狀態
     }
 
     /**
@@ -112,7 +120,7 @@ export class RollingType1 extends wheelModule implements _RollingType {
         let propertys = this.propertys;             // 取得滾輪屬性
         let len       = wheel.wheelLength;          // 取得滾輪長度
         let fillSize   = -len;                       // 計算補充大小
-        let isStoping = propertys._rollingStoping;  // 取得是否停止捲動
+        let isStoping = propertys._rollingStopping;  // 取得是否停止捲動
         let result    = propertys._result;          // 取得盤面結果
 
         if ( isStoping ) {                          // 如果正在停輪，放入盤面結果
@@ -121,16 +129,22 @@ export class RollingType1 extends wheelModule implements _RollingType {
                 let symbol = ObjectPool.Get(result[idx]);
                 wheel.putSymbol(symbol, i);
             }
-            this.propertys._isStopingFillDone = true; // 設定停輪補充完成，可以停輪了
+            this.propertys._isStoppingFillDone = true; // 設定停輪補充完成，可以停輪了
 
         } else {                                      // 如果不是停輪，隨機放入 Symbol
             for(let i=-1; i>=fillSize; i--) {
                 let symbol = wheel.randomSymbol();
+                if ( wheel.getSymbol(i) != null ) continue;
                 wheel.putSymbol(symbol, i);
             }
         }
 
         wheel.allBlurSymbol();
+    }
+
+    protected async nearMissStopRolling(result:any) {
+        console.log('nearMissStopRolling', result);
+        return await Utils.delay(10000);
     }
 
     /**
@@ -223,7 +237,7 @@ export class RollingType1 extends wheelModule implements _RollingType {
      */
     public stopRolling(result) {
         this.setResult(result);
-        this.propertys._rollingStoping = true;
+        this.propertys._rollingStopping = true;
     }
 
 

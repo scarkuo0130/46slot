@@ -71,7 +71,7 @@ export class RollingType2 extends wheelModule implements _RollingType {
     public setResult(result: any): void { this._result = result;}
 
     /** 接收到停輪指令 */
-    protected _rollingStoping : boolean;
+    protected _rollingStopping : boolean;
 
     /** 是否停止捲動補充盤面完成 */
     protected _isStopingFillDone: boolean = false;
@@ -102,7 +102,7 @@ export class RollingType2 extends wheelModule implements _RollingType {
      */
     protected reset() {
         this._isStopingFillDone = false;
-        this._rollingStoping = false;
+        this._rollingStopping = false;
         this._result = null;
     }
 
@@ -140,7 +140,7 @@ export class RollingType2 extends wheelModule implements _RollingType {
         await this.preStartSpin();  // 開始滾動
         while (true) {
 
-            if ( this._rollingStoping === true ) break;
+            if ( this._rollingStopping === true ) break;
             await Utils.delay(100);
         }
         
@@ -150,6 +150,7 @@ export class RollingType2 extends wheelModule implements _RollingType {
         this.wheel.allNormalSymbol(); // 設定所有 Symbol 取消模糊狀態
         // 停止捲動，回彈動態
         await this.stopRollingMove();
+        this.wheel.allDropSymbol();   // 設定所有 Symbol 為 Drop 狀態
     }
 
     /**
@@ -159,7 +160,7 @@ export class RollingType2 extends wheelModule implements _RollingType {
         let wheel     = this.wheel;            // 取得滾輪
         let len       = wheel.wheelLength;     // 取得滾輪長度
         let fillSize   = -len;                  // 計算補充大小
-        let isStoping = this._rollingStoping;  // 取得是否停止捲動
+        let isStoping = this._rollingStopping;  // 取得是否停止捲動
         let result    = this._result;          // 取得盤面結果
 
         wheel.container.active = true;         // 顯示滾輪
@@ -266,7 +267,7 @@ export class RollingType2 extends wheelModule implements _RollingType {
      */
     public stopRolling(result) {
         this.setResult(result);
-        this._rollingStoping = true;
+        this._rollingStopping = true;
     }
 
 

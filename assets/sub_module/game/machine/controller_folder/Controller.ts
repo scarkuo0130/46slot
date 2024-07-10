@@ -487,6 +487,7 @@ export class Controller extends Component {
 
     /**  取得押注額度數量 */
     private get betIdxLength() { return gameInformation.coinValueArray.length; }
+    private get betIdxMin() { return gameInformation.bet_available_idx; }
 
     /**  更新押注額 */
     public refreshTotalBet() { /*this.setTotalBet(this.betValue);*/ this.changeTotalBet(this.betValue); }
@@ -502,10 +503,11 @@ export class Controller extends Component {
      * @param idx {number} 指定押注Index
      */
     private changeTotalBetIdx(idx:number) {
+        
         const length = this.betIdxLength;
 
-        if ( idx >= length ) idx = 0;
-        if ( idx < 0 ) idx = length - 1;
+        if ( idx >= length ) idx = this.betIdxMin;
+        if ( idx < this.betIdxMin ) idx = length - 1;
         this.betIdx = idx;
         this.refreshTotalBet();
         this.machine.eventChangeTotalBet();

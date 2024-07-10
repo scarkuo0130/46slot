@@ -93,6 +93,7 @@ export class Machine extends Component {
         cc.machine = this;
         cc.DataManager = DataManager.instance;
         cc.slotData = slotData;
+        cc.gameInformation = gameInformation;
     }
 
     protected start() {

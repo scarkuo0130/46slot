@@ -4,6 +4,7 @@ import { Wheel } from './Wheel';
 import { Symbol } from './Symbol';
 import { Machine } from './Machine';
 import { ObjectPool } from '../ObjectPool';
+import { Paytable } from './pay/PayTable';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -278,23 +279,23 @@ export class Reel extends Component {
      * @description 是否正在聽牌
      */
     protected get isNearMiss() : boolean { return this.properties.nearMiss >=0; }
+    protected set nearMiss(value:number) { this.properties.nearMiss = value; }
+    protected get nearMiss() { return this.properties.nearMiss; }
+    public get nearMissSymbolData() : SymbolNearMiss[] { return this.symbolInspect.symbolNearMiss; }
 
     // 滾輪速度設定 Norma,Quick,Turbo SPIN_MODE
     public setSpinMode ( mode: SPIN_MODE ): SPIN_MODE { return this.properties.mode = mode; }
     public get spinMode() { return this.properties.mode; }
-
     /**
      * @description 取得滾輪速度設定
      * @deprecated 即將廢棄, 請使用 Reel.spinMode 取得 
      * @returns 
      */
     public getSpinMode (): SPIN_MODE { return this.spinMode; }
-    // 滾輪速度設定
 
-    //快速停輪 isFastStoping
+    // 快速停輪 isFastStoping
     protected get isFastStoping():boolean { return this.properties.isFastStoping; }
     public set fastStoping(value:boolean) { this.properties.isFastStoping = value; }
-    // 快速停輪
 
     //設定停輪事件 stopingHandler
     /** 設定停輪 Handler */
@@ -306,15 +307,17 @@ export class Reel extends Component {
     //狀態 REEL_STATE
     public get state() { return this.properties.state; }
     private changeState ( state: REEL_STATE ) { this.properties.state = state; }
-
-    //machine
-    public get machine() : Machine { return this.properties.machine; }
-    public setMachine(machine:any) { this.properties.machine = machine; }
+    public get machine() : Machine { return Machine.Instance; }
+    public get paytable() : Paytable { return this.machine.paytable; }
     //machine
 
     //設定盤面結果 result 
     public get result() { return this.properties.result; }
-    public setResult(result:any) { this.properties.result = result; }
+    public setResult(result:any) { 
+        this.properties.result = result; 
+        const nearMiss = this.paytable.getNearMissIndex(result);
+        if ( nearMiss > 0 && nearMiss < result.length ) this.nearMiss = nearMiss;
+    }
 
     public get container() { return this.properties.container; }
 
@@ -325,9 +328,9 @@ export class Reel extends Component {
         let stopHandler = new EventTarget();
         this.properties.handler.stoping = stopHandler;
         this.properties.result = null;
-        this.properties.nearMiss = -1;
         this.properties.isFastStoping = false;
         this.properties.stopingWheel = new Array(this.getWheels().length).fill(false);
+        this.nearMiss = 99;
 
         this.moveBackToWheel();
     }
@@ -385,7 +388,6 @@ export class Reel extends Component {
             await Utils.delay(stepTime);
             if ( this.result === null ) continue;   // 等待盤面結果
             if ( this.isFastStoping )   break;      // 快速停輪
-            if ( this.isNearMiss )      continue;   // 等待聽牌
             if ( time >= stopTime )     break;      // 滾輪停止時間
 
             time += stepTime;
@@ -404,6 +406,9 @@ export class Reel extends Component {
         let rollingData = this.properties.stopRolling[mode];
         let wheels = this.getWheels();
         let result = this.result;
+        let nearMiss = this.nearMiss; 
+        let firstNearMiss = false;
+        let nearEvent = new EventTarget();
 
         for(let i=0;i<rollingData.length;i++) {
             
@@ -415,8 +420,34 @@ export class Reel extends Component {
                 await Utils.delay(time);
             }
 
-            wheel.stopRolling(result[id]);
+            if ( nearMiss < i ) {
+                await Utils.delay(1000);
+                wheel.playNearMiss(true);
+                
+                await wheel.nearMissStopRolling(result[id]);
+                if ( firstNearMiss === false ) {
+                    this.firstNearMissStopRolling(); // 處理其他已經停止的輪面
+                    firstNearMiss = true;    
+                }
+            } else {
+                wheel.stopRolling(result[id]); // 一般停輪
+            }
         }
+
+        nearEvent = null;
+    }
+
+    /**
+     * 聽牌滾輪停止
+     */
+    protected async firstNearMissStopRolling() {
+        let nearMiss = this.nearMiss;
+        let wheels = this.getWheels();
+        for(let i=nearMiss;i>=0;i--) {
+            let wheel = wheels[i];
+            wheel.nearMissMask(true);
+        }
+
     }
 
     /**
@@ -443,7 +474,40 @@ export class Reel extends Component {
      */
     public get showWinContainer() : Node { return this.properties.showWinContainer; }
 
+    /**
+     * 指定的輪面將 Scatter 移到表演區
+     * @param wheelID 
+     * @returns 
+     */
+    public moveScatterToWinContainer(wheelID:number) {
+        const nearMissSymbolData = this.nearMissSymbolData;
+        if ( nearMissSymbolData == null || nearMissSymbolData.length === 0 ) return;
+
+        for(let i=0;i<nearMissSymbolData.length;i++) {
+            const symbol = nearMissSymbolData[i].symbol;
+            this.moveToShowDropSymboID(wheelID, symbol);
+        }
+    }
+
+
+    /**
+     * 將指定的 Symbol 移到表演區
+     * @param wheelID 
+     * @param sym_id 
+     * @returns 
+     */
+    public moveToShowDropSymboID(wheelID:number, sym_id:number) {
+        let symbols = this.getWheels()[wheelID].getSymbolByID(sym_id);
+        if (symbols == null || symbols.length === 0) return;
+
+        for(let i=0;i<symbols.length;i++) {
+            this.moveToShowDropSymbol(wheelID, symbols[i]);
+        }
+    }
+
+
      /**
+     * 複製 Symbol 到表演區
      * 移動到表演位置，並且進行表演
      * @param symbol 
      */

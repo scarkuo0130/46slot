@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Size, Enum, sp, Vec3, CCInteger } from 'cc';
+import { _decorator, Component, Node, Size, Enum, sp, Vec3, CCInteger, Sprite, Color } from 'cc';
 import { Reel } from '../Reel';
 import { SimpleAudioClipData, SoundManager } from '../SoundManager';
 import { Symbol } from '../Symbol';
@@ -10,6 +10,8 @@ import { StartRolling2 } from './module/_rolling_type/StartRolling2';
 import { RollingType } from './module/_rolling_type/RollingType';
 import { RollingType1 } from './module/_rolling_type/RollingType1';
 import { RollingType2 } from './module/_rolling_type/RollingType2';
+import { Utils } from '../../../utils/Utils';
+import { Machine } from '../Machine';
 
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
@@ -43,7 +45,7 @@ export class BaseInspect {
  * 轉輪音效設定
  */
 @ccclass('AudioInscept')
-export class AudioInscept {
+export class AudioInspect {
 
     @property({ type: SimpleAudioClipData, displayName: '啟動音效', tooltip: '啟動音效' })
     public startAudio: SimpleAudioClipData = new SimpleAudioClipData();
@@ -59,14 +61,14 @@ export class AudioInscept {
  * 啟動滾輪設定
  */
 @ccclass('StartRollingInscept')
-export class StartRollingInscept {
+export class StartRollingInspect {
     @property({type: Enum(START_ROLLING_TYPE), displayName: '啟動滾輪方式', tooltip: '啟動滾輪方式'})
     public startRollingType: START_ROLLING_TYPE = START_ROLLING_TYPE.數值設定;
     
-    @property({type: StartRolling1, displayName: '使用事件呼叫Function，由程式自行處理', tooltip: '事件設定', visible: function(this:StartRollingInscept) { return this.startRollingType === START_ROLLING_TYPE.事件設定; }})
+    @property({type: StartRolling1, displayName: '使用事件呼叫Function，由程式自行處理', tooltip: '事件設定', visible: function(this:StartRollingInspect) { return this.startRollingType === START_ROLLING_TYPE.事件設定; }})
     public startRolling1: StartRolling1 = new StartRolling1();
     
-    @property({type: StartRolling2, displayName: '數值設定', tooltip: '數值設定', visible: function(this:StartRollingInscept) { return this.startRollingType === START_ROLLING_TYPE.數值設定; }})
+    @property({type: StartRolling2, displayName: '數值設定', tooltip: '數值設定', visible: function(this:StartRollingInspect) { return this.startRollingType === START_ROLLING_TYPE.數值設定; }})
     public startRolling2: StartRolling2 = new StartRolling2();
 
     public Events = {
@@ -91,30 +93,33 @@ export class StartRollingInscept {
  * 聽牌設定
  */
 @ccclass('NearMissInscept')
-export class NearMissInscept {
+export class NearMissInspect {
 
-    @property({ displayName: '速度遞減', tooltip: '填入負值會加快', step: 0.01, min: -0.5, max: 0.5 })
-    public nearResistSpeed: number = 0.25;
+    @property({ displayName: '速度遞減', tooltip: '填入負值會加快', step: 0.01, min: 0.01, max: 10 })
+    public nearResistSpeed: number = 0.8;
 
     @property({ displayName: '多滾幾個圖標', tooltip: '圖標數量', step: 1, min: 0, max: 30 })
     public nearMoveCount = 10;
 
     @property({ type: sp.Skeleton, displayName: 'NearSpine', tooltip: '聽牌時展示動畫' })
     public nearSpine: sp.Skeleton;
+
+    @property({ type:Sprite, displayName: 'NearMask', tooltip: '聽牌時遮罩' })
+    public nearMask:Sprite;
 }
 
 @ccclass('RollingInscept')
-export class RollingInscept {
+export class RollingInspect {
     @property({type: Enum(ROLLING_TYPE), displayName: '滾動方式', tooltip: '滾動方式'})
     public rollingType: ROLLING_TYPE = ROLLING_TYPE.常態捲動;
 
-    @property({type: RollingType, displayName: '事件設定', tooltip: '事件設定', visible: function(this:RollingInscept) { return this.rollingType === ROLLING_TYPE.事件設定; }})
+    @property({type: RollingType, displayName: '事件設定', tooltip: '事件設定', visible: function(this:RollingInspect) { return this.rollingType === ROLLING_TYPE.事件設定; }})
     public rolling: RollingType = new RollingType();
 
-    @property({type: RollingType1, displayName: '常態設定', tooltip: '常態設定', visible: function(this:RollingInscept) { return this.rollingType === ROLLING_TYPE.常態捲動; }})
+    @property({type: RollingType1, displayName: '常態設定', tooltip: '常態設定', visible: function(this:RollingInspect) { return this.rollingType === ROLLING_TYPE.常態捲動; }})
     public rolling1: RollingType1 = new RollingType1();
 
-    @property({type: RollingType2, displayName: '整排捲動', tooltip: '整排捲動', visible: function(this:RollingInscept) { return this.rollingType === ROLLING_TYPE.整排捲動; }})
+    @property({type: RollingType2, displayName: '整排捲動', tooltip: '整排捲動', visible: function(this:RollingInspect) { return this.rollingType === ROLLING_TYPE.整排捲動; }})
     public rolling2: RollingType2 = new RollingType2();
 
     protected Events = {
@@ -136,7 +141,9 @@ export class RollingInscept {
         wheel.reel.setStopWheel(wheel._ID);
     }
 
-    public stopRolling(result: number[]) { callLibaryFunction(this.Events[this.rollingType], 'stopRolling', result); }
+    public async stopRolling(result: number[]) { return callLibaryFunction(this.Events[this.rollingType], 'stopRolling', result); }
+
+    public async nearMissStopRolling(result: number[]) { return callLibaryFunction(this.Events[this.rollingType], 'nearMissStopRolling', result); }
 }
 
 //#endregion 各項 Inscpect 設定
@@ -156,22 +163,22 @@ export async function awaitCallLibaryFunction(obj:any, func:string, ...args:any[
 
 @ccclass('WheelLibrary')
 export class WheelLibrary extends Component {
-    //#region 設定
+    // #region[[rgba(0,0,0,0)]] 設定
     @property({ type:BaseInspect, displayName: '基礎設定', group: { name: '基礎設定', id: '0' } })
-    public readonly baseInscept: BaseInspect = new BaseInspect();
+    public readonly baseInspect: BaseInspect = new BaseInspect();
 
-    @property({ type: AudioInscept, displayName: '音效設定', tooltip: '音效設定', group: { name: '音效設定', id: '0' } })
-    public readonly audioInscpect: AudioInscept = new AudioInscept();
+    @property({ type: AudioInspect, displayName: '音效設定', tooltip: '音效設定', group: { name: '音效設定', id: '0' } })
+    public readonly audioInspect: AudioInspect = new AudioInspect();
 
-    @property({ type: StartRollingInscept, displayName: '啟動動態', tooltip: '啟動動態', group: { name: '啟動動態', id: '0' }})
-    public readonly startRolling: StartRollingInscept = new StartRollingInscept();
+    @property({ type: StartRollingInspect, displayName: '啟動動態', tooltip: '啟動動態', group: { name: '啟動動態', id: '0' }})
+    public readonly startRolling: StartRollingInspect = new StartRollingInspect();
 
-    @property({ type: RollingInscept, displayName: '滾動設定', tooltip: '滾動設定', group: { name: '滾動設定', id: '0' } })
-    public readonly rollingInscept: RollingInscept = new RollingInscept();
+    @property({ type: RollingInspect, displayName: '滾動設定', tooltip: '滾動設定', group: { name: '滾動設定', id: '0' } })
+    public readonly rollingInspect: RollingInspect = new RollingInspect();
 
-    @property({ type: NearMissInscept, displayName: '聽牌設定', tooltip: '聽牌設定', group: { name: '聽牌設定', id: '0' } })
-    public readonly nearMissInscept: NearMissInscept = new NearMissInscept();
-    //#endregion 設定
+    @property({ type: NearMissInspect, displayName: '聽牌設定', tooltip: '聽牌設定', group: { name: '聽牌設定', id: '0' } })
+    public readonly nearMissInspect: NearMissInspect = new NearMissInspect();
+    // #endregion 設定
 
     /**
      * 定義各種數值資料
@@ -224,22 +231,22 @@ export class WheelLibrary extends Component {
      */
     protected checkInscept(): boolean {
 
-        if (this.baseInscept.container == null) {
+        if (this.baseInspect.container == null) {
             console.error(`Wheel ${this.node[' INFO ']} 沒有設定 基礎設定/Symbol容器`, this.node);
             return false;
         }
 
-        if (this.baseInscept.symbolSize.width === 0) {
+        if (this.baseInspect.symbolSize.width === 0) {
             console.error(`Wheel ${this.node[' INFO ']} 沒有設定 基礎設定/Symbol大小設定 width`, this.node);
             return false;
         }
 
-        if (this.baseInscept.symbolSize.height === 0) {
+        if (this.baseInspect.symbolSize.height === 0) {
             console.error(`Wheel ${this.node[' INFO ']} 沒有設定 基礎設定/Symbol大小設定 height`, this.node);
             return false;
         }
 
-        if (this.baseInscept.length < 1) {
+        if (this.baseInspect.length < 1) {
             console.error(`Wheel ${this.node[' INFO ']} 沒有設定 基礎設定/滾輪長度`, this.node);
             return false;
         }
@@ -254,21 +261,22 @@ export class WheelLibrary extends Component {
     protected initInscept(): void {
         this._propertys.wheel = this.node.getComponent(Wheel);
 
-        this.setContainer(this.baseInscept.container);
+        this.setContainer(this.baseInspect.container);
         this.initHeightIdx();
         this.initStartRolling();
         this.initRolling();
         this.initRollingStop();
         this.initNearMiss();
         
-        this.playNear(false);
+        this.playNearMiss(false);
+        this.nearMissMask(false);
     }
 
     /**
      * 啟動時放置Symbol
      */
     protected startPutSymbol() {
-        if ( this.baseInscept.startPutSymbol === false ) return;
+        if ( this.baseInspect.startPutSymbol === false ) return;
 
         let minH = this.heightIdxType[0];
         let maxH = this.heightIdxType[1]-1;
@@ -293,11 +301,11 @@ export class WheelLibrary extends Component {
     public setReel(id, reel: Reel) {
         this._propertys.ID = id;
         this._propertys.reel = reel;
-        this._propertys.machine = reel.getMachine;
+        this._propertys.machine = Machine.Instance;
     }
 
-    public get reel() { return this._propertys.reel; }
-    public get machine() { return this._propertys.machine; }
+    public get reel() : Reel { return this._propertys.reel; }
+    public get machine() : Machine { return Machine.Instance; }
     public get wheel() { return this._propertys.wheel; }
 
     /**
@@ -322,8 +330,8 @@ export class WheelLibrary extends Component {
      * this._propertys.heightIdxType = [最小idx,最大idx]
      */
     protected initHeightIdx() {
-        let minIdx = - Math.floor(this.baseInscept.hideSize.width);
-        let maxIdx =   Math.floor(this.wheelLength + this.baseInscept.hideSize.height);
+        let minIdx = - Math.floor(this.baseInspect.hideSize.width);
+        let maxIdx =   Math.floor(this.wheelLength + this.baseInspect.hideSize.height);
 
         if ( minIdx == -0 ) minIdx = 0;
         this._propertys.heightIdxType = [minIdx, maxIdx];
@@ -345,7 +353,7 @@ export class WheelLibrary extends Component {
     /**
      * 初始化滾輪設定
      */
-    protected initRolling() { this.rollingInscept.initProperty(this.node.getComponent(Wheel)); }
+    protected initRolling() { this.rollingInspect.initProperty(this.node.getComponent(Wheel)); }
 
     protected initStartRolling() { this.startRolling.initProperty(this.node.getComponent(Wheel)); }
 
@@ -359,11 +367,11 @@ export class WheelLibrary extends Component {
      * 播放聽牌效果
      * @param active 
      */
-    protected playNear(active: boolean) {
-        if ( this.nearMissInscept.nearSpine == null ) return;
+    public playNearMiss(active: boolean) {
+        if ( this.nearMissInspect.nearSpine == null ) return;
 
-        let nearSpine = this.nearMissInscept.nearSpine;
-        let nearAudio = this.audioInscpect.nearAudio;
+        let nearSpine = this.nearMissInspect.nearSpine;
+        let nearAudio = this.audioInspect.nearAudio;
 
         if (active === true) {
             nearSpine.node.active = true;
@@ -372,6 +380,12 @@ export class WheelLibrary extends Component {
             nearSpine.node.active = false;
             this.propertys.nearMiss.audioSource?.stop();
         }
+    }
+
+    public async nearMissMask(active: boolean) {
+        if ( this.nearMissInspect.nearMask == null ) return;
+        // await Utils.commonFadeIn(this.nearMissInscept.nearMask.node, active, [new Color(0,0,0,200), new Color(0,0,0,0)]);
+        this.nearMissInspect.nearMask.node.active = active;
     }
 
     /**
@@ -496,7 +510,7 @@ export class WheelLibrary extends Component {
     /**
      * 保持滾動
      */
-    protected async keepRolling() { return await this.rollingInscept.keepRolling(this.node.getComponent(Wheel)); }
+    protected async keepRolling() { return await this.rollingInspect.keepRolling(this.node.getComponent(Wheel)); }
 
     /**
      * 取得最後一個 Symbol 資料
@@ -509,14 +523,16 @@ export class WheelLibrary extends Component {
     /**
      * 取得滾輪長度
      */
-    public get wheelLength() { return this.baseInscept.length; }
+    public get wheelLength() { return this.baseInspect.length; }
 
 
     /**
      * 通知停止滾動
      * @param result {array} 盤面結果
      */
-    public stopRolling(result) { return this.rollingInscept.stopRolling(result); }
+    public async stopRolling(result) { return await this.rollingInspect.stopRolling(result); }
+
+    public async nearMissStopRolling(result) { return this.rollingInspect.nearMissStopRolling(result); }
 
 
     /**
@@ -539,7 +555,7 @@ export class WheelLibrary extends Component {
     /**
      * 取得 symbol 大小
      */
-    public getSymbolSize(): Size { return this.baseInscept.symbolSize; }
+    public getSymbolSize(): Size { return this.baseInspect.symbolSize; }
 
     /**
      * 取得所有 symbol 物件
@@ -557,19 +573,30 @@ export class WheelLibrary extends Component {
     /**
      * 將所有圖標設定為模糊狀態
      */
-    public allBlurSymbol() { this.allSymbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).moving()); }
-
+    public allBlurSymbol() { this.allSymbols().forEach(symbol => symbol.getComponent(Symbol).moving()); }
     /**
      * 將所有圖標設定為正常狀態
      */
-    public allNormalSymbol() { this.allSymbols().forEach((symbol: Node) => symbol.getComponent<Symbol>(Symbol).normal()); }
+    public allNormalSymbol() { this.allSymbols().forEach(symbol=> symbol.getComponent(Symbol).normal()); }
+
+    public allDropSymbol() { 
+        this.allSymbols().forEach(symbol => {
+            let sym = symbol.getComponent(Symbol);
+            if ( sym.inspect.spineInspect.dropAnimation == null ) return;
+            if ( sym.inspect.spineInspect.dropAnimation === sym.inspect.spineInspect.normalAnimation ) return;
+
+            let wheelID = this.wheel._ID;
+            let clone = this.machine.reel.moveToShowDropSymbol(wheelID, symbol);
+            clone.getComponent(Symbol).drop();
+        }); 
+    }
 
     /**
      * 取得亂數 symbol 編號
      * @returns [string] symbol ID
      */
     protected getRandomSymbolID() {
-        const { rollingSymbols: ranSymbols } = this.baseInscept;
+        const { rollingSymbols: ranSymbols } = this.baseInspect;
         return ranSymbols.length ? ranSymbols[Math.floor(Math.random() * ranSymbols.length)] : null;
     }
 
@@ -602,7 +629,7 @@ export class WheelLibrary extends Component {
 
     /**
      * 移除指定 Symbol
-     * @param {Node} symbol 
+     * @param { Node } symbol 
      */
     public removeSymbolData(symbol: Node) : boolean {
         let symbolData = this._propertys.symbolData;
@@ -652,7 +679,11 @@ export class WheelLibrary extends Component {
 
         return null;
     }
-
+    
+    public getSymbolByID(id: number): Node[] {
+        const symbolData = this._propertys.symbolData;
+        return Object.entries(symbolData).filter(([_, data]) => data['id'] === id).map(([_, data]) => data['symbol']);
+    }
 
     /**
      * 取得滾輪的 symbol 資料
@@ -695,7 +726,7 @@ export class WheelLibrary extends Component {
      * @returns number
      */
     public get getWheelSymbol() {
-        let size = this.baseInscept.length;
+        let size = this.baseInspect.length;
         return this.getIndexSymbol;
     }
 

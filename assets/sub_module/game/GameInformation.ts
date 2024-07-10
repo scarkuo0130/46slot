@@ -123,7 +123,7 @@ export class GameInformation {
     _totalBet: number = 0;
     //後端回傳的購買金額
     _betCredit: number = 0;
-
+    _bet_available_idx : number = 0;
     public fixedDigit: number = 0;
     public coinValueArray = [ 0.1, 0.2, 0.5, 1, 2, 5, 10 ];
     public lineBetArray = [];
@@ -200,6 +200,14 @@ export class GameInformation {
 
     public get winLevelRate () {
         return this._winLevelRate;
+    }
+
+    public set bet_available_idx ( bet_available_idx: number ) {
+        this._bet_available_idx = bet_available_idx;
+    }
+
+    public get bet_available_idx () {
+        return this._bet_available_idx;
     }
 
     public get buyInformation () {

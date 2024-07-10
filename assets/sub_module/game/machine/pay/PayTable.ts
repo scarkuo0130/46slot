@@ -3,6 +3,8 @@ import { Reel } from '../Reel';
 import { Utils, DATA_TYPE } from '../../../utils/Utils';
 import { Machine } from '../Machine';
 import { BigWin } from '../BigWin';
+import { Controller } from '../controller_folder/Controller';
+import { gameInformation } from '../../GameInformation';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
 
@@ -243,6 +245,38 @@ export class Paytable extends Component {
     /** 進入遊戲事件 */
     public enterGame() {}
 
+    /** 計算 NearMiss 位置 */
+    public getNearMissIndex(reel_result) : number {
+        if ( this.machine.reel.nearMissSymbolData == null ) return -1;
+        if ( this.machine.reel.nearMissSymbolData.length === 0 ) return -1;
+        const nearMissSymbols = this.machine.reel.nearMissSymbolData;
+
+        let nearMissIndex = 99;
+        
+        for(let k=0;k<nearMissSymbols.length;k++) {
+            let reelCount = this.reckonSymbolReelCount(nearMissSymbols[k].symbol, reel_result);
+            let count = nearMissSymbols[k].count;
+            let amount = 0;
+
+            for(let i=0;i<reelCount.length;i++) {
+                if ( nearMissIndex <= i ) break;
+                amount += reelCount[i];
+                
+                if ( amount < count ) continue;
+                nearMissIndex = i;
+                break;
+            }
+        }
+        
+        return nearMissIndex;
+    }
+
+    /** 計算 Symbol 在每個 Reel 出現的個數 
+     * @param sym { number } Symbol ID
+     * @param reel_result { number[][] } Reel 結果
+     * @returns { number[] } 每個 Reel 出現的個數 ex: [0,1,2,0,1]
+     */ 
+    public reckonSymbolReelCount(sym: number, reel_result: number[][]): number[] { return reel_result.map(reel => reel.reduce((count, symbol) => count + (symbol === sym ? 1 : 0), 0) ); }
 }
 
 /**
@@ -251,10 +285,19 @@ export class Paytable extends Component {
 @ccclass( 'BuyFeatureGameUI' )
 export class BuyFeatureGameUI {
     public get machine () : Machine { return Machine.Instance }
-
     public get reel (): Reel { return this.machine.reel; }
-
     public get paytable () : Paytable { return this.machine.paytable; }
+    public get controller() : Controller { return this.machine.controller; }
+    public get betIdx() :number { return this.properties.totalBet.idx; }
+    public set betIdx(value) { 
+        this.properties.totalBet.idx = value; 
+        console.log('this.properties.totalBet.idx', value, this.properties.totalBet.idx);
+    }
+
+    public set totalBet(value) { 
+        this.properties.totalBet.value = value;
+        this.properties['BuyFeatureGameUI']['valueLabel'].component.string = Utils.numberComma(value); 
+    }
 
     public properties = {
         'BuyFeatureGameUI' : {
@@ -265,6 +308,10 @@ export class BuyFeatureGameUI {
             'addBetButton' : null,
             'subBetButton' : null,
          },
+         'totalBet': {
+            'idx' : 0,
+            'value' : 0,
+         },
     };
 
     public get node() { return this.properties.BuyFeatureGameUI['ui'].node; }
@@ -274,10 +321,10 @@ export class BuyFeatureGameUI {
             'BuyFeatureGameUI' : {
                 'ui'            : { [DATA_TYPE.TYPE] : Node,   [DATA_TYPE.SCENE_PATH] : inspector.buyFeatureGameUI.getPathInHierarchy()},
                 'valueLabel'    : { [DATA_TYPE.TYPE] : Label,  [DATA_TYPE.SCENE_PATH] : inspector.valueLabelNode.getPathInHierarchy()  },
-                'buyButton'     : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.buyButtonNode.getPathInHierarchy()   },
-                'closeButton'   : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.closeButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.onClickClose, },
-                'addBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.addBetButtonNode.getPathInHierarchy()},
-                'subBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.subBetButtonNode.getPathInHierarchy()},
+                'buyButton'     : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.buyButtonNode.getPathInHierarchy(),    [DATA_TYPE.CLICK_EVENT]: this.clickBuyFeatureGameConfirm  },
+                'closeButton'   : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.closeButtonNode.getPathInHierarchy(),  [DATA_TYPE.CLICK_EVENT]: this.onClickClose, },
+                'addBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.addBetButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.addBet },
+                'subBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.subBetButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.subBet},
                 'openButton'    : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.mainGameBuyFeatureGameButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.onClickOpenUI },
             }
         };
@@ -288,13 +335,51 @@ export class BuyFeatureGameUI {
     }
 
     public onClickClose() { 
-        this.machine.controller.maskActive(false);
+        this.controller.maskActive(false);
         Utils.commonActiveUITween(this.node, false); 
     }
 
     public onClickOpenUI() { 
-        this.machine.controller.maskActive(true);
+        if ( this.machine.isBusy ) return;
+
+        this.betIdx = this.controller.betIdx;
+        this.refreshTotalBet();
+        this.controller.maskActive(true);
         Utils.commonActiveUITween(this.node, true); 
     }
 
+    public refreshTotalBet() {
+        this.totalBet = this.betValue;
+    }
+
+    public addBet() { return this.setBet(1); }
+    public subBet() { return this.setBet(-1); }
+
+    private setBet(add:number) {
+        let idx = this.betIdx;
+        const coinValueArray = gameInformation.coinValueArray;
+        const max = coinValueArray.length;
+        idx += add;
+        if ( idx < 0 ) idx = max - 1;
+        if ( idx >= max ) idx = 0;
+        this.betIdx = idx;
+        this.refreshTotalBet();
+    }
+
+    private get betValue() { 
+        const [ coinValue, lineBet, lineTotal, multiplier ] = [
+            gameInformation.coinValueArray[this.betIdx],
+            gameInformation.lineBet,
+            gameInformation.lineTotal,
+            gameInformation.buyInformation.multiplier,
+        ];
+
+        return coinValue * 1000 * lineBet * lineTotal * multiplier / 1000;
+    }
+
+    public clickBuyFeatureGameConfirm() {
+        if ( this.machine.isBusy ) return;
+        console.log('clickBuyFeatureGame');
+        this.onClickClose();
+    }
 }

@@ -1,0 +1,118 @@
+
+nearmiss.jpg
+size: 3639,1515
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+nearmiss_00
+  rotate: false
+  xy: 0, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_02
+  rotate: false
+  xy: 0, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_04
+  rotate: false
+  xy: 455, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_06
+  rotate: false
+  xy: 455, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_08
+  rotate: false
+  xy: 910, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_10
+  rotate: false
+  xy: 910, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_12
+  rotate: false
+  xy: 1365, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_14
+  rotate: false
+  xy: 1365, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_16
+  rotate: false
+  xy: 1820, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_18
+  rotate: false
+  xy: 1820, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_20
+  rotate: false
+  xy: 2275, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_22
+  rotate: false
+  xy: 2275, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_24
+  rotate: false
+  xy: 2730, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_26
+  rotate: false
+  xy: 2730, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_28
+  rotate: false
+  xy: 3185, 758
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1
+nearmiss_30
+  rotate: false
+  xy: 3185, 0
+  size: 454, 757
+  orig: 454, 757
+  offset: 0, 0
+  index: -1

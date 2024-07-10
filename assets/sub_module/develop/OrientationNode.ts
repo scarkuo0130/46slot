@@ -33,6 +33,9 @@ export class OrientationItem {
     
     @property({displayName: 'AnchorPoint', tooltip: '節點錨點', visible:function(this:OrientationItem) { return (this.enable && this.hasUITransform);}})
     public anchorPoint: Vec2 = new Vec2(0, 0);
+
+    @property({displayName: '取得節點位置', tooltip: 'siblingIndex', visible:function(this:OrientationItem) { return this.enable === true;}})
+    public siblingIndex: number;
 }
 
 
@@ -70,6 +73,7 @@ export class OrientationNode extends Component {
         orientationItem.scale       = this.node.scale.clone();
         orientationItem.active      = this.node.active;
         orientationItem.parentNode  = this.node.parent;
+        orientationItem.siblingIndex = this.node.getSiblingIndex();
 
         let uiTransform = this.node.getComponent(UITransform);
         if (uiTransform) {
@@ -83,14 +87,18 @@ export class OrientationNode extends Component {
         return true;
     }
 
-    public changeOrientation(orientation: Orientation) :boolean {
-        if ( this.enable !== true ) return this.changeChildOrientation(orientation); 
+    public changeOrientation(orientation: Orientation) {
+        if ( this.enable !== true ) {
+            this.changeChildOrientation(orientation); 
+            return -1;
+        }
 
         let orientationItem = orientation === Orientation.LANDSCAPE ? this.landscapeData : this.portraitData;
 
         if ( !orientationItem.affectActive ) this.node.active = orientationItem.active;
         this.node.setPosition(orientationItem.position);
         this.node.setScale(orientationItem.scale);
+        // this.node.setSiblingIndex(orientationItem.siblingIndex);
 
         if ( orientationItem.parentNode != null && orientationItem.parentNode !== this.node.parent ) {
             this.node.setParent(orientationItem.parentNode);
@@ -102,18 +110,34 @@ export class OrientationNode extends Component {
             uiTransform.setAnchorPoint(orientationItem.anchorPoint);
         }
 
-        return this.changeChildOrientation(orientation);
+        this.changeChildOrientation(orientation);
+        return orientationItem.siblingIndex;
     }
 
     public changeChildOrientation(orientation: Orientation) :boolean {
         let children = this.node.children;
         if ( children.length === 0 ) return true;
 
+        let indexData : any = [];
+
         for(let i=0; i<children.length; i++) {
             let child = children[i];
             let orientationNode = child.getComponent(OrientationNode);
-            if ( orientationNode ) orientationNode.changeOrientation(orientation);
+            if ( !orientationNode ) continue;
+
+            indexData.push({
+                'index' : orientationNode.changeOrientation(orientation),
+                'node' : child,
+                'orientationNode': orientationNode
+            });
         }
+
+        // 重新排序
+        /*
+        indexData.forEach((data:any) => {
+            if ( data.index === -1 ) return;
+            data.node.setSiblingIndex(data.index);
+        });*/
 
         return true;
     }

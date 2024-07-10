@@ -1,0 +1,311 @@
+{
+"skeleton": { "hash": "oD7mCWcKzqXkYv8cODLBf6WB6xs", "spine": "3.8.72" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "nearmiss", "parent": "root" },
+	{ "name": "nearmiss2", "parent": "root" }
+],
+"slots": [
+	{ "name": "nearmiss", "bone": "nearmiss", "blend": "additive" },
+	{ "name": "nearmiss2", "bone": "nearmiss2", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"nearmiss2": {
+				"nearmiss_00": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_02": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_04": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_06": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_08": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_10": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_12": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_14": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_16": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_18": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_20": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_22": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_24": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_26": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_28": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_30": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				}
+			},
+			"nearmiss": {
+				"nearmiss_00": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_02": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_04": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_06": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_08": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_10": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_12": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_14": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_16": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_18": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_20": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_22": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_24": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_26": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_28": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				},
+				"nearmiss_30": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 295, -487, -272, -487, -272, 459, 295, 459 ],
+					"hull": 4
+				}
+			}
+		}
+	}
+],
+"animations": {
+	"play": {
+		"slots": {
+			"nearmiss": {
+				"color": [
+					{ "color": "ffb632ff" }
+				],
+				"attachment": [
+					{ "name": "nearmiss_00" },
+					{ "time": 0.0667, "name": "nearmiss_02" },
+					{ "time": 0.1333, "name": "nearmiss_04" },
+					{ "time": 0.2, "name": "nearmiss_06" },
+					{ "time": 0.2667, "name": "nearmiss_08" },
+					{ "time": 0.3333, "name": "nearmiss_10" },
+					{ "time": 0.4, "name": "nearmiss_12" },
+					{ "time": 0.4667, "name": "nearmiss_14" },
+					{ "time": 0.5333, "name": "nearmiss_16" },
+					{ "time": 0.6, "name": "nearmiss_18" },
+					{ "time": 0.6667, "name": "nearmiss_20" },
+					{ "time": 0.7333, "name": "nearmiss_22" },
+					{ "time": 0.8, "name": "nearmiss_24" },
+					{ "time": 0.8667, "name": "nearmiss_26" },
+					{ "time": 0.9333, "name": "nearmiss_28" },
+					{ "time": 1, "name": "nearmiss_30" }
+				]
+			},
+			"nearmiss2": {
+				"color": [
+					{ "color": "1d1100ff" }
+				],
+				"attachment": [
+					{ "name": "nearmiss_00" },
+					{ "time": 0.0667, "name": "nearmiss_02" },
+					{ "time": 0.1333, "name": "nearmiss_04" },
+					{ "time": 0.2, "name": "nearmiss_06" },
+					{ "time": 0.2667, "name": "nearmiss_08" },
+					{ "time": 0.3333, "name": "nearmiss_10" },
+					{ "time": 0.4, "name": "nearmiss_12" },
+					{ "time": 0.4667, "name": "nearmiss_14" },
+					{ "time": 0.5333, "name": "nearmiss_16" },
+					{ "time": 0.6, "name": "nearmiss_18" },
+					{ "time": 0.6667, "name": "nearmiss_20" },
+					{ "time": 0.7333, "name": "nearmiss_22" },
+					{ "time": 0.8, "name": "nearmiss_24" },
+					{ "time": 0.8667, "name": "nearmiss_26" },
+					{ "time": 0.9333, "name": "nearmiss_28" },
+					{ "time": 1, "name": "nearmiss_30" }
+				]
+			}
+		},
+		"bones": {
+			"nearmiss": {
+				"scale": [
+					{ "x": 1.2, "y": 1.2 }
+				]
+			},
+			"nearmiss2": {
+				"scale": [
+					{ "x": 1.2, "y": 1.2 }
+				]
+			}
+		}
+	}
+}
+}

@@ -145,6 +145,7 @@ export class HttpRequest {
         gameInformation.buyInformation.allowBuy = gameResponse.buy_spin.allow_buy;
         gameInformation.buyInformation.multiplier = gameResponse.buy_spin.multiplier;
         gameInformation.buyInformation.limitTotal = gameResponse.buy_spin.limit_total;
+        gameInformation.bet_available_idx = gameResponse.bet_available_idx;
     }
 
     static getJackpot ( response: any ): any {

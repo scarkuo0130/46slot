@@ -17,7 +17,7 @@ export class RollingType extends wheelModule implements _RollingType {
     @property({ type: EventHandler, displayName: 'Function設定', tooltip: '停輪事件' })
     public stopRollingEvent : EventHandler = new EventHandler();
 
-    protected get propertys() { return this.wheel.rollingInscept.rolling; }
+    protected get propertys() { return this.wheel.rollingInspect.rolling; }
 
     /**
      * 使用者自定義的滾動事件
@@ -40,16 +40,18 @@ export class RollingType extends wheelModule implements _RollingType {
      */
     public async stopRollingMove(): Promise<void> { return Utils.awaitEventHandler(this.propertys.stopRollingEvent, this.wheel); }
 
+    public async nearMissStopRolling() : Promise<void> { return Utils.awaitEventHandler(this.propertys.stopRollingEvent, this.wheel); }
+
     protected _result: any;
     
     // 設定盤面結果
     public setResult(result: any): void { this._result = result;}
 
     /** 正在停輪 */
-    protected _rollingStoping : boolean;
+    protected _rollingStopping : boolean;
 
     public stopRolling(result) {
         this.setResult(result);
-        this.propertys._rollingStoping = true;
+        this.propertys._rollingStopping = true;
     }
 }

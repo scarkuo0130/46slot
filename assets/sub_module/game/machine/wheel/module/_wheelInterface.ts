@@ -46,6 +46,8 @@ export interface _StartRollingType  {
 
 
 export interface _RollingType { 
+    _isNearMiss: boolean;
+
     /** 預設屬性 */
     initProperty(wheel:Wheel): void;
 
@@ -56,13 +58,15 @@ export interface _RollingType {
     _result : any;
 
     /** 正在停輪 */
-    _rollingStoping : boolean;
+    _rollingStopping : boolean;
 
     /** 設定盤面結果 */
     setResult(result:any): void;
 
     /** 停止捲動 */
-    stopRollingMove() :void;
+    stopRollingMove() :Promise<void>;
+
+    nearMissStopRolling(result) : Promise<void>;
 }
 
 

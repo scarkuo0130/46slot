@@ -135,7 +135,6 @@ export class Utils {
         for(let i=0;i<Object.keys(initData).length;i++) {
             const key = Object.keys(initData)[i];
             const property = initData[key];
-
             const { property: processedProperty, haveInitEvent } = Utils.processProperty(bindComponent, key, property);
 
             properties[key] = processedProperty;
