@@ -188,6 +188,7 @@ export class RollingType2 extends wheelModule implements _RollingType {
         let container     = wheel.container;                // 取得Symbol容器
         let moveSpeed     = this.getSpinSpeed;              // 取得滾動速度
         let moveDoneEvent = new EventTarget();              // 建立滾動完成事件
+
         
         let updateEvent = (wheel, dt) => {                  // 滾動更新事件
             let pos = container.position.clone();

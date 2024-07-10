@@ -47,13 +47,13 @@ export class OrientationNode extends Component {
     @property({displayName: '是否啟用自動儲存資料', tooltip:'在 OrientationEditorTool 啟用儲存, 會改變本資料內容'})
     public autoSave: boolean = true;
 
-    @property({displayName: '橫版轉向資料', group:{name:'Landscape',id:'0'}})
+    @property({displayName: '橫版轉向資料', group:{name:'Landscape',id:'0'}, visible:function(this:OrientationNode) { return this.enable === true; }})
     public landscapeData: OrientationItem = new OrientationItem();
 
-    @property({displayName: '直版轉向資料', group:{name:'Portrait',id:'0'}})
+    @property({displayName: '直版轉向資料', group:{name:'Portrait',id:'0'}, visible:function(this:OrientationNode) { return this.enable === true; }})
     public portraitData: OrientationItem = new OrientationItem();
 
-    @property({displayName: '儲存目前資料', tooltip: '儲存目前資料'})
+    @property({displayName: '儲存目前資料', tooltip: '儲存目前資料', visible:function(this:OrientationNode) { return this.enable === true; }})
     public get saveCurrentData() { return false; }
     public set saveCurrentData(value: boolean) {
         if ( EDITOR === false ) return;

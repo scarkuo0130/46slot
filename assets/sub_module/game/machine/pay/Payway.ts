@@ -22,10 +22,9 @@ export class Payway extends Paytable {
      */
     public async processWinningScore() {
         const gameResult = this.gameResult;
-        console.log(gameResult);
-
         const { extra, pay_credit_total } = gameResult;
 
+        this.reel.closeNearMissMask();  // 關閉 NearMiss 遮罩
         if ( pay_credit_total === 0 ) return;
         if ( extra?.ways.length === 0 ) return;
         

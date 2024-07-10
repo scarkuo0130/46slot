@@ -5,6 +5,7 @@ import { Payway } from '../../sub_module/game/machine/pay/Payway';
 import { Viewport, Orientation } from '../../sub_module/utils/Viewport';
 import { ObjectPool } from '../../sub_module/game/ObjectPool';
 import { JpGame4600 } from './jp_game/JpGame4600';
+import { FreeGame } from '../../sub_module/game/FeatureGame/FreeGame';
 const { ccclass, property } = _decorator;
 
 
@@ -40,9 +41,9 @@ export class Payway4600 extends Payway {
 
     private readonly onloadData = {
         'preload' : {
-            'mask'     : { [DATA_TYPE.TYPE] : Sprite,        [DATA_TYPE.SCENE_PATH] : 'Canvas/PreLoad/Mask'  },
-            'pDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/PreLoad/Portrait/door'  },
-            'lDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/PreLoad/Landscape/door'  },
+            'mask'     : { [DATA_TYPE.TYPE] : Sprite,        [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/PreLoad/Mask'  },
+            'pDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/PreLoad/Portrait/door'  },
+            'lDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/PreLoad/Landscape/door'  },
         },
     
         'jp' : {
@@ -66,6 +67,16 @@ export class Payway4600 extends Payway {
         'perform' : {
             'score_board' : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Reel/RewardWindow'  },
         },
+
+        'freeGame' : {
+            'main' : { [DATA_TYPE.TYPE] : Node,                 [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI'  },
+            'trigger_ui' : { [DATA_TYPE.TYPE] : sp.Skeleton,    [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Trigger Game'  },
+        },
+
+        'background' : {
+            'main' : { [DATA_TYPE.TYPE] : Node,                 [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/Main Background'  },
+            'freeGame' : { [DATA_TYPE.TYPE] : Node,             [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/FG Background'  },
+        },
     };
 
     protected onload() { 
@@ -83,6 +94,8 @@ export class Payway4600 extends Payway {
         this.properties['jp'][JP_TYPE.MINOR] = { 'ani' : this.properties['jp']['minor_ani'], 'value': this.properties['jp']['minor'] };
         this.properties['jp'][JP_TYPE.MINI]  = { 'ani' : this.properties['jp']['mini_ani'],  'value': this.properties['jp']['mini'] };
         this.properties['jp'][JP_TYPE.POT]   = { 'ani' : this.properties['jp']['pot_ani'] };
+        this.properties['freeGame']['main'].node.setPosition(0, 0, 0);
+        this.properties['background']['freeGame'].node.active = false;
 
         ObjectPool.registerNode('soul', this.properties['jp']['wild_soul'].node);
         this.properties['jp']['wild_soul'].node.active = false;
@@ -92,6 +105,8 @@ export class Payway4600 extends Payway {
     }
     // 給予專案 start 使用
     protected onstart() { 
+        this.properties['freeGame']['trigger_ui'].node.active = false;
+
         this.machine.controller.addDisableButtons(this.properties['buyFeature']['button'].component);
         Utils.AddHandHoverEvent(this.properties['buyFeature']['button'].node);
         console.log(this);
@@ -114,12 +129,20 @@ export class Payway4600 extends Payway {
      * @from paytable.spin()
      */
     private async processWinningScore() {
-        const {jp_level, jp_prize} = this.gameResult.extra;
-        if ( jp_prize > 0 ) this.machine.featureGame = true;
+        const gameResult = this.gameResult;
+        const free_game : boolean = gameResult.extra.free_spin_times > 0;
 
-        await this.absorbWildSymbolIntoTreasurePot(); // 聚寶盆吸收 Wild Symbol動畫
-        // 回到原本流程 
-        return super.processWinningScore();
+        console.log('gameResult', gameResult);
+
+        // 聚寶盆動畫，如果有JP遊戲，先進去玩
+        await this.absorbWildSymbolIntoTreasurePot();
+        
+        if ( !free_game ) { // 假如沒有 free_game, 就回去報獎流程
+            return super.processWinningScore();
+        }
+
+        // 進入JP遊戲
+        console.log('進入JP遊戲');
     }
 
     /**
@@ -139,7 +162,9 @@ export class Payway4600 extends Payway {
     private async absorbWildSymbolIntoTreasurePot() {
         // 盤面是否有 Wild Symbol
         const wilds = this.reel.showWinSymbol(WildID);
-        if (wilds.length === 0) return;
+        if (wilds.length === 0) return false;
+
+        this.reel.closeNearMissMask();  // 關閉 NearMiss 遮罩
 
         let self = this;
         let machine = this.machine.node;
@@ -172,7 +197,8 @@ export class Payway4600 extends Payway {
         }
 
         this.reel.moveBackToWheel();
-        return this.play_pot_ani(this.gameResult.extra.jp_level);
+        this.play_pot_ani(this.gameResult.extra.jp_level);
+        return true;
     }
 
     public async exit_jp_game() {
@@ -264,6 +290,43 @@ export class Payway4600 extends Payway {
         this.jp(JP_TYPE.MAJOR).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MAJOR]);
         this.jp(JP_TYPE.MINOR).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MINOR]);
         this.jp(JP_TYPE.MINI).value.component.string  = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MINI]);
+    }
+
+    public isFreeGame = false;
+    /**
+     * 進入 Free Game 流程
+     */
+    public async trigger_free_game() {
+        const triggerUI = this.properties['freeGame']['trigger_ui'].component;
+        this.isFreeGame = true;
+
+        // #regine 顯示 Free Game UI
+        this.machine.controller.maskActive(true);
+        triggerUI.node.active = true;
+        Utils.commonFadeIn(triggerUI.node, false, [new Color(255,255,255,0),Color.WHITE], triggerUI);
+        await Utils.playSpine(triggerUI, 'play', false);
+        Utils.playSpine(triggerUI, 'play02', true);
+        await Utils.delay(3000);
+        Utils.commonFadeIn(triggerUI.node, true, [new Color(255,255,255,0),Color.WHITE], triggerUI);
+        triggerUI.setAnimation(0, 'idle', false);
+        // #endregine 顯示 Free Game UI
+
+        // #regine 開關門
+        await this.jpGame.open_door(()=>{
+            this.machine.controller.maskActive(false);
+            this.properties['background']['freeGame'].node.active = true;
+        });
+        await Utils.delay(1000);
+
+        // 開始 Free Game
+        await FreeGame.StartFreeGame(this.machine.spinData['sub_game']); // 等待 Free Game 結束
+        await Utils.delay(1000);
+
+        
+
+        this.isFreeGame = false;
+        return; // 回到 processWinningScore
+        
     }
 }
 

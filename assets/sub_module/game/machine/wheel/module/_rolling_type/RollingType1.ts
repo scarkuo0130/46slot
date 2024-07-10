@@ -43,12 +43,15 @@ export class RollingType1 extends wheelModule implements _RollingType {
      * @returns 
      */
     protected get getSpinSpeed() {
-        const speed = this.rollingSpeed[this.wheel.reel.spinMode];
+        let speed = this.rollingSpeed[this.wheel.reel.spinMode];
+        if ( this._nearMissEvent['running'] !== true ) return speed;
+        
+        let nearResistSpeed = this.wheel.nearMissInspect.nearResistSpeed;
+        let count = this._nearMissEvent['count'];
+        speed *= Math.pow(nearResistSpeed, count);
+
         return speed;
     }
-
-    /** 是否為 NearMiss */
-    public _isNearMiss: boolean = false;
 
     /** 定義盤面結果 */
     public _result: any;
@@ -84,10 +87,12 @@ export class RollingType1 extends wheelModule implements _RollingType {
      * 重設滾輪屬性
      */
     protected reset() {
-        this.propertys._isNearMiss = false;
         this.propertys._isStoppingFillDone = false;
         this.propertys._rollingStopping = false;
         this.propertys._result = null;
+        this._nearMissEvent['running'] = false;
+        this._nearMissEvent['count'] = 0;
+        this._nearMissEvent.removeAll('done');
     }
 
     /**
@@ -104,6 +109,14 @@ export class RollingType1 extends wheelModule implements _RollingType {
             this.refreshSymbol();   // 移動完成後更新 Symbol
 
             if ( this.propertys._isStoppingFillDone ) break;
+
+            if ( this._nearMissEvent?.['running'] ) {
+                this._nearMissEvent['count'] ++;
+                console.log('NearMiss Count:', this._nearMissEvent['count']);
+                if ( this._nearMissEvent['count'] >= this.wheel.nearMissInspect.nearMoveCount ) {
+                    this._nearMissEvent.emit('done');
+                }
+            }
         }
 
         this.wheel.allNormalSymbol(); // 設定所有 Symbol 取消模糊狀態
@@ -141,10 +154,22 @@ export class RollingType1 extends wheelModule implements _RollingType {
 
         wheel.allBlurSymbol();
     }
+    /** 是否為 NearMiss */
+    public _nearMissEvent: EventTarget = new EventTarget();
 
     protected async nearMissStopRolling(result:any) {
-        console.log('nearMissStopRolling', result);
-        return await Utils.delay(10000);
+        this._nearMissEvent['running'] = true;
+        this._nearMissEvent.removeAll('done');
+        this._nearMissEvent['count'] = 0;
+        this.wheel.playNearMiss(true); // 打開 NearMiss 動畫
+        await Utils.delayEvent(this._nearMissEvent); // 等待緩動次數 keepRolling this._nearMissEvent['count']
+
+        await this.stopRolling(result); // 等待停輪
+        this.wheel.playNearMiss(false); // 關閉 NearMiss 動畫
+        this.wheel.nearMissMask(true);  // 打開遮罩
+        
+        // 回到 Reel.stopRolling() 繼續執行
+        
     }
 
     /**
@@ -206,6 +231,7 @@ export class RollingType1 extends wheelModule implements _RollingType {
         wheel.propertys.symbolData = newSymbolData;
     }
 
+    
     /**
      * 停止滾動捲軸
      * @param wheel 
@@ -223,21 +249,26 @@ export class RollingType1 extends wheelModule implements _RollingType {
         let easingBack : any = CurveRangeProperty.getEasing(propertys.rollingBackCurve); // 取得回彈曲線
         let endEvent         = new EventTarget();                                        // 建立結束事件
 
+        endEvent.removeAll('done');
         tween(wheel.container)
             .to(sec, { position: toPos }, { easing: easing })                            // 下壓
             .to(sec, { position: Vec3.ZERO }, { easing: easingBack, onComplete: () => { endEvent.emit('done'); }}) // 回彈
             .start();
         
+        this.stopRollingEvent?.emit('done');
         return await Utils.delayEvent(endEvent, 'done');
     }
 
+    public stopRollingEvent : EventTarget = new EventTarget();
     /**
      * 停止滾動
      * @param result 盤面結果
      */
-    public stopRolling(result) {
+    public async stopRolling(result) {
+        this.stopRollingEvent.removeAll('done');
         this.setResult(result);
         this.propertys._rollingStopping = true;
+        await Utils.delayEvent(this.stopRollingEvent);
     }
 
 

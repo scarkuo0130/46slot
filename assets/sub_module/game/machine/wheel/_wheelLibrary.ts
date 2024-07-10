@@ -95,8 +95,8 @@ export class StartRollingInspect {
 @ccclass('NearMissInscept')
 export class NearMissInspect {
 
-    @property({ displayName: '速度遞減', tooltip: '填入負值會加快', step: 0.01, min: 0.01, max: 10 })
-    public nearResistSpeed: number = 0.8;
+    @property({ displayName: '速度遞減', tooltip: '1以上加快, 1以下變慢', step: 0.01, min: 0.01, max: 3 })
+    public nearResistSpeed: number = 0.85;
 
     @property({ displayName: '多滾幾個圖標', tooltip: '圖標數量', step: 1, min: 0, max: 30 })
     public nearMoveCount = 10;
@@ -384,8 +384,8 @@ export class WheelLibrary extends Component {
 
     public async nearMissMask(active: boolean) {
         if ( this.nearMissInspect.nearMask == null ) return;
-        // await Utils.commonFadeIn(this.nearMissInscept.nearMask.node, active, [new Color(0,0,0,200), new Color(0,0,0,0)]);
-        this.nearMissInspect.nearMask.node.active = active;
+        let mask = this.nearMissInspect.nearMask;
+        await Utils.commonFadeIn(mask.node, !active, [new Color(0,0,0,0), new Color(0,0,0,200)], mask);
     }
 
     /**

@@ -408,37 +408,33 @@ export class Reel extends Component {
         let result = this.result;
         let nearMiss = this.nearMiss; 
         let firstNearMiss = false;
-        let nearEvent = new EventTarget();
+        let dt = Date.now();;
 
         for(let i=0;i<rollingData.length;i++) {
-            
-            let time = rollingData[i].time + 100;
+            let time = rollingData[i].time;
             let data = rollingData[i];
             let id = data.wheelID;
             let wheel = wheels[id];
-            if ( !this.isFastStoping || time > 0 ) {
-                await Utils.delay(time);
-            }
 
-            if ( nearMiss < i ) {
-                await Utils.delay(1000);
-                wheel.playNearMiss(true);
-                
-                await wheel.nearMissStopRolling(result[id]);
+            if ( nearMiss < i ) { // NearMiss 流程
                 if ( firstNearMiss === false ) {
                     this.firstNearMissStopRolling(); // 處理其他已經停止的輪面
                     firstNearMiss = true;    
                 }
-            } else {
+                await wheel.nearMissStopRolling(result[id]);
+            } else { // 一般停輪流程
+                if ( !this.isFastStoping || time > 0 ) {
+                    await Utils.delay(time);
+                }
+                console.log('stopRolling',(Date.now()-dt) , id, time);
                 wheel.stopRolling(result[id]); // 一般停輪
+                dt = Date.now();
             }
         }
-
-        nearEvent = null;
     }
 
     /**
-     * 聽牌滾輪停止
+     * 處理聽牌滾輪停止
      */
     protected async firstNearMissStopRolling() {
         let nearMiss = this.nearMiss;
@@ -447,7 +443,13 @@ export class Reel extends Component {
             let wheel = wheels[i];
             wheel.nearMissMask(true);
         }
+    }
 
+    /**
+     * 關閉聽牌遮罩
+     */
+    public closeNearMissMask() {
+        this.getWheels().forEach(wheel => wheel.nearMissMask(false));
     }
 
     /**
