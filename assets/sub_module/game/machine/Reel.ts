@@ -99,6 +99,15 @@ export class SymbolNearMiss {
     public count: number = 2;
 }
 
+@ccclass('SymbolNearMiss2')
+export class SymbolNearMiss2 {
+    @property ({type:[CCInteger], displayName:'Scatter ID', tooltip:'聽牌Symbol'})
+    public symbol: number[] = [];
+
+    @property ({displayName:'聽牌數量', tooltip:'>= 設定數量時觸發聽牌事件'})
+    public count: number = 2;
+}
+
 @ccclass('SymbolInspect')
 export class SymbolInspect {
 
@@ -108,8 +117,15 @@ export class SymbolInspect {
     @property ({type:Node, displayName:'破框與表演位置', tooltip:'停輪後要破框與表演的位置'})
     public container: Node;
 
-    @property ({type:[SymbolNearMiss], displayName:'聽牌Symbol設定', tooltip:'哪些Symbol要做聽牌效果'})
+    @property ({displayName:'是否為複數Symbol Scatter', tooltip:'是否為複數Symbol Scatter'})
+    public isSymbolNearMiss2: boolean = false;
+
+    @property ({type:[SymbolNearMiss], displayName:'Scatter Symbol設定', tooltip:'哪些Symbol要做聽牌效果', visible: function(this: SymbolInspect){ return !this.isSymbolNearMiss2; }})
     public symbolNearMiss: SymbolNearMiss[] = [];
+
+    @property ({type:[SymbolNearMiss2], displayName:'複數 Scatter Symbol設定', tooltip:'哪些Symbol要做聽牌效果', visible: function(this: SymbolInspect){ return this.isSymbolNearMiss2; }})
+    public symbolNearMiss2: SymbolNearMiss2[] = [];
+
 }
 
 @ccclass('Reel')
@@ -163,7 +179,29 @@ export class Reel extends Component {
         this.properties.container = this.wheelController;
         this.changeState(REEL_STATE.INIT);
         this.properties.showWinContainer = this.symbolInspect.container;
+        this.initNearMissData();
         Machine.SetReel(this);
+    }
+
+    protected initNearMissData() {
+        let symbolNearMiss2 = [];
+        let symbols = [];
+        if ( this.symbolInspect.isSymbolNearMiss2 === false ) {
+            // 把資料轉成 SymbolNearMiss2
+            this.symbolInspect.symbolNearMiss.forEach(data => {
+                let nearMiss = new SymbolNearMiss2();
+                nearMiss.symbol = [data.symbol];
+                nearMiss.count = data.count;
+                symbolNearMiss2.push(nearMiss);
+                symbols.push(data.symbol);
+            });
+            
+        } else { 
+            symbolNearMiss2 = this.symbolInspect.symbolNearMiss2;
+            symbols = symbolNearMiss2.map(data => data.symbol)[0];
+        }
+        this.properties.nearMissSymbols = symbols;
+        this.properties.symbolNearMiss = symbolNearMiss2;
     }
 
     protected start() {
@@ -281,7 +319,8 @@ export class Reel extends Component {
     protected get isNearMiss() : boolean { return this.properties.nearMiss >=0; }
     protected set nearMiss(value:number) { this.properties.nearMiss = value; }
     protected get nearMiss() { return this.properties.nearMiss; }
-    public get nearMissSymbolData() : SymbolNearMiss[] { return this.symbolInspect.symbolNearMiss; }
+    protected get nearMissSymbolData() : SymbolNearMiss2[] { return this.properties.symbolNearMiss; }
+    public get nearMissSymbols() : number[] { return this.properties.nearMissSymbols; }
 
     // 滾輪速度設定 Norma,Quick,Turbo SPIN_MODE
     public setSpinMode ( mode: SPIN_MODE ): SPIN_MODE { return this.properties.mode = mode; }

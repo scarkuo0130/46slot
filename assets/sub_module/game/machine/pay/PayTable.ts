@@ -142,7 +142,7 @@ export class Paytable extends Component {
      * @param reelResult 
      */
     public setReelResult( ) {
-        let reelResult = this.gameResult['game_result'];
+        let reelResult = this.gameResult['result_reels'];
         this.reel.setResult(reelResult);
     }
 
@@ -265,7 +265,7 @@ export class Paytable extends Component {
         let nearMissIndex = 99;
         
         for(let k=0;k<nearMissSymbols.length;k++) {
-            let reelCount = this.reckonSymbolReelCount(nearMissSymbols[k].symbol, reel_result);
+            let reelCount = this.mergeReckonSymbolReelCount(nearMissSymbols[k].symbol, reel_result);
             let count = nearMissSymbols[k].count;
             let amount = 0;
 
@@ -280,6 +280,23 @@ export class Paytable extends Component {
         }
         
         return nearMissIndex;
+    }
+
+    /** 合併 Symbol 在每個 Reel 出現的個數 
+     * @param sym { number[] } Symbol ID
+     * @param reel_result { number[][] } Reel 結果
+     * @returns { number[] } 每個 Reel 出現的個數 ex: [0,1,2,0,1]
+     */
+    private mergeReckonSymbolReelCount(sym: number[], reel_result: number[][]): number[] {
+        let count = [];
+        for(let i=0;i<sym.length;i++) {
+            let c = this.reckonSymbolReelCount(sym[i], reel_result);
+            for(let j=0;j<c.length;j++) {
+                if ( count[j] == null ) count[j] = 0;
+                count[j] += c[j];
+            }
+        }
+        return count;
     }
 
     /** 計算 Symbol 在每個 Reel 出現的個數 
@@ -390,6 +407,7 @@ export class BuyFeatureGameUI {
 
     public clickBuyFeatureGameConfirm() {
         if ( this.machine.isBusy ) return;
+        if ( this.machine.buyFeatureGame(this.betIdx) === false ) return;
         console.log('clickBuyFeatureGame');
         this.onClickClose();
     }

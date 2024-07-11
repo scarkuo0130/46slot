@@ -218,6 +218,7 @@ export class WheelLibrary extends Component {
         reel        : null, // Reel
         machine     : null, // Machine
         updateEvent : null, // EventHandler
+        nearMissSymbols : [], // Node[] 聽牌時的Symbol
     };
 
     /** 滾輪編號 */
@@ -580,10 +581,15 @@ export class WheelLibrary extends Component {
     public allNormalSymbol() { this.allSymbols().forEach(symbol=> symbol.getComponent(Symbol).normal()); }
 
     public allDropSymbol() { 
+        let scatterSymbol = this.reel.nearMissSymbols;
+        if ( scatterSymbol == null ) scatterSymbol = [];
+
         this.allSymbols().forEach(symbol => {
-            let sym = symbol.getComponent(Symbol);
-            if ( sym.inspect.spineInspect.dropAnimation == null ) return;
-            if ( sym.inspect.spineInspect.dropAnimation === sym.inspect.spineInspect.normalAnimation ) return;
+            const sym = symbol.getComponent(Symbol);
+            const { id, spineInspect } = sym.inspect;
+
+            if ( spineInspect.dropAnimation == null ) return;
+            if ( scatterSymbol.indexOf(id) === -1 ) return;
 
             let wheelID = this.wheel._ID;
             let clone = this.machine.reel.moveToShowDropSymbol(wheelID, symbol);

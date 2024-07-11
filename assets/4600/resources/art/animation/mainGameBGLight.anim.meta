@@ -2,12 +2,12 @@
   "ver": "2.0.3",
   "importer": "animation-clip",
   "imported": true,
-  "uuid": "585c1b67-c799-4ec6-bade-03171b924168",
+  "uuid": "b1c7e592-509b-441a-a917-87c5c02ae490",
   "files": [
     ".cconb"
   ],
   "subMetas": {},
   "userData": {
-    "name": "BackgroundLight"
+    "name": "mainGameBGLight"
   }
 }

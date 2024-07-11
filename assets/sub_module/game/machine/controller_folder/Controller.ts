@@ -494,6 +494,16 @@ export class Controller extends Component {
         return coinValue * 1000 * lineBet * lineTotal / 1000;
     }
 
+    public calculateTotalBet(idx:number) {
+        const [ coinValue, lineBet, lineTotal ] = [
+            gameInformation.coinValueArray[idx],
+            gameInformation.lineBet,
+            gameInformation.lineTotal
+        ];
+
+        return coinValue * 1000 * lineBet * lineTotal / 1000;
+    }
+
     /**  取得總押注 */
     public get totalBet() { return this.betValue; }
 

@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, Vec3, Size, Vec2, UITransform } from 'cc';
-import {Orientation} from '../utils/Viewport';
+import {Orientation, Viewport} from '../utils/Viewport';
 import { EDITOR, PREVIEW } from 'cc/env';
 import { OrientationEditorTools } from './OrientationEditorTools';
 const { ccclass, property } = _decorator;
@@ -87,22 +87,25 @@ export class OrientationNode extends Component {
         return true;
     }
 
-    public changeOrientation(orientation: Orientation) {
+    public changeOrientation(orientation: Orientation=null) {
+        if ( orientation == null ) orientation = Viewport.instance.getCurrentOrientation();
+        let orientationItem = orientation === Orientation.LANDSCAPE ? this.landscapeData : this.portraitData;
+
         if ( this.enable !== true ) {
             this.changeChildOrientation(orientation); 
             return -1;
         }
 
-        let orientationItem = orientation === Orientation.LANDSCAPE ? this.landscapeData : this.portraitData;
-
         if ( !orientationItem.affectActive ) this.node.active = orientationItem.active;
+        if ( orientationItem.parentNode == null ) console.log('parentNode is null', this.node.name);
+        if ( orientationItem.parentNode != null ) {
+            this.node.setParent(orientationItem.parentNode);
+            orientationItem.parentNode.addChild(this.node);
+        }
+
         this.node.setPosition(orientationItem.position);
         this.node.setScale(orientationItem.scale);
         // this.node.setSiblingIndex(orientationItem.siblingIndex);
-
-        if ( orientationItem.parentNode != null && orientationItem.parentNode !== this.node.parent ) {
-            this.node.setParent(orientationItem.parentNode);
-        }
 
         let uiTransform = this.node.getComponent(UITransform);
         if (uiTransform && orientationItem.hasUITransform) {

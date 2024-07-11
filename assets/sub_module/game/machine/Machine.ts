@@ -134,7 +134,10 @@ export class Machine extends Component {
     public async spin() {
         // 通知 reel 執行 SPIN
         await this.paytable.spin(); // 等待 SPIN 結束, 包含獎項顯示, BigWin 處理等...
-        // 回到 Controller clickSpin function
+
+        this.controller.refreshBalance(); // 更新餘額
+        return; // 回到 Controller clickSpin function
+        
     }
 
     // 從Controller呼叫
@@ -148,22 +151,57 @@ export class Machine extends Component {
             return false;
         }
 
-        // 扣除金額
-        userCredit -= betCredit;
-        this.controller.changeBalance(userCredit);
+        Utils.delay(100).then(()=>{
+            // 扣除金額
+            userCredit -= betCredit;
+            this.controller.changeBalance(userCredit);
+        });
+
         this.spinCommand(); // 向 Server 發送 SPIN 指令
         // SPIN
         await this.spin();
     }
 
+    public buyFeatureGame(idx:number) : boolean {
+        let event = this.properties['spinEvent'];
+
+        if ( this.isBusy ) return false;
+        if ( idx < gameInformation.bet_available_idx ) return false;
+        if ( event?.spinning ) return false;
+
+        let totalBet = this.controller.calculateTotalBet(idx);
+        let userCredit = this.userCredit;
+
+        if ( userCredit < totalBet ) {
+            DialogUI.OpenUI('Insufficient balance', true, 'Insufficient balance', null, 'OK');
+            return false;
+        }
+
+        userCredit -= totalBet;
+        this.controller.changeBalance(userCredit);
+        this.spinCommand(totalBet);
+        this.spin();
+
+        return true;
+    }
+
+
     // 向 Server 發送SPIN指令
-    public async spinCommand (): Promise<any> { 
+    public async spinCommand (buyTotalBet:number=0): Promise<any> { 
         let event = this.properties['spinEvent'];
 
         event.removeAll('done');
         event['result'] = null;
-        StateManager.instance.sendSpinCommand();
+        event['spinning'] = true;
+
+        if ( buyTotalBet === 0 ) {
+            StateManager.instance.sendSpinCommand();
+        } else {
+            StateManager.instance.sendBuySpinCommand(buyTotalBet);
+        }
+
         await Utils.delayEvent(event); // 等待 Server 回應
+        event['spinning'] = false;
 
         // 通知 paytable 本局結果
         this.paytable.spinResult(event['result']);
@@ -174,10 +212,22 @@ export class Machine extends Component {
         let event = this.properties['spinEvent'];
         event['result'] = spinData;
         this.properties['spinData'] = spinData;
+        DataManager.instance.userData.credit = spinData.user_credit;
         event.emit('done');
     }
 
     public eventChangeTotalBet() {
         this.paytable?.changeTotalBet(this.totalBet);
+    }
+
+    public spinTest(spinData:any) {
+        let event = this.properties['spinEvent'];
+
+        event.removeAll('done');
+        event['result'] = null;
+        this.spin();
+        this.spinResponse(spinData);
+        this.paytable.spinResult(spinData);
+
     }
 }

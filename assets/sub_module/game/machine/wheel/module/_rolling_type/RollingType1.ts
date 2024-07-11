@@ -112,7 +112,6 @@ export class RollingType1 extends wheelModule implements _RollingType {
 
             if ( this._nearMissEvent?.['running'] ) {
                 this._nearMissEvent['count'] ++;
-                console.log('NearMiss Count:', this._nearMissEvent['count']);
                 if ( this._nearMissEvent['count'] >= this.wheel.nearMissInspect.nearMoveCount ) {
                     this._nearMissEvent.emit('done');
                 }

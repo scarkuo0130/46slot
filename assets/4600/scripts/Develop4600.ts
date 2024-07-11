@@ -66,10 +66,10 @@ export class Develop4600 extends Component {
                 jp_level = 4;
                 let jp = Utils.Random(0, 3);
                 let jp_prize = this.machine.totalBet * this.machine.paytable.JP_REWARD[jp];
-                spinData['main_game']['extra']['jp_type'] = jp;
-                spinData['main_game']['extra']['jp_prize'] = jp_prize;
+                spinData['main_game']['jp_type'] = jp;
+                spinData['main_game']['jp_prize'] = jp_prize;
             }
-            spinData['main_game']['extra']['jp_level'] = jp_level;
+            spinData['main_game']['jp_level'] = jp_level;
         }
 
         console.log('spinData', spinData);
@@ -88,7 +88,7 @@ export class Develop4600 extends Component {
         let pay_credit_total = 0;
         for(let i = 0; i < 10; i++) {
             let mainGame = mainGameList[i];
-            mainGame.extra['free_spin_times'] = 0;
+            mainGame['free_spin_times'] = 0;
             pay_credit_total += mainGame['pay_credit_total'];
             result.push(mainGame);
         }
@@ -99,11 +99,11 @@ export class Develop4600 extends Component {
     private make_subGameResponse(spinData) {
         spinData['sub_game'] = this.simulateFeatureGameSpinResponse();
         spinData['get_sub_game'] = true;
-        spinData['main_game']['extra']['free_spin_times'] = 10;
+        spinData['main_game']['free_spin_times'] = 10;
 
-        spinData['main_game']['game_result'][0][1] = 12;
-        spinData['main_game']['game_result'][2][1] = 12;
-        spinData['main_game']['game_result'][4][1] = 12;
+        spinData['main_game']['result_reels'][0][1] = 12;
+        spinData['main_game']['result_reels'][2][1] = 12;
+        spinData['main_game']['result_reels'][4][1] = 12;
     }
 
     private saveMainGame(spinData:any) {
@@ -142,7 +142,7 @@ export class Develop4600 extends Component {
 
     @isDevelopFunction(true)
     private haveWild(spinData:any) {
-        let reel : number[][] = spinData['main_game']['game_result'];
+        let reel : number[][] = spinData['main_game']['result_reels'];
         let haveWild = false;
         for(let i = 0; i < reel.length; i++) {
             if ( haveWild ) break;

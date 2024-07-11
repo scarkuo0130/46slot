@@ -6,6 +6,7 @@ import { Viewport, Orientation } from '../../sub_module/utils/Viewport';
 import { ObjectPool } from '../../sub_module/game/ObjectPool';
 import { JpGame4600 } from './jp_game/JpGame4600';
 import { FreeGame } from '../../sub_module/game/FeatureGame/FreeGame';
+import { OrientationNode } from '../../sub_module/develop/OrientationNode';
 const { ccclass, property } = _decorator;
 
 
@@ -79,7 +80,7 @@ export class Payway4600 extends Payway {
 
         'background' : {
             'main' : { [DATA_TYPE.TYPE] : Node,                 [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/Main Background'  },
-            'freeGame' : { [DATA_TYPE.TYPE] : Node,             [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/FG Background'  },
+            'freeGame' : { [DATA_TYPE.TYPE] : OrientationNode,  [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/FG Background'  },
         },
     };
 
@@ -117,6 +118,7 @@ export class Payway4600 extends Payway {
 
         this.machine.controller.addDisableButtons(this.properties['buyFeature']['button'].component);
         Utils.AddHandHoverEvent(this.properties['buyFeature']['button'].node);
+        this.JP_LEVEL = 0;
         console.log(this);
     }
 
@@ -138,7 +140,7 @@ export class Payway4600 extends Payway {
      */
     private async processWinningScore() {
         const gameResult = this.gameResult;
-        const free_game : boolean = gameResult.extra.free_spin_times > 0;
+        const free_game : boolean = gameResult.free_spin_times > 0;
 
         console.log('gameResult', free_game, gameResult);
 
@@ -200,22 +202,22 @@ export class Payway4600 extends Payway {
 
         // 等待動畫播完
         await Utils.delay(400);
-        if ( this.gameResult.extra?.jp_prize > 0 ) {    
+        if ( this.gameResult?.jp_prize > 0 ) {    
             this.machine.featureGame = true;
             await Utils.delay(1000);
-            const {jp_type, jp_prize} = this.gameResult.extra;
+            const {jp_type, jp_prize} = this.gameResult;
             return await this.jpGame.enter_jp_game(jp_type, jp_prize);
         }
 
         this.reel.moveBackToWheel();
-        if ( fullWait ) await this.play_pot_ani(this.gameResult.extra.jp_level);
-        else this.play_pot_ani(this.gameResult.extra.jp_level);
+        if ( fullWait ) await this.play_pot_ani(false);
+        else this.play_pot_ani(false);
 
         return true;
     }
 
     public async exit_jp_game() {
-        this.play_pot_ani(0);
+        this.play_pot_ani(false);
         if ( this.isFreeGame ) return;
         this.machine.featureGame = false;
     }
@@ -224,7 +226,7 @@ export class Payway4600 extends Payway {
      * 進入JP遊戲
      */
     private async enter_jp_game() {
-        await this.play_pot_ani(5);
+        await this.play_pot_ani(true);
 
         let door = this.doorSpine;
         door.node.active = true;
@@ -253,25 +255,29 @@ export class Payway4600 extends Payway {
         this.jp(JP_TYPE.MAJOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINI).ani.component.setAnimation(0, 'play03', false);
-        this.play_pot_ani(0);
+        this.play_pot_ani(false);
         this.loop_play_jp_ani();
     }
 
     public get doorSpine() : sp.Skeleton { return Viewport.Orientation === Orientation.PORTRAIT ? this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT] : this.properties['preload']['lDoor'][DATA_TYPE.COMPONENT]; }
 
     private TYPE_POT_LEVEL = { 0: 'default', 1: 'level1', 2: 'level2', 3: 'level3', 4: 'level4', };
-    public async play_pot_ani(level:number) {
-        this.JP_LEVEL = level;
+    public async play_pot_ani(open:boolean=false) {
+        // if ( level == null ) level = 1;
+        this.JP_LEVEL ++;
+        if ( this.JP_LEVEL > 4 ) this.JP_LEVEL = 4;
+
+        const level = this.JP_LEVEL;
         const spine : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
-        
-        if ( level < 5 ) {
+        if ( open === false ) {
             await Utils.delay(1000);
             Utils.playSpine(spine, 'play04', false);
             await Utils.delay(1000);
             spine.setSkin(this.TYPE_POT_LEVEL[level]);
             return;
         }
-        spine.setSkin(this.TYPE_POT_LEVEL[4]);
+
+        spine.setSkin(this.TYPE_POT_LEVEL[level]);
         await Utils.playSpine(spine, 'play03', false);
         return;
     }
@@ -280,7 +286,6 @@ export class Payway4600 extends Payway {
      * 輪播發光動畫
      */
     private async loop_play_jp_ani() {
-        if ( this.isFreeGame ) return;
         const wait = Utils.Random(6000,8000) - (this.JP_LEVEL * 1000);
         await Utils.delay(wait);
 
@@ -371,6 +376,7 @@ export class Payway4600 extends Payway {
             await this.jpGame.open_door(()=> { // 關門轉場 
                 this.machine.controller.maskActive(false);
                 this.properties['background']['freeGame'].node.active = true;
+                this.properties['background']['freeGame'].component.changeOrientation();
                 this.reel.closeNearMissMask();
             });
         }

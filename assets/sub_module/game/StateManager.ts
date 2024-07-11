@@ -237,6 +237,7 @@ export class StateManager {
         let result = await HttpRequest.establishConnect( JSON.stringify( sendSpinData ) ).catch((error) => {
             cc.Dailog.errorMessage(error);
         });
+        if ( result != 'success' ) return null;
         return result;
     }
 };
