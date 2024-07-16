@@ -222,7 +222,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 6
@@ -331,7 +331,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 9
@@ -382,13 +382,13 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 30.100000381469727
+      "width": 151.5,
+      "height": 137.25
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0.49834983498349833,
+      "y": 0.49632060288948654
     },
     "_id": "ce5k+0w5FGkZ7v8XoAAUeq"
   },
@@ -413,11 +413,11 @@
       "a": 255
     },
     "_skeletonData": {
-      "__uuid__": "28b361d1-50a8-4201-949e-111a3dd54a2b",
+      "__uuid__": "ab15ca90-89a3-45df-85bd-354ead57f001",
       "__expectedType__": "sp.SkeletonData"
     },
     "defaultSkin": "default",
-    "defaultAnimation": "play",
+    "defaultAnimation": "idle",
     "_premultipliedAlpha": true,
     "_timeScale": 1,
     "_preCacheMode": 0,

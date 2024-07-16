@@ -1,90 +1,90 @@
 
 high_symbol_5.png
-size: 256,2048
+size: 512,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 B2
   rotate: false
-  xy: 2, 1042
-  size: 237, 198
-  orig: 237, 198
-  offset: 0, 0
+  xy: 2, 1154
+  size: 296, 268
+  orig: 304, 280
+  offset: 4, 5
   index: -1
 BM_01
   rotate: false
-  xy: 2, 1242
-  size: 242, 203
-  orig: 242, 203
-  offset: 0, 0
+  xy: 2, 1424
+  size: 303, 278
+  orig: 304, 280
+  offset: 1, 0
   index: -1
 Icon_Common_24
   rotate: false
-  xy: 2, 427
-  size: 205, 194
-  orig: 205, 205
-  offset: 0, 2
+  xy: 2, 388
+  size: 256, 240
+  orig: 256, 256
+  offset: 0, 4
   index: -1
 Lig
   rotate: false
-  xy: 157, 191
-  size: 43, 42
-  orig: 51, 46
-  offset: 4, 4
+  xy: 206, 333
+  size: 54, 52
+  orig: 64, 57
+  offset: 5, 5
   index: -1
 fangshe02
-  rotate: false
-  xy: 157, 118
-  size: 73, 71
-  orig: 80, 80
-  offset: 4, 5
+  rotate: true
+  xy: 260, 536
+  size: 92, 89
+  orig: 100, 100
+  offset: 5, 6
   index: -1
 golda_01
   rotate: true
-  xy: 2, 623
-  size: 206, 207
-  orig: 206, 207
+  xy: 2, 630
+  size: 258, 259
+  orig: 258, 259
   offset: 0, 0
   index: -1
 golda_02
   rotate: true
-  xy: 2, 831
-  size: 209, 211
-  orig: 211, 212
+  xy: 2, 890
+  size: 262, 263
+  orig: 264, 265
   offset: 1, 1
   index: -1
 goldb_01
   rotate: false
-  xy: 120, 4
-  size: 111, 112
-  orig: 111, 112
+  xy: 206, 190
+  size: 139, 141
+  orig: 139, 141
   offset: 0, 0
   index: -1
 goldb_02
-  rotate: true
-  xy: 2, 2
-  size: 114, 116
-  orig: 116, 118
+  rotate: false
+  xy: 195, 42
+  size: 143, 146
+  orig: 145, 148
   offset: 1, 1
   index: -1
 goldb_03
   rotate: true
-  xy: 2, 118
-  size: 149, 153
-  orig: 149, 153
+  xy: 2, 2
+  size: 186, 191
+  orig: 186, 191
   offset: 0, 0
   index: -1
 goldb_04
   rotate: true
-  xy: 2, 269
-  size: 156, 161
-  orig: 158, 163
+  xy: 2, 190
+  size: 196, 202
+  orig: 198, 204
   offset: 1, 1
   index: -1
 high_symbol_5
   rotate: false
-  xy: 2, 1447
-  size: 242, 220
-  orig: 242, 222
-  offset: 0, 1
+  xy: 2, 1704
+  size: 302, 300
+  orig: 302, 300
+  offset: 0, 0
   index: -1

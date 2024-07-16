@@ -4,7 +4,7 @@ import { Controller } from './controller_folder/Controller';
 import { gameInformation } from '../GameInformation';
 import { DataManager } from '../../data/DataManager';
 import { DialogUI } from '../DialogUI';
-import { Reel } from './Reel';
+import { Reel, SPIN_MODE } from './Reel';
 import { StateManager } from '../StateManager';
 import { slotData } from '../SlotData';
 import { Utils, _utilsDecorator } from '../../utils/Utils';
@@ -16,6 +16,9 @@ const { isDevelopFunction } = _utilsDecorator;
 
 @ccclass('Machine')
 export class Machine extends Component {
+
+    public static readonly SPIN_MODE = SPIN_MODE;
+
     public static readonly SPEED_MODE = { NORMAL: 0, TURBO: 2, QUICK: 1, DEFAULT:1, MAX:2 };
 
     public static readonly SPIN_STATE = { 
