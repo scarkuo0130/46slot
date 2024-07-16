@@ -99,17 +99,17 @@ export class AutoSpin extends Component {
     }
 
     public switchQuickSpin(active:boolean) {
-        if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.QUICK);
-        if ( this.machine.SpeedMode === Machine.SPEED_MODE.QUICK ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.NORMAL);
+        if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.QUICK);
+        if ( this.machine.SpeedMode === Machine.SPIN_MODE.QUICK ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.NORMAL);
     }
 
     public switchTurboSpin(active:boolean) {
-        if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.TURBO);
-        if ( this.machine.SpeedMode === Machine.SPEED_MODE.TURBO ) return Controller.ChangeSpeedMode(Machine.SPEED_MODE.NORMAL);
+        if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.TURBO);
+        if ( this.machine.SpeedMode === Machine.SPIN_MODE.TURBO ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.NORMAL);
     }
 
     public changeSpeedMode(mode:number) {
-        let type = Machine.SPEED_MODE;
+        let type = Machine.SPIN_MODE;
         switch(mode) {
             case type.QUICK:  
                 this.initData.turboSpin.switch[DATA_TYPE.COMPONENT].switch(false); 

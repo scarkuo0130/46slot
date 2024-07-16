@@ -18,12 +18,12 @@ export enum REEL_STATE {
 
 /** 速度設定 */
 export enum SPIN_MODE {
-    NORMAL_MODE = 0,
-    QUICK_MODE = 1,
-    TURBO_MODE = 2,
+    NORMAL = 0,
+    QUICK = 1,
+    TURBO = 2,
 }
 
-export const SPIN_MODE_DATA = [ SPIN_MODE.NORMAL_MODE, SPIN_MODE.QUICK_MODE, SPIN_MODE.TURBO_MODE ];
+// export const SPIN_MODE_DATA = [ SPIN_MODE.NORMAL, SPIN_MODE.QUICK, SPIN_MODE.TURBO ];
 
 /**
  * 啟動滾輪設定
@@ -154,24 +154,24 @@ export class Reel extends Component {
         isFastStoping   : false,  // 是否快速停輪 { boolean }
         showDropSymbols : [],     // 顯示破框表演的 Symbol { wheelID: Node[] }
         state           : REEL_STATE.INIT, // 滾輪狀態
-        mode            : SPIN_MODE.NORMAL_MODE, // 速度設定 
+        mode            : SPIN_MODE.NORMAL, // 速度設定 
         showWinContainer: null,   // 顯示營分Symbol的容器 { Node }
         handler : {
             stoping : null,       // 等待停止的 Handler
         },
         
         startRolling :{
-            [SPIN_MODE.NORMAL_MODE] : [],  // 啟動時間設定 [ {wheelID:0,time:0} ]
-            [SPIN_MODE.QUICK_MODE]  : [],  // 啟動時間設定
-            [SPIN_MODE.TURBO_MODE]  : [],  // 啟動時間設定
+            [SPIN_MODE.NORMAL] : [],  // 啟動時間設定 [ {wheelID:0,time:0} ]
+            [SPIN_MODE.QUICK]  : [],  // 啟動時間設定
+            [SPIN_MODE.TURBO]  : [],  // 啟動時間設定
         },
 
         stopRolling : {}, // 停止時間設定
 
         rolling: {
-            [SPIN_MODE.NORMAL_MODE] : 0, // 持續滾動時間
-            [SPIN_MODE.QUICK_MODE]  : 0, // 持續滾動時間
-            [SPIN_MODE.TURBO_MODE]  : 0, // 持續滾動時間
+            [SPIN_MODE.NORMAL] : 0, // 持續滾動時間
+            [SPIN_MODE.QUICK]  : 0, // 持續滾動時間
+            [SPIN_MODE.TURBO]  : 0, // 持續滾動時間
         },
     };
 
@@ -228,9 +228,9 @@ export class Reel extends Component {
 
 
     private initRollingTime() {
-        this.properties.rolling[SPIN_MODE.NORMAL_MODE] = this.rollingInspect.rollingTime_n * 1000;
-        this.properties.rolling[SPIN_MODE.QUICK_MODE]  = this.rollingInspect.rollingTime_q * 1000;
-        this.properties.rolling[SPIN_MODE.TURBO_MODE]  = this.rollingInspect.rollingTime_t * 1000;
+        this.properties.rolling[SPIN_MODE.NORMAL] = this.rollingInspect.rollingTime_n * 1000;
+        this.properties.rolling[SPIN_MODE.QUICK]  = this.rollingInspect.rollingTime_q * 1000;
+        this.properties.rolling[SPIN_MODE.TURBO]  = this.rollingInspect.rollingTime_t * 1000;
     }
     /**
      * @description 初始化滾輪
@@ -249,13 +249,13 @@ export class Reel extends Component {
      */
     private initStartRollingData() {
         if ( this.startRollingInspect.isCustomRollingTime === false ) {
-            this.properties.startRolling[SPIN_MODE.NORMAL_MODE] = this.unifyRollingTime(this.startRollingInspect.rollingTime_n * 1000);
-            this.properties.startRolling[SPIN_MODE.QUICK_MODE]  = this.unifyRollingTime(this.startRollingInspect.rollingTime_q * 1000);
-            this.properties.startRolling[SPIN_MODE.TURBO_MODE]  = this.unifyRollingTime(this.startRollingInspect.rollingTime_t * 1000);
+            this.properties.startRolling[SPIN_MODE.NORMAL] = this.unifyRollingTime(this.startRollingInspect.rollingTime_n * 1000);
+            this.properties.startRolling[SPIN_MODE.QUICK]  = this.unifyRollingTime(this.startRollingInspect.rollingTime_q * 1000);
+            this.properties.startRolling[SPIN_MODE.TURBO]  = this.unifyRollingTime(this.startRollingInspect.rollingTime_t * 1000);
         } else {
-            this.properties.startRolling[SPIN_MODE.NORMAL_MODE] = this.reckonRollingData(this.startRollingInspect.customRollingTime_n);
-            this.properties.startRolling[SPIN_MODE.QUICK_MODE]  = this.reckonRollingData(this.startRollingInspect.customRollingTime_q);
-            this.properties.startRolling[SPIN_MODE.TURBO_MODE]  = this.reckonRollingData(this.startRollingInspect.customRollingTime_t);
+            this.properties.startRolling[SPIN_MODE.NORMAL] = this.reckonRollingData(this.startRollingInspect.customRollingTime_n);
+            this.properties.startRolling[SPIN_MODE.QUICK]  = this.reckonRollingData(this.startRollingInspect.customRollingTime_q);
+            this.properties.startRolling[SPIN_MODE.TURBO]  = this.reckonRollingData(this.startRollingInspect.customRollingTime_t);
         }
     }
 
@@ -264,13 +264,13 @@ export class Reel extends Component {
      */
     private initStopRollingData() {
         if ( this.stopRollingInspect.isCustomRollingTime === false ) {
-            this.properties.stopRolling[SPIN_MODE.NORMAL_MODE] = this.unifyRollingTime(this.stopRollingInspect.rollingTime_n * 1000);
-            this.properties.stopRolling[SPIN_MODE.QUICK_MODE]  = this.unifyRollingTime(this.stopRollingInspect.rollingTime_q * 1000);
-            this.properties.stopRolling[SPIN_MODE.TURBO_MODE]  = this.unifyRollingTime(this.stopRollingInspect.rollingTime_t * 1000);
+            this.properties.stopRolling[SPIN_MODE.NORMAL] = this.unifyRollingTime(this.stopRollingInspect.rollingTime_n * 1000);
+            this.properties.stopRolling[SPIN_MODE.QUICK]  = this.unifyRollingTime(this.stopRollingInspect.rollingTime_q * 1000);
+            this.properties.stopRolling[SPIN_MODE.TURBO]  = this.unifyRollingTime(this.stopRollingInspect.rollingTime_t * 1000);
         } else {
-            this.properties.stopRolling[SPIN_MODE.NORMAL_MODE] = this.reckonRollingData(this.stopRollingInspect.customRollingTime_n);
-            this.properties.stopRolling[SPIN_MODE.QUICK_MODE]  = this.reckonRollingData(this.stopRollingInspect.customRollingTime_q);
-            this.properties.stopRolling[SPIN_MODE.TURBO_MODE]  = this.reckonRollingData(this.stopRollingInspect.customRollingTime_t);
+            this.properties.stopRolling[SPIN_MODE.NORMAL] = this.reckonRollingData(this.stopRollingInspect.customRollingTime_n);
+            this.properties.stopRolling[SPIN_MODE.QUICK]  = this.reckonRollingData(this.stopRollingInspect.customRollingTime_q);
+            this.properties.stopRolling[SPIN_MODE.TURBO]  = this.reckonRollingData(this.stopRollingInspect.customRollingTime_t);
         }
     }
 
@@ -323,8 +323,10 @@ export class Reel extends Component {
     public get nearMissSymbols() : number[] { return this.properties.nearMissSymbols; }
 
     // 滾輪速度設定 Norma,Quick,Turbo SPIN_MODE
-    public setSpinMode ( mode: SPIN_MODE ): SPIN_MODE { return this.properties.mode = mode; }
-    public get spinMode() { return this.properties.mode; }
+    public setSpinMode ( mode: SPIN_MODE ): SPIN_MODE { 
+        return this.machine.setSpeedMode(mode);
+    }
+    public get spinMode() { return this.machine.SpeedMode; }
     /**
      * @description 取得滾輪速度設定
      * @deprecated 即將廢棄, 請使用 Reel.spinMode 取得 
@@ -333,8 +335,8 @@ export class Reel extends Component {
     public getSpinMode (): SPIN_MODE { return this.spinMode; }
 
     // 快速停輪 isFastStoping
-    protected get isFastStoping():boolean { return this.properties.isFastStoping; }
-    public set fastStoping(value:boolean) { this.properties.isFastStoping = value; }
+    protected get isFastStoping():boolean { return this.machine.fastStopping; }
+    public set fastStoping(value:boolean) { this.machine.fastStopping = value; }
 
     //設定停輪事件 stopingHandler
     /** 設定停輪 Handler */
@@ -384,11 +386,11 @@ export class Reel extends Component {
         this.startRolling();      // 啟動滾輪
 
         await this.rolling();     // 滾輪持續滾動
+
         this.changeState(REEL_STATE.STOPPING); // 停止滾輪
-
         await this.stopRolling(); // 通知停止滾輪
-        this.changeState(REEL_STATE.IDLE);  // 恢復正常狀態
 
+        this.changeState(REEL_STATE.IDLE);  // 恢復正常狀態
         await Utils.delayEvent(this.properties.handler.stoping, 'done'); // 等待滾輪靜止
         
         // 回到 paytable spin function
@@ -419,9 +421,10 @@ export class Reel extends Component {
      */
     protected async rolling() {
         
+        await Utils.delay(200); // 最低滾動時間
         let stopTime = this.properties.rolling[this.spinMode];
         let stepTime = stopTime/5;
-        let time = 0;
+        let time = 0.2;
 
         while(true) {
             await Utils.delay(stepTime);
@@ -447,7 +450,7 @@ export class Reel extends Component {
         let result = this.result;
         let nearMiss = this.nearMiss; 
         let firstNearMiss = false;
-        let dt = Date.now();;
+        let dt = Date.now();
 
         for(let i=0;i<rollingData.length;i++) {
             let time = rollingData[i].time;
@@ -462,7 +465,7 @@ export class Reel extends Component {
                 }
                 await wheel.nearMissStopRolling(result[id]);
             } else { // 一般停輪流程
-                if ( !this.isFastStoping || time > 0 ) {
+                if ( !this.isFastStoping && time > 0 ) {
                     await Utils.delay(time);
                 }
                 // console.log('stopRolling',(Date.now()-dt) , id, time);

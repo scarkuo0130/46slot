@@ -59,7 +59,7 @@ export class Machine extends Component {
         'paytable' : null,
         'bigwin' : null,
         'controller' : null,
-        'speedMode' : Machine.SPEED_MODE.DEFAULT,
+        'speedMode' : Machine.SPIN_MODE.QUICK,
         'spinState' : Machine.SPIN_STATE.IDLE,
         'fastStopping' : false,
         'featureGame' : false,

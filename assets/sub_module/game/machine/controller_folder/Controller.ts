@@ -35,9 +35,9 @@ export class Controller extends Component {
         },
 
         'speedMode' : {
-            [Machine.SPEED_MODE.NORMAL] : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Normal', 'next':Machine.SPEED_MODE.QUICK },
-            [Machine.SPEED_MODE.QUICK]  : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Quick',  'next':Machine.SPEED_MODE.TURBO },
-            [Machine.SPEED_MODE.TURBO]  : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Turbo',  'next':Machine.SPEED_MODE.NORMAL},
+            [Machine.SPIN_MODE.NORMAL] : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Normal', 'next':Machine.SPIN_MODE.QUICK },
+            [Machine.SPIN_MODE.QUICK]  : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Quick',  'next':Machine.SPIN_MODE.TURBO },
+            [Machine.SPIN_MODE.TURBO]  : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Turbo',  'next':Machine.SPIN_MODE.NORMAL},
         },
 
         'ui' : {
@@ -246,7 +246,7 @@ export class Controller extends Component {
         // 啟用所有按鈕
         this.spinButtonEvent.emit('done');
         this.activeBusyButtons(true);
-
+        this.machine.fastStopping = false;
         // 如果有 AutoSpin 則繼續
         this.autoSpin.decrementCount();
     }
@@ -308,7 +308,7 @@ export class Controller extends Component {
 
     /**
      * 切換速度模式
-     * @param mode { Machine.SPEED_MODE } 速度模式代號
+     * @param mode { Machine.SPIN_MODE } 速度模式代號
      */
     private changeSpeedMode(mode:number) {
         const speedMode = this.props.speedMode;
