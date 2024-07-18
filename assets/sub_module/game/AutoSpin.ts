@@ -150,40 +150,43 @@ export class AutoSpin extends Component {
         autoSpin.spinTimes      = spinTimes;
         autoSpin.untilFeature   = untilFeatureActive;
 
-        console.log(autoSpin);
         this.decrementCount();
     }
 
+    public static IsUtilFeature() : boolean {
+        if ( this.Instance.active === false ) return false;
+        return this.Instance.properties.autoSpin.untilFeature;
+    }
+
     /**
-     * 
+     * 是否要繼續AutoSpin
      * @returns 
      */
     public decrementCount() : boolean {
         if ( this.active === false ) {
-            this.autoSpinButton.node.active = false;
+            this.closeAutoSpinTimes();
             return false;
         }
         
-        this.autoSpinButton.node.active = true;
         const autoSpin = this.properties.autoSpin;
 
         if ( autoSpin.spinTimeActive === true ) {
             if ( autoSpin.spinTimes > 0 ) {
                 autoSpin.spinTimes--;
-                this.autoSpinTimeLabel.string = autoSpin.spinTimes.toString();
+                this.autoSpinTimes(autoSpin.spinTimes);
                 this.machine.controller.clickSpin();
 
                 if ( autoSpin.spinTimes === 0 ) this.active = false;
                 return true;
             } else if ( autoSpin.spinTimes === -1 ) {
-                this.autoSpinTimeLabel.string = '∞';
+                this.autoSpinTimes(autoSpin.spinTimes);
                 this.machine.controller.clickSpin();
                 return true;
             }
         } 
         
         if ( autoSpin.untilFeature === true ) {
-            this.autoSpinTimeLabel.string = '';
+            this.autoSpinTimes(autoSpin.spinTimes, true);
             this.machine.controller.clickSpin();
             return true;
         }
@@ -192,13 +195,30 @@ export class AutoSpin extends Component {
         return false;
     }
 
+    public autoSpinTimes(times:number, isUntilFeature:boolean=false) {
+        let spinTimeStr;
+        if ( times === -1 ) spinTimeStr = '∞';
+        else if ( isUntilFeature ) spinTimeStr = '';
+        else spinTimeStr = times.toString();
+
+        this.autoSpinButton.node.active = true;
+        this.autoSpinTimeLabel.string = spinTimeStr;
+    }
+
+    public static AutoSpinTimes(times:number, isUntilFeature:boolean=false) { AutoSpin.Instance.autoSpinTimes(times, isUntilFeature); }
+
+    public closeAutoSpinTimes() { this.autoSpinButton.node.active = false; }
+
+    public static CloseAutoSpinTimes() { AutoSpin.Instance.closeAutoSpinTimes(); }
+
     /**
      * 
      */
     public static StopAutoSpin() { AutoSpin.Instance.stopAutoSpin(); }
 
     public stopAutoSpin() {
-        this.autoSpinButton.node.active = false;
+        if ( this.machine.isBusy ) return;
+        this.closeAutoSpinTimes();
         this.autoSpinTimeLabel.string = '';
         this.active = false;
     }

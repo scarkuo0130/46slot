@@ -179,7 +179,7 @@ export class JpGame4600 extends Component {
         this.jp_prize = jp_prize;
         this.reset_game();
 
-        await this.paytable.play_pot_ani(5);
+        await this.paytable.play_pot_ani(true);
         await this.open_door(() => {
             this.machine.controller.node.active = false;
             this.machine.node.active = false;

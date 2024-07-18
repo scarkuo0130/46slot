@@ -469,10 +469,10 @@ export class WheelLibrary extends Component {
     protected setSymbolMachine(symbol: Node) {
         if (symbol == null) return;
         if (this.reel == null) return;
-        if (this.reel.getMachine == null) return;
+        if (this.machine == null) return;
 
         let sym = symbol.getComponent(Symbol);
-        sym.machine = this.reel.getMachine;
+        sym.machine = this.machine;
         sym.wheel = this.node.getComponent(Wheel);
     }
 
@@ -590,6 +590,7 @@ export class WheelLibrary extends Component {
 
             if ( spineInspect.dropAnimation == null ) return;
             if ( scatterSymbol.indexOf(id) === -1 ) return;
+            if ( this.machine.paytable?.showDropSymbol(this.wheel._ID, sym) === false ) return;
 
             let wheelID = this.wheel._ID;
             let clone = this.machine.reel.moveToShowDropSymbol(wheelID, symbol);
@@ -621,7 +622,7 @@ export class WheelLibrary extends Component {
         let symbol = symbolData[idx]['symbol'];
         if (symbol == null) return;
 
-        let sym = symbol.getComponent(Symbol);
+        let sym : Symbol = symbol.getComponent(Symbol);
         symbolData[idx] = {
             'symbol': null,
             'id': null,
@@ -630,7 +631,7 @@ export class WheelLibrary extends Component {
         };
 
         this._propertys.symbolData = symbolData;
-        ObjectPool.Put(sym.inscept.id, sym.node);
+        ObjectPool.Put(sym.symID, sym.node);
     }
 
     /**

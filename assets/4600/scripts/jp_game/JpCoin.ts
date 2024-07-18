@@ -29,15 +29,12 @@ export class JpCoin extends Component {
 
     public light_type(value: JP_TYPE) {
         if ( value === JP_TYPE.NONE ) return this.properties['coin']['body'].component.color = Color.WHITE;
-
-        let color = this.properties['coin']['body'].component.color;
+        let node = this.properties['coin']['body'].node;
         if ( value == this.jp_type ) {
-            color.a = 255;
+            Utils.changeMainColor(node, Color.WHITE);
         } else {
-            color.a = 100;
+            Utils.changeMainColor(node, Color.GRAY);
         }
-
-        this.properties['coin']['body'].color = color;
     }
 
     private readonly initData = {
@@ -70,7 +67,8 @@ export class JpCoin extends Component {
         this.properties['coin']['default'].component.setAnimation(0, 'idle', false);
         this.light_type(JP_TYPE.NONE);
         this.jp_type = JP_TYPE.NONE;
-        
+        let node = this.properties['coin']['body'].node;
+        Utils.changeMainColor(node, Color.WHITE);
     }
 }
 

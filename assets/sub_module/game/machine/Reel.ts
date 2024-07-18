@@ -226,6 +226,19 @@ export class Reel extends Component {
 
     public getWheels (): Wheel[] { return this.properties.wheels; }
 
+    public putReelSymbol(reel_result) {
+        let wheels = this.getWheels();
+        for(let i=0;i<reel_result.length;i++) {
+            let wheel = wheels[i];
+            wheel.removeAllSymbol();
+            for(let j=0;j<reel_result[i].length;j++) {
+                const symbol_id = reel_result[i][j];
+                const symbol = ObjectPool.Get(symbol_id);
+                wheel.putSymbol(symbol, j);
+            }
+        }
+            
+    }
 
     private initRollingTime() {
         this.properties.rolling[SPIN_MODE.NORMAL] = this.rollingInspect.rollingTime_n * 1000;
@@ -318,8 +331,8 @@ export class Reel extends Component {
      */
     protected get isNearMiss() : boolean { return this.properties.nearMiss >=0; }
     protected set nearMiss(value:number) { this.properties.nearMiss = value; }
-    protected get nearMiss() { return this.properties.nearMiss; }
-    protected get nearMissSymbolData() : SymbolNearMiss2[] { return this.properties.symbolNearMiss; }
+    public get nearMiss() { return this.properties.nearMiss; }
+    public get nearMissSymbolData() : SymbolNearMiss2[] { return this.properties.symbolNearMiss; }
     public get nearMissSymbols() : number[] { return this.properties.nearMissSymbols; }
 
     // 滾輪速度設定 Norma,Quick,Turbo SPIN_MODE
@@ -429,7 +442,6 @@ export class Reel extends Component {
         while(true) {
             await Utils.delay(stepTime);
             if ( this.result === null ) continue;   // 等待盤面結果
-            if ( this.isFastStoping )   break;      // 快速停輪
             if ( time >= stopTime )     break;      // 滾輪停止時間
 
             time += stepTime;
@@ -458,7 +470,7 @@ export class Reel extends Component {
             let id = data.wheelID;
             let wheel = wheels[id];
 
-            if ( nearMiss < i ) { // NearMiss 流程
+            if ( nearMiss < i && this.paytable.nearMissWheel(i) ) { // NearMiss 流程
                 if ( firstNearMiss === false ) {
                     this.firstNearMissStopRolling(); // 處理其他已經停止的輪面
                     firstNearMiss = true;    
@@ -490,9 +502,7 @@ export class Reel extends Component {
     /**
      * 關閉聽牌遮罩
      */
-    public closeNearMissMask() {
-        this.getWheels().forEach(wheel => wheel.nearMissMask(false));
-    }
+    public closeNearMissMask() { this.getWheels().forEach(wheel => wheel.nearMissMask(false)); }
 
     /**
      * 將表演的 Symbol 移回滾輪

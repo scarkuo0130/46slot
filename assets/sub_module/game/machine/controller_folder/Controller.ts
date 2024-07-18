@@ -192,7 +192,10 @@ export class Controller extends Component {
      * 啟用/禁用所有按鈕
      * @param active 啟用/禁用
      */
-    private activeBusyButtons(active:boolean) { this.props['BusyDisableButtons'].forEach((button: Button) => { button.interactable = active; }); }
+    public activeBusyButtons(active:boolean) { 
+        this.props['BusyDisableButtons'].forEach((button: Button) => { button.interactable = active; }); 
+        this.machine.activeBuyFGButton(active);
+    }
 
     protected onLoad(): void {
         Controller.Instance = this;
@@ -211,13 +214,20 @@ export class Controller extends Component {
 
     public get machine() :Machine { return this.props['machine']; }
 
-    private spinButtonEvent : EventTarget = new EventTarget();
-    private async buttonSpinning() {
+    public spinButtonEvent : EventTarget = new EventTarget();
+    public async buttonSpinning(active:boolean=true) {
+
+        if ( active === false ) return this.spinButtonEvent.emit('done');
+
         const spinImage = this.props['spin']['image'].node;
-        
         this.spinButtonEvent['tween'] = tween(spinImage).repeatForever(tween().by(0.5, { angle: -360 }, { easing:'linear' })).start();
         await Utils.delayEvent(this.spinButtonEvent);
         this.spinButtonEvent['tween'].stop();
+    }
+
+    public static async ButtonSpinning(active:boolean) { 
+        if ( active ) return Controller.Instance.buttonSpinning();
+        return Controller.Instance.spinButtonEvent.emit('done'); 
     }
 
     private async clickSpinButtonAnimation() {
@@ -229,7 +239,6 @@ export class Controller extends Component {
      * Spin 按鈕事件
      */
     public async clickSpin() {
-
         if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
         this.clickSpinButtonAnimation() ;
         if ( this.machine.spinning ) {
@@ -238,14 +247,10 @@ export class Controller extends Component {
         }
 
         this.clickOption(null, false); // 關閉 Option 功能
-        // 禁用所有按鈕
-        this.activeBusyButtons(false);
-        this.buttonSpinning();
+
         // 等待 Spin 結束
         await this.machine.clickSpin();
-        // 啟用所有按鈕
-        this.spinButtonEvent.emit('done');
-        this.activeBusyButtons(true);
+
         this.machine.fastStopping = false;
         // 如果有 AutoSpin 則繼續
         this.autoSpin.decrementCount();
@@ -276,7 +281,7 @@ export class Controller extends Component {
         const fromPos = active ? oFromPos : oToPos;
         const toPos   = active ? oToPos : oFromPos;
         const self    = this;
-        running     = true;
+        running       = true;
 
         this.activeBusyButtons(false);
         node.setPosition(new Vec3(fromPos));

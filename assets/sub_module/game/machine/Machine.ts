@@ -1,4 +1,4 @@
-import { _decorator, Component, find, Mask, EventTarget, Graphics } from 'cc';
+import { _decorator, Component, find, Mask, EventTarget, Graphics, Button, Color } from 'cc';
 import { AutoSpin } from '../AutoSpin';
 import { Controller } from './controller_folder/Controller';
 import { gameInformation } from '../GameInformation';
@@ -53,6 +53,21 @@ export class Machine extends Component {
 
     public get bigwin() :BigWin { return BigWin.Instance; }
     public static SetReel(reel) { Machine.Instance.reel = reel; }
+
+    public set buyFeatureGameButton(button:Button) { 
+        if ( button == null ) return;
+        this.properties['buyFeatureGameButton'] = button; 
+        this.controller.addDisableButtons(button);
+        Utils.AddHandHoverEvent(button.node);
+    }
+    public get buyFeatureGameButton() { return this.properties['buyFeatureGameButton']; }
+
+    public activeBuyFGButton(active:boolean) {
+        console.log('activeBuyFGButton', active, this.buyFeatureGameButton);
+        if ( this.buyFeatureGameButton == null ) return;
+        this.buyFeatureGameButton.interactable = active;
+        Utils.changeMainColor(this.buyFeatureGameButton.node, active ? Color.WHITE : Color.GRAY);
+    }
 
     protected properties = {
         'reel' : null,
@@ -135,8 +150,16 @@ export class Machine extends Component {
      * 負責判斷 AutoSpin 是否繼續或停止
      */
     public async spin() {
+        // 關閉所有按鈕
+        this.controller.activeBusyButtons(false);
+        this.controller.buttonSpinning();
+
         // 通知 reel 執行 SPIN
         await this.paytable.spin(); // 等待 SPIN 結束, 包含獎項顯示, BigWin 處理等...
+
+        // 啟用所有按鈕
+        this.controller.buttonSpinning(false);
+        this.controller.activeBusyButtons(true);
 
         this.controller.refreshBalance(); // 更新餘額
         return; // 回到 Controller clickSpin function

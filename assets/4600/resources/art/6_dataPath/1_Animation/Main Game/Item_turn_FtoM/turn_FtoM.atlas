@@ -1,13 +1,20 @@
 
 turn_FtoM.png
-size: 512,2048
+size: 1024,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Door02
+Door01
   rotate: false
   xy: 2, 2
-  size: 361, 1280
+  size: 363, 1282
   orig: 363, 1282
-  offset: 1, 1
+  offset: 0, 0
+  index: -1
+Door02
+  rotate: false
+  xy: 367, 2
+  size: 363, 1282
+  orig: 363, 1282
+  offset: 0, 0
   index: -1

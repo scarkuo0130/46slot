@@ -5,6 +5,7 @@ import { Machine } from '../Machine';
 import { BigWin } from '../BigWin';
 import { Controller } from '../controller_folder/Controller';
 import { gameInformation } from '../../GameInformation';
+import { Symbol } from '../Symbol';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
 
@@ -102,6 +103,7 @@ export class Paytable extends Component {
         this.reelMaskActive(false);
         this.totalWinLabel.string = '';
         this.singleWinLabel.string = '';
+        this.machine.buyFeatureGameButton = this.inspector.mainGameBuyFeatureGameButtonNode.getComponent(Button);
         this.onstart();
     }
 
@@ -116,6 +118,11 @@ export class Paytable extends Component {
         this.machine.paytable = this;
         Utils.initData(this.initData, this);
         this.properties['maskEvent'] = new EventTarget();
+    }
+
+    public restoreGameResult(gameResult) {
+        this.properties['gameResult'] = gameResult;
+        this.reel.putReelSymbol(gameResult['result_reels']);
     }
 
     /**
@@ -160,7 +167,10 @@ export class Paytable extends Component {
         await this.processWinningScore();           // 執行報獎流程
         this.machine.state = Machine.SPIN_STATE.IDLE;
         eventTarget?.emit('done');
-        this.performSingleLineLoop();               // 執行單項報獎流程
+        
+        if ( this.machine.featureGame === true ) return;
+        if ( this.gameResult.noLoop != true ) this.performSingleLineLoop(); // 執行單項報獎流程
+        else this.gameResult.noLoop = false;
     }
 
     /**
@@ -179,10 +189,13 @@ export class Paytable extends Component {
      * @param score { number } 分數
      */
     public async processBigWin(score:number) {
-        if ( this.machine.bigwin?.isBigWin(score) != BigWin.BIGWIN_TYPE.NONE ) {
-            this.machine.bigwin.playBigWin(score);
-            await this.machine.bigwin.waitingBigWin();
-        }
+        if ( this.machine.bigwin == null ) return;
+        if ( this.machine.bigwin.isBigWin(score) == BigWin.BIGWIN_TYPE.NONE ) return;
+        this.reelMaskActive(false);               // 關閉遮罩
+        
+        this.machine.bigwin.playBigWin(score);
+        await this.machine.bigwin.waitingBigWin(); // 等待 BigWin 播放完畢
+        
     }
 
     /**
@@ -204,7 +217,7 @@ export class Paytable extends Component {
      * @param active 
      * @returns 
      */
-    protected async reelMaskActive ( active: boolean ) {this.maskFadeIn( active ); }
+    public async reelMaskActive ( active: boolean ) {this.maskFadeIn( active ); }
 
     /**
      * 遮罩淡入淡出
@@ -287,7 +300,7 @@ export class Paytable extends Component {
      * @param reel_result { number[][] } Reel 結果
      * @returns { number[] } 每個 Reel 出現的個數 ex: [0,1,2,0,1]
      */
-    private mergeReckonSymbolReelCount(sym: number[], reel_result: number[][]): number[] {
+    protected mergeReckonSymbolReelCount(sym: number[], reel_result: number[][]): number[] {
         let count = [];
         for(let i=0;i<sym.length;i++) {
             let c = this.reckonSymbolReelCount(sym[i], reel_result);
@@ -305,6 +318,22 @@ export class Paytable extends Component {
      * @returns { number[] } 每個 Reel 出現的個數 ex: [0,1,2,0,1]
      */ 
     public reckonSymbolReelCount(sym: number, reel_result: number[][]): number[] { return reel_result.map(reel => reel.reduce((count, symbol) => count + (symbol === sym ? 1 : 0), 0) ); }
+
+    /**
+     * 是否要做聽牌
+     * @param wheelID 
+     * @returns { boolean } true: 聽牌 false: 不聽牌
+     */
+    public nearMissWheel(wheelID:number) : boolean { return true; }
+
+    /**
+     * 聽牌 Symbol 是否要做 Drop 效果
+     * @param wheelID 
+     * @param symbol 
+     * @returns 
+     */
+    public showDropSymbol(wheelID:number, symbol:Symbol) : boolean { return true; }
+
 }
 
 /**
@@ -350,10 +379,10 @@ export class BuyFeatureGameUI {
                 'ui'            : { [DATA_TYPE.TYPE] : Node,   [DATA_TYPE.SCENE_PATH] : inspector.buyFeatureGameUI.getPathInHierarchy()},
                 'valueLabel'    : { [DATA_TYPE.TYPE] : Label,  [DATA_TYPE.SCENE_PATH] : inspector.valueLabelNode.getPathInHierarchy()  },
                 'buyButton'     : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.buyButtonNode.getPathInHierarchy(),    [DATA_TYPE.CLICK_EVENT]: this.clickBuyFeatureGameConfirm  },
-                'closeButton'   : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.closeButtonNode.getPathInHierarchy(),  [DATA_TYPE.CLICK_EVENT]: this.onClickClose, },
+                'closeButton'   : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.closeButtonNode.getPathInHierarchy(),  [DATA_TYPE.CLICK_EVENT]: this.onClickCloseBuyFGUI, },
                 'addBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.addBetButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.addBet },
                 'subBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.subBetButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.subBet},
-                'openButton'    : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.mainGameBuyFeatureGameButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.onClickOpenUI },
+                'openButton'    : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.mainGameBuyFeatureGameButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.onClickOpenBuyFGUI },
             }
         };
 
@@ -362,12 +391,12 @@ export class BuyFeatureGameUI {
         this.node.setPosition(0, 0, 0);
     }
 
-    public onClickClose() { 
+    public onClickCloseBuyFGUI() { 
         this.controller.maskActive(false);
         Utils.commonActiveUITween(this.node, false); 
     }
 
-    public onClickOpenUI() { 
+    public onClickOpenBuyFGUI() { 
         if ( this.machine.isBusy ) return;
 
         this.betIdx = this.controller.betIdx;
@@ -409,6 +438,6 @@ export class BuyFeatureGameUI {
         if ( this.machine.isBusy ) return;
         if ( this.machine.buyFeatureGame(this.betIdx) === false ) return;
         console.log('clickBuyFeatureGame');
-        this.onClickClose();
+        this.onClickCloseBuyFGUI();
     }
 }

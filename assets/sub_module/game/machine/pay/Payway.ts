@@ -38,7 +38,7 @@ export class Payway extends Paytable {
         const { lines, pay_credit_total } = this.gameResult;
         const totalWinLabel = this.totalWinLabel;
 
-        await this.reelMaskActive(true);        // 打開遮罩
+        this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
 
         // 播放全部獎項
         let max_wait_sec = 0;
@@ -48,9 +48,12 @@ export class Payway extends Paytable {
             if ( sec > max_wait_sec ) max_wait_sec = sec;
         }
         
-        Utils.commonTweenNumber(totalWinLabel, 0, pay_credit_total, (max_wait_sec/2) ); // 播放總得分
-        const waitSec = max_wait_sec * 1000;
-        await Utils.delay(waitSec); 
+        if ( max_wait_sec > 0 && pay_credit_total > 0 ) {
+            await this.reelMaskActive(true);        // 打開遮罩
+            Utils.commonTweenNumber(totalWinLabel, 0, pay_credit_total, (max_wait_sec/2) ); // 播放總得分
+            const waitSec = max_wait_sec * 1000;
+            await Utils.delay(waitSec); 
+        }
 
         this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
         totalWinLabel.string = '';              // 關閉總得分
@@ -65,8 +68,10 @@ export class Payway extends Paytable {
 
     // way {"symbol_id": 7,"way": 3,"ways": [1,1,1],"pay_credit": 500}
     public async performSingleLine(lineData: any, isWaiting: boolean=false) : Promise<number> {
+        console.log(lineData);
+        if ( lineData == null || !lineData.symbol_id || !lineData.pay_credit ) return 0;
         const { symbol_id, way, pay_credit } = lineData;
-        
+
         let reel = this.reel;
         let wSymbols = [];
         for(let i=0;i<way.length;i++) {
@@ -92,8 +97,7 @@ export class Payway extends Paytable {
         const { lines, pay_credit_total } = this.gameResult;
 
         if ( pay_credit_total === 0 ) return;
-
-        await this.reelMaskActive(true);        // 打開遮罩
+        await this.reelMaskActive(true);      // 打開遮罩
         let idx = 0;
         while(true) {
             await this.performSingleLine(lines[idx], true);

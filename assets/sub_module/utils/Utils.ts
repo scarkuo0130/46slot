@@ -163,8 +163,8 @@ export class Utils {
             // 找出中間點 附上一點點的隨機值
             middlePos = fromPos.clone();
             middlePos.add(toPos).multiplyScalar(0.5);
-            const xDistance = Math.abs(fromPos.x - toPos.x) * 0.3;
-            const yDistance = Math.abs(fromPos.y - toPos.y) * 0.3;
+            const xDistance = Math.abs(fromPos.x - toPos.x) * 0.4;
+            const yDistance = Math.abs(fromPos.y - toPos.y) * 0.4;
             middlePos.x += Utils.Random(-xDistance, xDistance);
             middlePos.y += Utils.Random(-yDistance, yDistance);
 
@@ -669,6 +669,25 @@ export class Utils {
         eventTarget['running'] = false;
         ui.active = !fadeout;
         eventTarget = null;
+    }
+
+    public static changeMainColor ( node: Node, color: Color ) {
+        if ( node == null ) return;
+        if ( color == null ) return;
+
+        const sprite = node.getComponent(Sprite);
+        if ( sprite != null ) sprite.color = color;
+
+        const label = node.getComponent(Label);
+        if ( label != null ) label.color = color;
+
+        const spine = node.getComponent(sp.Skeleton);
+        if ( spine != null ) spine.color = color;
+
+        const children = node.children;
+        for ( let i in children ) {
+            Utils.changeMainColor( children[ i ], color );
+        }
     }
 }
 

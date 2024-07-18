@@ -1,5 +1,6 @@
 import { _decorator, Component, sys,Button } from 'cc';
 import { Utils, _utilsDecorator } from '../../sub_module/utils/Utils';
+import { Machine } from '../../sub_module/game/machine/Machine';
 const { ccclass, property } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -53,11 +54,11 @@ export class Develop4600 extends Component {
     public developSpinResponse(spinData:any) {
 
         let mainGames = this.saveMainGame(spinData);
-        
+        /*
         if ( this.simulateFeatureGame ) {
             this.make_subGameResponse(spinData);
             this.simulateFeatureGame = false;
-        }
+        }*/
 
         // 有沒有 wild
         if ( this.haveWild(spinData) ) {
@@ -78,6 +79,7 @@ export class Develop4600 extends Component {
         event['result'] = spinData;
         this.machine.properties['spinData'] = spinData;
         event.emit('done');
+        this.isOverrideSpinResponse = false;
     }
 
     public simulateFeatureGameSpinResponse() {
@@ -168,5 +170,3556 @@ export class Develop4600 extends Component {
 
         return [date.getFullYear(), (mm>9 ? '' : '0') + mm, (dd>9 ? '' : '0') + dd].join('') + (hh>9 ? '' : '0') + hh + (min>9 ? '' : '0') + min + (ss>9 ? '' : '0') + ss;
     }
+
+    public JP() {
+        Machine.Instance.spinTest({
+            "game_id": 4600,
+            "main_game": {
+                "pay_credit_total": 200000,
+                "result_reels": [
+                    [
+                        6,
+                        9,
+                        5
+                    ],
+                    [
+                        3,
+                        7,
+                        5
+                    ],
+                    [
+                        6,
+                        10,
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        0
+                    ],
+                    [
+                        3,
+                        9,
+                        4
+                    ]
+                ],
+                "near_win": 0,
+                "free_spin_times": 0,
+                "scatter_info": {
+                    "id": [
+                        12,
+                        0
+                    ],
+                    "position": [
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ]
+                    ],
+                    "amount": 1,
+                    "multiplier": 1,
+                    "pay_credit": 0,
+                    "pay_rate": 0
+                },
+                "lines": [],
+                "jp_type": 2,
+                "jp_prize": 200000,
+                "jp_level": 4
+            },
+            "get_sub_game": false,
+            "sub_game": {
+                "pay_credit_total": 0,
+                "result": null
+            },
+            "get_jackpot": false,
+            "jackpot": {
+                "jackpot_id": "",
+                "jackpot_credit": 0,
+                "symbol_id": null
+            },
+            "get_jackpot_increment": false,
+            "jackpot_increment": null,
+            "grand": 0,
+            "major": 0,
+            "minor": 0,
+            "mini": 0,
+            "user_credit": 499972600,
+            "bet_credit": 2000,
+            "payout_credit": 200000,
+            "change_credit": -2000,
+            "effect_credit": 2000,
+            "buy_spin": 0,
+            "buy_spin_multiplier": 1,
+            "extra": null
+        });
+    }
+
+    public JPtoFG() {
+        Machine.Instance.spinTest({
+            "game_id": 4600,
+            "main_game": {
+                "pay_credit_total": 10000,
+                "result_reels": [
+                    [
+                        5,
+                        12,
+                        9
+                    ],
+                    [
+                        12,
+                        2,
+                        6
+                    ],
+                    [
+                        1,
+                        7,
+                        12
+                    ],
+                    [
+                        9,
+                        2,
+                        7
+                    ],
+                    [
+                        5,
+                        8,
+                        0
+                    ]
+                ],
+                "near_win": 1,
+                "free_spin_times": 10,
+                "scatter_info": {
+                    "id": [
+                        12,
+                        0
+                    ],
+                    "position": [
+                        [
+                            -1,
+                            1,
+                            -1
+                        ],
+                        [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ]
+                    ],
+                    "amount": 3,
+                    "multiplier": 1,
+                    "pay_credit": 0,
+                    "pay_rate": 0
+                },
+                "lines": [
+                    {
+                        "symbol_id": 12,
+                        "length": 3,
+                        "way": [
+                            1,
+                            1,
+                            1
+                        ],
+                        "pay_credit": 10000
+                    }
+                ],
+                "jp_type": 2,
+                "jp_prize": 200000,
+                "jp_level": 4
+            },
+            "get_sub_game": true,
+            "sub_game": {
+                "pay_credit_total": 30800,
+                "result": [
+                    {
+                        "pay_credit_total": 800,
+                        "result_reels": [
+                            [
+                                5,
+                                5,
+                                4
+                            ],
+                            [
+                                4,
+                                4,
+                                0
+                            ],
+                            [
+                                5,
+                                5,
+                                3
+                            ],
+                            [
+                                2,
+                                2,
+                                3
+                            ],
+                            [
+                                4,
+                                1,
+                                1
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 5,
+                                "length": 3,
+                                "way": [
+                                    2,
+                                    1,
+                                    2
+                                ],
+                                "pay_credit": 800
+                            }
+                        ],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 12000,
+                        "result_reels": [
+                            [
+                                5,
+                                2,
+                                2
+                            ],
+                            [
+                                2,
+                                2,
+                                4
+                            ],
+                            [
+                                1,
+                                0,
+                                1
+                            ],
+                            [
+                                5,
+                                5,
+                                2
+                            ],
+                            [
+                                3,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 2,
+                                "length": 4,
+                                "way": [
+                                    2,
+                                    2,
+                                    1,
+                                    1
+                                ],
+                                "pay_credit": 12000
+                            }
+                        ],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                5,
+                                5,
+                                5
+                            ],
+                            [
+                                2,
+                                5,
+                                5
+                            ],
+                            [
+                                3,
+                                3,
+                                4
+                            ],
+                            [
+                                1,
+                                1,
+                                1
+                            ],
+                            [
+                                2,
+                                2,
+                                5
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 0,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 17400,
+                        "result_reels": [
+                            [
+                                4,
+                                5,
+                                5
+                            ],
+                            [
+                                4,
+                                1,
+                                5
+                            ],
+                            [
+                                0,
+                                1,
+                                4
+                            ],
+                            [
+                                4,
+                                5,
+                                5
+                            ],
+                            [
+                                4,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 4,
+                                "length": 5,
+                                "way": [
+                                    1,
+                                    1,
+                                    2,
+                                    1,
+                                    1
+                                ],
+                                "pay_credit": 15000
+                            },
+                            {
+                                "symbol_id": 5,
+                                "length": 4,
+                                "way": [
+                                    2,
+                                    1,
+                                    1,
+                                    2
+                                ],
+                                "pay_credit": 2400
+                            }
+                        ],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                5,
+                                2,
+                                2
+                            ],
+                            [
+                                3,
+                                12,
+                                1
+                            ],
+                            [
+                                12,
+                                1,
+                                3
+                            ],
+                            [
+                                4,
+                                4,
+                                3
+                            ],
+                            [
+                                3,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 600,
+                        "result_reels": [
+                            [
+                                5,
+                                5,
+                                4
+                            ],
+                            [
+                                2,
+                                3,
+                                4
+                            ],
+                            [
+                                1,
+                                0,
+                                1
+                            ],
+                            [
+                                12,
+                                2,
+                                2
+                            ],
+                            [
+                                2,
+                                2,
+                                2
+                            ]
+                        ],
+                        "near_win": 1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 4,
+                                "length": 3,
+                                "way": [
+                                    1,
+                                    1,
+                                    1
+                                ],
+                                "pay_credit": 600
+                            }
+                        ],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                2,
+                                4,
+                                4
+                            ],
+                            [
+                                3,
+                                3,
+                                5
+                            ],
+                            [
+                                5,
+                                5,
+                                4
+                            ],
+                            [
+                                3,
+                                3,
+                                3
+                            ],
+                            [
+                                2,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 0,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                2,
+                                3,
+                                3
+                            ],
+                            [
+                                1,
+                                4,
+                                4
+                            ],
+                            [
+                                2,
+                                1,
+                                0
+                            ],
+                            [
+                                4,
+                                4,
+                                12
+                            ],
+                            [
+                                4,
+                                4,
+                                1
+                            ]
+                        ],
+                        "near_win": 1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                4,
+                                4,
+                                2
+                            ],
+                            [
+                                5,
+                                5,
+                                3
+                            ],
+                            [
+                                3,
+                                2,
+                                2
+                            ],
+                            [
+                                5,
+                                0,
+                                2
+                            ],
+                            [
+                                3,
+                                3,
+                                5
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                1,
+                                5,
+                                5
+                            ],
+                            [
+                                3,
+                                3,
+                                12
+                            ],
+                            [
+                                3,
+                                3,
+                                5
+                            ],
+                            [
+                                1,
+                                1,
+                                1
+                            ],
+                            [
+                                2,
+                                2,
+                                12
+                            ]
+                        ],
+                        "near_win": -1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    }
+                ]
+            },
+            "get_jackpot": false,
+            "jackpot": {
+                "jackpot_id": "",
+                "jackpot_credit": 0,
+                "symbol_id": null
+            },
+            "get_jackpot_increment": false,
+            "jackpot_increment": null,
+            "grand": 0,
+            "major": 0,
+            "minor": 0,
+            "mini": 0,
+            "user_credit": 499940800,
+            "bet_credit": 100000,
+            "payout_credit": 40800,
+            "change_credit": -59200,
+            "effect_credit": 100000,
+            "buy_spin": 1,
+            "buy_spin_multiplier": 50,
+            "extra": null
+        });
+    }
+
+    
+    public FGtoJP() {
+        Machine.Instance.spinTest({
+            "game_id": 4600,
+            "main_game": {
+                "pay_credit_total": 10000,
+                "result_reels": [
+                    [
+                        5,
+                        12,
+                        9
+                    ],
+                    [
+                        12,
+                        2,
+                        6
+                    ],
+                    [
+                        1,
+                        7,
+                        12
+                    ],
+                    [
+                        9,
+                        2,
+                        7
+                    ],
+                    [
+                        5,
+                        8,
+                        0
+                    ]
+                ],
+                "near_win": 1,
+                "free_spin_times": 10,
+                "scatter_info": {
+                    "id": [
+                        12,
+                        0
+                    ],
+                    "position": [
+                        [
+                            -1,
+                            1,
+                            -1
+                        ],
+                        [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ]
+                    ],
+                    "amount": 3,
+                    "multiplier": 1,
+                    "pay_credit": 0,
+                    "pay_rate": 0
+                },
+                "lines": [
+                    {
+                        "symbol_id": 12,
+                        "length": 3,
+                        "way": [
+                            1,
+                            1,
+                            1
+                        ],
+                        "pay_credit": 10000
+                    }
+                ],
+                "jp_type": -1,
+                "jp_prize": 0,
+            },
+            "get_sub_game": true,
+            "sub_game": {
+                "pay_credit_total": 30800,
+                "result": [
+                    {
+                        "pay_credit_total": 800,
+                        "result_reels": [
+                            [
+                                5,
+                                5,
+                                4
+                            ],
+                            [
+                                4,
+                                4,
+                                0
+                            ],
+                            [
+                                5,
+                                5,
+                                3
+                            ],
+                            [
+                                2,
+                                2,
+                                3
+                            ],
+                            [
+                                4,
+                                1,
+                                1
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 5,
+                                "length": 3,
+                                "way": [
+                                    2,
+                                    1,
+                                    2
+                                ],
+                                "pay_credit": 800
+                            }
+                        ],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 12000,
+                        "result_reels": [
+                            [
+                                5,
+                                2,
+                                2
+                            ],
+                            [
+                                2,
+                                2,
+                                4
+                            ],
+                            [
+                                1,
+                                0,
+                                1
+                            ],
+                            [
+                                5,
+                                5,
+                                2
+                            ],
+                            [
+                                3,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 2,
+                                "length": 4,
+                                "way": [
+                                    2,
+                                    2,
+                                    1,
+                                    1
+                                ],
+                                "pay_credit": 12000
+                            }
+                        ],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                5,
+                                5,
+                                5
+                            ],
+                            [
+                                2,
+                                5,
+                                5
+                            ],
+                            [
+                                3,
+                                3,
+                                4
+                            ],
+                            [
+                                1,
+                                1,
+                                1
+                            ],
+                            [
+                                2,
+                                2,
+                                5
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 0,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 217400,
+                        "result_reels": [
+                            [
+                                4,
+                                5,
+                                5
+                            ],
+                            [
+                                4,
+                                1,
+                                5
+                            ],
+                            [
+                                0,
+                                1,
+                                4
+                            ],
+                            [
+                                4,
+                                5,
+                                5
+                            ],
+                            [
+                                0,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 4,
+                                "length": 5,
+                                "way": [
+                                    1,
+                                    1,
+                                    2,
+                                    1,
+                                    1
+                                ],
+                                "pay_credit": 15000
+                            },
+                            {
+                                "symbol_id": 5,
+                                "length": 4,
+                                "way": [
+                                    2,
+                                    1,
+                                    1,
+                                    2
+                                ],
+                                "pay_credit": 2400
+                            }
+                        ],
+                        "jp_type": 2,
+                        "jp_prize": 200000,
+                        "jp_level": 4
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                5,
+                                2,
+                                2
+                            ],
+                            [
+                                3,
+                                12,
+                                1
+                            ],
+                            [
+                                12,
+                                1,
+                                3
+                            ],
+                            [
+                                4,
+                                4,
+                                3
+                            ],
+                            [
+                                3,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 600,
+                        "result_reels": [
+                            [
+                                5,
+                                5,
+                                4
+                            ],
+                            [
+                                2,
+                                3,
+                                4
+                            ],
+                            [
+                                1,
+                                0,
+                                1
+                            ],
+                            [
+                                12,
+                                2,
+                                2
+                            ],
+                            [
+                                2,
+                                2,
+                                2
+                            ]
+                        ],
+                        "near_win": 1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [
+                            {
+                                "symbol_id": 4,
+                                "length": 3,
+                                "way": [
+                                    1,
+                                    1,
+                                    1
+                                ],
+                                "pay_credit": 600
+                            }
+                        ],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                2,
+                                4,
+                                4
+                            ],
+                            [
+                                3,
+                                3,
+                                5
+                            ],
+                            [
+                                5,
+                                5,
+                                4
+                            ],
+                            [
+                                3,
+                                3,
+                                3
+                            ],
+                            [
+                                2,
+                                3,
+                                3
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 0,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                2,
+                                3,
+                                3
+                            ],
+                            [
+                                1,
+                                4,
+                                4
+                            ],
+                            [
+                                2,
+                                1,
+                                0
+                            ],
+                            [
+                                4,
+                                4,
+                                12
+                            ],
+                            [
+                                4,
+                                4,
+                                1
+                            ]
+                        ],
+                        "near_win": 1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                4,
+                                4,
+                                2
+                            ],
+                            [
+                                5,
+                                5,
+                                3
+                            ],
+                            [
+                                3,
+                                2,
+                                2
+                            ],
+                            [
+                                5,
+                                0,
+                                2
+                            ],
+                            [
+                                3,
+                                3,
+                                5
+                            ]
+                        ],
+                        "near_win": 0,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ]
+                            ],
+                            "amount": 1,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    },
+                    {
+                        "pay_credit_total": 0,
+                        "result_reels": [
+                            [
+                                1,
+                                5,
+                                5
+                            ],
+                            [
+                                3,
+                                3,
+                                12
+                            ],
+                            [
+                                3,
+                                3,
+                                5
+                            ],
+                            [
+                                1,
+                                1,
+                                1
+                            ],
+                            [
+                                2,
+                                2,
+                                12
+                            ]
+                        ],
+                        "near_win": -1,
+                        "free_spin_times": 0,
+                        "scatter_info": {
+                            "id": [
+                                12,
+                                0
+                            ],
+                            "position": [
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    -1
+                                ],
+                                [
+                                    -1,
+                                    -1,
+                                    1
+                                ]
+                            ],
+                            "amount": 2,
+                            "multiplier": 1,
+                            "pay_credit": 0,
+                            "pay_rate": 0
+                        },
+                        "lines": [],
+                        "jp_type": -1,
+                        "jp_prize": 0
+                    }
+                ]
+            },
+            "get_jackpot": false,
+            "jackpot": {
+                "jackpot_id": "",
+                "jackpot_credit": 0,
+                "symbol_id": null
+            },
+            "get_jackpot_increment": false,
+            "jackpot_increment": null,
+            "grand": 0,
+            "major": 0,
+            "minor": 0,
+            "mini": 0,
+            "user_credit": 499940800,
+            "bet_credit": 100000,
+            "payout_credit": 40800,
+            "change_credit": -59200,
+            "effect_credit": 100000,
+            "buy_spin": 1,
+            "buy_spin_multiplier": 50,
+            "extra": null
+        });
+    }
+
+    public FGtoFG() {
+        Machine.Instance.spinTest(
+            {
+                "game_id": 4600,
+                "main_game": {
+                    "pay_credit_total": 10000,
+                    "result_reels": [
+                        [
+                            9,
+                            5,
+                            12
+                        ],
+                        [
+                            6,
+                            12,
+                            2
+                        ],
+                        [
+                            12,
+                            1,
+                            7
+                        ],
+                        [
+                            4,
+                            4,
+                            9
+                        ],
+                        [
+                            8,
+                            11,
+                            1
+                        ]
+                    ],
+                    "near_win": 1,
+                    "free_spin_times": 10,
+                    "scatter_info": {
+                        "id": [
+                            12,
+                            0
+                        ],
+                        "position": [
+                            [
+                                -1,
+                                -1,
+                                1
+                            ],
+                            [
+                                -1,
+                                1,
+                                -1
+                            ],
+                            [
+                                1,
+                                -1,
+                                -1
+                            ],
+                            [
+                                -1,
+                                -1,
+                                -1
+                            ],
+                            [
+                                -1,
+                                -1,
+                                -1
+                            ]
+                        ],
+                        "amount": 3,
+                        "multiplier": 1,
+                        "pay_credit": 0,
+                        "pay_rate": 0
+                    },
+                    "lines": [
+                        {
+                            "symbol_id": 12,
+                            "length": 3,
+                            "way": [
+                                1,
+                                1,
+                                1
+                            ],
+                            "pay_credit": 10000
+                        }
+                    ],
+                    "jp_type": -1,
+                    "jp_prize": 0
+                },
+                "get_sub_game": true,
+                "sub_game": {
+                    "pay_credit_total": 4800,
+                    "result": [
+                        {
+                            "pay_credit_total": 800,
+                            "result_reels": [
+                                [
+                                    4,
+                                    5,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    5
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 5,
+                                    "length": 3,
+                                    "way": [
+                                        2,
+                                        2,
+                                        1
+                                    ],
+                                    "pay_credit": 800
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    1,
+                                    1,
+                                    5
+                                ],
+                                [
+                                    2,
+                                    12,
+                                    4
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    1
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {    
+                            "pay_credit_total": 10000,
+                            "result_reels": [
+                                [
+                                    9,
+                                    5,
+                                    12
+                                ],
+                                [
+                                    6,
+                                    12,
+                                    2
+                                ],
+                                [
+                                    12,
+                                    1,
+                                    7
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    9
+                                ],
+                                [
+                                    8,
+                                    11,
+                                    1
+                                ]
+                            ],
+                            "near_win": 1,
+                            "free_spin_times": 10,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        1
+                                    ],
+                                    [
+                                        -1,
+                                        1,
+                                        -1
+                                    ],
+                                    [
+                                        1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 3,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 12,
+                                    "length": 3,
+                                    "way": [
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "pay_credit": 10000
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    2,
+                                    2,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    2
+                                ],
+                                [
+                                    5,
+                                    1,
+                                    1
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 600,
+                            "result_reels": [
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    2
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 4,
+                                    "length": 3,
+                                    "way": [
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "pay_credit": 600
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    4,
+                                    2,
+                                    2
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    0,
+                                    3
+                                ],
+                                [
+                                    1,
+                                    5,
+                                    5
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    2,
+                                    2,
+                                    2
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    0
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    2,
+                                    0,
+                                    3
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    2
+                                ]
+                            ],
+                            "near_win": 1,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 2,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 400,
+                            "result_reels": [
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    12,
+                                    1,
+                                    1
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    5
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 5,
+                                    "length": 3,
+                                    "way": [
+                                        2,
+                                        1,
+                                        1
+                                    ],
+                                    "pay_credit": 400
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 600,
+                            "result_reels": [
+                                [
+                                    3,
+                                    3,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    0,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    1,
+                                    1,
+                                    5
+                                ],
+                                [
+                                    4,
+                                    2,
+                                    2
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 4,
+                                    "length": 3,
+                                    "way": [
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "pay_credit": 600
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    3,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    4
+                                ],
+                                [
+                                    3,
+                                    5,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    3,
+                                    3
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 800,
+                            "result_reels": [
+                                [
+                                    4,
+                                    5,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    5
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 5,
+                                    "length": 3,
+                                    "way": [
+                                        2,
+                                        2,
+                                        1
+                                    ],
+                                    "pay_credit": 800
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    1,
+                                    1,
+                                    5
+                                ],
+                                [
+                                    2,
+                                    12,
+                                    4
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    1
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    4,
+                                    2,
+                                    2
+                                ],
+                                [
+                                    3,
+                                    5,
+                                    5
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    1
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    1
+                                ],
+                                [
+                                    3,
+                                    4,
+                                    4
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    2,
+                                    2,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    2
+                                ],
+                                [
+                                    5,
+                                    1,
+                                    1
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 600,
+                            "result_reels": [
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    2
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 4,
+                                    "length": 3,
+                                    "way": [
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "pay_credit": 600
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    4,
+                                    2,
+                                    2
+                                ],
+                                [
+                                    3,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    0,
+                                    3
+                                ],
+                                [
+                                    1,
+                                    5,
+                                    5
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    2,
+                                    2,
+                                    2
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    0
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    2,
+                                    0,
+                                    3
+                                ],
+                                [
+                                    4,
+                                    4,
+                                    2
+                                ]
+                            ],
+                            "near_win": 1,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 2,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 400,
+                            "result_reels": [
+                                [
+                                    5,
+                                    5,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    12,
+                                    1,
+                                    1
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    5
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 5,
+                                    "length": 3,
+                                    "way": [
+                                        2,
+                                        1,
+                                        1
+                                    ],
+                                    "pay_credit": 400
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 600,
+                            "result_reels": [
+                                [
+                                    3,
+                                    3,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    2,
+                                    4
+                                ],
+                                [
+                                    0,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    1,
+                                    1,
+                                    5
+                                ],
+                                [
+                                    4,
+                                    2,
+                                    2
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 1,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [
+                                {
+                                    "symbol_id": 4,
+                                    "length": 3,
+                                    "way": [
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "pay_credit": 600
+                                }
+                            ],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        },
+                        {
+                            "pay_credit_total": 0,
+                            "result_reels": [
+                                [
+                                    3,
+                                    3,
+                                    3
+                                ],
+                                [
+                                    5,
+                                    5,
+                                    4
+                                ],
+                                [
+                                    3,
+                                    5,
+                                    5
+                                ],
+                                [
+                                    5,
+                                    4,
+                                    4
+                                ],
+                                [
+                                    2,
+                                    3,
+                                    3
+                                ]
+                            ],
+                            "near_win": 0,
+                            "free_spin_times": 0,
+                            "scatter_info": {
+                                "id": [
+                                    12,
+                                    0
+                                ],
+                                "position": [
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ],
+                                    [
+                                        -1,
+                                        -1,
+                                        -1
+                                    ]
+                                ],
+                                "amount": 0,
+                                "multiplier": 1,
+                                "pay_credit": 0,
+                                "pay_rate": 0
+                            },
+                            "lines": [],
+                            "jp_type": -1,
+                            "jp_prize": 0
+                        }
+
+                    ]
+                },
+                "get_jackpot": false,
+                "jackpot": {
+                    "jackpot_id": "",
+                    "jackpot_credit": 0,
+                    "symbol_id": null
+                },
+                "get_jackpot_increment": false,
+                "jackpot_increment": null,
+                "grand": 0,
+                "major": 0,
+                "minor": 0,
+                "mini": 0,
+                "user_credit": 499912400,
+                "bet_credit": 100000,
+                "payout_credit": 12400,
+                "change_credit": -87600,
+                "effect_credit": 100000,
+                "buy_spin": 1,
+                "buy_spin_multiplier": 50,
+                "extra": null
+            }
+        );
+    }
+
 }
 

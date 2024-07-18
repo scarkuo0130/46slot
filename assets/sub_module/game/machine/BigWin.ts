@@ -101,6 +101,7 @@ export class BigWin extends Component {
         Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.BIG_WIN).node);
         Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.SUPER_WIN).node);
         Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.MEGA_WIN).node);
+        this.node.active = false;
     }
 
     /** 取得spine */
@@ -140,8 +141,8 @@ export class BigWin extends Component {
     public async waitingBigWin() { await Utils.delayEvent(this.event, 'done'); }
 
     public async play(type:number, quick:boolean=false) {
+        console.log('play', type, this.playing);
         if ( type === this.playing ) return;
-
         // 如果正在播放中，則中斷播放
         if ( this.playing !== BigWin.BIGWIN_TYPE.NONE ) await this.break();
         
@@ -157,7 +158,10 @@ export class BigWin extends Component {
             spine.setCompleteListener((track)=>{});
            
         } else {
-            Utils.playSpine(spine, this.ANIMATION_TYPE.START).then(()=>{ Utils.playSpine(spine, this.ANIMATION_TYPE.LOOP, true);});
+            Utils.playSpine(spine, this.ANIMATION_TYPE.START).then(()=>{ 
+                spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true);
+                //Utils.playSpine(spine, this.ANIMATION_TYPE.LOOP, true);
+            });
         }
 
         await Utils.commonFadeIn(this.playingSprite.node, false, null, this.playingSprite, 0.2);
@@ -212,13 +216,17 @@ export class BigWin extends Component {
         this.properties['ending'] = false;
         await this.machine.controller.maskActive(false);
         this.event?.emit('done');
+        Utils.delay(1000).then(()=>{ 
+            this.node.active = false; 
+            console.warn('bigwin end', this.node.active);
+        });
     }
 
     public async FadeOutBreak() {
         if ( this.playing === BigWin.BIGWIN_TYPE.NONE ) return;
         this.activeParticle(false);
         await Utils.commonFadeIn(this.playingSprite.node, true, null, this.playingSprite, 1);
-        this.break(); 
+        await this.break(); 
     }
 
     /** 快速結束 */
@@ -269,6 +277,7 @@ export class BigWin extends Component {
     }
 
     public async playBigWin(totalWin:number) {
+        if ( this.node.active === true ) return;
         let lastType = this.isBigWin(totalWin);
         if ( lastType === BigWin.BIGWIN_TYPE.NONE ) return;
 
@@ -285,6 +294,7 @@ export class BigWin extends Component {
         event['preQuickStop'] = false;
         event.removeAll('done');
 
+        this.node.active = true;
         await this.machine.controller.maskActive(true);
         Utils.commonFadeIn(this.valueBoard.node, false, null, this.valueBoard, 0.2);
         
@@ -293,12 +303,11 @@ export class BigWin extends Component {
             else this.play(type);
 
             await this.tweenScore(this.durationMap[type], playValue[type-1], playValue[type]);
-            console.log(event['quickStop']);
             if ( event['quickStop'] ) return; // 快速結束 由 quickEnd 觸發執行到結束
             if ( type === lastType )  break;  // 最後一次
             type++;
         }
-
+        if ( event['quickStop'] ) return;
         await this.end(); // 結束
     }
 

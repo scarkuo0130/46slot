@@ -1,7 +1,7 @@
 {
 "skeleton": {
-	"hash": "GaEaONiN8SGfpC0U/TgMDK8Bxz0",
-	"spine": "3.8.75",
+	"hash": "jJzyqPnOZBxcKOESard1WzpIncs",
+	"spine": "3.8.72",
 	"x": -644.05,
 	"y": -360,
 	"width": 1284.25,
@@ -17,26 +17,29 @@
 	{ "name": "DoorD", "parent": "root", "x": 478.21 }
 ],
 "slots": [
-	{ "name": "Door01", "bone": "DoorA", "attachment": "Door01" },
-	{ "name": "Door1", "bone": "DoorB", "attachment": "Door01" },
-	{ "name": "Door2", "bone": "DoorC", "attachment": "Door01" },
-	{ "name": "Door3", "bone": "DoorD", "attachment": "Door01" }
+	{ "name": "Door01", "bone": "DoorA", "attachment": "Door03" },
+	{ "name": "Door1", "bone": "DoorB", "attachment": "Door03" },
+	{ "name": "Door2", "bone": "DoorC", "attachment": "Door02" },
+	{ "name": "Door3", "bone": "DoorD", "attachment": "Door04" }
 ],
 "skins": [
 	{
 		"name": "default",
 		"attachments": {
 			"Door01": {
-				"Door01": { "x": 0.5, "width": 323, "height": 720 }
+				"Door01": { "x": 0.5, "width": 323, "height": 720 },
+				"Door03": { "path": "Door01", "x": 0.5, "width": 323, "height": 720 }
 			},
 			"Door1": {
-				"Door01": { "x": 0.5, "width": 323, "height": 720 }
+				"Door03": { "x": 0.5, "width": 323, "height": 720 }
 			},
 			"Door2": {
-				"Door01": { "x": 0.5, "width": 323, "height": 720 }
+				"Door01": { "path": "Door02", "x": 0.5, "width": 323, "height": 720 },
+				"Door02": { "x": 0.5, "width": 323, "height": 720 }
 			},
 			"Door3": {
-				"Door01": { "x": 0.5, "width": 323, "height": 720 }
+				"Door01": { "path": "Door04", "x": 0.5, "width": 323, "height": 720 },
+				"Door04": { "x": 0.5, "width": 323, "height": 720 }
 			}
 		}
 	}

@@ -6,17 +6,17 @@ filter: Linear,Linear
 repeat: none
 BM_01
   rotate: false
-  xy: 2, 734
-  size: 242, 223
-  orig: 242, 245
-  offset: 0, 11
+  xy: 2, 741
+  size: 247, 233
+  orig: 247, 245
+  offset: 0, 6
   index: -1
 BM_02
   rotate: false
   xy: 2, 510
-  size: 237, 222
-  orig: 242, 245
-  offset: 2, 12
+  size: 241, 229
+  orig: 247, 245
+  offset: 3, 8
   index: -1
 Boat_01
   rotate: true
@@ -69,10 +69,10 @@ fangshe02
   index: -1
 high_symbol_3
   rotate: false
-  xy: 2, 959
-  size: 242, 236
-  orig: 242, 245
-  offset: 0, 5
+  xy: 2, 976
+  size: 246, 242
+  orig: 262, 245
+  offset: 8, 1
   index: -1
 圖層 1
   rotate: false
