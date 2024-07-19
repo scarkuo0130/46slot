@@ -1,0 +1,142 @@
+{
+    "ConfirmType" : {
+        "0" : "No Confirm Button",
+        "1" : "Refresh Web Page",
+        "2" : "Close Error Message"
+    },
+
+    "ErrorMessage" : {
+        "MSG_TOKEN_ERROR" : {
+            "zh-cn"	:"连接发生问题，请关闭游戏重新登入。({0})",
+            "zh-tw"	:"連接發生問題，請關閉遊戲重新登入。({0})",
+            "en"	:"There is a problem about connection, please close the game and re-login.({0})",
+            "id"	:"Ada masalah dengan koneksi, harap tutup game dan login kembali.({0})",
+            "ko"	:"연결에 문제가 있으니 게임을 종료한 후 다시 로그인하세요.({0})",
+            "vi"	:"Đã xảy ra sự cố về kết nối, vui lòng đóng trò chơi và đăng nhập lại.({0})",
+            "th"	:"มีปัญหาเกี่ยวกับการเชื่อมต่อ กรุณาปิดเกมและเข้าสู่ระบบใหม่ ({0})",
+            "ms"	:"Terdapat masalah tentang sambungan, sila tutup permainan dan log masuk semula.({0})",
+            "ph"	:"May problema tungkol sa koneksyon, mangyaring isara ang laro at muling mag-login.({0})"
+        },
+        "MSG_DISCONNECT":
+        {
+            "zh-cn"	:"连接发生问题，请重新登入。({0})",
+            "zh-tw"	:"連接發生問題，請重新登入。({0})",
+            "en"	:"There is a problem about connection, please re-login.({0})",
+            "id"	:"Ada masalah dengan koneksi, harap login kembali.({0})",
+            "ko"	:"연결에 문제가 있습니다. 다시 로그인하십시오.({0})",
+            "vi"	:"Có vấn đề về kết nối, vui lòng đăng nhập lại.({0})",
+            "th"	:"มีปัญหาเกี่ยวกับการเชื่อมต่อ กรุณาเข้าสู่ระบบใหม่({0})",
+            "ms"	:"Terdapat masalah mengenai sambungan, sila log masuk semula.({0})",
+            "ph"	:"Mayroong problema tungkol sa koneksyon, mangyaring muling mag-login.({0})"
+        },
+        "MSG_HOMEPAGE":
+        {
+            "zh-cn"	:"确定要离开游戏，返回首页?",
+            "zh-tw"	:"確定要離開遊戲，返回首頁?",
+            "en"	:"Are you sure to leave the game and return to Home page?",
+            "mmk"	:"ဂိမ္းမွထြက္ျပီးအဓိကစာမ်က္ႏွာသို႔သြားရန္ေသခ်ာပါသလား?",
+            "id"	:"Apakah anda yakin untuk meninggalkan permainan?",
+            "ko"	:"게임 떠나고 홈페이지로 가겠습니까?",
+            "vi"    :"Có xác nhận rời khỏi trò chơi, trở về trang chủ?",
+            "th"    :"ยืนยันต้องการออกจากเกมและกลับไปที่หน้าแรกหรือไม่?",
+            "ms"    :"Adakah anda pasti mahu meninggalkan permainan dan kembali ke halaman utama?",
+            "ph"    :"Sigurado ka bang gusto mong umalis sa game at bumalik sa Home page?"
+        },
+        "MSG_ACCOUNT_ERROR":
+        {
+            "zh-cn"	:"帐号资讯异常代碼{0}，请洽客服，点击确定后回首页。",
+            "zh-tw"	:"帳號資訊異常代碼{0}，請洽客服，點擊確定後回首頁。",
+            "en"	:"Account information error code {0}, please contact CS. Click Confirm and return to website.",
+            "mmk"	:"အေကာင့္အခ်က္အလက္ပံုမွန္မဟုတ္ပါ ကုဒ္(0)။ ေက်းဇူးျပဳ၍ကာစတာမာဆားဗစ္သို႔ဆက္သြယ္ပါ။ အဓိကစာမ်က္ႏွာသို႔သြားရန္အတည္ျပဳရန္ကိုႏွိပ္ပါ။",
+            "id"	:"Informasi akun kode error {0}, harap hubungi CS. Tekan konfirmasi dan kembali ke website.",
+            "ko"	:"아이디 정보 에러 코드가 {0} 이고 고객센터에 연락하시길 바랍니다. 확인 버튼을 클릭하고 홈페이지에 돌아가겠습니다.",
+            "vi"    :"Mã lỗi thông tin tài khoản {0}, vui lòng liên hệ CSKH, sau khi nhấp xác nhận sẽ trở về trang chủ",
+            "th"    :"ข้อมูลบัญชี รหัสความผิดปกติ {0} กรุณาติดต่อฝ่ายบริการลูกค้า คลิกยืนยันเพื่อกลับสู่หน้าแรก",
+            "ms"    :"Kod ralat maklumat akaun {0}, sila hubungi Khidmat Pelanggan, klik OK untuk kembali ke halaman utama",
+            "ph"    :"Error code {0} sa impormasyon ng account, pakikontak ang CS. I-click ang Kumpirmahin at bumalik sa website."
+        },
+        "MSG_SHORT_BALANCE":
+        {
+            "zh-cn"	:"可用额度不足，请至网站充值。",
+            "zh-tw"	:"可用額度不足，請至網站儲值。",
+            "en"	:"Insufficient fund, please make a deposit.",
+            "mmk"	:"သင့္လက္က်န္ေငြမလံုေလာက္ပါ၊ ေက်းဇူးျပဳ၍ေငြျဖည့္သြင္းရန္၀က္ဘ္ဆိုက္သို႔သြားပါ။",
+            "id"	:"Saldo tidak cukup, harap lakukan deposit.",
+            "ko"	:"여액 부족하니 사이트에 충전하시길 바랍니다.",
+            "vi"    :"Số dư khả dụng không đủ, vui lòng vào trang web nạp tiền",
+            "th"    :"เครดิตที่มีอยู่ไม่เพียงพอ กรุณาไปที่เว็บไซต์เพื่อเติมเงิน",
+            "ms"    :"Amaun yang boleh digunakan tidak mencukupi, sila kembali ke laman web untuk tambah nilai",
+            "ph"    :"Kulang ang pondo, mag-deposito sa site."
+        },
+        "MSG_ACCOUNT_LOCKED":
+        {
+            "zh-cn"	:"帐号资讯异常代碼{0}，请洽客服，点击确定后回首页。",
+            "zh-tw"	:"帳號資訊異常代碼{0}，請洽客服，點擊確定後回首頁。",
+            "en"	:"Account information error code {0}, please contact CS. Click Confirm and return to website.",
+            "mmk"	:"အေကာင့္အခ်က္အလက္ပံုမွန္မဟုတ္ပါ ကုဒ္(0)။ ေက်းဇူးျပဳ၍ကာစတာမာဆားဗစ္သို႔ဆက္သြယ္ပါ။ အဓိကစာမ်က္ႏွာသို႔သြားရန္အတည္ျပဳရန္ကိုႏွိပ္ပါ။",
+            "id"	:"Informasi akun kode error {0}, harap hubungi CS. Tekan konfirmasi dan kembali ke website.",
+            "ko"	:"아이디 정보 에러 코드가 {0} 이고 고객센터에 연락하시길 바랍니다. 확인 버튼을 클릭하고 홈페이지에 돌아가겠습니다.",
+            "vi"    :"Mã lỗi thông tin tài khoản {0}, vui lòng liên hệ CSKH, sau khi nhấp xác nhận sẽ trở về trang chủ",
+            "th"    :"ข้อมูลบัญชี รหัสความผิดปกติ {0} กรุณาติดต่อฝ่ายบริการลูกค้า คลิกยืนยันเพื่อกลับสู่หน้าแรก",
+            "ms"    :"Kod ralat maklumat akaun {0}, sila hubungi Khidmat Pelanggan, klik OK untuk kembali ke halaman utama",
+            "ph"    :"Error code {0} sa impormasyon ng account, pakikontak ang CS. I-click ang Kumpirmahin at bumalik sa website."
+        },
+        "MSG_TRADE_LOCK":
+        {
+            "zh-cn"	:"交易进行中，无法进行游戏，点击确定后导回开始游戏。",
+            "zh-tw"	:"交易進行中，無法進行遊戲，點擊確定後導回開始遊戲。",
+            "en"	:"The game can't be running during transaction processing, and click Confirm to restart the game.",
+            "mmk"	:"ေငြလႊဲေျပာင္းမႈေဆာင္ရြက္ေနပါသည္။ ဂိမ္းမစတင္ႏိုင္ေသးပါ။ အတည္ျပဳရန္ကိုႏွိပ္ျပီးဂိမ္းကိုျပန္လည္စတင္ပါ။",
+            "id"	:"Permainan tidak dapat berjalan ketika transaksi sedang di proses, tekan konfirmasi untuk mengulang kembali permainan.",
+            "ko"	:"거래 진행 중에 게임할 수 없습니다. 확인 버튼을 클릭하고 게임 시작 페이지로 돌아가겠습니다.",
+            "vi"    :"Đang tiến hành giao dịch, không thể tiến hành trò chơi, sau khi nhấp xác nhận sẽ quay về bắt đầu trò chơi",
+            "th"    :"ธุรกรรมกำลังดำเนินการอยู่ ไม่สามารถเล่นเกมได้ คลิก ยืนยัน และเพื่อกลับสู่การเริ่มเกม",
+            "ms"    :"Transaksi sedang diproses, permainan tidak dapat dijalankan, klik OK untuk kembali ke permainan",
+            "ph"    :"Hindi maaaring tumatakbo ang game habang pinoproseso ang transaksyon, at i-click ang Kumpirmahin para i-restart ang game."
+        },
+        "MSG_VERSION_ERROR":
+        {
+            "zh-cn"	:"游戏版本不符，请联络客服人员。",
+            "zh-tw"	:"遊戲版本不符，請聯絡客服人員。",
+            "en"	:"Game version is not supprt, please contact CS.",
+            "mmk"	:"Game version is not supprt, please contact CS.",
+            "id"	:"Versi permainan tidak mendukung, hubungi CS.",
+            "ko"	:"게임 버전 맞지 않아 고객센터에 연락하시길 바랍니다.",
+            "vi"    :"Phiên bản trò chơi không phù hợp, vui lòng liên hệ nhân viên CSKH",
+            "th"    :"เวอร์ชั่นเกมไม่สอดคล้อง กรุณาติดต่อฝ่ายบริการลูกค้า",
+            "ms"    :"Versi permainan tidak sepadan, sila hubungi Khidmat Pelanggan",
+            "ph"    :"Hindi suportado ang bersyon ng game, pakikontak ang CS."
+        },
+        "LOGIN_TIMEOUT":
+        {
+            "zh-cn"	:"登入时效过期，请重新登入。({0})",
+            "zh-tw"	:"登入時效過期，請重新登入。({0})",
+            "en"	:"Login overtime, please re-login again.({0})",
+            "mmk"	:"Login overtime, please re-login again.({0})",
+            "id"	:"Login gagal, silahkan coba kembali lagi.({0})",
+            "ko"	:"로그인 기한을 넘겨서 다시 로그인하세요.({0})",
+            "vi"    :"Thời hạn đăng nhập đã quá hạn, vui lòng đăng nhập lại({0})",
+            "th"    :"หมดเวลาเข้าสู่ระบบ กรุณาเข้าสู่ระบบอีกครั้ง({0})",
+            "ms"    :"Tamat tempoh log masuk, sila log masuk sekali lagi({0})",
+            "ph"    :"Overtime sa pag-login, mag-login muli.({0})"
+        }
+    },
+
+    "default" : {
+        "Message" : "MSG_DISCONNECT",
+        "ConfirmText" : "",
+        "ConfirmType" : 0
+    },
+
+    "101" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "", "ConfirmType" : 0 },
+    "102" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "", "ConfirmType" : 0 },
+    "104" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "", "ConfirmType" : 0 },
+    "105" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "", "ConfirmType" : 0 },
+    "107" : { "Title": "System", "Message" : "MSG_TOKEN_ERROR", "ConfirmText" : "", "ConfirmType" : 0 },
+    "220" : { "Title": "System", "Message" : "MSG_SHORT_BALANCE", "ConfirmText" : "Ok", "ConfirmType" : 2 },
+    "230" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "Ok", "ConfirmType" : 2 },
+    "231" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "Ok", "ConfirmType" : 2 },
+    "232" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "Ok", "ConfirmType" : 2 },
+    "233" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "Ok", "ConfirmType" : 2 },
+    "239" : { "Title": "System", "Message" : "MSG_DISCONNECT", "ConfirmText" : "Ok", "ConfirmType" : 1 }
+}

@@ -4,6 +4,7 @@ import { gameInformation } from './GameInformation';
 import { playerInformation } from './PlayerInformation';
 import { EventType } from '../game/Constants';
 import { EventManager } from '../events/EventManager';
+import { DialogUI } from '../game/DialogUI';
 
 export enum SlotStates {
     IDLE = 'idle',
@@ -211,7 +212,9 @@ export class StateManager {
         };
         console.log(sendSpinData);
         let result = await HttpRequest.establishConnect( JSON.stringify( sendSpinData ) ).catch((error) => {
-            cc.Dailog.errorMessage(error);
+            console.error(error);
+            // cc.Dailog.errorMessage(error);
+            DialogUI.OpenErrorMessage(error);
         });
         if ( result != 'success' ) return null;
         return result;

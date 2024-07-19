@@ -22,10 +22,11 @@ export class Payway extends Paytable {
      */
     public async processWinningScore() {
         const gameResult = this.gameResult;
-        const { pay_credit_total } = gameResult;
+        const { lines, pay_credit_total } = gameResult;
 
         this.reel.closeNearMissMask();  // 關閉 NearMiss 遮罩
         if ( pay_credit_total === 0 ) return;
+        if ( lines == null || lines.length === 0 ) return;
         
         await super.processWinningScore();
         await super.processBigWin(pay_credit_total);
@@ -68,7 +69,7 @@ export class Payway extends Paytable {
 
     // way {"symbol_id": 7,"way": 3,"ways": [1,1,1],"pay_credit": 500}
     public async performSingleLine(lineData: any, isWaiting: boolean=false) : Promise<number> {
-        console.log(lineData);
+        // console.log(lineData);
         if ( lineData == null || !lineData.symbol_id || !lineData.pay_credit ) return 0;
         const { symbol_id, way, pay_credit } = lineData;
 
@@ -96,7 +97,11 @@ export class Payway extends Paytable {
     public async performSingleLineLoop() {
         const { lines, pay_credit_total } = this.gameResult;
 
-        if ( pay_credit_total === 0 ) return;
+        if ( this.machine.featureGame === true )   return this.reelMaskActive(false);
+        if ( this.gameResult.noLoop === true )     return this.reelMaskActive(false);
+        if ( pay_credit_total === 0 )              return this.reelMaskActive(false);
+        if ( lines == null || lines.length === 0 ) return this.reelMaskActive(false);
+
         await this.reelMaskActive(true);      // 打開遮罩
         let idx = 0;
         while(true) {

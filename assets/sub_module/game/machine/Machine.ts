@@ -63,7 +63,6 @@ export class Machine extends Component {
     public get buyFeatureGameButton() { return this.properties['buyFeatureGameButton']; }
 
     public activeBuyFGButton(active:boolean) {
-        console.log('activeBuyFGButton', active, this.buyFeatureGameButton);
         if ( this.buyFeatureGameButton == null ) return;
         this.buyFeatureGameButton.interactable = active;
         Utils.changeMainColor(this.buyFeatureGameButton.node, active ? Color.WHITE : Color.GRAY);

@@ -174,20 +174,20 @@ export class AutoSpin extends Component {
             if ( autoSpin.spinTimes > 0 ) {
                 autoSpin.spinTimes--;
                 this.autoSpinTimes(autoSpin.spinTimes);
-                this.machine.controller.clickSpin();
+                this.machine.controller.clickSpin(true);
 
                 if ( autoSpin.spinTimes === 0 ) this.active = false;
                 return true;
             } else if ( autoSpin.spinTimes === -1 ) {
                 this.autoSpinTimes(autoSpin.spinTimes);
-                this.machine.controller.clickSpin();
+                this.machine.controller.clickSpin(true);
                 return true;
             }
         } 
         
         if ( autoSpin.untilFeature === true ) {
             this.autoSpinTimes(autoSpin.spinTimes, true);
-            this.machine.controller.clickSpin();
+            this.machine.controller.clickSpin(true);
             return true;
         }
 
@@ -212,15 +212,19 @@ export class AutoSpin extends Component {
     public static CloseAutoSpinTimes() { AutoSpin.Instance.closeAutoSpinTimes(); }
 
     /**
-     * 
+     * 停止AutoSpin
+     * @from Controller initData['autoSpin']['button']
      */
-    public static StopAutoSpin() { AutoSpin.Instance.stopAutoSpin(); }
+    public static StopAutoSpin() { 
+        AutoSpin.Instance.stopAutoSpin(); 
+    }
 
     public stopAutoSpin() {
-        if ( this.machine.isBusy ) return;
+        if ( this.machine.featureGame ) return false;
         this.closeAutoSpinTimes();
         this.autoSpinTimeLabel.string = '';
         this.active = false;
+        return true;
     }
 }
 

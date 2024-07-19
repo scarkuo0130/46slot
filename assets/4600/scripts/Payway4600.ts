@@ -10,7 +10,6 @@ import { OrientationNode } from '../../sub_module/develop/OrientationNode';
 import { AutoSpin } from '../../sub_module/game/AutoSpin';
 const { ccclass, property } = _decorator;
 
-
 export enum JP_TYPE {
     GRAND = 0,
     MAJOR = 1,
@@ -221,7 +220,7 @@ export class Payway4600 extends Payway {
 
         // 等待動畫播完
         await Utils.delay(400);
-        console.log('this.gameResult?.jp_prize', this.gameResult?.jp_prize);
+
         if ( this.gameResult?.jp_prize > 0 ) {    
             this.machine.featureGame = true;
             await Utils.delay(1000);
@@ -239,7 +238,7 @@ export class Payway4600 extends Payway {
     }
 
     public async exit_jp_game() {
-        this.play_pot_ani(false);
+        this.reset_pot_ani();
         if ( this.isFreeGame ) return;
         this.machine.controller.buttonSpinning(false);
         this.machine.featureGame = false;
@@ -303,6 +302,15 @@ export class Payway4600 extends Payway {
         spine.setSkin(this.TYPE_POT_LEVEL[level]);
         await Utils.playSpine(spine, 'play03', false);
         return;
+    }
+
+    public async reset_pot_ani() {
+        this.JP_LEVEL = 0;
+        const level = this.JP_LEVEL;
+        const spine : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
+        spine.setSkin(this.TYPE_POT_LEVEL[level]);
+        Utils.playSpine(spine, 'play04', false);
+
     }
 
     /**
@@ -517,7 +525,6 @@ export class Payway4600 extends Payway {
             endEvent.emit('done');
         });
         endEvent = null;
-        console.log('endEvent', this.gameResult);
         await Utils.delayEvent(endEvent);
         await this.performAllPayline(); // 因為 Scatter 有分數，所以要播放一次
 
@@ -567,10 +574,10 @@ export class Payway4600 extends Payway {
         if ( wheelID > 2 ) return false;                                   // 第3輪之後不用做
         if ( wheelID === 0 ) return true;                                  // 第一排一定要做
         if ( wheelID > 0 && this.reel.nearMiss === 1 ) {                   // 第二排 但沒有聽牌不用做
-            if ( symbol.symID === 0 ) Utils.scaleFade(symbol.spine, 1, 3); // Wild 沒有敲鑼，另外用放大效果
             return true; 
         }
         return false;
     }
+
 }
 

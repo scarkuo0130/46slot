@@ -5,6 +5,7 @@ import { AutoSpin } from '../../AutoSpin';
 import { Machine } from '../Machine';
 import { gameInformation } from '../../GameInformation';
 import { DataManager } from '../../../data/DataManager';
+import { GameInformation } from '../GameInformation';
 const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
@@ -184,7 +185,7 @@ export class Controller extends Component {
         sprite.node.active = active;
     }
 
-    public static MaskActive(active:boolean) { return Controller.Instance.maskActive(active); }
+    public static MaskActive(active:boolean) { return Controller.Instance?.maskActive(active); }
 
     // #endregion 遮罩
 
@@ -218,11 +219,15 @@ export class Controller extends Component {
     public async buttonSpinning(active:boolean=true) {
 
         if ( active === false ) return this.spinButtonEvent.emit('done');
+        if ( this.spinButtonEvent['running'] ) return;
 
         const spinImage = this.props['spin']['image'].node;
         this.spinButtonEvent['tween'] = tween(spinImage).repeatForever(tween().by(0.5, { angle: -360 }, { easing:'linear' })).start();
+        this.spinButtonEvent['running'] = true;
+
         await Utils.delayEvent(this.spinButtonEvent);
         this.spinButtonEvent['tween'].stop();
+        this.spinButtonEvent['running'] = false;
     }
 
     public static async ButtonSpinning(active:boolean) { 
@@ -238,8 +243,12 @@ export class Controller extends Component {
     /**
      * Spin 按鈕事件
      */
-    public async clickSpin() {
+    public async clickSpin(autoSpin:boolean=false) {
+        console.log('clickSpin', autoSpin);
         if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
+
+        // if ( autoSpin === false && this.autoSpin.checkStopAutoSpin() ) return false;
+
         this.clickSpinButtonAnimation() ;
         if ( this.machine.spinning ) {
             this.machine.fastStopping = true;
@@ -258,6 +267,7 @@ export class Controller extends Component {
 
     protected clickInformation() {
         console.log('clickInformation');
+        GameInformation.OpenUI();
     }
 
     /**
@@ -538,6 +548,7 @@ export class Controller extends Component {
         this.betIdx = idx;
         this.refreshTotalBet();
         this.machine.eventChangeTotalBet();
+        this.machine.paytable.changeTotalBet(this.totalBet);
     }
 
     //#endregion TotalBet 相關功能

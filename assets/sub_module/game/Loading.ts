@@ -1,4 +1,4 @@
-import { _decorator, Color, Component, director, Sprite, SpriteFrame, tween } from 'cc';
+import { _decorator, Color, Component, director, Label, ProgressBar, Sprite, SpriteFrame, tween } from 'cc';
 import { HttpConstants, HttpRequest } from '../network/HttpRequest';
 import { gameInformation } from './GameInformation';
 import { EventType } from '../game/Constants';
@@ -8,6 +8,7 @@ import { i18n } from '../utils/i18n';
 import { PREVIEW } from 'cc/env';
 import { GoogleAnalytics } from '../analytics/GoogleAnalytics';
 import { Machine } from './machine/Machine';
+import { DialogUI } from './DialogUI';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -35,6 +36,12 @@ export class Loading extends Component {
 
     @property( { displayName: 'LoadingScene', tooltip: 'Input game scene', group: { name: 'Setting', id: '0' } } )
     public GameScene: string = "Game";
+
+    @property( { displayName: 'ProgressBar', tooltip: '載入進度條', type: ProgressBar, group: { name: 'Setting', id: '0' } } )
+    public progressBar : ProgressBar = null;
+
+    @property( { displayName: 'ProgressLabel', tooltip: '載入進度標籤', type: Label, group: { name: 'Setting', id: '0' } } )
+    public progressLabel : Label = null;
 
     @property( { displayName: "GameID", tooltip: "遊戲ID", group: { name: 'Preview', id: '0' } } )
     public gameid: number = 0;
@@ -72,14 +79,20 @@ export class Loading extends Component {
 
     public static Instance: Loading = null;
 
+    public static noLoading: boolean = false;
+
     onLoad () {
-        if ( Loading.Instance == null ) Loading.Instance = this;
+        if ( Loading.Instance !== null ) return Loading.noLoading = true;
+        this.maskSprite.node.active = true;
+        Loading.Instance = this;
         Utils.getConfig();
         this.getParamURL();
         this.changePlatformImage();
     }
 
     start () {
+        if ( Loading.noLoading ) return Machine.EnterGame();
+        this.tweenMask();
         const self = this;
         //this.tweenPlatfromImage();
         this.getRenewToken()
@@ -89,21 +102,30 @@ export class Loading extends Component {
             .catch( function ( e ) {
                 console.error( e );
                 console.error( 'fail to load data from server' );
+                DialogUI.OpenErrorMessage( '405' );
                 // cc.Dailog.errorMessage( e );
             } );
+    }
+
+    tweenMask() {
+        let alpha = { a: 255 };
+        let self = this;
+        tween( alpha ).to( 0.2, { a: 0 }, { onUpdate: ( a ) => { self.maskSprite.color = new Color( 0, 0, 0, alpha.a ); } } ).start();
     }
 
     /**
      * 更換平台商的 Loading 圖片
      */
-    changePlatformImage () {
+    changePlatformImage () : boolean {
         if ( Loading.getUrlParams == null ) return;
         if ( Loading.getUrlParams[ 'b' ] == null ) return;
+        if ( this.horizontalSprite == null || this.verticalSprite == null ) return;
 
         this.horizontalSprite.node.active = true;
         this.verticalSprite.node.active = true;
         //this.maskSprite.node.active = true;
 
+        
         let id = Loading.getUrlParams[ 'b' ];
         let index: number = 0;
         for ( let idx in this.platformImage ) {
@@ -208,10 +230,16 @@ export class Loading extends Component {
         if ( Loading.Instance.isPreview === true ) return;
 
         const self = this;
+        let currentRate: number = 0;
         GoogleAnalytics.instance.initialize();
         director.preloadScene( Loading.Instance.GameScene, function ( completedCount, totalCount, item ) {
             let rate = completedCount / totalCount;
             let progress = Math.floor( rate * 100 );
+            if (rate > currentRate) currentRate = rate;
+
+            Loading.Instance.progressBar.progress = currentRate;
+            Loading.Instance.progressLabel.string = progress + '%';
+            
             if ( rate > 0.4 ) {
                 EventManager.instance.dispatchEvent( EventType.UPDATE_PROGRESS, rate );
             }

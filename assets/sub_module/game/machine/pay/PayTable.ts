@@ -169,8 +169,8 @@ export class Paytable extends Component {
         eventTarget?.emit('done');
         
         if ( this.machine.featureGame === true ) return;
-        if ( this.gameResult.noLoop != true ) this.performSingleLineLoop(); // 執行單項報獎流程
-        else this.gameResult.noLoop = false;
+        this.performSingleLineLoop(); // 執行單項報獎流程
+       
     }
 
     /**
@@ -437,7 +437,6 @@ export class BuyFeatureGameUI {
     public clickBuyFeatureGameConfirm() {
         if ( this.machine.isBusy ) return;
         if ( this.machine.buyFeatureGame(this.betIdx) === false ) return;
-        console.log('clickBuyFeatureGame');
         this.onClickCloseBuyFGUI();
     }
 }

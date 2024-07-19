@@ -3721,5 +3721,234 @@ export class Develop4600 extends Component {
         );
     }
 
+    public spinTest1() {
+        Machine.Instance.spinTest({
+            "game_id": 4600,
+            "main_game": {
+                "pay_credit_total": 100,
+                "result_reels": [
+                    [
+                        12,
+                        8,
+                        6
+                    ],
+                    [
+                        1,
+                        1,
+                        0
+                    ],
+                    [
+                        3,
+                        9,
+                        6
+                    ],
+                    [
+                        4,
+                        9,
+                        2
+                    ],
+                    [
+                        4,
+                        4,
+                        8
+                    ]
+                ],
+                "near_win": 0,
+                "free_spin_times": 0,
+                "scatter_info": {
+                    "id": [
+                        12,
+                        0
+                    ],
+                    "position": [
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ]
+                    ],
+                    "amount": 1,
+                    "multiplier": 1,
+                    "pay_credit": 0,
+                    "pay_rate": 0
+                },
+                "lines": [
+                    {
+                        "symbol_id": 6,
+                        "length": 3,
+                        "way": [
+                            1,
+                            1,
+                            1
+                        ],
+                        "pay_credit": 100
+                    }
+                ],
+                "jp_type": -1,
+                "jp_prize": 0
+            },
+            "get_sub_game": false,
+            "sub_game": {
+                "pay_credit_total": 0,
+                "result": null
+            },
+            "get_jackpot": false,
+            "jackpot": {
+                "jackpot_id": "",
+                "jackpot_credit": 0,
+                "symbol_id": null
+            },
+            "get_jackpot_increment": false,
+            "jackpot_increment": null,
+            "grand": 0,
+            "major": 0,
+            "minor": 0,
+            "mini": 0,
+            "user_credit": 499988800,
+            "bet_credit": 2000,
+            "payout_credit": 100,
+            "change_credit": -1900,
+            "effect_credit": 2000,
+            "buy_spin": 0,
+            "buy_spin_multiplier": 1,
+            "extra": null
+        });
+    }
+
+    public spinTest2() {
+        Machine.Instance.spinTest({
+            "game_id": 4600,
+            "main_game": {
+                "pay_credit_total": 20300,
+                "result_reels": [
+                    [
+                        7,
+                        2,
+                        2
+                    ],
+                    [
+                        3,
+                        7,
+                        4
+                    ],
+                    [
+                        0,
+                        10,
+                        8
+                    ],
+                    [
+                        0,
+                        10,
+                        8
+                    ],
+                    [
+                        3,
+                        9,
+                        4
+                    ]
+                ],
+                "near_win": 1,
+                "free_spin_times": 0,
+                "scatter_info": {
+                    "id": [
+                        12,
+                        0
+                    ],
+                    "position": [
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        [
+                            -1,
+                            -1,
+                            -1
+                        ]
+                    ],
+                    "amount": 2,
+                    "multiplier": 1,
+                    "pay_credit": 0,
+                    "pay_rate": 0
+                },
+                "lines": [
+                    {
+                        "symbol_id": 7,
+                        "length": 4,
+                        "way": [
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "pay_credit": 300
+                    }
+                ],
+                "jp_type": 3,
+                "jp_prize": 20000,
+                "noLoop": false
+            },
+            "get_sub_game": false,
+            "sub_game": {
+                "pay_credit_total": 0,
+                "result": null
+            },
+            "get_jackpot": false,
+            "jackpot": {
+                "jackpot_id": "",
+                "jackpot_credit": 0,
+                "symbol_id": null
+            },
+            "get_jackpot_increment": false,
+            "jackpot_increment": null,
+            "grand": 0,
+            "major": 0,
+            "minor": 0,
+            "mini": 0,
+            "user_credit": 500012300,
+            "bet_credit": 2000,
+            "payout_credit": 20300,
+            "change_credit": 18300,
+            "effect_credit": 2000,
+            "buy_spin": 0,
+            "buy_spin_multiplier": 1,
+            "extra": null
+        });
+    }
 }
 

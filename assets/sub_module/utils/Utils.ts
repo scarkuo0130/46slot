@@ -125,12 +125,12 @@ export class Utils {
      * @param bindComponent 
      * @returns 
      */
-    public static initData( initData:any, bindComponent: any ) {
+    public static initData( initData:any, bindComponent: any, propertiesKey:string = 'properties' ) {
         if ( initData == null ) return;
         if ( bindComponent == null ) return;
         // if ( bindComponent.node == null ) return;
 
-        let properties = bindComponent['properties'];
+        let properties = bindComponent[propertiesKey];
         if ( properties == null ) properties = {};
 
         for(let i=0;i<Object.keys(initData).length;i++) {
@@ -460,6 +460,15 @@ export class Utils {
         } );
     }
 
+    public static async loadJson(path:string) {
+        return new Promise((resolve, reject) => {
+            resources.load(path, JsonAsset, (err, json) => {
+                if (err) return reject(err);
+                resolve(json.json);
+            });
+        });
+    }
+
     public static setVersion ( ver: string ) {
         if ( gversion != undefined ) return;
 
@@ -581,7 +590,7 @@ export class Utils {
     /**
      * (async) 震動放大效果
      */
-    public static async scaleFade(colorComponent: Sprite | Label | sp.Skeleton , fadeoutSec:number=1, scale:number=3, onFinish:Function=null) {
+    public static async scaleFade(colorComponent: Sprite | Label | sp.Skeleton , fadeoutSec:number=1, scale:number=3, onFinish:Function=null, withScale:Vec3[]=null) {
         if ( colorComponent == null ) return;
         const fromNode = colorComponent.node;
         let copyNode = instantiate(fromNode);
@@ -604,6 +613,12 @@ export class Utils {
             onUpdate:   () => { sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
             onComplete: () => { onFinish?.() }
         }).start();
+
+        if ( withScale != null && withScale.length === 2 ) { 
+            console.log('withScale', withScale);
+            fromNode.setScale(withScale[0]);
+            tween(fromNode).to(fadeoutSec, { scale: withScale[1] }, { easing: 'quartOut' }).start();
+        }
         
         tween(copyNode).to(fadeoutSec, { scale: toScale }, { easing: 'quartOut' }).start();
         await Utils.delay(waitTime);

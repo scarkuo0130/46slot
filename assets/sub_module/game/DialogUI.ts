@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, Button, Label } from 'cc';
 import { Utils, DATA_TYPE } from '../utils/Utils';
 import { Controller } from './machine/controller_folder/Controller';
+import { i18n } from '../utils/i18n';
 const { ccclass, property } = _decorator;
 
 @ccclass('DialogUI')
@@ -33,17 +34,41 @@ export class DialogUI extends Component {
 
     protected onLoad(): void { this.init(); }
 
+    public static ErrorMessage:any = null;
 
-    private init(): void {
+    private async init(): void {
         DialogUI.Instance = this;
         this.node.active = false;
         this.node.setPosition(0,0,0);
         Utils.initData(this.initData, this);
+
+        if ( DialogUI.ErrorMessage === null ) {
+            DialogUI.ErrorMessage = await Utils.loadJson('data/ErrorMessage');
+            console.log(DialogUI.ErrorMessage);
+        }
     }
 
     private closeUI(): void {
         Utils.commonActiveUITween(this.node, false);
         Controller.MaskActive(false);
+    }
+
+    public static confirmEvent = {
+        '0': null,
+        '1' : () => { location.reload(); },
+        '2' : () => { DialogUI.Instance.closeUI(); },
+    };
+    public static OpenErrorMessage(errorCode:string) {
+        let messageData = DialogUI.ErrorMessage[errorCode];
+        if ( messageData == null ) {
+            messageData = DialogUI.ErrorMessage['default'];
+        }
+
+        const language = i18n.getLanguage() ? i18n.getLanguage() : 'en';
+        const messageType = DialogUI.ErrorMessage['ErrorMessage'][messageData['Message']];
+        const message = Utils.stringFormat(messageType[language], errorCode);
+        const confirmType = messageData['ConfirmType'];
+        DialogUI.Instance.openUI(message, true, 'Error', DialogUI.confirmEvent[confirmType], 'ok');
     }
 
     public static OpenUI(content:string, activeClose=false, title:string='', clickEvent:Function=null, okLabel:string='ok'): void { return DialogUI.Instance.openUI(content, activeClose, title, clickEvent, okLabel); }
