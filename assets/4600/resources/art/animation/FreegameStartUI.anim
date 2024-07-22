@@ -11,7 +11,7 @@
     "speed": 1,
     "wrapMode": 1,
     "enableTrsBlending": false,
-    "_duration": 1.25,
+    "_duration": 1.3333333333333333,
     "_hash": 500763545,
     "_tracks": [
       {
@@ -70,7 +70,7 @@
   },
   {
     "__type__": "cc.animation.HierarchyPath",
-    "path": "YouHaveWon"
+    "path": "content/YouHaveWon"
   },
   {
     "__type__": "cc.animation.ComponentPath",
@@ -87,7 +87,7 @@
     "_times": [
       0,
       0.5,
-      0.75
+      1
     ],
     "_values": [
       {
@@ -147,7 +147,7 @@
     "_times": [
       0,
       0.5,
-      0.75
+      1
     ],
     "_values": [
       {
@@ -207,7 +207,7 @@
     "_times": [
       0,
       0.5,
-      0.75
+      1
     ],
     "_values": [
       {
@@ -267,7 +267,7 @@
     "_times": [
       0,
       0.5,
-      0.75
+      1
     ],
     "_values": [
       {
@@ -354,7 +354,7 @@
   },
   {
     "__type__": "cc.animation.HierarchyPath",
-    "path": "Times"
+    "path": "content/Times"
   },
   {
     "__type__": "cc.animation.ComponentPath",
@@ -370,8 +370,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.75,
-      1
+      0.6666666666666666,
+      1.1666666666666667
     ],
     "_values": [
       {
@@ -430,8 +430,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.75,
-      1
+      0.6666666666666666,
+      1.1666666666666667
     ],
     "_values": [
       {
@@ -490,8 +490,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.75,
-      1
+      0.6666666666666666,
+      1.1666666666666667
     ],
     "_values": [
       {
@@ -550,8 +550,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      0.75,
-      1
+      0.6666666666666666,
+      1.1666666666666667
     ],
     "_values": [
       {
@@ -638,7 +638,7 @@
   },
   {
     "__type__": "cc.animation.HierarchyPath",
-    "path": "FreeGame"
+    "path": "content/FreeGame"
   },
   {
     "__type__": "cc.animation.ComponentPath",
@@ -654,8 +654,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      1,
-      1.25
+      0.8333333333333334,
+      1.3333333333333333
     ],
     "_values": [
       {
@@ -714,8 +714,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      1,
-      1.25
+      0.8333333333333334,
+      1.3333333333333333
     ],
     "_values": [
       {
@@ -774,8 +774,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      1,
-      1.25
+      0.8333333333333334,
+      1.3333333333333333
     ],
     "_values": [
       {
@@ -834,8 +834,8 @@
     "__type__": "cc.RealCurve",
     "_times": [
       0,
-      1,
-      1.25
+      0.8333333333333334,
+      1.3333333333333333
     ],
     "_values": [
       {

@@ -1,4 +1,4 @@
-import { _decorator, Component, find, Mask, EventTarget, Graphics, Button, Color } from 'cc';
+import { _decorator, Component, find, Mask, EventTarget, Graphics, Button, Color, sp } from 'cc';
 import { AutoSpin } from '../AutoSpin';
 import { Controller } from './controller_folder/Controller';
 import { gameInformation } from '../GameInformation';
@@ -53,6 +53,21 @@ export class Machine extends Component {
 
     public get bigwin() :BigWin { return BigWin.Instance; }
     public static SetReel(reel) { Machine.Instance.reel = reel; }
+    public get spinEvent() : EventTarget { return this.properties.spinEvent; }
+
+    public clearSpinEvent() : EventTarget {
+        let spinEvent = this.spinEvent;
+        if ( spinEvent == null ) {
+            this.properties['spinEvent'] = new EventTarget();
+            return this.spinEvent;
+        }
+
+        spinEvent.removeAll('done');
+        spinEvent['result'] = null;
+        spinEvent['spinning'] = false;
+        spinEvent['buy'] = null;
+        return spinEvent;
+    }
 
     public set buyFeatureGameButton(button:Button) { 
         if ( button == null ) return;
@@ -187,25 +202,38 @@ export class Machine extends Component {
         await this.spin();
     }
 
-    public buyFeatureGame(idx:number) : boolean {
-        let event = this.properties['spinEvent'];
+    public async buyFeatureGame(idx:number) : Promise<boolean> {
+        let event = this.spinEvent;
+        let buyEvent : EventTarget = this.properties['buyEvent'];
 
         if ( this.isBusy ) return false;
-        if ( idx < gameInformation.bet_available_idx ) return false;
-        if ( event?.spinning ) return false;
+        if ( event?.['spinning'] ) return false;
+        if ( buyEvent?.['spinning'] ) return false;
 
         let totalBet = this.controller.calculateTotalBet(idx);
         let userCredit = this.userCredit;
-
+        
         if ( userCredit < totalBet ) {
             DialogUI.OpenUI('Insufficient balance', true, 'Insufficient balance', null, 'OK');
             return false;
         }
 
+        if ( buyEvent == null ) {
+            this.properties['buyEvent'] = new EventTarget();
+            buyEvent = this.properties['buyEvent'];
+        } else {
+            buyEvent.removeAll('done');
+        }
+
         userCredit -= totalBet;
         this.controller.changeBalance(userCredit);
-        this.spinCommand(totalBet);
         this.spin();
+        await this.spinCommand(totalBet);
+        buyEvent.emit('done');
+        event['buy'] = {
+            'totalBet' : totalBet,
+            'idx' : idx,
+        };
 
         return true;
     }
@@ -213,11 +241,7 @@ export class Machine extends Component {
 
     // 向 Server 發送SPIN指令
     public async spinCommand (buyTotalBet:number=0): Promise<any> { 
-        let event = this.properties['spinEvent'];
-
-        event.removeAll('done');
-        event['result'] = null;
-        event['spinning'] = true;
+        let event = this.clearSpinEvent();
 
         if ( buyTotalBet === 0 ) {
             StateManager.instance.sendSpinCommand();
@@ -234,7 +258,7 @@ export class Machine extends Component {
 
     // Server 回應 SPIN
     public spinResponse ( spinData: any ) {
-        let event = this.properties['spinEvent'];
+        let event = this.spinEvent;
         event['result'] = spinData;
         this.properties['spinData'] = spinData;
         DataManager.instance.userData.credit = spinData.user_credit;
@@ -246,13 +270,12 @@ export class Machine extends Component {
     }
 
     public spinTest(spinData:any) {
-        let event = this.properties['spinEvent'];
+        let event = this.spinEvent;
 
         event.removeAll('done');
         event['result'] = null;
         this.spin();
         this.spinResponse(spinData);
         this.paytable.spinResult(spinData);
-
     }
 }

@@ -167,9 +167,10 @@ export class JpGame4600 extends Component {
         door.node.active = true;
 
         await Utils.playSpine(door, 'play', false); // 關門動畫
-        closeDoorCallFunction();
+        if ( closeDoorCallFunction ) closeDoorCallFunction();
         this.background.active = true;
         await Utils.playSpine(door, 'play02', false); // 開門動畫
+        door.node.active = false;
     }
 
     public async enter_jp_game(jp_type:JP_TYPE, jp_prize:number) {

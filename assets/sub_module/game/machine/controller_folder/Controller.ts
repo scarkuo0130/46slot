@@ -244,7 +244,7 @@ export class Controller extends Component {
      * Spin 按鈕事件
      */
     public async clickSpin(autoSpin:boolean=false) {
-        console.log('clickSpin', autoSpin);
+        //console.log('clickSpin', autoSpin);
         if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
 
         // if ( autoSpin === false && this.autoSpin.checkStopAutoSpin() ) return false;
@@ -499,17 +499,12 @@ export class Controller extends Component {
     public get betIdx() { return this.props['ui']['totalBet']['betIdx']; }
 
     /**  取得押注額度 */
-    private get betValue() { 
-        const [ coinValue, lineBet, lineTotal ] = [
-            gameInformation.coinValueArray[this.betIdx],
-            gameInformation.lineBet,
-            gameInformation.lineTotal
-        ];
-
-        return coinValue * 1000 * lineBet * lineTotal / 1000;
-    }
+    private get betValue() { return this.calculateTotalBet(this.betIdx);}
 
     public calculateTotalBet(idx:number) {
+        const paytableTotalBet = this.machine.paytable?.calculateTotalBet(idx);
+        if ( paytableTotalBet != null ) return paytableTotalBet;
+
         const [ coinValue, lineBet, lineTotal ] = [
             gameInformation.coinValueArray[idx],
             gameInformation.lineBet,
@@ -527,7 +522,7 @@ export class Controller extends Component {
     private get betIdxMin() { return gameInformation.bet_available_idx; }
 
     /**  更新押注額 */
-    public refreshTotalBet() { /*this.setTotalBet(this.betValue);*/ this.changeTotalBet(this.betValue); }
+    public refreshTotalBet() { this.changeTotalBet(this.betValue); }
 
     /**  減少押注 */
     protected clickTotalBetDecrease() { this.changeTotalBetIdx(this.betIdx - 1); }
@@ -549,6 +544,16 @@ export class Controller extends Component {
         this.refreshTotalBet();
         this.machine.eventChangeTotalBet();
         this.machine.paytable.changeTotalBet(this.totalBet);
+    }
+
+    public displayTotalBetIdx(idx:number) {
+        const length = this.betIdxLength;
+        if ( idx >= length ) idx = length-1;
+        if ( idx < this.betIdxMin ) idx = this.betIdxMin;
+
+        const totalBet = this.calculateTotalBet(idx);
+        this.changeTotalBet(totalBet);
+        return totalBet;
     }
 
     //#endregion TotalBet 相關功能

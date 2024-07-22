@@ -568,23 +568,31 @@ export class Utils {
     }
 
     /** (async)播放 Spine 動畫  */
-    public static async playSpine(spine:sp.Skeleton, animationName:string, loop:boolean = false, timeScale:number = 1.0, autoActive:boolean = false) {
+    public static async playSpine(spine:sp.Skeleton, animationName:string, loop:boolean = false, timeScale:number = 1.0, autoActive:boolean = false, onComplete:Function=null) {
         if ( spine == null ) return;
         if ( animationName == null ) return;
         if ( autoActive ) {
             spine.node.parent.active = true;
             spine.node.active = true;
         }
-        
+
+        let eventTarget = new EventTarget();
         spine.timeScale = timeScale;
         spine.setCompleteListener((trackEntry) => { spine['isPlaying'] = false; });
 
-        let duration = this.getAnimationDuration(spine, animationName) * 1000 / timeScale;
+        let duration = this.getAnimationDuration(spine, animationName) * 1000 / timeScale + 500;
         let track : sp.spine.TrackEntry = spine.setAnimation(0, animationName, loop);
-        
+        spine.setCompleteListener((trackEntry) => { 
+            eventTarget?.emit('done');
+            if ( onComplete ) onComplete(trackEntry);
+            eventTarget = null;
+        });
+
         spine['track'] = track;
         spine['isPlaying'] = true;
-        await Utils.delay(duration);
+        spine['event'] = eventTarget;
+        await Utils.delayEvent(eventTarget);
+        spine['isPlaying'] = false;
     }
 
     /**

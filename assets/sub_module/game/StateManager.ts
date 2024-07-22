@@ -210,7 +210,7 @@ export class StateManager {
                 buy_spin: playerInformation.isBuyFreeGame
             }
         };
-        console.log(sendSpinData);
+        // console.log(sendSpinData);
         let result = await HttpRequest.establishConnect( JSON.stringify( sendSpinData ) ).catch((error) => {
             console.error(error);
             // cc.Dailog.errorMessage(error);
@@ -236,7 +236,7 @@ export class StateManager {
                 buy_spin: 1,
             }
         };
-        console.log(sendSpinData);
+        // console.log(sendSpinData);
         let result = await HttpRequest.establishConnect( JSON.stringify( sendSpinData ) ).catch((error) => {
             cc.Dailog.errorMessage(error);
         });

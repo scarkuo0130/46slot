@@ -4,7 +4,7 @@ import { Utils, DATA_TYPE } from '../../../utils/Utils';
 import { Machine } from '../Machine';
 import { BigWin } from '../BigWin';
 import { Controller } from '../controller_folder/Controller';
-import { gameInformation } from '../../GameInformation';
+import { BuyFeatureGameUI } from '../BuyFeatureGameUI';
 import { Symbol } from '../Symbol';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
@@ -334,109 +334,23 @@ export class Paytable extends Component {
      */
     public showDropSymbol(wheelID:number, symbol:Symbol) : boolean { return true; }
 
-}
+    /**
+     * 額外撰寫，計算TotalBet數值
+     * @param idx 
+     * @returns null 依照原設定
+     */
+    public calculateTotalBet(idx:number) : number { return null; }
 
-/**
- * 購買FeatureGame介面操作
- */
-@ccclass( 'BuyFeatureGameUI' )
-export class BuyFeatureGameUI {
-    public get machine () : Machine { return Machine.Instance }
-    public get reel (): Reel { return this.machine.reel; }
-    public get paytable () : Paytable { return this.machine.paytable; }
-    public get controller() : Controller { return this.machine.controller; }
-    public get betIdx() :number { return this.properties.totalBet.idx; }
-    public set betIdx(value) { 
-        this.properties.totalBet.idx = value; 
-        console.log('this.properties.totalBet.idx', value, this.properties.totalBet.idx);
-    }
+    // #region[[rgba(0,0,0,0)]] BuyFeatureGameUI 事件
+    public onClickCloseBuyFGUI() { return; }
+    public onClickOpenBuyFGUI() { return; }
+    public refreshTotalBet() { return; }
+    public addBet() { return; }
+    public subBet() { return; }
+    public clickBuyFeatureGameConfirm() { return; }
 
-    public set totalBet(value) { 
-        this.properties.totalBet.value = value;
-        this.properties['BuyFeatureGameUI']['valueLabel'].component.string = Utils.numberComma(value); 
-    }
+    // 是否可以購買 FeatureGame
+    public checkBuyFeatureGame() : boolean { return true; }
+    // #endregion
 
-    public properties = {
-        'BuyFeatureGameUI' : {
-            'ui' : null,
-            'buyButton' : null,
-            'closeButton' : null,
-            'valueLabel' : null,
-            'addBetButton' : null,
-            'subBetButton' : null,
-         },
-         'totalBet': {
-            'idx' : 0,
-            'value' : 0,
-         },
-    };
-
-    public get node() { return this.properties.BuyFeatureGameUI['ui'].node; }
-
-    public init(inspector:any) {
-        const onLoadData = {
-            'BuyFeatureGameUI' : {
-                'ui'            : { [DATA_TYPE.TYPE] : Node,   [DATA_TYPE.SCENE_PATH] : inspector.buyFeatureGameUI.getPathInHierarchy()},
-                'valueLabel'    : { [DATA_TYPE.TYPE] : Label,  [DATA_TYPE.SCENE_PATH] : inspector.valueLabelNode.getPathInHierarchy()  },
-                'buyButton'     : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.buyButtonNode.getPathInHierarchy(),    [DATA_TYPE.CLICK_EVENT]: this.clickBuyFeatureGameConfirm  },
-                'closeButton'   : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.closeButtonNode.getPathInHierarchy(),  [DATA_TYPE.CLICK_EVENT]: this.onClickCloseBuyFGUI, },
-                'addBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.addBetButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.addBet },
-                'subBetButton'  : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.subBetButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.subBet},
-                'openButton'    : { [DATA_TYPE.TYPE] : Button, [DATA_TYPE.SCENE_PATH] : inspector.mainGameBuyFeatureGameButtonNode.getPathInHierarchy(), [DATA_TYPE.CLICK_EVENT]: this.onClickOpenBuyFGUI },
-            }
-        };
-
-        Utils.initData(onLoadData, this);
-        this.node.active = false;
-        this.node.setPosition(0, 0, 0);
-    }
-
-    public onClickCloseBuyFGUI() { 
-        this.controller.maskActive(false);
-        Utils.commonActiveUITween(this.node, false); 
-    }
-
-    public onClickOpenBuyFGUI() { 
-        if ( this.machine.isBusy ) return;
-
-        this.betIdx = this.controller.betIdx;
-        this.refreshTotalBet();
-        this.controller.maskActive(true);
-        Utils.commonActiveUITween(this.node, true); 
-    }
-
-    public refreshTotalBet() {
-        this.totalBet = this.betValue;
-    }
-
-    public addBet() { return this.setBet(1); }
-    public subBet() { return this.setBet(-1); }
-
-    private setBet(add:number) {
-        let idx = this.betIdx;
-        const coinValueArray = gameInformation.coinValueArray;
-        const max = coinValueArray.length;
-        idx += add;
-        if ( idx < 0 ) idx = max - 1;
-        if ( idx >= max ) idx = 0;
-        this.betIdx = idx;
-        this.refreshTotalBet();
-    }
-
-    private get betValue() { 
-        const [ coinValue, lineBet, lineTotal, multiplier ] = [
-            gameInformation.coinValueArray[this.betIdx],
-            gameInformation.lineBet,
-            gameInformation.lineTotal,
-            gameInformation.buyInformation.multiplier,
-        ];
-
-        return coinValue * 1000 * lineBet * lineTotal * multiplier / 1000;
-    }
-
-    public clickBuyFeatureGameConfirm() {
-        if ( this.machine.isBusy ) return;
-        if ( this.machine.buyFeatureGame(this.betIdx) === false ) return;
-        this.onClickCloseBuyFGUI();
-    }
 }

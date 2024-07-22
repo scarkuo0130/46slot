@@ -1,4 +1,4 @@
-import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, Button, EventTarget, Tween } from 'cc';
+import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, Button, EventTarget, Tween, ParticleSystem2D } from 'cc';
 import { Utils, DATA_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
 import { Payway } from '../../sub_module/game/machine/pay/Payway';
@@ -45,6 +45,7 @@ export class Payway4600 extends Payway {
             'mask'     : { [DATA_TYPE.TYPE] : Sprite,        [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/PreLoad/Mask'  },
             'pDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/PreLoad/Portrait/door'  },
             'lDoor'    : { [DATA_TYPE.TYPE] : sp.Skeleton,   [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/PreLoad/Landscape/door'  },
+            'particle' : { [DATA_TYPE.TYPE] : ParticleSystem2D, [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/Main Background/BG_new/bg_main'  },
         },
     
         'jp' : {
@@ -68,17 +69,17 @@ export class Payway4600 extends Payway {
         'freeGame' : {
             'main' : { [DATA_TYPE.TYPE] : Node,                 [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI'},
             'trigger_ui' : { [DATA_TYPE.TYPE] : sp.Skeleton,    [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Trigger Game'},
-            'start_ui'   : { [DATA_TYPE.TYPE] : sp.Skeleton,    [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Start Game'},
-            'start_ui_c' : { [DATA_TYPE.TYPE] : Node,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Start Game/PressAnyWhereToContinue'},
-            'end_ui'     : { [DATA_TYPE.TYPE] : sp.Skeleton,    [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game'},
-            'end_ui_c'   : { [DATA_TYPE.TYPE] : Node,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/PressAnyWhereToContinue'},
-            'endTimes'   : { [DATA_TYPE.TYPE] : Label,          [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/Times'},
-            'endTotalWin': { [DATA_TYPE.TYPE] : Label,          [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/Value'},
+            'start_ui'   : { [DATA_TYPE.TYPE] : Node,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Start Game'},
+            'start_ui_c' : { [DATA_TYPE.TYPE] : Node,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/Start Game/content/PressAnyWhereToContinue'},
+            'end_ui'     : { [DATA_TYPE.TYPE] : Node,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game'},
+            'end_ui_c'   : { [DATA_TYPE.TYPE] : Node,           [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/content/PressAnyWhereToContinue'},
+            'endTimes'   : { [DATA_TYPE.TYPE] : Label,          [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/content/Times'},
+            'endTotalWin': { [DATA_TYPE.TYPE] : Label,          [DATA_TYPE.SCENE_PATH] : 'Canvas/Other UI/Free Game UI/End Game/content/Value'},
         },
 
         'background' : {
-            'main' : { [DATA_TYPE.TYPE] : Node,                 [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/Main Background'},
-            'freeGame' : { [DATA_TYPE.TYPE] : OrientationNode,  [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/FG Background'},
+            'main'      : { [DATA_TYPE.TYPE] : Node,            [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/Main Background'},
+            'freeGame'  : { [DATA_TYPE.TYPE] : OrientationNode, [DATA_TYPE.SCENE_PATH] : 'Canvas/Machine/Background/FG Background'},
         },
     };
 
@@ -109,6 +110,7 @@ export class Payway4600 extends Payway {
 
         this.doorSpine.node.active = true;
         Utils.playSpine(this.doorSpine, 'idle', false, 1, true);
+        this.properties['preload']['onload'] = new EventTarget();
     }
     // 給予專案 start 使用
     protected onstart() { 
@@ -116,7 +118,8 @@ export class Payway4600 extends Payway {
         this.properties['freeGame']['start_ui'].node.active = false;
         this.properties['freeGame']['end_ui'].node.active = false;
         this.JP_LEVEL = 0;
-        console.log(this);
+        console.warn('onstart', this);
+        this.properties['preload']['onload'].emit('done');
     }
 
     /**
@@ -125,6 +128,7 @@ export class Payway4600 extends Payway {
     public enterGame() {
         this.scoreBoard.node.active = false;
         this.preload_open_door();       // 開門動畫
+        // console.warn('enterGame');
     }
 
     // 顯示分數的背板
@@ -140,9 +144,7 @@ export class Payway4600 extends Payway {
         const free_game : boolean = gameResult.free_spin_times > 0;
 
         this.machine.activeBuyFGButton(false);  // 關閉購買 Free Game 按鈕
-
-        console.log('gameResult', free_game, gameResult);
-
+        // console.log('gameResult', free_game, gameResult);
         // 聚寶盆動畫，如果有JP遊戲，先進去玩
         await this.absorbWildSymbolIntoTreasurePot(free_game);
         
@@ -259,11 +261,15 @@ export class Payway4600 extends Payway {
 
     /** 開場動畫 */
     private async preload_open_door() {
+        await Utils.delayEvent(this.properties['preload']['onload']);
+        this.properties['preload']['onload'] = null;
+
         let door = this.doorSpine;
         
         this.properties['preload']['mask'].node.active = true;
         door.node.active = true;
-        door.setAnimation(0, 'play02', false);
+        Utils.playSpine(door, 'play02', false, 1, true, (trackEntry)=>{ door.node.active = false; });
+        //door.setAnimation(0, 'play02', false);
         door.paused = true;
 
         await Utils.commonFadeIn(this.properties['preload']['mask'].node, true, [new Color(0,0,0,0), new Color(0,0,0,255)]);
@@ -277,19 +283,32 @@ export class Payway4600 extends Payway {
         this.jp(JP_TYPE.MAJOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINI).ani.component.setAnimation(0, 'play03', false);
-        this.play_pot_ani(false);
         this.loop_play_jp_ani();
     }
 
     public get doorSpine() : sp.Skeleton { return Viewport.Orientation === Orientation.PORTRAIT ? this.properties['preload']['pDoor'][DATA_TYPE.COMPONENT] : this.properties['preload']['lDoor'][DATA_TYPE.COMPONENT]; }
 
     private TYPE_POT_LEVEL = { 0: 'default', 1: 'level1', 2: 'level2', 3: 'level3', 4: 'level4', };
-    public async play_pot_ani(open:boolean=false) {
-        // if ( level == null ) level = 1;
-        this.JP_LEVEL ++;
-        if ( this.JP_LEVEL > 4 ) this.JP_LEVEL = 4;
+    private levelupRate = { 0: 90, 1:70, 2:60, 3:50 };
 
-        const level = this.JP_LEVEL;
+    public levelUp() {
+        let level = this.JP_LEVEL;
+        if ( level === 4 ) return 4;
+
+        const rate = this.levelupRate[level];
+        const rand = Utils.Random(0, 100);
+        console.log('levelUp', [level, rate, rand]);
+        if ( rand < rate ) {
+            this.JP_LEVEL ++;
+            if ( this.JP_LEVEL > 4 ) this.JP_LEVEL = 4;
+            return this.JP_LEVEL;
+        }
+
+        return level;
+    }
+
+    public async play_pot_ani(open:boolean=false) {
+        const level = this.levelUp();
         const spine : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
         if ( open === false ) {
             await Utils.delay(1000);
@@ -334,8 +353,22 @@ export class Payway4600 extends Payway {
         }
 
         this.loop_play_jp_ani();
+        if ( Utils.Random(0, 3) === 0 ) this.playBGParticle();
     }
 
+    // 播放背景粒子
+    private playBGParticle() {
+        const particle : ParticleSystem2D = this.properties['preload']['particle'].component;
+        if ( particle.isFull() ) return particle.resetSystem();
+        particle.stopSystem();
+        Utils.delay(1000).then(()=>{ particle.resetSystem(); });
+
+    }
+
+    /**
+     * 顯示 Jackpot 獎項數值
+     * @param totalBet 
+     */
     public changeTotalBet( totalBet: number ) {
         this.jp(JP_TYPE.GRAND).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.GRAND]);
         this.jp(JP_TYPE.MAJOR).value.component.string = Utils.numberCommaM(totalBet * this.JP_REWARD[JP_TYPE.MAJOR]);
@@ -365,6 +398,7 @@ export class Payway4600 extends Payway {
         let freeGameTimes = this.gameResult.free_spin_times;
         AutoSpin.AutoSpinTimes(freeGameTimes); // 打開 Spin 次數
 
+        const self = this;
         // 開始 Free Game
         await FreeGame.StartFreeGame(   // 等待 Free Game 結束
             sub_game['result'],         // 每一局的內容
@@ -375,7 +409,7 @@ export class Payway4600 extends Payway {
                 freeGameTimes --;
                 AutoSpin.AutoSpinTimes(freeGameTimes)
                 await Utils.delay(1000);
-                
+                self.playBGParticle();
             }
         ); 
 
@@ -410,35 +444,43 @@ export class Payway4600 extends Payway {
             await Utils.delay(500);
             await this.performAllPayline(); // 因為 Scatter 有分數，所以要播放一次
 
-        } else { // 如果不在 Free Game 中，直接進入 Free Game UI
-            const startUI = this.properties['freeGame']['start_ui'].component;
+        } else { // 如果不在 Free Game 中，打開 Free Game UI
+            const startUI : Node = this.properties['freeGame']['start_ui'].node;
             let clickEvent = new EventTarget();
-            startUI.node.active = true;
+            startUI.active = true;
 
-            Utils.commonFadeIn(startUI.node, false, [new Color(255,255,255,0),Color.WHITE], startUI);
-            await Utils.commonActiveUITween(startUI.node, true);
+            Utils.commonFadeIn(startUI, false, [new Color(255,255,255,0),Color.WHITE], startUI);
+            await Utils.commonActiveUITween(startUI, true);
 
             if ( AutoSpin.IsUtilFeature() ) { // 如果有 AutoSpin, UtilFeature, 要等玩家點擊
                 await Utils.delay(1000);      // 等待一秒
                 this.properties['freeGame']['start_ui_c'].node.active = true; // 顯示點擊螢幕提示
-                startUI.node.on(Node.EventType.TOUCH_END, ()=> {  clickEvent.emit('done');  });
+                startUI.on(Node.EventType.TOUCH_END, ()=> {  clickEvent.emit('done');  });
                 await Utils.delayEvent(clickEvent); // 等待玩家點擊螢幕
                 this.properties['freeGame']['start_ui_c'].node.active = false;
-                startUI.node.off(Node.EventType.TOUCH_END);
+                startUI.off(Node.EventType.TOUCH_END);
 
             } else {
                 await Utils.delay(3000);     // 等待三秒
             }
             
-            startUI.node.off(Node.EventType.TOUCH_END);
+            startUI.off(Node.EventType.TOUCH_END);
 
-            Utils.commonFadeIn(startUI.node, true, [new Color(255,255,255,0),Color.WHITE], startUI);
-            await Utils.commonActiveUITween(startUI.node, false); // 關閉 UI
-            await this.jpGame.open_door(()=> { // 關門轉場 
+            Utils.commonFadeIn(startUI, true, [new Color(255,255,255,0),Color.WHITE], startUI);
+            await Utils.commonActiveUITween(startUI, false); // 關閉 UI
+            //開關門 轉場
+            await this.jpGame.open_door(()=> { // 關門關門裡面要做什麼
                 this.machine.controller.maskActive(false);
                 this.properties['background']['freeGame'].node.active = true;
                 this.properties['background']['freeGame'].component.changeOrientation();
                 this.reel.closeNearMissMask();
+
+                if ( this.machine.spinEvent?.['buy'] ) { // 這次是買的
+                    // console.log('buy', this.machine.spinEvent?.['buy']);
+                    const { totalBet, idx } = this.machine.spinEvent['buy'];
+                    this.controller.displayTotalBetIdx(idx)     // 更新 TotalBet;
+                    this.changeTotalBet(totalBet);              // 更新 JP 獎項
+                }
             });
         }
     }
@@ -447,7 +489,7 @@ export class Payway4600 extends Payway {
      * 結束 Free Game UI
      */
     public async end_free_game_ui(subGameData:any) {
-        const endUI = this.properties['freeGame']['end_ui'].component;
+        const endUI = this.properties['freeGame']['end_ui'].node;
         const [ times, total_win ] = [ subGameData['result'].length, subGameData['pay_credit_total'] ];
         const [ timesLabel, totalWinLabel ] = [
             this.properties['freeGame']['endTimes'].component,
@@ -459,8 +501,8 @@ export class Payway4600 extends Payway {
         this.reel.closeNearMissMask();
         this.machine.controller.maskActive(true);
         // 打開結束 UI
-        Utils.commonFadeIn(endUI.node, false, [new Color(255,255,255,0),Color.WHITE], endUI); 
-        await Utils.commonActiveUITween(endUI.node, true);
+        Utils.commonFadeIn(endUI, false, [new Color(255,255,255,0),Color.WHITE], endUI); 
+        await Utils.commonActiveUITween(endUI, true);
         
         timesLabel.string = subGameData['result'].length; // 顯示次數
 
@@ -468,11 +510,11 @@ export class Payway4600 extends Payway {
         let clickEvent = new EventTarget();
 
         // 開始滾分, 十秒
-        let waiting = await Utils.commonTweenNumber(totalWinLabel, 0, total_win, 5, null, clickEvent);
+        let waiting = await Utils.commonTweenNumber(totalWinLabel, 0, total_win, 10, null, clickEvent);
         waiting['time'] = Date.now();
 
         // 打開按鈕
-        endUI.node.on(Node.EventType.TOUCH_END, async ()=> {
+        endUI.on(Node.EventType.TOUCH_END, async ()=> {
             // 如果 tween 還沒結束，就直接結束
             let tween = waiting.tween;
             if ( tween == null ) return clickEvent.emit('done');
@@ -482,19 +524,19 @@ export class Payway4600 extends Payway {
             let lastTime = Date.now() - waiting['time'];
             
             // 剩下不到一秒，不理他，等自然結束
-            if ( lastTime < 1000 ) return;
+            if ( lastTime < 500 ) return;
 
             // 停止滾分
             tween.stop();
 
             // 剩餘分數，一秒內滾完
             const last = waiting.data.value;
-            await Utils.commonTweenNumber(totalWinLabel, last, total_win, 1);
+            await Utils.commonTweenNumber(totalWinLabel, last, total_win, 0.5);
             clickEvent.emit('done');
         });
 
         await Utils.delayEvent(clickEvent);       // 等待滾完
-        endUI.node.off(Node.EventType.TOUCH_END); // 移除滾分點擊
+        endUI.off(Node.EventType.TOUCH_END); // 移除滾分點擊
 
         // 最後放大數字效果
         await Utils.delay(500);
@@ -502,21 +544,24 @@ export class Payway4600 extends Payway {
         
         clickEvent.removeAll('done');             // 移除滾分事件
 
-        if (  AutoSpin.IsUtilFeature() === true ) {                                    // 如果有 AutoSpin, UtilFeature, 要等玩家點擊
-            endUI.node.on(Node.EventType.TOUCH_END, ()=> { clickEvent.emit('done')}); // 增加關閉事件
+        if (  AutoSpin.IsUtilFeature() === true ) {                                   // 如果有 AutoSpin, UtilFeature, 要等玩家點擊
+            endUI.on(Node.EventType.TOUCH_END, ()=> { clickEvent.emit('done')});      // 增加關閉事件
             this.properties['freeGame']['end_ui_c'].node.active = true;               // 顯示點擊螢幕提示
             await Utils.delayEvent(clickEvent);                                       // 等待玩家 click
-            endUI.node.off(Node.EventType.TOUCH_END);
+            endUI.off(Node.EventType.TOUCH_END);
         } else {
             await Utils.delay(2000);     // 等待三秒
         }
 
         // 關閉介面
-        Utils.commonFadeIn(endUI.node, true, [new Color(255,255,255,0),Color.WHITE], endUI, 0.3);
-        await Utils.commonActiveUITween(endUI.node, false);
+        Utils.commonFadeIn(endUI, true, [new Color(255,255,255,0),Color.WHITE], endUI, 0.3);
+        await Utils.commonActiveUITween(endUI, false);
         
         let endEvent = new EventTarget();
-        await this.jpGame.open_door(async ()=> { // 關門轉場 
+        await this.jpGame.open_door(async ()=> {        // 關門轉場 
+            this.controller.refreshTotalBet();          // 更新 TotalBet;
+            this.changeTotalBet(this.machine.totalBet); // 更新 JP 獎項
+
             this.machine.controller.maskActive(false);
             this.properties['background']['freeGame'].node.active = false;
             // 換回原本盤面
@@ -551,6 +596,7 @@ export class Payway4600 extends Payway {
         // 第二輪沒有 Scatter 或 Wild
         if ( reelCount[1] === 0 ) return -1;
         
+        this.playBGParticle();
         return 1;
     }
 
