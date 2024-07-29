@@ -77,6 +77,7 @@ export class AutoSpin extends Component {
     public closeUI() { this.activeUI(false); }
     public async openUI() { 
         if ( this.machine.isBusy ) return;
+        Utils.GoogleTag('OpenAutoSpin', {'event_category':'AutoSpin', 'event_label':'OpenAutoSpin' });
         await this.activeUI(true);
         this.changeSpeedMode(this.machine.SpeedMode); 
         this.properties['spinTimes'].switch[DATA_TYPE.COMPONENT].switch(false);
@@ -150,6 +151,11 @@ export class AutoSpin extends Component {
         autoSpin.spinTimes      = spinTimes;
         autoSpin.untilFeature   = untilFeatureActive;
 
+        Utils.GoogleTag('StartAutoSpin', {'event_category':'AutoSpin', 'event_label':'StartAutoSpin', 'value': {
+            'spinTimes'      : spinTimes,
+            'spinTimeActive' : +spinTimeActive,
+            'untilFeature'   : +untilFeatureActive,
+        }});
         this.decrementCount();
     }
 
@@ -221,6 +227,13 @@ export class AutoSpin extends Component {
 
     public stopAutoSpin() {
         if ( this.machine.featureGame ) return false;
+
+        Utils.GoogleTag('StopAutoSpin', {'event_category':'AutoSpin', 'event_label':'StopAutoSpin', 'value': {
+            'spinTimes'      : this.properties.autoSpin.spinTimes,
+            'spinTimeActive' : +this.properties.autoSpin.spinTimeActive,
+            'untilFeature'   : +this.properties.autoSpin.untilFeature,
+        }});
+
         this.closeAutoSpinTimes();
         this.autoSpinTimeLabel.string = '';
         this.active = false;

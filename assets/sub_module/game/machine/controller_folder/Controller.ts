@@ -35,6 +35,13 @@ export class Controller extends Component {
             'INIT_EVENT'        : this.initButton
         },
 
+        'fullScreen' : {
+            'fullscreen_p'      : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Screen/FullScreen', },
+            'fullscreen_exit_p' : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Screen/FullScreen Off', },
+            'fullscreen_l'      : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen/FullScreen', },
+            'fullscreen_exit_l' : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen/FullScreen Off', },
+        },
+
         'speedMode' : {
             [Machine.SPIN_MODE.NORMAL] : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Normal', 'next':Machine.SPIN_MODE.QUICK },
             [Machine.SPIN_MODE.QUICK]  : { [DATA_TYPE.TYPE] : Sprite, [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed/Quick',  'next':Machine.SPIN_MODE.TURBO },
@@ -93,13 +100,14 @@ export class Controller extends Component {
             },
 
            [Orientation.LANDSCAPE] : {
-                'fromPos'    : new Vec3(0, -520, 0),
-                'toPos'      : new Vec3(0, -50,  0),
+                'fromPos'    : new Vec3(0, -500, 0),
+                'toPos'      : new Vec3(0, 0,  0),
                 'active'     : false,
                 'running'    : false,
             },
         },
         
+        'clickSpin' : [0,0], // Spin 次數, SpinStop 次數
     };
 
     get autoSpinButton() { return this.properties['autoSpin']['button'][DATA_TYPE.COMPONENT]; }
@@ -251,10 +259,13 @@ export class Controller extends Component {
 
         this.clickSpinButtonAnimation() ;
         if ( this.machine.spinning ) {
+            let times = this.props['clickSpin'][1]++;
+            Utils.GoogleTag('ClickSpinStop', {'event_category':'Spin', 'event_label':'ClickSpinStop', 'times': times});
             this.machine.fastStopping = true;
             return false;
         }
-
+        let times = this.props['clickSpin'][0]++;
+        Utils.GoogleTag('ClickSpin', {'event_category':'Spin', 'event_label':'ClickSpin', 'value':this.betIdx, 'times': times});
         this.clickOption(null, false); // 關閉 Option 功能
 
         // 等待 Spin 結束
@@ -266,7 +277,7 @@ export class Controller extends Component {
     }
 
     protected clickInformation() {
-        console.log('clickInformation');
+        Utils.GoogleTag('ClickInformation', {'event_category':'Information', 'event_label':'ClickInformation'});
         GameInformation.OpenUI();
     }
 
@@ -318,6 +329,7 @@ export class Controller extends Component {
         const lastMode = this.machine.SpeedMode;
         const nextMode = speedMode[lastMode]['next'];
 
+        Utils.GoogleTag('ClickSpeedMode', {'event_category':'SpeedMode', 'event_label':'ClickSpeedMode', 'value':nextMode});
         return this.changeSpeedMode(nextMode);
     }
 
@@ -348,9 +360,11 @@ export class Controller extends Component {
 
     protected clickInGameMenu() {
         console.log('clickInGameMenu');
+        Utils.GoogleTag('ClickInGameMenu', {'event_category':'InGameMenu', 'event_label':'ClickInGameMenu'});
     }
 
     protected clickRecord() {
+        Utils.GoogleTag('ClickBetRecord', {'event_category':'BetRecord', 'event_label':'ClickBetRecord'});
         console.log('clickRecord');
     }
 
@@ -360,6 +374,14 @@ export class Controller extends Component {
 
     protected clickFullscreen() {
         console.log('clickFullscreen');
+        const isFullScreen = this.machine.isFullScreen;
+
+        this.props['fullScreen']['fullscreen_p'][DATA_TYPE.NODE].active      = isFullScreen;
+        this.props['fullScreen']['fullscreen_exit_p'][DATA_TYPE.NODE].active = !isFullScreen;
+        this.props['fullScreen']['fullscreen_l'][DATA_TYPE.NODE].active      = isFullScreen;
+        this.props['fullScreen']['fullscreen_exit_l'][DATA_TYPE.NODE].active = !isFullScreen;
+        this.machine.fullscreen(!isFullScreen);
+        Utils.GoogleTag('ClickFullScreen', {'event_category':'FullScreen', 'event_label':'ClickFullScreen', 'value':+!isFullScreen});
     }
 
     /** 更新餘額顯示 */

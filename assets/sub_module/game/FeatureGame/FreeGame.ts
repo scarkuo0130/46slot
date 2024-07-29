@@ -14,6 +14,7 @@ export class FreeGame extends Component {
         const machine = Machine.Instance;
         let spinEvent = new EventTarget();
 
+        Machine.Instance.fastStopping = false;
         Controller.ButtonSpinning(true); // 不停轉動Spin按鈕
 
         for(let i = 0; i < freeGameData.length; i++) {

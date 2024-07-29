@@ -343,6 +343,11 @@ export class Paytable extends Component {
 
     // #region[[rgba(0,0,0,0)]] BuyFeatureGameUI 事件
     public onClickCloseBuyFGUI() { return; }
+
+    /**
+     * @from BuyFeatureGameUI.onClickOpenBuyFGUI()
+     * @override 可覆寫
+     */
     public onClickOpenBuyFGUI() { return; }
     public refreshTotalBet() { return; }
     public addBet() { return; }

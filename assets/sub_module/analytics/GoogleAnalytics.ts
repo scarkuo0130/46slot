@@ -3,6 +3,7 @@ import { DEBUG, PREVIEW } from 'cc/env';
 import { ConfigUtils } from '../utils/ConfigUtils';
 import { GAConfig } from './GAConfig';
 import { UrlParameters } from '../utils/UrlParameters';
+import { gameInformation } from '../game/GameInformation';
 const { ccclass, property } = _decorator;
 
 @ccclass( 'GoogleAnalytics' )
@@ -30,19 +31,17 @@ export class GoogleAnalytics {
     }
 
     public initialize (): void {
-        console.log('GoogleAnalytics');
         this.gaConfig = ConfigUtils.getConfig<GAConfig>( GAConfig );
-
         this.commonCode = ( UrlParameters.b === 'iqazwsxi' ) ? this.gaConfig.commonCode : [];
         this.allowGameId = this.gaConfig.allowGameId;
         this.gaCode = [];
         this.gaCode = this.gaCode.concat( this.commonCode );
 
+        const gameID = gameInformation.gameid;
         let codes: any = this.getGACode();
-        if ( codes[ UrlParameters.gameId ] ) {
-            this.gaCode.push( codes[ UrlParameters.gameId ] );
+        if ( codes[ gameID ] ) {
+            this.gaCode.push( codes[ gameID ] );
         }
-
         this.addGoogleAnalytics();
     }
 
@@ -52,6 +51,7 @@ export class GoogleAnalytics {
         } else if ( DEBUG ) {
             return this.gaConfig.LAB;
         } else {
+            /*
             switch ( UrlParameters.b ) {
                 case 'iqazwsxi':
                     return this.gaConfig.ID_IDN;
@@ -63,7 +63,8 @@ export class GoogleAnalytics {
                     return this.gaConfig.TH_X2;
                 case 'iqazwsxd':
                     return this.gaConfig.PH_MW;
-            }
+            }*/
+            return this.gaConfig.ID_IDN;
             return [];
         }
     }

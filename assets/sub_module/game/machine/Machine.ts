@@ -1,4 +1,4 @@
-import { _decorator, Component, find, Mask, EventTarget, Graphics, Button, Color, sp } from 'cc';
+import { _decorator, Component, find, Mask, EventTarget, Graphics, Button, Color, screen } from 'cc';
 import { AutoSpin } from '../AutoSpin';
 import { Controller } from './controller_folder/Controller';
 import { gameInformation } from '../GameInformation';
@@ -16,6 +16,12 @@ const { isDevelopFunction } = _utilsDecorator;
 
 @ccclass('Machine')
 export class Machine extends Component {
+    public get isFullScreen() { return screen.fullScreen(); }
+
+    public fullscreen(active:boolean) {
+        if ( active === true ) return screen.requestFullScreen();
+        return screen.exitFullScreen();
+    }
 
     public static readonly SPIN_MODE = SPIN_MODE;
 
@@ -176,6 +182,7 @@ export class Machine extends Component {
         this.controller.activeBusyButtons(true);
 
         this.controller.refreshBalance(); // 更新餘額
+        this.fastStopping = false;
         return; // 回到 Controller clickSpin function
         
     }

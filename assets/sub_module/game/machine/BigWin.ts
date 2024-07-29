@@ -234,6 +234,8 @@ export class BigWin extends Component {
         console.log('quickEnd', this.playing, this.lastType);
         if ( this.event['quickStop'] === true ) return;
         if ( this.playing === this.lastType ) return;
+        
+        Utils.GoogleTag('QuickEnd', {'event_category':'BigWin', 'event_label':'QuickEnd', 'value':this.playing });
         this.event['quickStop'] = true;
 
         let playValue = this.playValue;
@@ -297,6 +299,7 @@ export class BigWin extends Component {
         this.node.active = true;
         await this.machine.controller.maskActive(true);
         Utils.commonFadeIn(this.valueBoard.node, false, null, this.valueBoard, 0.2);
+        Utils.GoogleTag('BigWin', {'event_category':'BigWin', 'event_label':'BigWin', 'value':lastType });
         
         while(true) {
             if ( type === BigWin.BIGWIN_TYPE.BIG_WIN ) await this.play(type);

@@ -196,8 +196,12 @@ export class Payway4600 extends Payway {
         toPos.x += Utils.Random(-55, 55);
         toPos.y += Utils.Random(-55, 55);
 
+        const middlePos = soul.worldPosition.clone();
+        middlePos.x += Utils.Random(-200, 200);
+        middlePos.y += Utils.Random(-200, 200);
+
         // let onFinished = ()=>{ Utils.delay(1000).then(()=>{ObjectPool.Put('soul', soul)}) };
-        await Utils.tweenBezierCurve(soul, toPos, 1, null, true);
+        await Utils.tweenBezierCurve(soul, toPos, 0.5, null, true, middlePos);
         tween(soul).to(0.5, {scale: new Vec3(0,0,0)}, {easing: 'smooth'}).start();
         Utils.delay(1000).then(()=>{ObjectPool.Put('soul', soul)}); // 回收
     }
@@ -312,7 +316,7 @@ export class Payway4600 extends Payway {
         const spine : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
         if ( open === false ) {
             await Utils.delay(1000);
-            Utils.playSpine(spine, 'play04', false);
+            Utils.playSpine(spine, 'play05', false);
             await Utils.delay(1000);
             spine.setSkin(this.TYPE_POT_LEVEL[level]);
             return;
@@ -328,7 +332,7 @@ export class Payway4600 extends Payway {
         const level = this.JP_LEVEL;
         const spine : sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
         spine.setSkin(this.TYPE_POT_LEVEL[level]);
-        Utils.playSpine(spine, 'play04', false);
+        Utils.playSpine(spine, 'play05', false);
 
     }
 
@@ -349,7 +353,8 @@ export class Payway4600 extends Payway {
             alltypes.splice(type, 1);
 
             if ( spine['isPlaying'] === true ) continue;
-            Utils.playSpine(spine, 'play', false);
+            if ( jp === JP_TYPE.POT ) Utils.playSpine(spine, 'play05', false);
+            else Utils.playSpine(spine, 'play03', false);
         }
 
         this.loop_play_jp_ani();
@@ -475,7 +480,7 @@ export class Payway4600 extends Payway {
                 this.properties['background']['freeGame'].component.changeOrientation();
                 this.reel.closeNearMissMask();
 
-                if ( this.machine.spinEvent?.['buy'] ) { // 這次是買的
+                if ( this.machine.spinEvent?.['buy'] ) {        // 這次是買的
                     // console.log('buy', this.machine.spinEvent?.['buy']);
                     const { totalBet, idx } = this.machine.spinEvent['buy'];
                     this.controller.displayTotalBetIdx(idx)     // 更新 TotalBet;

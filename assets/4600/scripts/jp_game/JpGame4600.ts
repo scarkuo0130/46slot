@@ -260,13 +260,16 @@ export class JpGame4600 extends Component {
         const times = this.add_clicked_type(type);
         const isAnswer = times >= 3;
 
-        await coin.click_type(type, false, isAnswer);
+        
         this.play_jp_board_animation(type, times);
 
         if ( isAnswer === false ) { // 還沒有結束
+            coin.click_type(type, false, isAnswer);
             this.isBusy = false;
             return;
         }
+
+        await coin.click_type(type, false, isAnswer);
 
         // 結束
         this.isDone = true;

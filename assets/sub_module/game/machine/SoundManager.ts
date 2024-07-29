@@ -1,20 +1,40 @@
-import { _decorator, AudioClip, AudioSource, CCFloat, CCInteger, Component, Enum, Node, tween, game } from 'cc';
+import { _decorator, AudioClip, AudioSource, CCFloat, CCInteger, Component, Enum, Node, tween, game, EventTarget } from 'cc';
 import { Utils } from '../../utils/Utils';
 const { ccclass, property, disallowMultiple } = _decorator;
 
+/**
+ * 音效播放模式
+ */
 export enum PLAY_MODE {
     NORMAL = 0,
     ONLY_SOUND = 1,
     NO_SOUND = 2,
 }
 
+/**
+ * 音效類型
+ */
 export enum TYPE_SOUND {
     IS_SOUND = 0,
     IS_MUSIC = 1,
 }
 
+export enum DEFAULT_SOUND_ID {
+    MAIN_GAME = '0',
+    FEATURE_GAME = '1',
+    SPIN = '100',
+    WHEEL_STOP = '101',
+    WIN = '102',
+    NEAR_MISS = '103',
+    BUTTON = '104',
+}
+
 @ccclass('SimpleAudioClipData')
 export class SimpleAudioClipData {
+        
+    @property({displayName:'Active', tooltip:'是否啟用'})
+    public active: boolean = true;
+    
     @property({type:AudioClip, displayName:"Clip", tooltip:"音效內容(mp3)"})
     public clip: AudioClip;
 
@@ -23,27 +43,36 @@ export class SimpleAudioClipData {
 
     @property({displayName:'Loop', tooltip:'是否持續播放'})
     public loop : boolean = false;
+
+    public filterSameSound: boolean = false;
+
+    public soundType: TYPE_SOUND = TYPE_SOUND.IS_SOUND;
+
 }
 
 @ccclass('AudioClipData')
-export class AudioClipData {
-    @property({displayName:'播放ID設定', tooltip:'id'})
+export class AudioClipData extends SimpleAudioClipData {
+    @property({displayName:'ID', tooltip:'id'})
     public id: string = "";
 
     @property({displayName:'播放用途', tooltip:'description 僅於記錄查詢'})
     public description: string = "";
 
-    @property({type:AudioClip, displayName:"音效檔(mp3)", tooltip:"clip"})
-    public clip: AudioClip;
-
-    @property({type:CCFloat, displayName:"音量", tooltip:"volume", min:0.1, max:1, step:0.1})
-    public volume: number = 0.8;
-
     @property({type:Enum(TYPE_SOUND), displayName:'屬於音效還是音樂', tooltip:'soundType'})
     public soundType: TYPE_SOUND = TYPE_SOUND.IS_SOUND;
 
-    @property({displayName:'是否過慮同音效播放', tooltip:'isQueue', visible: function(this:AudioClipData) { return this.soundType === TYPE_SOUND.IS_SOUND; }})
-    public isQueue: boolean = true;
+    @property({displayName:'是否過慮同音效播放', tooltip:'filterSameSound', visible: function(this:AudioClipData) { return this.soundType === TYPE_SOUND.IS_SOUND; }})
+    public filterSameSound: boolean = true;
+
+    constructor(data) {
+        super();
+        this.id = data?.id;
+        this.clip = data?.clip;
+        this.description = data?.description ;
+        this.soundType = data?.soundType;
+        this.filterSameSound = data?.filterSameSound;
+        
+    }
 }
 
 @ccclass('SoundManager')
@@ -54,29 +83,51 @@ export class SoundManager extends Component {
     public soundList : AudioClipData[] = [];
 
     @property({displayName:'DefaultMusicID', tooltip:'依照上述[SoundList] 預設播放音樂ID'})
-    public defaultMusicId: string = "";
+    public defaultMusicId: string = "0";
 
     @property({type:CCInteger, displayName:'MaxPlaySound', tooltip:'最多同時播放音效數量'})
-    public maxPlaySoundCount:number = 10;
+    public maxPlaySoundCount:number = 15;
 
-    public static isMute = false;
+    @property({displayName:'過慮同音效播放秒數設定(毫秒)', tooltip:'filterSameSoundSec', step:1, min:0, max:500})
+    public filterSameSoundSec : number = 50;
 
-    public static soundData : {};
+    @property({type:[AudioClipData], displayName:'DefaultSoundList', tooltip:'預設音效列表'})
+    public defaultSoundList : AudioClipData[] = [
+        new AudioClipData ({ id:DEFAULT_SOUND_ID.MAIN_GAME,    description:'MainGame音樂',     soundType:TYPE_SOUND.IS_MUSIC, filterSameSound:false }),
+        new AudioClipData ({ id:DEFAULT_SOUND_ID.FEATURE_GAME, description:'FeatureGame音樂',  soundType:TYPE_SOUND.IS_MUSIC, filterSameSound:false }),
+        new AudioClipData ({ id:DEFAULT_SOUND_ID.SPIN,         description:'Spin音效',         soundType:TYPE_SOUND.IS_SOUND, filterSameSound:false }),
+        new AudioClipData ({ id:DEFAULT_SOUND_ID.WHEEL_STOP,   description:'停輪音效',          soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
+        new AudioClipData ({ id:DEFAULT_SOUND_ID.WIN,          description:'贏分音效',          soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
+        new AudioClipData ({ id:DEFAULT_SOUND_ID.NEAR_MISS,    description:'NearMiss音效',     soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
+        new AudioClipData ({ id:DEFAULT_SOUND_ID.BUTTON,       description:'共用按鍵聲',        soundType:TYPE_SOUND.IS_SOUND, filterSameSound:false }),
+    ];
 
-    public static mode: PLAY_MODE = PLAY_MODE.NORMAL;
-    public static getMode() { return SoundManager.mode; }
+    private properties = {
+        soundList: [],
+        isMute : false,
+        soundData : {},
+        mode: PLAY_MODE.NORMAL,
+        lastIndex: 0,
+        lastMusicID: "",
+    };
+
+    public get isMute() : boolean    { return this.properties.isMute; }
+    public set isMute(value:boolean) { this.properties.isMute = value; }
+
+    public static get Mode() : PLAY_MODE { return SoundManager.Instance.properties.mode; }
     public static setMode(mode: PLAY_MODE) : PLAY_MODE
     { 
-        SoundManager.mode = mode; 
+        if ( mode == null ) return null;
+        SoundManager.Instance.properties.mode = mode;
 
         switch(mode) {
             case PLAY_MODE.NORMAL:
-                SoundManager.playMusic(SoundManager.lastMusicID);
+                // SoundManager.playMusic(SoundManager.lastMusicID);
                 break;
 
             case PLAY_MODE.NO_SOUND:
             case PLAY_MODE.ONLY_SOUND:
-                SoundManager.stopMusic(1);
+                // SoundManager.stopMusic(1);
                 break;
         }
 
@@ -96,52 +147,57 @@ export class SoundManager extends Component {
         this.musicAudioSource = musicNode.addComponent(AudioSource);
         this.node.addChild(musicNode);
 
+        this.musicAudioSource['event'] = new EventTarget();
+
         for(let i=0; i<this.maxPlaySoundCount; i++) {
             let soundNode = new Node('soundAudioSource-'+i);
             this.soundAudioSource.push(soundNode.addComponent(AudioSource));
             this.node.addChild(soundNode);
         }
 
-        SoundManager.loadSoundData();
+        this.loadSoundData();
         SoundManager.setMode(PLAY_MODE.NORMAL);
     }
 
     /**
      * Web視窗轉移時，會啟動這個 funciton
      */
-    public static OnMute() {
-        console.log('trigger game_on_hide');
-        SoundManager.isMute = true;
-
-        SoundManager.pauseMusic(0);
-        let soundList = SoundManager.Instance.soundAudioSource;
-        for(let i in soundList) {
-            if ( soundList[i] == null ) continue;
-            soundList[i].stop();
-        }
+    public static OnMute() { SoundManager.Instance.onMute(); }
+    public onMute() {
+        this.isMute = true;
+        let soundList = this.soundAudioSource;
+        soundList.forEach((sound)=>{ sound.stop(); });
     }
 
-    public static Resume() {
-        SoundManager.isMute = false;
-        setTimeout(() => {
-            SoundManager.playMusic(SoundManager.lastMusicID);    
-        }, 1000);
-        
-    }
+    public static async Resume() { await SoundManager.Instance.resume(); }
+
+    public async resume() {
+        this.isMute = false;
+        await Utils.delay(1000);
+        // SoundManager.playMusic(SoundManager.lastMusicID);
+    } 
 
     protected start() {
-        SoundManager.playClip(this.defaultMusicId);
-        SoundManager.queuePlaySoundList = [];
+        // SoundManager.playClip(this.defaultMusicId);
+        // SoundManager.queuePlaySoundList = [];
     }
 
-    private static loadSoundData() {
-        if (SoundManager.Instance.soundList == null ) return;
-        if (SoundManager.Instance.soundList.length === 0 ) return;
+    private loadSoundData() {
+        if (this.soundList == null ) return;
+        if (this.soundList.length === 0 ) return;
 
-        SoundManager.soundData = {};
-        let soundData = SoundManager.soundData;
-        let soundList = SoundManager.Instance.soundList;
+        let soundData = {};
 
+        let defaultSoundList = this.defaultSoundList;
+        for(let i in defaultSoundList) {
+            let sound = defaultSoundList[i];
+            if (sound.id == null) continue;
+            if (sound.id.length == 0) continue;
+            if (sound.clip == null) continue;
+            soundData[sound.id] = sound;
+        }
+
+        let soundList = this.soundList;
         for(let i in soundList) {
             let sound = soundList[i];
             if (sound.id == null) continue;
@@ -150,168 +206,183 @@ export class SoundManager extends Component {
             
             soundData[sound.id] = sound;
         }
+
+        this.properties.soundData = soundData;
     }
 
-    private static lastMusicID:string;
+    private get lastMusicID() : string { return this.properties.lastMusicID; }
+    private set lastMusicID(value:string) { this.properties.lastMusicID = value; }
+
     private static lastPlayIdx = 0;
-    public static playClip(id: string) {
-        let mode = SoundManager.getMode();
+    private get lastPlayIdx () : number { return this.properties.lastIndex; }
+    private set lastPlayIdx (value:number) { this.properties.lastIndex = value; }
+    
+    /**
+     * 取得音效來源
+     * @internal 請別直接使用這個 function, 請使用這個 playSoundData 或 playSoundByID 來播放音效
+     * @param soundType 
+     * @returns { AudioSource || Null }
+     */
+    private getAudioSource(soundType:TYPE_SOUND) : AudioSource {
+        if ( soundType === TYPE_SOUND.IS_MUSIC ) return this.musicAudioSource;
 
-        if (SoundManager.soundData == null) return;
-
-        let sound : AudioClipData = SoundManager.soundData[id];
-        if (sound == null) return;
-
-        if ( sound.soundType == TYPE_SOUND.IS_MUSIC) {
-            let audioSource = SoundManager.Instance.musicAudioSource;
-            SoundManager.lastMusicID = id;
-            if ( SoundManager.isMute === true ) return;
-            if ( mode == PLAY_MODE.ONLY_SOUND ) return;
-            if ( audioSource.state == AudioSource.AudioState.PLAYING ) {
-                if (sound.clip === audioSource.clip ) return;
-            }
-
-            audioSource.stop();
-            audioSource.clip = sound.clip;
-            audioSource.volume = sound.volume;
-            audioSource.loop = true;
-            audioSource.play();
-        } else {
-            if ( mode === PLAY_MODE.NO_SOUND) return;
-            if ( SoundManager.isMute === true ) return;
-            return SoundManager.playSound(sound.clip, sound.volume, false);
-        }
+        this.lastPlayIdx ++;
+        if ( this.lastPlayIdx >= this.maxPlaySoundCount ) SoundManager.lastPlayIdx = 0;
+        return this.soundAudioSource[this.lastPlayIdx];
     }
+
+    /**
+     * 播放音效
+     * @internal 請別直接使用這個 function, 請使用這個 playSoundData 或 playSoundByID 來播放音效
+     * @param clip      { AudioClip } 音效
+     * @param soundType { int  }      音效類型 IS_SOUND || IS_MUSIC
+     * @param volume    { float }      音量 0~1
+     * @param loop      { boolean }   是否循環播放
+     * @returns { AudioSource || Null }
+     */
+    private playSound(clip:AudioClip, soundType:TYPE_SOUND=TYPE_SOUND.IS_SOUND, volume:number=0.8, loop:boolean) : AudioSource {
+        if ( clip == null ) return null;
+        let source = this.getAudioSource(soundType);
+        source.stop();
+        source.clip = clip;
+        source.volume = volume;
+        source.loop = loop;
+        source.play();
+        source['playTime'] = Date.now();
+        return source;
+    }
+
+    /**
+     * 播放音效
+     * @internal 請別直接使用這個 function, 請使用這個 playSoundData 或 playSoundByID 來播放音效
+     * @param clip           { AudioClip } 音效
+     * @param soundType      { int  }      音效類型 IS_SOUND || IS_MUSIC 
+     * @param volume         { float }      音量 0~1 
+     * @param loop           { boolean }   是否循環播放
+     * @param filterSameSound { boolean }   是否過濾同音效播放
+     * @returns { AudioSource || Null }
+     */
+    private playFilteredSound(clip:AudioClip, soundType:TYPE_SOUND=TYPE_SOUND.IS_SOUND, volume:number=0.8, loop:boolean, filterSameSound:boolean=false) : AudioSource {
+        if ( filterSameSound === false ) return this.playSound(clip, soundType, volume, loop);
+        const sourceList = this.soundAudioSource;
+        const now = Date.now();
+        
+        for(let i in sourceList) {
+            let source = sourceList[i];
+            if ( source.clip !== clip )                              continue;
+            if ( source.state !== AudioSource.AudioState.PLAYING )   continue;
+            if ( source['playTime'] == null )                        continue;
+            if ( now - source['playTime'] > this.filterSameSoundSec ) continue; // 50ms 以內的音效不重複播放
+            return source;
+        }
+
+        return this.playSound(clip, soundType, volume, loop);
+    }
+
+    /**
+     * 播放音效
+     * @param data { SimpleAudioClipData } 音效資料
+     * @returns { AudioSource || Null }
+     * 請使用這個 playSoundData 或 playSoundByID 來播放音效
+     */
+    public playSoundData(data:SimpleAudioClipData) : AudioSource {
+        const mode = SoundManager.Mode;
+
+        if ( this.isMute === true )        return null;
+        if ( data == null )                return null;
+        if ( data.clip == null )           return null;
+        if ( data.active === false )       return null;
+        if ( mode === PLAY_MODE.NO_SOUND ) return null;
+        if ( mode === PLAY_MODE.ONLY_SOUND && data.soundType === TYPE_SOUND.IS_MUSIC ) return null;
+        return this.playFilteredSound(data.clip, data.soundType, data.volume, data.loop, data.filterSameSound);
+    }
+    public static PlaySoundData(data:SimpleAudioClipData) : AudioSource { return SoundManager.Instance.playSoundData(data); }
+
+    /**
+     * 播放指定ID音效
+     * @param id { string } 音效代號
+     * @returns { AudioSource || Null }
+     * 
+     * 請使用這個 function 或 playSoundData 來播放音效
+     */
+    public playSoundByID(id:string) : AudioSource {
+        if ( this.properties.soundData == null ) return null;
+        if ( this.properties.soundData[id] == null ) return null;
+        return this.playSoundData(this.properties.soundData[id]);
+    }
+    public static PlaySoundByID(id:string) : AudioSource { return SoundManager.Instance.playSoundByID(id); }
 
     /**
      * 播放音樂
-     * @param musicID 音樂代號
-     * @param fadeoutSec 淡出秒數
+     * @param id { string } 音樂代號 || 最後播放音樂代號 || 預設音樂代號
+     * @returns { AudioSource || Null }
      */
-    public static async playMusic(musicID, fadeoutSec:number=0) {
-        let mode = SoundManager.getMode();
-
-        SoundManager.lastMusicID = musicID;
-        if ( mode === PLAY_MODE.NO_SOUND) return;
-        if ( mode === PLAY_MODE.ONLY_SOUND ) return;
-        if ( SoundManager.soundData == null ) return;
-        if ( SoundManager.isMute === true ) return;
-        
-        let sound : AudioClipData = SoundManager.soundData[musicID];
-        if (sound == null) return;
-
-        if ( fadeoutSec == 0 ) return SoundManager.playClip(musicID);
-        SoundManager.stopMusic(fadeoutSec);
-        await Utils.delay(fadeoutSec*1000+100);
-        SoundManager.playClip(musicID);
+    public playMusic(id:string=null) : AudioSource {
+        id = id || this.lastMusicID || this.defaultMusicId;
+        this.lastMusicID = id;
+        return this.playSoundByID(id);
     }
+
+    public static PlayMusic(id:string=null) : AudioSource { return SoundManager.Instance.playMusic(id); }
 
     /**
      * 暫停音樂
-     * @param fadeoutSec 淡出秒數
+     * @param fadeoutSec { float } 淡出秒數, 0 為直接暫停
+     * @returns { AudioSource }
      */
-    public static pauseMusic(fadeoutSec:number=0) {
-        if ( SoundManager.Instance.musicAudioSource == null ) return;
+    public async pauseMusic(fadeoutSec:number=0.5) : Promise<any> {
+        if ( this.musicAudioSource == null ) return;
+        if ( fadeoutSec === 0 ) return this.musicAudioSource.pause();
 
-        if ( fadeoutSec == 0 ) {
-            return SoundManager.Instance.musicAudioSource.pause();
-        }
+        let event : EventTarget = this.musicAudioSource['event'] || new EventTarget();
+        let musicAudioSource = this.musicAudioSource;
 
-        tween(SoundManager.Instance.musicAudioSource).to(fadeoutSec, {volume:0},{
-            onComplete:(n)=>{
-                SoundManager.Instance.musicAudioSource.pause();
-        }}).start();
+        event.removeAll('done');
+        musicAudioSource['event'] = event;
+        musicAudioSource['fromVolume'] = this.musicAudioSource.volume;
+        tween(musicAudioSource).to(fadeoutSec, {volume:0}).call(()=> { 
+            musicAudioSource.pause(); 
+            musicAudioSource['event']?.emit('done');
+        }).start();
+
+        await Utils.delayEvent(event);
+        return musicAudioSource;
     }
 
+    public static async PauseMusic(fadeoutSec:number=0.5) { await SoundManager.Instance.pauseMusic(fadeoutSec); }
+
     /**
-     * 有經過 pause 暫停音樂，可以用這個恢復
-     * @param fadeinSec 漸變秒數
+     * 恢復音樂
+     * @param fadeinSec { float } 淡入秒數
+     */
+    public resumeMusic(fadeinSec:number=0.5) {
+        if ( this.musicAudioSource == null ) return;
+        const fromVolume = this.musicAudioSource['fromVolume'] || 0.8;
+
+        if ( fadeinSec === 0 ) {
+            this.musicAudioSource.volume = fromVolume;
+            return this.musicAudioSource.play();
+        }
+
+        this.musicAudioSource.volume = 0;
+        tween(this.musicAudioSource).to(fadeinSec, {volume:fromVolume}).start();
+    }
+
+    public static ResumeMusic(fadeinSec:number=0.5) { SoundManager.Instance.resumeMusic(fadeinSec); }
+
+    /**
+     * 淡出目前播放音樂，並播放新音樂
+     * @param id 
+     * @param fadeoutSec 
      * @returns 
      */
-    public static resumeMusic(fadeinSec:number=0) {
-        if ( SoundManager.Instance.musicAudioSource == null ) return;
+    public async smoothChangeMusic(id:string, fadeoutSec:number=0.5) {
+        if ( id == null ) return;
 
-        if ( fadeinSec == 0 ) {
-            SoundManager.Instance.musicAudioSource.volume = 0.8;
-            return SoundManager.Instance.musicAudioSource.play();
-        }
-
-        SoundManager.Instance.musicAudioSource.volume = 0;
-        tween(SoundManager.Instance.musicAudioSource).to(fadeinSec, {volume:0.8}).start();
+        await this.pauseMusic(fadeoutSec);
+        this.playMusic(id);
     }
 
-    /**
-     * 停止音樂
-     * @param fadeout 淡出秒數，預設0 
-     * @returns 
-     */
-    public static stopMusic(fadeoutSec:number=0) {
-        if ( SoundManager.Instance.musicAudioSource == null ) return;
-        if ( fadeoutSec === 0 ) return SoundManager.Instance.musicAudioSource.stop();
-
-        if ( SoundManager.Instance.musicAudioSource.state != 1 ) return;
-
-        tween(SoundManager.Instance.musicAudioSource).to(fadeoutSec, {volume:0},{
-            onComplete:(n)=>{ SoundManager.Instance.musicAudioSource.stop();
-        }}).start();
-    }
-
-    public static getAudioSource() : AudioSource {
-        SoundManager.lastPlayIdx ++;
-        if ( SoundManager.lastPlayIdx >= SoundManager.Instance.maxPlaySoundCount ) SoundManager.lastPlayIdx = 0;
-        return SoundManager.Instance.soundAudioSource[SoundManager.lastPlayIdx];
-    }
-
-    private static queuePlaySoundList : SimpleAudioClipData[] = [];
-
-    /**
-     * @param clip 音樂
-     * @param volume 音量 0~1
-     */
-    public static playSound(clip:AudioClip, volume:number=1, loop:boolean) :AudioSource {
-        if ( !clip ) return;
-        if (SoundManager.getMode() === PLAY_MODE.NO_SOUND) return;
-        if ( SoundManager.isMute === true ) return;
-
-        let auSource = SoundManager.getAudioSource();
-
-        auSource.stop();
-        auSource.clip = clip;
-        auSource.volume = volume;
-        auSource.loop = loop;
-        auSource.play();
-        return auSource;
-    }
-
-    public static async queuePlayerSound(data:SimpleAudioClipData) {
-
-        // console.log(this.queuePlaySoundList);
-        if ( this.queuePlaySoundList.length != 0 ) {
-            // if ( this.queuePlaySoundList.includes(data) === true ) return;
-            for(let i in this.queuePlaySoundList) {
-                let queue = this.queuePlaySoundList[i];
-                if ( data.clip === queue.clip ) return;
-            }
-            this.queuePlaySoundList.push(data);
-            return;
-        } else {
-            this.queuePlaySoundList = [data];
-            await Utils.delay(50);
-
-            for(let i in this.queuePlaySoundList) {
-                let data = this.queuePlaySoundList[i];
-                SoundManager.playSound(data.clip, data.volume, data.loop);
-            }
-
-            this.queuePlaySoundList = [];
-        }
-    }
-
-    public static playSoundData(data:SimpleAudioClipData, ququPlay:boolean=true) {
-        if ( data == null ) return null;
-        if ( data.clip === null ) return null;
-        if ( ququPlay === true ) return this.queuePlayerSound(data);
-        return SoundManager.playSound(data.clip, data.volume, data.loop);
-    }
+    public static async SmoothChangeMusic(id:string, fadeoutSec:number=0.5) { await SoundManager.Instance.smoothChangeMusic(id, fadeoutSec); }
 }
 

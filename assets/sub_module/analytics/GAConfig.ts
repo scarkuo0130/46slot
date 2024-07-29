@@ -1,24 +1,16 @@
 export class GAConfig {
-    public commonCode: string[] = [ 'G-MKXH1XBBSG' ];
-    public allowGameId: number[] = [ 4100 ];
+    public commonCode: string[] = [ 'G-2FEW4F5R52' ];
+    public allowGameId: number[] = [ 4600 ];
 
     public DEVELOPMENT: any = {
-        4100: 'G-M0BJ6PZNY9'
+        4600: 'G-2FEW4F5R52'
     };
 
     public LAB: any = {
-        4100: 'G-YQR4NX7R1Y',
+        4600: 'G-2FEW4F5R52',
     };
 
     public ID_IDN: any = {
-        4100: 'G-XL4ZDXPMX9'
-    };
-
-    public PH_MW: any = {
-        4100: 'G-97NSS7025S'
-    };
-
-    public TH_X2: any = {
-        4100: 'G-QWZBGV0YV3'
+        4600: 'G-2FEW4F5R52'
     };
 }

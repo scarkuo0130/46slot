@@ -1,5 +1,6 @@
 import { Node, director, _decorator, AsyncDelegate, ResolutionPolicy, view, screen, EventHandler } from 'cc';
 import { EDITOR, PREVIEW } from 'cc/env';
+import { Utils } from './Utils';
 const { ccclass, property } = _decorator;
 
 export enum Orientation {
@@ -24,7 +25,7 @@ export class Viewport {
 
     public static DevelopLockOrientation: Orientation;
 
-    //#region Singleton
+    //#region [[rgba(0,0,0,0)]] Singleton
     protected static _instance: Viewport;
     public static get instance () {
         if ( !Viewport._instance ) {
@@ -60,6 +61,7 @@ export class Viewport {
         if ( PREVIEW ) {
             view.setResizeCallback( this.resizeHandler.bind( this ) );
         } else {
+            if ( EDITOR ) return;
             window.addEventListener( 'resize', this.resizeHandler.bind( this ) );
         }
     }
@@ -89,6 +91,7 @@ export class Viewport {
             this.checkOrientation( lockOrientation );
             // * Delay 50 ms to dispatch
             if ( this.orientation !== this.previousOrientation ) {
+                Utils.GoogleTag('orientation', {'event_category':'orientation', 'event_label':'orientation', 'value': this.orientation });
                 this.onOrientationChangeSignal.dispatch( this.orientation );
                 if ( this.onOrientationChangeEventHandler.length > 0 ) {
                     this.onOrientationChangeEventHandler.forEach( e => { e.emit( [ this.orientation, e.customEventData ] ); } );

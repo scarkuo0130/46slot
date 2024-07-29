@@ -712,6 +712,22 @@ export class Utils {
             Utils.changeMainColor( children[ i ], color );
         }
     }
+
+    public static GoogleTag(event: string, data: any=null ) { 
+        try {
+            if ( gtag == undefined || gtag == null ) return;
+            if ( data == null ) {
+                data = { 'send_to' : gameInformation.gameid, 'event_category': 'click' };
+            } else {
+                data['send_to'] = gameInformation.gameid;
+            }
+            console.log('GoogleTag', event, data);
+            return gtag('event', event, data ); 
+
+        } catch (e) { 
+            return; 
+        }
+    }
 }
 
 export var gversion = null;
@@ -742,3 +758,4 @@ export class CurveRangeProperty {
         };
     }
 }
+

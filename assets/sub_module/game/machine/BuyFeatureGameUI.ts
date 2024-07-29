@@ -12,15 +12,12 @@ const { ccclass, property } = _decorator;
  */
 @ccclass( 'BuyFeatureGameUI' )
 export class BuyFeatureGameUI {
-    public get machine () : Machine { return Machine.Instance }
-    public get reel (): Reel { return this.machine.reel; }
-    public get paytable () : Paytable { return this.machine.paytable; }
+    public get machine ()   : Machine    { return Machine.Instance }
+    public get reel ()      : Reel       { return this.machine.reel; }
+    public get paytable ()  : Paytable   { return this.machine.paytable; }
     public get controller() : Controller { return this.machine.controller; }
-    public get betIdx() :number { return this.properties.totalBet.idx; }
-    public set betIdx(value) { 
-        this.properties.totalBet.idx = value; 
-        console.log('this.properties.totalBet.idx', value, this.properties.totalBet.idx);
-    }
+    public get betIdx()     : number     { return this.properties.totalBet.idx; }
+    public set betIdx(value)             { this.properties.totalBet.idx = value; }
 
     public set totalBet(value) { 
         this.properties.totalBet.value = value;
@@ -74,6 +71,8 @@ export class BuyFeatureGameUI {
         this.refreshTotalBet();
         this.controller.maskActive(true);
         Utils.commonActiveUITween(this.node, true); 
+
+        Utils.GoogleTag('OpenBuyFeatureGame', {'event_category':'BuyFeatureGame', 'event_label':'OpenBuyFeatureGame' });
     }
 
     public refreshTotalBet() {
@@ -116,6 +115,8 @@ export class BuyFeatureGameUI {
         if ( this.paytable.checkBuyFeatureGame() === false ) return;
         if ( await this.machine.buyFeatureGame(this.betIdx) === false ) return;
         this.paytable.clickBuyFeatureGameConfirm();
+
+        Utils.GoogleTag('BuyFeatureGame', {'event_category':'BuyFeatureGame', 'event_label':'BuyFeatureGame', 'value': this.betIdx });
         this.onClickCloseBuyFGUI();
     }
 }

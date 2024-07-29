@@ -88,17 +88,24 @@ export class Loading extends Component {
         Utils.getConfig();
         this.getParamURL();
         this.changePlatformImage();
+        GoogleAnalytics.instance.initialize();
     }
 
     start () {
+        let loadingTime = Date.now();
         if ( Loading.noLoading ) return Machine.EnterGame();
+        Utils.GoogleTag('EnterGame', {'currency': gameInformation.currency, 'language': gameInformation.lang });
         this.tweenMask();
         const self = this;
         //this.tweenPlatfromImage();
         this.getRenewToken()
             .then( this.getUserData )
             .then( this.getGameData )
-            .then( this.loadGameScene )
+            .then(()=>{ 
+                this.loadGameScene(); 
+                loadingTime = Date.now() - loadingTime;
+                Utils.GoogleTag('LoadingTime', {'time': loadingTime });
+            })
             .catch( function ( e ) {
                 console.error( e );
                 console.error( 'fail to load data from server' );
@@ -231,7 +238,6 @@ export class Loading extends Component {
 
         const self = this;
         let currentRate: number = 0;
-        GoogleAnalytics.instance.initialize();
         director.preloadScene( Loading.Instance.GameScene, function ( completedCount, totalCount, item ) {
             let rate = completedCount / totalCount;
             let progress = Math.floor( rate * 100 );

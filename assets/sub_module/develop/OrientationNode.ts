@@ -2,9 +2,10 @@ import { _decorator, Component, Node, Vec3, Size, Vec2, UITransform } from 'cc';
 import {Orientation, Viewport} from '../utils/Viewport';
 import { EDITOR, PREVIEW } from 'cc/env';
 import { OrientationEditorTools } from './OrientationEditorTools';
-const { ccclass, property } = _decorator;
+const { ccclass, property, executeInEditMode } = _decorator;
 
 @ccclass('OrientationItem')
+@executeInEditMode
 export class OrientationItem {
 
     @property({displayName:'啟用資料'})
@@ -40,6 +41,7 @@ export class OrientationItem {
 
 
 @ccclass('OrientationNode')
+@executeInEditMode
 export class OrientationNode extends Component {
     @property({displayName:'是否啟用轉向資料'})
     public enable : boolean = true;
@@ -65,6 +67,16 @@ export class OrientationNode extends Component {
         this.saveOrientationItem(OrientationEditorTools.instance.orientation);
     }
 
+    check() {
+        if ( EDITOR === false ) return;
+        if ( this.landscapeData.parentNode == null ) this.landscapeData.parentNode = this.node.parent;
+        if ( this.portraitData.parentNode  == null ) this.portraitData.parentNode  = this.node.parent;
+        if ( this.landscapeData.contentSize != null && this.portraitData.contentSize  == null ) this.portraitData.contentSize  = this.landscapeData.contentSize;
+        if ( this.portraitData.contentSize  != null && this.landscapeData.contentSize == null ) this.landscapeData.contentSize = this.portraitData.contentSize;
+        if ( this.landscapeData.anchorPoint != null && this.portraitData.anchorPoint  == null ) this.portraitData.anchorPoint  = this.landscapeData.anchorPoint;
+        if ( this.portraitData.anchorPoint  != null && this.landscapeData.anchorPoint == null ) this.landscapeData.anchorPoint = this.portraitData.anchorPoint;
+    }
+
     public saveOrientationItem(orientation: Orientation) :boolean{
         if ( this.autoSave !== true ) return;
 
@@ -77,13 +89,13 @@ export class OrientationNode extends Component {
 
         let uiTransform = this.node.getComponent(UITransform);
         if (uiTransform) {
-            orientationItem.hasUITransform = true;
+            orientationItem.hasUITransform = false;
             orientationItem.contentSize = uiTransform.contentSize;
             orientationItem.anchorPoint = uiTransform.anchorPoint;
         } else {
             orientationItem.hasUITransform = false;
         }
-
+        this.check();
         return true;
     }
 
@@ -114,6 +126,7 @@ export class OrientationNode extends Component {
         }
 
         this.changeChildOrientation(orientation);
+        this.check();
         return orientationItem.siblingIndex;
     }
 
