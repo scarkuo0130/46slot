@@ -322,7 +322,7 @@ export class Payway4600 extends Payway {
             return;
         }
 
-        spine.setSkin(this.TYPE_POT_LEVEL[level]);
+        spine.setSkin(this.TYPE_POT_LEVEL[4]);
         await Utils.playSpine(spine, 'play03', false);
         return;
     }
@@ -353,7 +353,7 @@ export class Payway4600 extends Payway {
             alltypes.splice(type, 1);
 
             if ( spine['isPlaying'] === true ) continue;
-            if ( jp === JP_TYPE.POT ) Utils.playSpine(spine, 'play05', false);
+            if ( jp === JP_TYPE.POT ) Utils.playSpine(spine, 'play06', false);
             else Utils.playSpine(spine, 'play03', false);
         }
 
@@ -528,15 +528,15 @@ export class Payway4600 extends Payway {
             // 還在滾分
             let lastTime = Date.now() - waiting['time'];
             
-            // 剩下不到一秒，不理他，等自然結束
+            // 剩下不到0.5秒，不理他，等自然結束
             if ( lastTime < 500 ) return;
 
             // 停止滾分
             tween.stop();
 
-            // 剩餘分數，一秒內滾完
-            const last = waiting.data.value;
-            await Utils.commonTweenNumber(totalWinLabel, last, total_win, 0.5);
+            // 剩餘分數，0.5秒內滾完
+            const nowValue = clickEvent['value'];
+            await Utils.commonTweenNumber(totalWinLabel, nowValue, total_win, 0.5);
             clickEvent.emit('done');
         });
 

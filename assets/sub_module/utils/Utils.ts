@@ -652,7 +652,10 @@ export class Utils {
         label.string = numberStringFunc(from);
 
         const t = tween(data).to(duration, { value: to }, { easing: 'smooth',
-            onUpdate:   () => { label.string = numberStringFunc(data.value); },
+            onUpdate:   () => { 
+                label.string = numberStringFunc(data.value); 
+                if ( eventTarget ) eventTarget['value'] = data.value;
+            },
             onComplete: () => { eventTarget?.emit('done'); }
          }).start();
          t['isDone'] = get => { return data.value === to; };

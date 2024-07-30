@@ -352,6 +352,7 @@ export class Paytable extends Component {
     public refreshTotalBet() { return; }
     public addBet() { return; }
     public subBet() { return; }
+    public onKeySpaceDown() { return; }
     public clickBuyFeatureGameConfirm() { return; }
 
     // 是否可以購買 FeatureGame

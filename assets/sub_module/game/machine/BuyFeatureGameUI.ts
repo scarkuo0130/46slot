@@ -12,6 +12,9 @@ const { ccclass, property } = _decorator;
  */
 @ccclass( 'BuyFeatureGameUI' )
 export class BuyFeatureGameUI {
+    private static _instance: BuyFeatureGameUI;
+    public static get Instance() { return BuyFeatureGameUI._instance; }
+
     public get machine ()   : Machine    { return Machine.Instance }
     public get reel ()      : Reel       { return this.machine.reel; }
     public get paytable ()  : Paytable   { return this.machine.paytable; }
@@ -42,6 +45,7 @@ export class BuyFeatureGameUI {
     public get node() { return this.properties.BuyFeatureGameUI['ui'].node; }
 
     public init(inspector:any) {
+        BuyFeatureGameUI._instance = this;
         const onLoadData = {
             'BuyFeatureGameUI' : {
                 'ui'            : { [DATA_TYPE.TYPE] : Node,   [DATA_TYPE.SCENE_PATH] : inspector.buyFeatureGameUI.getPathInHierarchy()},
@@ -60,9 +64,13 @@ export class BuyFeatureGameUI {
     }
 
     public onClickCloseBuyFGUI() { 
+        if ( this.node.active === false ) return;
+        
         this.controller.maskActive(false);
         Utils.commonActiveUITween(this.node, false); 
     }
+
+    public static CloseUI() { BuyFeatureGameUI.Instance.onClickCloseBuyFGUI(); }
 
     public onClickOpenBuyFGUI() { 
         if ( this.machine.isBusy ) return;

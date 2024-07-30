@@ -276,6 +276,7 @@ export class Machine extends Component {
         this.paytable?.changeTotalBet(this.totalBet);
     }
 
+    @isDevelopFunction(true)
     public spinTest(spinData:any) {
         let event = this.spinEvent;
 

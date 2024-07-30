@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, game, Button, EventTarget, Vec3, tween, Color, Sprite, Label } from 'cc';
+import { _decorator, Component, Node, game, Button, EventTarget, Vec3, tween, Color, Sprite, Label, input, Input, EventKeyboard, KeyCode } from 'cc';
 import { Utils, DATA_TYPE } from '../../../utils/Utils';
 import { Orientation, Viewport } from '../../../utils/Viewport';
 import { AutoSpin } from '../../AutoSpin';
@@ -6,6 +6,7 @@ import { Machine } from '../Machine';
 import { gameInformation } from '../../GameInformation';
 import { DataManager } from '../../../data/DataManager';
 import { GameInformation } from '../GameInformation';
+import { BuyFeatureGameUI } from '../BuyFeatureGameUI';
 const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
@@ -204,6 +205,7 @@ export class Controller extends Component {
     public activeBusyButtons(active:boolean) { 
         this.props['BusyDisableButtons'].forEach((button: Button) => { button.interactable = active; }); 
         this.machine.activeBuyFGButton(active);
+        BuyFeatureGameUI.CloseUI();
     }
 
     protected onLoad(): void {
@@ -215,6 +217,12 @@ export class Controller extends Component {
         this.initOptionButton();
 
         console.log(this.properties);
+        input.on(Input.EventType.KEY_DOWN, this.onKeySpaceDown, this);
+    }
+
+    protected onKeySpaceDown(event: EventKeyboard) { 
+        if ( event.keyCode !== KeyCode.SPACE ) return;
+        this.clickSpin();
     }
 
     protected start() {
@@ -254,11 +262,12 @@ export class Controller extends Component {
     public async clickSpin(autoSpin:boolean=false) {
         //console.log('clickSpin', autoSpin);
         if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
-
         // if ( autoSpin === false && this.autoSpin.checkStopAutoSpin() ) return false;
 
         this.clickSpinButtonAnimation() ;
         if ( this.machine.spinning ) {
+            if ( this.machine.fastStopping ) return;
+            
             let times = this.props['clickSpin'][1]++;
             Utils.GoogleTag('ClickSpinStop', {'event_category':'Spin', 'event_label':'ClickSpinStop', 'times': times});
             this.machine.fastStopping = true;

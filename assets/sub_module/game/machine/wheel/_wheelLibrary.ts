@@ -376,7 +376,7 @@ export class WheelLibrary extends Component {
 
         if (active === true) {
             nearSpine.node.active = true;
-            this.propertys.nearMiss.audioSource = SoundManager.playSoundData(nearAudio, false);
+            // this.propertys.nearMiss.audioSource = SoundManager.playSoundData(nearAudio, false);
         } else {
             nearSpine.node.active = false;
             this.propertys.nearMiss.audioSource?.stop();
