@@ -153,9 +153,9 @@ KBO_19
   index: -1
 MAJOR
   rotate: true
-  xy: 530, 50
-  size: 100, 28
-  orig: 100, 28
+  xy: 530, 51
+  size: 99, 28
+  orig: 99, 28
   offset: 0, 0
   index: -1
 MAJOR_BM

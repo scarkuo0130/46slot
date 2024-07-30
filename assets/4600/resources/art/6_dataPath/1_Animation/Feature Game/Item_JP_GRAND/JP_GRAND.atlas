@@ -6,10 +6,10 @@ filter: Linear,Linear
 repeat: none
 GRAND
   rotate: false
-  xy: 2, 19
-  size: 104, 31
-  orig: 106, 33
-  offset: 1, 2
+  xy: 2, 22
+  size: 103, 28
+  orig: 103, 28
+  offset: 0, 0
   index: -1
 GRAND_BM
   rotate: false
@@ -41,28 +41,28 @@ KBO_02
   index: -1
 KBO_03
   rotate: false
-  xy: 195, 6
+  xy: 194, 6
   size: 73, 62
   orig: 206, 85
   offset: 2, 15
   index: -1
 KBO_04
   rotate: false
-  xy: 341, 2
+  xy: 340, 2
   size: 87, 67
   orig: 206, 85
   offset: 3, 12
   index: -1
 KBO_05
   rotate: true
-  xy: 632, 40
+  xy: 631, 40
   size: 102, 69
   orig: 206, 85
   offset: 3, 12
   index: -1
 KBO_06
   rotate: true
-  xy: 557, 20
+  xy: 556, 20
   size: 112, 73
   orig: 206, 85
   offset: 6, 9
@@ -104,7 +104,7 @@ KBO_11
   index: -1
 KBO_12
   rotate: false
-  xy: 430, 4
+  xy: 429, 4
   size: 125, 78
   orig: 206, 85
   offset: 66, 2
@@ -132,14 +132,14 @@ KBO_15
   index: -1
 KBO_16
   rotate: false
-  xy: 108, 3
+  xy: 107, 3
   size: 85, 65
   orig: 206, 85
   offset: 119, 6
   index: -1
 KBO_17
   rotate: false
-  xy: 270, 9
+  xy: 269, 9
   size: 69, 59
   orig: 206, 85
   offset: 135, 9

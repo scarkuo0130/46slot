@@ -512,7 +512,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 414.763948497854,
+    "_orthoHeight": 408.2275711159737,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -3125,7 +3125,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 97.75658865343347,
+      "width": 97.7734375,
       "height": 25.2
     },
     "_anchorPoint": {
@@ -3158,7 +3158,7 @@
     "_string": "BALANCE",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21.84375,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -3348,8 +3348,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 187.0976115432761,
-      "height": 25.200000000000003
+      "width": 187.1611328125,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3381,7 +3381,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.028125000000003,
+    "_actualFontSize": 22,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -3936,7 +3936,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 109.21942060085836,
+      "width": 109.23828125,
       "height": 25.2
     },
     "_anchorPoint": {
@@ -3969,7 +3969,7 @@
     "_string": "TOTAL WIN",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21.84375,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -4159,8 +4159,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 187.0976115432761,
-      "height": 25.200000000000003
+      "width": 187.1611328125,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4192,7 +4192,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.028125000000003,
+    "_actualFontSize": 22,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -4753,7 +4753,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 110.34227188394134,
+      "width": 110.361328125,
       "height": 25.2
     },
     "_anchorPoint": {
@@ -4786,7 +4786,7 @@
     "_string": "TOTAL BET",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21.84375,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -4976,8 +4976,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 113.72116416309012,
-      "height": 25.200000000000003
+      "width": 113.759765625,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -5009,7 +5009,7 @@
     "_string": "Rp 999,999",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.028125000000003,
+    "_actualFontSize": 22,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -22546,8 +22546,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 439.92438975321886,
-      "height": 101.69999999999997
+      "width": 440,
+      "height": 101.69999999999999
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -22579,7 +22579,7 @@
     "_string": "選擇硬幣即可揭曉神獸。\n3 隻相同神獸可贏大獎",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 43.6875,
+    "_actualFontSize": 40,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 45,
@@ -25551,7 +25551,7 @@
     "_overflow": 2,
     "_enableWrapText": false,
     "_font": {
-      "__uuid__": "f8fe95f9-00e4-4e9f-a28c-f69ae322b321",
+      "__uuid__": "ca8bece7-b449-48d9-8853-f5f1572340ac",
       "__expectedType__": "cc.BitmapFont"
     },
     "_isSystemFontUsed": false,
@@ -67774,7 +67774,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 401.4543097281831,
+      "width": 401.5234375,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -67807,7 +67807,7 @@
     "_string": "AUTO SPIN SETTING",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 43.6875,
+    "_actualFontSize": 40,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -68524,7 +68524,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 201.70494679899855,
+      "width": 201.75390625,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -68557,7 +68557,7 @@
     "_string": "UNTIL FEATURE",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 28.396875,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -68958,7 +68958,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150.21256650125179,
+      "width": 150.2490234375,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -68991,7 +68991,7 @@
     "_string": "QUICK SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 28.396875,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -69392,7 +69392,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 158.86866841022888,
+      "width": 158.9072265625,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -69425,7 +69425,7 @@
     "_string": "TURBO SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 28.396875,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -69645,7 +69645,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 84.70795332618025,
+      "width": 84.728515625,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -69678,7 +69678,7 @@
     "_string": "START",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 28.396875,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -70249,7 +70249,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 147.3187421763233,
+      "width": 147.3544921875,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -70282,7 +70282,7 @@
     "_string": "SPIN TIMES",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 28.396875,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -70526,7 +70526,7 @@
     "_string": "UNLIMITED",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21.84375,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -71917,7 +71917,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 164.4443373345851,
+      "width": 164.47265625,
       "height": 50.4
     }
   },
@@ -71937,7 +71937,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 38.990536145386265,
+      "width": 39,
       "height": 50.4
     }
   },
@@ -71957,7 +71957,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 90.89972281831187,
+      "width": 90.91552734375,
       "height": 50.4
     }
   },
@@ -75332,16 +75332,19 @@
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
@@ -78091,16 +78094,19 @@
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
@@ -78683,16 +78689,19 @@
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
@@ -79275,16 +79284,19 @@
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
@@ -79867,16 +79879,19 @@
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
   {
     "__type__": "SimpleAudioClipData",
+    "active": true,
     "volume": 0.8,
     "loop": false
   },
@@ -84471,7 +84486,7 @@
     "_overflow": 2,
     "_enableWrapText": false,
     "_font": {
-      "__uuid__": "f8fe95f9-00e4-4e9f-a28c-f69ae322b321",
+      "__uuid__": "ca8bece7-b449-48d9-8853-f5f1572340ac",
       "__expectedType__": "cc.BitmapFont"
     },
     "_isSystemFontUsed": false,
@@ -86055,6 +86070,7 @@
   },
   {
     "__type__": "AudioClipData",
+    "active": true,
     "clip": null,
     "volume": 0.8,
     "loop": false,

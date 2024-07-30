@@ -1,69 +1,69 @@
 
 Background_Dragon.png
-size: 1024,512
+size: 512,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Dragon_01
   rotate: false
-  xy: 617, 28
-  size: 118, 56
-  orig: 143, 84
-  offset: 14, 14
+  xy: 334, 21
+  size: 95, 45
+  orig: 114, 67
+  offset: 11, 11
   index: -1
 Dragon_02
-  rotate: true
-  xy: 344, 2
-  size: 201, 271
-  orig: 219, 284
-  offset: 12, 6
+  rotate: false
+  xy: 276, 274
+  size: 161, 216
+  orig: 175, 227
+  offset: 10, 5
   index: -1
 Dragon_03
   rotate: false
-  xy: 507, 208
-  size: 70, 130
-  orig: 86, 146
-  offset: 8, 7
+  xy: 454, 37
+  size: 55, 104
+  orig: 69, 117
+  offset: 7, 6
   index: -1
 Dragon_04
-  rotate: true
-  xy: 601, 342
-  size: 145, 115
-  orig: 154, 122
-  offset: 4, 3
+  rotate: false
+  xy: 216, 9
+  size: 116, 93
+  orig: 123, 98
+  offset: 3, 2
   index: -1
 Dragon_05
   rotate: true
-  xy: 579, 213
-  size: 125, 137
-  orig: 131, 148
-  offset: 3, 9
+  xy: 2, 2
+  size: 100, 110
+  orig: 105, 118
+  offset: 2, 7
   index: -1
 Dragon_06
   rotate: false
-  xy: 2, 5
-  size: 340, 482
-  orig: 355, 500
-  offset: 7, 1
+  xy: 2, 104
+  size: 272, 386
+  orig: 284, 400
+  offset: 5, 1
   index: -1
 Dragon_07
-  rotate: true
-  xy: 507, 340
-  size: 147, 92
-  orig: 153, 106
-  offset: 2, 8
+  rotate: false
+  xy: 334, 68
+  size: 118, 73
+  orig: 122, 85
+  offset: 1, 7
   index: -1
 Dragon_08
-  rotate: true
-  xy: 617, 86
-  size: 125, 122
-  orig: 135, 134
-  offset: 4, 7
+  rotate: false
+  xy: 114, 4
+  size: 100, 98
+  orig: 108, 107
+  offset: 3, 6
   index: -1
 Dragon_09
-  rotate: true
-  xy: 344, 205
-  size: 282, 161
-  orig: 287, 205
+  rotate: false
+  xy: 276, 143
+  size: 225, 129
+  orig: 230, 164
   offset: 0, 0
   index: -1

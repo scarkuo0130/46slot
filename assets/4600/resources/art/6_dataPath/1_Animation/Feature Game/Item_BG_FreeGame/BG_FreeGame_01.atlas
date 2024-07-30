@@ -1,0 +1,41 @@
+
+BG_FreeGame_01.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BM
+  rotate: false
+  xy: 644, 150
+  size: 640, 360
+  orig: 640, 360
+  offset: 0, 0
+  index: -1
+ERT_02
+  rotate: false
+  xy: 1286, 5
+  size: 550, 253
+  orig: 559, 258
+  offset: 5, 5
+  index: -1
+ERT_03
+  rotate: false
+  xy: 2, 2
+  size: 333, 145
+  orig: 344, 151
+  offset: 5, 6
+  index: -1
+ERT_04_2
+  rotate: false
+  xy: 2, 149
+  size: 640, 361
+  orig: 641, 361
+  offset: 0, 0
+  index: -1
+ERT_05
+  rotate: false
+  xy: 1286, 260
+  size: 586, 250
+  orig: 597, 257
+  offset: 6, 7
+  index: -1
