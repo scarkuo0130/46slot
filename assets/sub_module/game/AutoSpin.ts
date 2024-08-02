@@ -168,7 +168,7 @@ export class AutoSpin extends Component {
      * 是否要繼續AutoSpin
      * @returns 
      */
-    public decrementCount() : boolean {
+    public async decrementCount() : boolean {
         if ( this.machine.isBusy ) return false;
 
         if ( this.active === false ) {
@@ -181,20 +181,20 @@ export class AutoSpin extends Component {
         if ( autoSpin.spinTimeActive === true ) {
             if ( autoSpin.spinTimes > 0 ) {
                 autoSpin.spinTimes--;
-                this.autoSpinTimes(autoSpin.spinTimes);
+                await this.autoSpinTimes(autoSpin.spinTimes);
                 this.machine.controller.clickSpin(true);
 
                 if ( autoSpin.spinTimes === 0 ) this.active = false;
                 return true;
             } else if ( autoSpin.spinTimes === -1 ) {
-                this.autoSpinTimes(autoSpin.spinTimes);
+                await this.autoSpinTimes(autoSpin.spinTimes);
                 this.machine.controller.clickSpin(true);
                 return true;
             }
         } 
         
         if ( autoSpin.untilFeature === true ) {
-            this.autoSpinTimes(autoSpin.spinTimes, true);
+            await this.autoSpinTimes(autoSpin.spinTimes, true);
             this.machine.controller.clickSpin(true);
             return true;
         }
@@ -203,17 +203,22 @@ export class AutoSpin extends Component {
         return false;
     }
 
-    public autoSpinTimes(times:number, isUntilFeature:boolean=false) {
+    public async autoSpinTimes(times:number, isUntilFeature:boolean=false) {
         let spinTimeStr;
         if ( times === -1 ) spinTimeStr = '∞';
         else if ( isUntilFeature ) spinTimeStr = '';
         else spinTimeStr = times.toString();
 
+        if ( this.autoSpinButton.node.active === true ) {
+            await Utils.commonActiveUITween(this.autoSpinButton.node, false, true, 0.2);
+        }
+
         this.autoSpinButton.node.active = true;
         this.autoSpinTimeLabel.string = spinTimeStr;
+        await Utils.commonActiveUITween(this.autoSpinButton.node, true, true, 0.2);
     }
 
-    public static AutoSpinTimes(times:number, isUntilFeature:boolean=false) { AutoSpin.Instance.autoSpinTimes(times, isUntilFeature); }
+    public static async AutoSpinTimes(times:number, isUntilFeature:boolean=false) { return AutoSpin.Instance.autoSpinTimes(times, isUntilFeature); }
 
     public closeAutoSpinTimes() { this.autoSpinButton.node.active = false; }
 

@@ -109,17 +109,7 @@ export class Viewport {
 
         const width: number = ( PREVIEW ) ? screen.windowSize.width : window.innerWidth;
         const height: number = ( PREVIEW ) ? screen.windowSize.height : window.innerHeight;
-        /*
-        if ( (width > height && lockOrientation == null ) || lockOrientation === Orientation.LANDSCAPE ) {
-            if ( Viewport.DevelopLockOrientation === Orientation.PORTRAIT ) return;
-            this.orientation = Orientation.LANDSCAPE;
-            view.setDesignResolutionSize( this.designResolutionHeight, this.designResolutionWidth, ResolutionPolicy.SHOW_ALL );
-        } else {
-            if ( Viewport.DevelopLockOrientation === Orientation.LANDSCAPE ) return;
-            this.orientation = Orientation.PORTRAIT;
-            view.setDesignResolutionSize( this.designResolutionWidth, this.designResolutionHeight, ResolutionPolicy.SHOW_ALL );
-        }
-        */
+
         if ( width > height ) {
             this.orientation = Orientation.LANDSCAPE;
             view.setDesignResolutionSize( this.designResolutionHeight, this.designResolutionWidth, ResolutionPolicy.SHOW_ALL );
@@ -140,8 +130,6 @@ export class Viewport {
         }
 
         if ( ratio > 1 ) ratio = 1;
-
-        console.log( `resizeScale ${ width },${ height }`, ratio );
         setTimeout( () => {
             let canvas: Node = director.getScene().getChildByName( 'Canvas' );
             canvas.setScale( 1, 1, 1 );

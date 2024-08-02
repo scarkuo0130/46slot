@@ -535,10 +535,10 @@ export class Utils {
         return animation?.duration ?? 0;
     }
 
-    public static readonly activeUIScale = [ new Vec3( 0.5, 0.5, 1 ), new Vec3( 1, 1, 1 )];
+    public static readonly activeUIScale = [ new Vec3( 0.7, 0.7, 1 ), new Vec3( 1, 1, 1 )];
     public static readonly activeUIAlpha = [ new Color( 255, 255, 255, 0 ), new Color( 255, 255, 255, 255 )];
     public static activeUIEventTarget: EventTarget = null;
-    public static async commonActiveUITween( ui:Node, active:boolean, colorAlpha:boolean = true ) {
+    public static async commonActiveUITween( ui:Node, active:boolean, colorAlpha:boolean = true, duration:number = 0.3 ) {
         if ( ui == null ) return;
         if (this.activeUIEventTarget?.['running'] === true) return;
 
@@ -549,7 +549,7 @@ export class Utils {
         this.activeUIEventTarget['running'] = true;
         ui.setScale( fromScale );
         ui.active = true;
-        tween( ui ).to(0.3, { scale: toScale }, { 
+        tween( ui ).to(duration, { scale: toScale }, { 
             easing: 'backOut',
             onComplete:(x)=> Utils.activeUIEventTarget.emit('done')
         }).start();
@@ -561,11 +561,12 @@ export class Utils {
                 let fromColor = active ? this.activeUIAlpha[ 0 ] : this.activeUIAlpha[ 1 ];
                 let toColor   = active ? this.activeUIAlpha[ 1 ] : this.activeUIAlpha[ 0 ];
                 sprite.color = fromColor;
-                tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
+                tween( sprite ).to(duration, { color: toColor }, { easing: 'smooth' }).start();
             } else {
+                // if ( duration >= 0.2 ) duration -= 0.1;
                 let fromColor = active ? {value:0} : {value:255};
                 let toColor   = active ? {value:255} : {value:0};
-                tween( fromColor ).to(0.3, toColor, { 
+                tween( fromColor ).to(duration, toColor, { 
                     easing: 'smooth',
                     onUpdate: () => { sprite.color = new Color(255, 255, 255, fromColor.value); }
                 }).start();
@@ -580,9 +581,10 @@ export class Utils {
     public static getColorComponent(node:Node) : any {
         if ( node == null ) return null;
         const components = node['_components'];
-        if ( !components?.length ) return null;
+        if ( components == null || components.length === 0 ) return null;
         for(let i in components) {
             const comp = components[i];
+            if ( comp == null ) continue;
             if ( comp['color'] == null ) continue;
             if ( comp['color'] instanceof Color ) return comp;
         }
