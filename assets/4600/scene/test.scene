@@ -186,7 +186,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 640,
+      "x": 639.9999999999999,
       "y": 360,
       "z": 0
     },
@@ -272,7 +272,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 408.2275711159737,
+    "_orthoHeight": 360,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -398,12 +398,12 @@
       "__uuid__": "72bb5e60-1c5c-4e63-8751-8565fdd6ecce",
       "__expectedType__": "sp.SkeletonData"
     },
-    "defaultSkin": "default",
+    "defaultSkin": "level4",
     "defaultAnimation": "play06",
     "_premultipliedAlpha": true,
     "_timeScale": 1,
-    "_preCacheMode": 0,
-    "_cacheMode": 0,
+    "_preCacheMode": 1,
+    "_cacheMode": 1,
     "_sockets": [],
     "_useTint": false,
     "_debugMesh": false,
@@ -425,7 +425,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1280,
+      "width": 1279.9999999999998,
       "height": 720
     },
     "_anchorPoint": {

@@ -1,167 +1,167 @@
 
 JP_MAJOR.png
-size: 1024,256
+size: 2048,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 GRAND_BM
   rotate: true
-  xy: 138, 84
-  size: 170, 50
-  orig: 170, 50
-  offset: 0, 0
+  xy: 66, 44
+  size: 210, 61
+  orig: 212, 63
+  offset: 1, 1
   index: -1
 GRAND_KAO
-  rotate: true
-  xy: 2, 52
-  size: 202, 81
-  orig: 206, 85
+  rotate: false
+  xy: 856, 45
+  size: 253, 102
+  orig: 257, 106
   offset: 2, 2
   index: -1
 KBO_01
   rotate: false
-  xy: 2, 7
-  size: 41, 43
-  orig: 206, 85
-  offset: 3, 28
+  xy: 1101, 201
+  size: 52, 53
+  orig: 257, 106
+  offset: 4, 35
   index: -1
 KBO_02
   rotate: true
-  xy: 647, 199
-  size: 55, 50
-  orig: 206, 85
-  offset: 3, 22
+  xy: 973, 184
+  size: 70, 63
+  orig: 257, 106
+  offset: 3, 27
   index: -1
 KBO_03
   rotate: true
-  xy: 630, 5
-  size: 73, 62
-  orig: 206, 85
-  offset: 2, 15
+  xy: 397, 2
+  size: 91, 78
+  orig: 257, 106
+  offset: 3, 18
   index: -1
 KBO_04
   rotate: true
-  xy: 578, 167
-  size: 87, 67
-  orig: 206, 85
-  offset: 3, 12
+  xy: 771, 15
+  size: 110, 83
+  orig: 257, 106
+  offset: 3, 16
   index: -1
 KBO_05
   rotate: true
-  xy: 507, 152
-  size: 102, 69
-  orig: 206, 85
-  offset: 3, 12
+  xy: 725, 127
+  size: 127, 86
+  orig: 257, 106
+  offset: 4, 15
   index: -1
 KBO_06
-  rotate: true
-  xy: 432, 142
-  size: 112, 73
-  orig: 206, 85
-  offset: 6, 9
+  rotate: false
+  xy: 254, 2
+  size: 141, 91
+  orig: 257, 106
+  offset: 7, 12
   index: -1
 KBO_07
-  rotate: true
-  xy: 220, 2
-  size: 122, 76
-  orig: 206, 85
-  offset: 9, 7
+  rotate: false
+  xy: 616, 2
+  size: 153, 94
+  orig: 257, 106
+  offset: 11, 9
   index: -1
 KBO_08
   rotate: true
-  xy: 352, 129
-  size: 125, 78
-  orig: 206, 85
-  offset: 18, 5
+  xy: 431, 97
+  size: 157, 97
+  orig: 257, 106
+  offset: 22, 6
   index: -1
 KBO_09
   rotate: true
-  xy: 271, 127
-  size: 127, 79
-  orig: 206, 85
-  offset: 29, 4
+  xy: 230, 95
+  size: 159, 99
+  orig: 257, 106
+  offset: 36, 4
   index: -1
 KBO_10
-  rotate: false
-  xy: 86, 3
-  size: 132, 79
-  orig: 206, 85
-  offset: 38, 3
+  rotate: true
+  xy: 129, 88
+  size: 166, 99
+  orig: 257, 106
+  offset: 47, 3
   index: -1
 KBO_11
   rotate: true
-  xy: 190, 126
-  size: 128, 79
-  orig: 206, 85
-  offset: 52, 2
+  xy: 331, 95
+  size: 159, 98
+  orig: 257, 106
+  offset: 65, 3
   index: -1
 KBO_12
   rotate: true
-  xy: 376, 2
-  size: 125, 78
-  orig: 206, 85
-  offset: 66, 2
+  xy: 530, 98
+  size: 156, 97
+  orig: 257, 106
+  offset: 82, 2
   index: -1
 KBO_13
   rotate: true
-  xy: 298, 5
-  size: 120, 76
-  orig: 206, 85
-  offset: 78, 2
+  xy: 629, 105
+  size: 149, 94
+  orig: 257, 106
+  offset: 97, 3
   index: -1
 KBO_14
-  rotate: true
-  xy: 456, 30
-  size: 110, 72
-  orig: 206, 85
-  offset: 91, 3
+  rotate: false
+  xy: 477, 5
+  size: 137, 90
+  orig: 257, 106
+  offset: 114, 3
   index: -1
 KBO_15
-  rotate: true
-  xy: 560, 52
-  size: 98, 68
-  orig: 206, 85
-  offset: 105, 4
+  rotate: false
+  xy: 129, 2
+  size: 123, 84
+  orig: 257, 106
+  offset: 130, 5
   index: -1
 KBO_16
   rotate: true
-  xy: 630, 80
-  size: 85, 65
-  orig: 206, 85
-  offset: 119, 6
+  xy: 813, 149
+  size: 105, 81
+  orig: 257, 106
+  offset: 149, 7
   index: -1
 KBO_17
   rotate: true
-  xy: 694, 9
-  size: 69, 59
-  orig: 206, 85
-  offset: 135, 9
+  xy: 896, 168
+  size: 86, 75
+  orig: 257, 106
+  offset: 168, 11
   index: -1
 KBO_18
   rotate: true
-  xy: 697, 143
-  size: 54, 50
-  orig: 206, 85
-  offset: 150, 12
+  xy: 1038, 187
+  size: 67, 61
+  orig: 257, 106
+  offset: 187, 16
   index: -1
 KBO_19
-  rotate: false
-  xy: 45, 7
-  size: 39, 43
-  orig: 206, 85
-  offset: 164, 12
+  rotate: true
+  xy: 1101, 150
+  size: 49, 53
+  orig: 257, 106
+  offset: 204, 16
   index: -1
 MAJOR
-  rotate: true
-  xy: 530, 51
-  size: 99, 28
-  orig: 99, 28
+  rotate: false
+  xy: 2, 7
+  size: 124, 35
+  orig: 124, 35
   offset: 0, 0
   index: -1
 MAJOR_BM
   rotate: true
-  xy: 85, 84
-  size: 170, 51
-  orig: 170, 51
-  offset: 0, 0
+  xy: 2, 44
+  size: 210, 62
+  orig: 212, 64
+  offset: 1, 1
   index: -1

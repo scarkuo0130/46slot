@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "LVT7tGrlXwjin3kqkQmt3rLo66k",
+	"hash": "kRvbZPYURxF8S5VhjbE3xvgq1L4",
 	"spine": "3.8.72",
 	"x": -129,
 	"y": -53,
@@ -84,8 +84,8 @@
 				"MINI_KAO": { "x": -0.5, "width": 257, "height": 106 }
 			},
 			"MINI": {
-				"MINI": { "x": 2.5, "y": 28.5, "width": 83, "height": 35 },
-				"MINI2": { "path": "MINI", "x": 0.5, "y": 0.5, "width": 83, "height": 35 }
+				"MINI": { "x": 2.5, "y": 28.5, "width": 95, "height": 35 },
+				"MINI2": { "path": "MINI", "x": 0.5, "y": 0.5, "width": 95, "height": 35 }
 			},
 			"MINI_BM2": {
 				"GRAND_BM": { "y": -1.5, "width": 212, "height": 63 },
@@ -129,7 +129,7 @@
 			},
 			"MINI2": {
 				"GRAND": { "x": 2.5, "y": 28.5, "width": 133, "height": 41 },
-				"MINI": { "x": 0.5, "y": 0.5, "width": 83, "height": 35 }
+				"MINI": { "x": 0.5, "y": 0.5, "width": 95, "height": 35 }
 			}
 		}
 	}

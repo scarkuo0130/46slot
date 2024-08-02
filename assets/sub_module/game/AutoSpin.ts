@@ -169,6 +169,8 @@ export class AutoSpin extends Component {
      * @returns 
      */
     public decrementCount() : boolean {
+        if ( this.machine.isBusy ) return false;
+
         if ( this.active === false ) {
             this.closeAutoSpinTimes();
             return false;
@@ -227,6 +229,7 @@ export class AutoSpin extends Component {
 
     public stopAutoSpin() {
         if ( this.machine.featureGame ) return false;
+        if ( this.enabled === false )   return false;
 
         Utils.GoogleTag('StopAutoSpin', {'event_category':'AutoSpin', 'event_label':'StopAutoSpin', 'value': {
             'spinTimes'      : this.properties.autoSpin.spinTimes,
@@ -236,6 +239,15 @@ export class AutoSpin extends Component {
 
         this.closeAutoSpinTimes();
         this.autoSpinTimeLabel.string = '';
+        this.active = false;
+        return true;
+    }
+
+    public static StopSpinByUtilFeature() { return AutoSpin.Instance.stopSpinByUtilFeature(); }
+
+    public stopSpinByUtilFeature() :boolean {
+        if ( this.active === false ) return false;
+        if ( this.properties.autoSpin.untilFeature === false ) return false;
         this.active = false;
         return true;
     }

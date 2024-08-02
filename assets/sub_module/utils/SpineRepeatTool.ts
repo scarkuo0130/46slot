@@ -1,4 +1,5 @@
 import { _decorator, Component, EventHandler, Node, sp } from 'cc';
+import { Utils } from './Utils';
 const { ccclass, property } = _decorator;
 
 @ccclass('SpineRepeatData')
@@ -47,13 +48,14 @@ export class SpineRepeatTool extends Component {
     }
 
     public start() {
-        /*
-        this.playAnimation('play01', 2.3, 7, 1);
-        let self = this;
-        setTimeout(() => {
-            self._repeatEnd = true;
-        }, 20000);
-        */
+        console.warn(this);
+        this.debugLoop();
+    }
+
+    public async debugLoop() {
+        this.play('flip');
+        await Utils.delay(2000);
+        this.debugLoop();
     }
 
     public play(animation:string) {

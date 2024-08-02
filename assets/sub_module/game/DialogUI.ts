@@ -59,6 +59,7 @@ export class DialogUI extends Component {
         '2' : () => { DialogUI.Instance.closeUI(); },
     };
     public static OpenErrorMessage(errorCode:string) {
+        console.log('OpenErrorMessage', errorCode);
         let messageData = DialogUI.ErrorMessage[errorCode];
         if ( messageData == null ) {
             messageData = DialogUI.ErrorMessage['default'];

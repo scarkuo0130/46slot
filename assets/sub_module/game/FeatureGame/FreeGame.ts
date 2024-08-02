@@ -2,6 +2,7 @@ import { _decorator, Component, EventTarget } from 'cc';
 import { Utils } from '../../utils/Utils';
 import { Machine } from '../machine/Machine';
 import { Controller } from '../machine/controller_folder/Controller';
+import { AutoSpin } from '../AutoSpin';
 const { ccclass, property } = _decorator;
 
 @ccclass('FreeGame')
@@ -15,8 +16,8 @@ export class FreeGame extends Component {
         let spinEvent = new EventTarget();
 
         Machine.Instance.fastStopping = false;
-        Controller.ButtonSpinning(true); // 不停轉動Spin按鈕
-
+        Controller.ActiveFreeGameButton(true); // 打開FreeGame按鈕
+        
         for(let i = 0; i < freeGameData.length; i++) {
             machine.paytable.spin(spinEvent);
             machine.paytable.setGameResult(freeGameData[i]);
@@ -26,7 +27,7 @@ export class FreeGame extends Component {
             if ( roundCallback ) await roundCallback(freeGameData[i]);
         }
         
-        Controller.ButtonSpinning(false); // 停止轉動Spin按鈕
+        Controller.ActiveFreeGameButton(false); // 關閉FreeGame按鈕
         await Utils.delay(1000);
 
         console.log('EndFreeGame');

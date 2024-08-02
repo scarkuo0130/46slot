@@ -77,7 +77,8 @@ export class OrientationNode extends Component {
         if ( this.portraitData.anchorPoint  != null && this.landscapeData.anchorPoint == null ) this.landscapeData.anchorPoint = this.portraitData.anchorPoint;
     }
 
-    public saveOrientationItem(orientation: Orientation) :boolean{
+    public saveOrientationItem(orientation: Orientation) :boolean {
+        if ( EDITOR === false ) return;
         if ( this.autoSave !== true ) return;
 
         let orientationItem = orientation === Orientation.LANDSCAPE ? this.landscapeData : this.portraitData;
@@ -126,7 +127,7 @@ export class OrientationNode extends Component {
         }
 
         this.changeChildOrientation(orientation);
-        this.check();
+        if ( EDITOR ) this.check();
         return orientationItem.siblingIndex;
     }
 

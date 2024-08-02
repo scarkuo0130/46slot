@@ -1,8 +1,8 @@
 import { _decorator, Component, Label, sp, Sprite, EventTarget, tween, Vec3, Color, System, Tween, ParticleSystem, Node} from 'cc';
-import { Utils, DATA_TYPE } from '../../utils/Utils';
+import { Utils, DATA_TYPE, _utilsDecorator } from '../../utils/Utils';
 import { Machine } from './Machine';
 import { gameInformation } from '../GameInformation';
-import { t } from 'xstate';
+const { isDevelopFunction } = _utilsDecorator;
 
 const { ccclass, property } = _decorator;
 
@@ -65,7 +65,11 @@ export class BigWin extends Component {
         'lastType': BigWin.BIGWIN_TYPE.NONE,
         'playValue' : [0, 0, 0, 0],
         'score'   : 0,
+        'quickStop' : false,
     };
+
+    private get quickStop() : boolean { return this.properties['quickStop']; }
+    private set quickStop(value:boolean) { this.properties['quickStop'] = value; }
 
     public static Instance : BigWin;
 
@@ -138,10 +142,9 @@ export class BigWin extends Component {
 
     public get valueBoard() { return this.properties['value']['board'][DATA_TYPE.COMPONENT]; }
 
-    public async waitingBigWin() { await Utils.delayEvent(this.event, 'done'); }
+    // public async waitingBigWin() { await Utils.delayEvent(this.event, 'done'); }
 
     public async play(type:number, quick:boolean=false) {
-        console.log('play', type, this.playing);
         if ( type === this.playing ) return;
         // 如果正在播放中，則中斷播放
         if ( this.playing !== BigWin.BIGWIN_TYPE.NONE ) await this.break();
@@ -153,20 +156,15 @@ export class BigWin extends Component {
         let spine = this.spine(type);
         spine.node.active = true;
 
-        if ( quick ) {
+        if ( quick ) { // 不播放開啟動畫，直接 loop
             spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true);
             spine.setCompleteListener((track)=>{});
            
-        } else {
-            Utils.playSpine(spine, this.ANIMATION_TYPE.START).then(()=>{ 
-                spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true);
-                //Utils.playSpine(spine, this.ANIMATION_TYPE.LOOP, true);
-            });
+        } else {      // 播放開啟動畫，接著 loop
+            Utils.playSpine(spine, this.ANIMATION_TYPE.START).then(()=>{  spine.setAnimation(0, this.ANIMATION_TYPE.LOOP, true); });
         }
 
         await Utils.commonFadeIn(this.playingSprite.node, false, null, this.playingSprite, 0.2);
-        
-
     }
 
     /** 中斷播放 */
@@ -188,12 +186,11 @@ export class BigWin extends Component {
         showLabel.node.scale = Vec3.ONE;
         showLabel.node.active = true;
         showLabel.color = Color.WHITE;
-        await Utils.delay(100);
+        await Utils.delay(500);
 
         tween(showLabel.node).to(1, { scale: new Vec3(3.5, 3.5, 1) }).start();
         await Utils.commonFadeIn(showLabel.node, true, [new Color(255,255,255,0), new Color(255,255,255,90)], showLabel, 1);
         await Utils.delay(1000);
-
         showLabel.string = '';
     }
 
@@ -202,24 +199,11 @@ export class BigWin extends Component {
         if ( this.properties['ending'] === true ) return;
         this.properties['ending'] = true;
 
-        const playing = this.playing;
-        if ( playing === BigWin.BIGWIN_TYPE.NONE ) return;
-
-        await this.showValue();
-
-        let spine = this.spine(playing);
-        spine.node.active = true;
         this.label.string = '';
         await Utils.commonFadeIn(this.valueBoard.node, true, null, this.valueBoard, 0.2);
-        spine.setAnimation(0, this.ANIMATION_TYPE.END, false);
-        spine.setCompleteListener( async (track)=> { this.FadeOutBreak(); });
-        this.properties['ending'] = false;
         await this.machine.controller.maskActive(false);
-        this.event?.emit('done');
-        Utils.delay(1000).then(()=>{ 
-            this.node.active = false; 
-            console.warn('bigwin end', this.node.active);
-        });
+        this.node.active = false; 
+        this.properties['ending'] = false;
     }
 
     public async FadeOutBreak() {
@@ -231,29 +215,25 @@ export class BigWin extends Component {
 
     /** 快速結束 */
     public async quickEnd() {
-        console.log('quickEnd', this.playing, this.lastType);
-        if ( this.event['quickStop'] === true ) return;
-        if ( this.playing === this.lastType ) return;
+        if ( this.quickStop === true ) return;
         
-        Utils.GoogleTag('QuickEnd', {'event_category':'BigWin', 'event_label':'QuickEnd', 'value':this.playing });
-        this.event['quickStop'] = true;
+        const playing = this.playing;
+        const lastType = this.lastType;
+        const event = this.event;
 
-        let playValue = this.playValue;
-        let playing = this.playing;
-        let tweenScore = this.properties['tween'];
-
-        if ( tweenScore && tweenScore['done'] === true ) {
-            tweenScore.stop();
-            // tweenScore.destroySelf();
-            this.event.emit('done_'+playing, playing); 
+        if ( playing === lastType ) {
+            const endTime = event['endTime'];
+            const lastTime = endTime - Date.now();
+            if ( lastTime < 500 ) return; // 剩下0.5秒內跑完，就不理會
         }
-        await this.play(this.lastType, true);
-        this.event['preQuickStop'] = true;
-        await this.tweenScore(this.durationMap['QuickEnd'], this.score, playValue[this.lastType]);
-        await this.end();
+
+        this.quickStop = true;
+        Utils.GoogleTag('QuickEnd', {'event_category':'BigWin', 'event_label':'QuickEnd', 'value':this.playing });
     }
 
     public bigWinLabel() { return gameInformation._winLevelRate; }
+
+    @isDevelopFunction(true)
     public setBigWinLabel(vBig, vSuper, vMega) { 
         gameInformation._winLevelRate['BIG_WIN'] = vBig;
         gameInformation._winLevelRate['SUPER_WIN'] = vSuper;
@@ -278,6 +258,10 @@ export class BigWin extends Component {
         return BigWin.BIGWIN_TYPE.BIG_WIN;
     }
 
+    /**
+     * 播放BigWin的主要流程
+     * @param totalWin { number } 總贏分
+     */
     public async playBigWin(totalWin:number) {
         if ( this.node.active === true ) return;
         let lastType = this.isBigWin(totalWin);
@@ -292,55 +276,87 @@ export class BigWin extends Component {
         playValue[lastType] = totalWin;
         this.playValue      = playValue;
         this.lastType       = lastType;
-        event['quickStop']  = false;
-        event['preQuickStop'] = false;
+        this.quickStop      = false;
         event.removeAll('done');
 
         this.node.active = true;
         await this.machine.controller.maskActive(true);
         Utils.commonFadeIn(this.valueBoard.node, false, null, this.valueBoard, 0.2);
         Utils.GoogleTag('BigWin', {'event_category':'BigWin', 'event_label':'BigWin', 'value':lastType });
-        
         while(true) {
             if ( type === BigWin.BIGWIN_TYPE.BIG_WIN ) await this.play(type);
             else this.play(type);
 
-            await this.tweenScore(this.durationMap[type], playValue[type-1], playValue[type]);
-            if ( event['quickStop'] ) return; // 快速結束 由 quickEnd 觸發執行到結束
-            if ( type === lastType )  break;  // 最後一次
+            await this.tweenScore(this.durationMap[type], playValue[type-1], playValue[type], (type === lastType));
+            if ( this.quickStop ) {
+                await this.quickStopAsync();
+                break;
+            }
+
+            
+            if ( (type === lastType) ) break;
+            this.break();
             type++;
         }
-        if ( event['quickStop'] ) return;
+        await this.showValue();
+        await this.break();
         await this.end(); // 結束
     }
 
-    public async tweenScore(duration:number, from:number, to:number) {
-        console.log('tweenScore', duration, from, to);
-        let data        = { value:from };
-        let playSec     = duration / 1000;
-        let finishValue  = to;
-        let event       = this.event;
-        let playing     = this.playing;
-        this.score      = from;
+    public async tweenScore(duration:number, from:number, finishValue:number, isFinish:boolean=false, isQuickTween:boolean=false) {
+        let data          = { value:from };
+        const playSec     = duration / 1000;
+        const event       = this.event;
+        const playing     = this.playing;
+        const self        = this;
+        const startTime   = Date.now();
+        const endTime     = startTime + duration;
+        event['endTime']  = endTime;
+        this.score        = from;
+        event.removeAll('done');
 
-        this.properties['tween'] = tween(data).to(playSec,{ value:finishValue }, {
-            onUpdate    :(target)=> { 
-                if ( event['quickStop'] && event['preQuickStop'] === false ) this.properties['tween'].stop();
-                this.score = data.value; 
-            },
-            onComplete  :(target)=> { 
-                event.emit('done_'+playing, playing); 
-                this.properties['tween']['done'] = true;
-            },
+        const onComplete = (target)=> {             // 結束事件
+            event.emit('done'); 
+        }
+
+        const onUpdate = (target)=> {               // 更新分數事件
+            this.score = data.value; 
+            if ( self.quickStop === false ) return; // 快停判斷
+            if ( isQuickTween === true ) return;    // 快速停止
+            tScore.stop();
+            onComplete(target);
+        }
+
+        let tScore = tween(data).to(playSec,{ value:finishValue }, {
+            onUpdate    : onUpdate,
+            onComplete  : onComplete,
         }).start();
 
-        await Utils.delayEvent(event, 'done_'+playing);
-        this.properties['tween']['done'] = true;
-        this.properties['tween'].destroySelf();
+        await Utils.delayEvent(event, 'done');
+        /*
+        if ( isFinish && (this.quickStop === false || isQuickTween === true ) ) {
+            await this.showValue();
+        }*/
+
+        tScore = null;
     }
 
-    start() {
-        console.log('BigWin', this);
+    /**
+     * 快速停止流程
+     */
+    public async quickStopAsync() {
+        const playing = this.playing;
+        const lastType = this.lastType;
+        const playValue = this.playValue;
+        const from = Math.floor(this.score);
+        const to = playValue[lastType];
+
+        if ( playing !== lastType ) {        // 不同動畫
+            this.break();                    // 中斷目前的動畫
+            await this.play(lastType, true); // 換最後一個動畫
+        }
+
+        await this.tweenScore(500, from, to, true, true); // 0.5秒內跑完
     }
 
 }

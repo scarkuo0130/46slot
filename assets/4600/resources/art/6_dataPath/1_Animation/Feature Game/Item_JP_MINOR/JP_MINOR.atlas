@@ -1,181 +1,181 @@
 
 JP_MINOR.png
-size: 1024,256
+size: 2048,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 GRAND
   rotate: false
-  xy: 2, 20
-  size: 98, 28
-  orig: 98, 28
+  xy: 2, 7
+  size: 122, 35
+  orig: 122, 35
   offset: 0, 0
   index: -1
 MINOR
   rotate: false
-  xy: 2, 20
-  size: 98, 28
-  orig: 98, 28
+  xy: 2, 7
+  size: 122, 35
+  orig: 122, 35
   offset: 0, 0
   index: -1
 GRAND_BM
-  rotate: false
-  xy: 186, 17
-  size: 170, 50
-  orig: 170, 50
-  offset: 0, 0
+  rotate: true
+  xy: 2, 44
+  size: 210, 62
+  orig: 212, 63
+  offset: 1, 1
   index: -1
 GRAND_KAO
-  rotate: true
-  xy: 87, 52
-  size: 202, 81
-  orig: 206, 85
+  rotate: false
+  xy: 897, 152
+  size: 253, 102
+  orig: 257, 106
   offset: 2, 2
   index: -1
 KBO_01
   rotate: false
-  xy: 102, 7
-  size: 41, 43
-  orig: 206, 85
-  offset: 3, 28
+  xy: 1114, 9
+  size: 52, 53
+  orig: 257, 106
+  offset: 4, 35
   index: -1
 KBO_02
   rotate: true
-  xy: 342, 70
-  size: 55, 50
-  orig: 206, 85
-  offset: 3, 22
+  xy: 1152, 184
+  size: 70, 63
+  orig: 257, 106
+  offset: 3, 27
   index: -1
 KBO_03
   rotate: true
-  xy: 758, 81
-  size: 73, 62
-  orig: 206, 85
-  offset: 2, 15
+  xy: 398, 2
+  size: 91, 78
+  orig: 257, 106
+  offset: 3, 18
   index: -1
 KBO_04
-  rotate: false
-  xy: 445, 2
-  size: 87, 67
-  orig: 206, 85
-  offset: 3, 12
+  rotate: true
+  xy: 772, 15
+  size: 110, 83
+  orig: 257, 106
+  offset: 3, 16
   index: -1
 KBO_05
   rotate: true
-  xy: 687, 40
-  size: 102, 69
-  orig: 206, 85
-  offset: 3, 12
+  xy: 726, 127
+  size: 127, 86
+  orig: 257, 106
+  offset: 4, 15
   index: -1
 KBO_06
-  rotate: true
-  xy: 612, 20
-  size: 112, 73
-  orig: 206, 85
-  offset: 6, 9
+  rotate: false
+  xy: 255, 2
+  size: 141, 91
+  orig: 257, 106
+  offset: 7, 12
   index: -1
 KBO_07
-  rotate: true
-  xy: 534, 5
-  size: 122, 76
-  orig: 206, 85
-  offset: 9, 7
+  rotate: false
+  xy: 617, 2
+  size: 153, 94
+  orig: 257, 106
+  offset: 11, 9
   index: -1
 KBO_08
   rotate: true
-  xy: 413, 129
-  size: 125, 78
-  orig: 206, 85
-  offset: 18, 5
+  xy: 432, 97
+  size: 157, 97
+  orig: 257, 106
+  offset: 22, 6
   index: -1
 KBO_09
   rotate: true
-  xy: 332, 127
-  size: 127, 79
-  orig: 206, 85
-  offset: 29, 4
+  xy: 231, 95
+  size: 159, 99
+  orig: 257, 106
+  offset: 36, 4
   index: -1
 KBO_10
   rotate: true
-  xy: 170, 122
-  size: 132, 79
-  orig: 206, 85
-  offset: 38, 3
+  xy: 130, 88
+  size: 166, 99
+  orig: 257, 106
+  offset: 47, 3
   index: -1
 KBO_11
   rotate: true
-  xy: 251, 126
-  size: 128, 79
-  orig: 206, 85
-  offset: 52, 2
+  xy: 332, 95
+  size: 159, 98
+  orig: 257, 106
+  offset: 65, 3
   index: -1
 KBO_12
   rotate: true
-  xy: 493, 129
-  size: 125, 78
-  orig: 206, 85
-  offset: 66, 2
+  xy: 531, 98
+  size: 156, 97
+  orig: 257, 106
+  offset: 82, 2
   index: -1
 KBO_13
   rotate: true
-  xy: 573, 134
-  size: 120, 76
-  orig: 206, 85
-  offset: 78, 2
+  xy: 630, 105
+  size: 149, 94
+  orig: 257, 106
+  offset: 97, 3
   index: -1
 KBO_14
-  rotate: true
-  xy: 651, 144
-  size: 110, 72
-  orig: 206, 85
-  offset: 91, 3
+  rotate: false
+  xy: 478, 5
+  size: 137, 90
+  orig: 257, 106
+  offset: 114, 3
   index: -1
 KBO_15
-  rotate: true
-  xy: 725, 156
-  size: 98, 68
-  orig: 206, 85
-  offset: 105, 4
+  rotate: false
+  xy: 130, 2
+  size: 123, 84
+  orig: 257, 106
+  offset: 130, 5
   index: -1
 KBO_16
-  rotate: false
-  xy: 358, 3
-  size: 85, 65
-  orig: 206, 85
-  offset: 119, 6
+  rotate: true
+  xy: 814, 149
+  size: 105, 81
+  orig: 257, 106
+  offset: 149, 7
   index: -1
 KBO_17
   rotate: true
-  xy: 758, 10
-  size: 69, 59
-  orig: 206, 85
-  offset: 135, 9
+  xy: 1114, 64
+  size: 86, 75
+  orig: 257, 106
+  offset: 168, 11
   index: -1
 KBO_18
   rotate: true
-  xy: 394, 71
-  size: 54, 50
-  orig: 206, 85
-  offset: 150, 12
+  xy: 1191, 115
+  size: 67, 61
+  orig: 257, 106
+  offset: 187, 16
   index: -1
 KBO_19
   rotate: false
-  xy: 145, 7
-  size: 39, 43
-  orig: 206, 85
-  offset: 164, 12
+  xy: 1168, 9
+  size: 49, 53
+  orig: 257, 106
+  offset: 204, 16
   index: -1
 MINOR_BM
-  rotate: false
-  xy: 170, 69
-  size: 170, 51
-  orig: 170, 51
-  offset: 0, 0
+  rotate: true
+  xy: 66, 44
+  size: 210, 62
+  orig: 212, 64
+  offset: 1, 1
   index: -1
 MINOR_KAO
-  rotate: true
-  xy: 2, 50
-  size: 204, 83
-  orig: 206, 85
+  rotate: false
+  xy: 857, 43
+  size: 255, 104
+  orig: 257, 106
   offset: 1, 1
   index: -1

@@ -193,8 +193,8 @@ export class Paytable extends Component {
         if ( this.machine.bigwin.isBigWin(score) == BigWin.BIGWIN_TYPE.NONE ) return;
         this.reelMaskActive(false);               // 關閉遮罩
         
-        this.machine.bigwin.playBigWin(score);
-        await this.machine.bigwin.waitingBigWin(); // 等待 BigWin 播放完畢
+        await this.machine.bigwin.playBigWin(score);
+        // await this.machine.bigwin.waitingBigWin(); // 等待 BigWin 播放完畢
         
     }
 

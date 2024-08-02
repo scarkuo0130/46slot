@@ -1,8 +1,9 @@
-import { _decorator, Component, Node, sp, Label, Color, Sprite, EventTarget } from 'cc';
+import { _decorator, Component, Node, sp, Label, Color, Sprite, EventTarget, Input, input } from 'cc';
 import { Machine } from '../../../sub_module/game/machine/Machine';
 import { Payway4600, JP_TYPE } from '.././Payway4600';
 import { Utils, DATA_TYPE } from '../../../sub_module/utils/Utils';
 import { JpCoin } from './JpCoin';
+import { AutoSpin } from '../../../sub_module/game/AutoSpin';
 const { ccclass, property } = _decorator;
 
 @ccclass('JpGame4600')
@@ -10,6 +11,7 @@ export class JpGame4600 extends Component {
     public properties = {
         'clicked_type' : { [JP_TYPE.GRAND] : 0, [JP_TYPE.MAJOR] : 0, [JP_TYPE.MINOR] : 0, [JP_TYPE.MINI] : 0, },
         'jp_board_animation_type' : [ 'idle', 'idle', 'play02', 'play03' ],
+        'idle_event' : null, // EventTarget
     };
 
     private get background() : Node { return this.properties['Background']['node'].node; }
@@ -64,16 +66,32 @@ export class JpGame4600 extends Component {
             9  : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-009' },
             10 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-010' },
             11 : { [DATA_TYPE.TYPE] : JpCoin, [DATA_TYPE.SCENE_PATH] : 'Canvas/JP Game/Coins/Coin-011' },
-        }
+        },
+
+        'idle' : {
+            'label' : { [DATA_TYPE.TYPE]: Label, [DATA_TYPE.SCENE_PATH]: 'Canvas/JP Game/LastSec' },
+        },
     }
 
     private readonly JP_BOARDS = [ [JP_TYPE.GRAND], [JP_TYPE.MAJOR], [JP_TYPE.MINOR], [JP_TYPE.MINI] ];
+
+    public reset_idle_count() { 
+        this.idle_count = 0; 
+        if ( this.last_label.node.active === false ) return;
+        this.last_label.string = '';
+    }
 
     public onLoad(): void {
         this.node.setPosition(0, 0, 0);
         Utils.initData(this.initData, this);
 
         this.node.active = false;
+        this.properties['idle_event'] = new EventTarget();
+        this.idle_count = 0;
+
+        input.on(Input.EventType.KEY_DOWN, this.reset_idle_count, this);
+        input.on(Input.EventType.TOUCH_START, this.reset_idle_count, this);
+        input.on(Input.EventType.MOUSE_MOVE, this.reset_idle_count, this);
     }
 
     private get machine() : Machine { return Machine.Instance; }
@@ -84,6 +102,10 @@ export class JpGame4600 extends Component {
 
     private set jp_prize(value:number) { this.properties['jp_prize'] = value; }
     private get jp_prize():number { return this.properties['jp_prize']; }
+
+    private get idle_event() : EventTarget { return this.properties['idle_event']; }
+    private get idle_count() : number { return this.properties['idle_event']['count']; }
+    private set idle_count(value:number) { this.properties['idle_event']['count'] = value; }
 
     private get_clicked_type(JP_TYPE) { return this.properties['clicked_type'][JP_TYPE]; }
     private add_clicked_type(JP_TYPE) { 
@@ -156,6 +178,10 @@ export class JpGame4600 extends Component {
         this.reset_coin();
         this.update_jp_value();
         this.mask.node.active = false;
+        this.idle_event['done'] = false;
+        this.idle_count = 0;
+        this.last_label.node.active = false;
+        this.last_label.string = '';
     }
 
     /** 
@@ -186,6 +212,8 @@ export class JpGame4600 extends Component {
             this.machine.node.active = false;
             this.node.active = true;
         });
+
+        this.keep_check_idle_count(); // 偵測發呆行為
 
         this.isBusy = false;
         await Utils.delayEvent(jp_event);
@@ -260,7 +288,6 @@ export class JpGame4600 extends Component {
         const times = this.add_clicked_type(type);
         const isAnswer = times >= 3;
 
-        
         this.play_jp_board_animation(type, times);
 
         if ( isAnswer === false ) { // 還沒有結束
@@ -268,9 +295,9 @@ export class JpGame4600 extends Component {
             this.isBusy = false;
             return;
         }
-
         await coin.click_type(type, false, isAnswer);
 
+        this.idle_event['done'] = true; // 停止偵測發呆行為
         // 結束
         this.isDone = true;
         this.reward_light_jp_board(type);
@@ -293,6 +320,7 @@ export class JpGame4600 extends Component {
 
     // 回到主遊戲
     public async exit_jp_game() {
+        this.paytable.reset_pot_ani();
         await this.open_door(() => {
             this.machine.node.active = true;
             this.machine.controller.node.active = true;
@@ -301,6 +329,59 @@ export class JpGame4600 extends Component {
 
         this.jp_event.emit('done');
         this.machine.paytable.exit_jp_game();
+    }
+
+    public async keep_check_idle_count() {
+        
+        if ( AutoSpin.StopSpinByUtilFeature() === true ) return;
+
+        this.last_label.node.active = false;
+        const idle_event = this.idle_event;
+        this.idle_count = 0;
+        while(this.idle_count<21) {
+            this.idle_count++;
+            await Utils.delay(1000);
+            console.log('check_idle_count', this.idle_count);
+            this.display_last_sec();
+
+            if ( idle_event['done'] === true ) return; // 結束偵測
+        }
+
+        this.auto_click_coin();
+
+    }
+
+    // 發呆20秒，幫開錢幣
+    public async auto_click_coin() {
+        const coins = this.properties['coin'];
+        const keys = Object.keys(coins);
+
+        Utils.commonActiveUITween(this.last_label.node, false);
+
+        while(true) {
+            if ( this.isDone ) return;
+
+            const random = Utils.Random(0, keys.length-1);
+            const coin = coins[random].component;
+            if ( coin.jp_type !== JP_TYPE.NONE ) continue;
+
+            await Utils.delay(1000);
+            await this.click_coin(coin);
+        }
+    }
+
+    public get last_label() : Label { return this.properties['idle']['label'].component; }
+
+    public async display_last_sec() {
+        const label = this.last_label;
+        const last = 20 - this.idle_count;
+
+        if ( last < 0 ) return;
+        if ( last > 10 ) return;
+        await Utils.commonActiveUITween(label.node, false, true);
+        label.string = last.toString();
+        await Utils.commonActiveUITween(label.node, true, true);
+        if ( last <= 3 ) await Utils.scaleFade(label, 1, 3);
     }
 
 }

@@ -1,4 +1,4 @@
-import { EventHandler, bezier, JsonAsset, resources, CurveRange, find, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label, TweenEasing, instantiate } from "cc";
+import { EventHandler, bezier, JsonAsset, resources, CurveRange, find, _decorator, Enum, EventTarget, sp, game, Node, tween, Vec3, Sprite, Color, Label, TweenEasing, instantiate, RichText } from "cc";
 import { PREVIEW, EDITOR } from "cc/env";
 import { Config, GameConfig } from '../game/GameConfig';
 import { gameInformation } from '../game/GameInformation';
@@ -538,7 +538,7 @@ export class Utils {
     public static readonly activeUIScale = [ new Vec3( 0.5, 0.5, 1 ), new Vec3( 1, 1, 1 )];
     public static readonly activeUIAlpha = [ new Color( 255, 255, 255, 0 ), new Color( 255, 255, 255, 255 )];
     public static activeUIEventTarget: EventTarget = null;
-    public static async commonActiveUITween( ui:Node, active:boolean) {
+    public static async commonActiveUITween( ui:Node, active:boolean, colorAlpha:boolean = true ) {
         if ( ui == null ) return;
         if (this.activeUIEventTarget?.['running'] === true) return;
 
@@ -554,12 +554,22 @@ export class Utils {
             onComplete:(x)=> Utils.activeUIEventTarget.emit('done')
         }).start();
 
-        let sprite = ui.getComponent(Sprite);
+        let sprite = Utils.getColorComponent( ui );
         if ( sprite != null ) {
-            let fromColor = active ? this.activeUIAlpha[ 0 ] : this.activeUIAlpha[ 1 ];
-            let toColor   = active ? this.activeUIAlpha[ 1 ] : this.activeUIAlpha[ 0 ];
-            sprite.color = fromColor;
-            tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
+
+            if ( colorAlpha === false ) {
+                let fromColor = active ? this.activeUIAlpha[ 0 ] : this.activeUIAlpha[ 1 ];
+                let toColor   = active ? this.activeUIAlpha[ 1 ] : this.activeUIAlpha[ 0 ];
+                sprite.color = fromColor;
+                tween( sprite ).to(0.3, { color: toColor }, { easing: 'smooth' }).start();
+            } else {
+                let fromColor = active ? {value:0} : {value:255};
+                let toColor   = active ? {value:255} : {value:0};
+                tween( fromColor ).to(0.3, toColor, { 
+                    easing: 'smooth',
+                    onUpdate: () => { sprite.color = new Color(255, 255, 255, fromColor.value); }
+                }).start();
+            }
         }
 
         await this.delayEvent( this.activeUIEventTarget );
@@ -567,10 +577,22 @@ export class Utils {
         ui.active = active;
     }
 
+    public static getColorComponent(node:Node) : any {
+        if ( node == null ) return null;
+        const components = node['_components'];
+        if ( !components?.length ) return null;
+        for(let i in components) {
+            const comp = components[i];
+            if ( comp['color'] == null ) continue;
+            if ( comp['color'] instanceof Color ) return comp;
+        }
+
+        return null;
+    }
+
     /** (async)播放 Spine 動畫  */
     public static async playSpine(spine:sp.Skeleton, animationName:string, loop:boolean = false, timeScale:number = 1.0, autoActive:boolean = false, onComplete:Function=null) {
-        if ( spine == null ) return;
-        if ( animationName == null ) return;
+        if ( spine == null || animationName == null) return;
         if ( autoActive ) {
             spine.node.parent.active = true;
             spine.node.active = true;
@@ -578,7 +600,6 @@ export class Utils {
 
         let eventTarget = new EventTarget();
         spine.timeScale = timeScale;
-        spine.setCompleteListener((trackEntry) => { spine['isPlaying'] = false; });
 
         let duration = this.getAnimationDuration(spine, animationName) * 1000 / timeScale + 500;
         let track : sp.spine.TrackEntry = spine.setAnimation(0, animationName, loop);
@@ -609,16 +630,16 @@ export class Utils {
         copyNode.position   = colorComponent.node.position;
         copyNode.active     = true;
         
-        let sprite : Sprite | Label | sp.Skeleton = copyNode.getComponent(colorComponent.constructor as any);
+        let colorComp   = Utils.getColorComponent(copyNode);
         let fromColor   = new Color(255, 255, 255, 128);
         let toColor     = new Color(255, 255, 255, 0);
         let toScale     = new Vec3(scale, scale, 1);
         let waitTime    = fadeoutSec * 1000 + 500;
 
-        sprite.color    = fromColor;
+        colorComp.color    = fromColor;
         let alpha = { value: fromColor.a };
         tween(alpha).to(fadeoutSec, { value: toColor.a }, { easing: 'quartOut',
-            onUpdate:   () => { sprite.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
+            onUpdate:   () => { colorComp.color = new Color(toColor.r, toColor.g, toColor.b, alpha.value); },
             onComplete: () => { onFinish?.() }
         }).start();
 
@@ -673,9 +694,9 @@ export class Utils {
         if ( eventTarget && eventTarget['running'] === true) return;
         if (this.activeUIEventTarget?.['running'] === true) return;
         let sprite = colorComponent;
-        if ( sprite == null ) sprite = ui.getComponent(Sprite);
-
+        if ( sprite == null ) sprite = Utils.getColorComponent( ui );
         if ( sprite == null ) return;
+
         const refColor = color ?? this.activeUIAlpha;
         let fromColor = fadeout ? refColor[1] : refColor[0];
         let toColor   = fadeout ? refColor[0] : refColor[1];
@@ -697,18 +718,18 @@ export class Utils {
         eventTarget = null;
     }
 
+    /**
+     * 
+     * @param node 
+     * @param color 
+     * @returns 
+     */
     public static changeMainColor ( node: Node, color: Color ) {
         if ( node == null ) return;
         if ( color == null ) return;
 
-        const sprite = node.getComponent(Sprite);
-        if ( sprite != null ) sprite.color = color;
-
-        const label = node.getComponent(Label);
-        if ( label != null ) label.color = color;
-
-        const spine = node.getComponent(sp.Skeleton);
-        if ( spine != null ) spine.color = color;
+        const colorComponent = Utils.getColorComponent( node );
+        if ( colorComponent ) colorComponent.color = color;
 
         const children = node.children;
         for ( let i in children ) {
@@ -724,7 +745,6 @@ export class Utils {
             } else {
                 data['send_to'] = gameInformation.gameid;
             }
-            console.log('GoogleTag', event, data);
             return gtag('event', event, data ); 
 
         } catch (e) { 

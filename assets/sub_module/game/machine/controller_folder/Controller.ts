@@ -76,6 +76,8 @@ export class Controller extends Component {
 
         'spin' : {
             'image'         : { [DATA_TYPE.TYPE]: Sprite, [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/Image' },
+            'stop'          : { [DATA_TYPE.TYPE]: Sprite, [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/Stop' },
+            'free'          : { [DATA_TYPE.TYPE]: Sprite, [DATA_TYPE.NODE_PATH]: 'Bottom Buttons/Spin/Free' },
         },
     };
 
@@ -222,6 +224,7 @@ export class Controller extends Component {
 
     protected onKeySpaceDown(event: EventKeyboard) { 
         if ( event.keyCode !== KeyCode.SPACE ) return;
+        AutoSpin.StopAutoSpin();
         this.clickSpin();
     }
 
@@ -233,17 +236,43 @@ export class Controller extends Component {
 
     public spinButtonEvent : EventTarget = new EventTarget();
     public async buttonSpinning(active:boolean=true) {
+        if ( this.machine.featureGame ) return;
+
+        const spinImage = this.props['spin']['image'].node;
+        const stopImage = this.props['spin']['stop'].node;
 
         if ( active === false ) return this.spinButtonEvent.emit('done');
         if ( this.spinButtonEvent['running'] ) return;
-
-        const spinImage = this.props['spin']['image'].node;
+    
+        Utils.commonFadeIn(spinImage, true);
         this.spinButtonEvent['tween'] = tween(spinImage).repeatForever(tween().by(0.5, { angle: -360 }, { easing:'linear' })).start();
         this.spinButtonEvent['running'] = true;
-
+        await Utils.commonFadeIn(stopImage, false);
+        spinImage.active = false;
+        stopImage.active = true;
+        this.props['spin']['stop'].component.color = Color.WHITE;
+    
         await Utils.delayEvent(this.spinButtonEvent);
+        Utils.commonFadeIn(spinImage, false);
+        Utils.commonFadeIn(stopImage, true);
         this.spinButtonEvent['tween'].stop();
         this.spinButtonEvent['running'] = false;
+    }
+
+    public static ActiveFreeGameButton(active:boolean) { Controller.Instance.activeFreeGameButton(active); }
+
+    public activeFreeGameButton(active:boolean) {
+        this.props['spin']['free'].node.active = active; 
+        this.props['spin']['image'].node.active = false;
+        this.props['spin']['stop'].node.active = !active;
+
+        const label = AutoSpin.Instance.autoSpinTimeLabel;
+        if ( active === true ) {
+            label.node.setPosition(0, 5, 0);
+        } else {
+            label.node.setPosition(0, 0, 0);
+            label.string = '';
+        }
     }
 
     public static async ButtonSpinning(active:boolean) { 
@@ -252,7 +281,7 @@ export class Controller extends Component {
     }
 
     private async clickSpinButtonAnimation() {
-        const spinImage = this.props['spin']['image'].node;
+        const spinImage = this.props['spin']['image'].node.parent;
         tween(spinImage).to(0.1, { scale: new Vec3(1.2,1.2,1) }).to(0.1, { scale: Vec3.ONE }).start();
     }
 
@@ -260,14 +289,12 @@ export class Controller extends Component {
      * Spin 按鈕事件
      */
     public async clickSpin(autoSpin:boolean=false) {
-        //console.log('clickSpin', autoSpin);
         if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
-        // if ( autoSpin === false && this.autoSpin.checkStopAutoSpin() ) return false;
 
         this.clickSpinButtonAnimation() ;
         if ( this.machine.spinning ) {
             if ( this.machine.fastStopping ) return;
-            
+
             let times = this.props['clickSpin'][1]++;
             Utils.GoogleTag('ClickSpinStop', {'event_category':'Spin', 'event_label':'ClickSpinStop', 'times': times});
             this.machine.fastStopping = true;
@@ -280,7 +307,6 @@ export class Controller extends Component {
         // 等待 Spin 結束
         await this.machine.clickSpin();
 
-        this.machine.fastStopping = false;
         // 如果有 AutoSpin 則繼續
         this.autoSpin.decrementCount();
     }
