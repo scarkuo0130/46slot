@@ -573,7 +573,7 @@ export class Payway4600 extends Payway {
      */
     public async stopRolling(): Promise<void> {
         const source = this.properties['sound']['sfx_reel_roll_loop'];
-        if (source) source.loop = false;
+        if (source) source.stop();
         return super.stopRolling();
     }
 
