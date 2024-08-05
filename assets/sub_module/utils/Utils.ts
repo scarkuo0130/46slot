@@ -651,7 +651,7 @@ export class Utils {
             tween(fromNode).to(fadeoutSec, { scale: withScale[1] }, { easing: 'quartOut' }).start();
         }
         
-        tween(copyNode).to(fadeoutSec, { scale: toScale }, { easing: 'quartOut' }).start();
+        tween(copyNode).to(fadeoutSec, { scale: toScale }, { easing: 'quartOut', onComplete: ()=>{ copyNode.active = false; } }).start();
         await Utils.delay(waitTime);
         copyNode.destroy();
     }

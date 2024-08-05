@@ -238,7 +238,10 @@ export class StateManager {
         };
         // console.log(sendSpinData);
         let result = await HttpRequest.establishConnect( JSON.stringify( sendSpinData ) ).catch((error) => {
-            cc.Dailog.errorMessage(error);
+            console.error(error);
+            DialogUI.OpenErrorMessage(error.toString());
+            // console.error(error);
+            // cc.Dailog.errorMessage(error);
         });
         if ( result != 'success' ) return null;
         return result;

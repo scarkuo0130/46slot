@@ -251,8 +251,8 @@ export class AutoSpin extends Component {
     public static StopSpinByUtilFeature() { return AutoSpin.Instance.stopSpinByUtilFeature(); }
 
     public stopSpinByUtilFeature() :boolean {
-        if ( this.active === false ) return false;
-        if ( this.properties.autoSpin.untilFeature === false ) return false;
+        if ( this.active !== true ) return false;
+        if ( this.properties.autoSpin.untilFeature !== true ) return false;
         this.active = false;
         return true;
     }

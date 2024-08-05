@@ -4,6 +4,7 @@ import { Payway4600, JP_TYPE } from '.././Payway4600';
 import { Utils, DATA_TYPE } from '../../../sub_module/utils/Utils';
 import { JpCoin } from './JpCoin';
 import { AutoSpin } from '../../../sub_module/game/AutoSpin';
+import { SoundManager } from '../../../sub_module/game/machine/SoundManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('JpGame4600')
@@ -192,10 +193,13 @@ export class JpGame4600 extends Component {
         let door = this.paytable.doorSpine;
         door.node.active = true;
 
-        await Utils.playSpine(door, 'play', false); // 關門動畫
+        SoundManager.PlaySoundByID('sfx_door_close');           // 播放開門音效
+        await Utils.playSpine(door, 'play', false);             // 關門動畫
         if ( closeDoorCallFunction ) closeDoorCallFunction();
         this.background.active = true;
-        await Utils.playSpine(door, 'play02', false); // 開門動畫
+
+        SoundManager.PlaySoundByID('sfx_door_open');            // 播放開門音效
+        await Utils.playSpine(door, 'play02', false);           // 開門動畫
         door.node.active = false;
     }
 
@@ -207,13 +211,16 @@ export class JpGame4600 extends Component {
         this.reset_game();
 
         await this.paytable.play_pot_ani(true);
+
+        SoundManager.PauseMusic();                              // 暫停音樂
         await this.open_door(() => {
             this.machine.controller.node.active = false;
             this.machine.node.active = false;
             this.node.active = true;
+            SoundManager.PlayMusic('bgm_jp');                   // 播放JP音樂
         });
 
-        this.keep_check_idle_count(); // 偵測發呆行為
+        this.keep_check_idle_count();                           // 偵測發呆行為
 
         this.isBusy = false;
         await Utils.delayEvent(jp_event);
@@ -237,6 +244,7 @@ export class JpGame4600 extends Component {
 
     private light_coin() {
         for (let i = 0; i < 12; i++) {
+            if ( this.properties['coin'][i] == null ) continue;
             this.properties['coin'][i].component.light_type(this.jp_type);
         }
     }
@@ -279,6 +287,11 @@ export class JpGame4600 extends Component {
         }
     }
 
+    /**
+     * 點擊錢幣
+     * @param coin 
+     * @returns 
+     */
     public async click_coin(coin:JpCoin) {
         if (this.isBusy) return;
         if (this.isDone) return;
@@ -290,30 +303,42 @@ export class JpGame4600 extends Component {
 
         this.play_jp_board_animation(type, times);
 
-        if ( isAnswer === false ) { // 還沒有結束
-            coin.click_type(type, false, isAnswer);
-            this.isBusy = false;
+        if ( isAnswer === false ) {                         // 還沒有選滿三個
+            coin.click_type(type, false, isAnswer);         // 開錢幣效果
+            this.isBusy = false;                            // 打開點擊權限
+            SoundManager.PlaySoundByID('sfx_jp_coin_open'); // 播放開錢幣音效
             return;
         }
+        SoundManager.PlaySoundByID('sfx_jp_coin_finish');   // 播放選滿音效
         await coin.click_type(type, false, isAnswer);
 
-        this.idle_event['done'] = true; // 停止偵測發呆行為
-        // 結束
+        // * 選幣結束
+        this.idle_event['done'] = true;                     // 停止偵測發呆行為
         this.isDone = true;
         this.reward_light_jp_board(type);
         this.light_coin();
+        
+        SoundManager.PlaySoundByID('sfx_jp_coin_open_all'); // 播放翻開剩下銅錢音效
         await this.open_last_coin();
-        await Utils.delay(3000); // 看全部的 Coin
+        await Utils.delay(3000);                            // 看全部的 Coin
+        await SoundManager.PauseMusic();                    // 暫停JP音樂
+        SoundManager.PlayMusic('sfx_jp_total_win');         // 播放JP總獎金音效
 
-        // 打開獎金介面
+        // * 打開獎金介面
         this.reward_label.string = '';
         await Utils.commonFadeIn(this.mask.node, false, [new Color(0,0,0,255), new Color(0,0,0,187)], this.mask, 0.3);
         await Utils.commonActiveUITween(this.reward_ui.node, true);
+
+        const source = SoundManager.PlaySoundByID('sfx_totalwin_payout', true);  // 播放滾分音效
         Utils.playSpine(this.reward_spine, 'play', true);
         await Utils.commonTweenNumber(this.reward_label, 0, this.jp_prize, 1.5, Utils.numberCommaM );
+        source.stop();                                         // 關閉滾分音效
+        SoundManager.PlaySoundByID('sfx_totalwin_payout_end'); // 播放滾分結尾音效
+
         await Utils.delay(500);
         Utils.scaleFade(this.reward_label, 1, 3);
         
+        SoundManager.PauseMusic();                             // 暫停JP總獎金音效
         await Utils.delay(3000);
         await this.exit_jp_game();
     }
@@ -325,12 +350,17 @@ export class JpGame4600 extends Component {
             this.machine.node.active = true;
             this.machine.controller.node.active = true;
             this.node.active = false;
+            SoundManager.PlayMusic('0');        // 播放主遊戲音樂
         });
 
         this.jp_event.emit('done');
         this.machine.paytable.exit_jp_game();
     }
 
+    /**
+     * 偵測發呆行為，超過20秒幫忙開錢幣
+     * @returns 
+     */
     public async keep_check_idle_count() {
         
         if ( AutoSpin.StopSpinByUtilFeature() === true ) return;

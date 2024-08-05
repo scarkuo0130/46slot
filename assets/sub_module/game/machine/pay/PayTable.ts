@@ -69,6 +69,9 @@ export class Paytable extends Component {
             'labelWinScore':{},
             'labelSingleWinScore':{},
         },
+        'sound':{
+            'sfx_reel_roll_loop': null,
+        }
     };
 
     public buyFeatureGame: BuyFeatureGameUI = new BuyFeatureGameUI();
@@ -169,7 +172,7 @@ export class Paytable extends Component {
         eventTarget?.emit('done');
         
         if ( this.machine.featureGame === true ) return;
-        this.performSingleLineLoop(); // 執行單項報獎流程
+        await this.performSingleLineLoop(); // 執行單項報獎流程
        
     }
 
@@ -341,6 +344,21 @@ export class Paytable extends Component {
      */
     public calculateTotalBet(idx:number) : number { return null; }
 
+    /**
+     * 開始 Spin 時呼叫事件，預留給外部呼叫
+     */
+    public async startRolling() { return; }
+
+    /**
+     * 單一滾輪停止時呼叫事件，預留給外部呼叫
+     */
+    public async stopWheelRolling(wheelID:number) { return; }
+
+    /**
+     * 全部滾輪停止時呼叫事件，預留給外部呼叫
+     */
+    public async stopRolling() { return; }
+
     // #region[[rgba(0,0,0,0)]] BuyFeatureGameUI 事件
     public onClickCloseBuyFGUI() { return; }
 
@@ -348,12 +366,12 @@ export class Paytable extends Component {
      * @from BuyFeatureGameUI.onClickOpenBuyFGUI()
      * @override 可覆寫
      */
-    public onClickOpenBuyFGUI() { return; }
+    public async onClickOpenBuyFGUI() : Promise<boolean> { return true; }
     public refreshTotalBet() { return; }
     public addBet() { return; }
     public subBet() { return; }
     public onKeySpaceDown() { return; }
-    public clickBuyFeatureGameConfirm() { return; }
+    public async clickBuyFeatureGameConfirm() : Promise<boolean> { return true; }
 
     // 是否可以購買 FeatureGame
     public checkBuyFeatureGame() : boolean { return true; }

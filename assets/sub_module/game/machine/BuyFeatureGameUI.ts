@@ -72,8 +72,9 @@ export class BuyFeatureGameUI {
 
     public static CloseUI() { BuyFeatureGameUI.Instance.onClickCloseBuyFGUI(); }
 
-    public onClickOpenBuyFGUI() { 
+    public async onClickOpenBuyFGUI() { 
         if ( this.machine.isBusy ) return;
+        if ( await this.machine.paytable.onClickOpenBuyFGUI() === false ) return;
 
         this.betIdx = this.controller.betIdx;
         this.refreshTotalBet();
@@ -122,7 +123,7 @@ export class BuyFeatureGameUI {
         if ( this.machine.isBusy ) return;
         if ( this.paytable.checkBuyFeatureGame() === false ) return;
         if ( await this.machine.buyFeatureGame(this.betIdx) === false ) return;
-        this.paytable.clickBuyFeatureGameConfirm();
+        if ( await this.paytable.clickBuyFeatureGameConfirm() === false ) return;
 
         Utils.GoogleTag('BuyFeatureGame', {'event_category':'BuyFeatureGame', 'event_label':'BuyFeatureGame', 'value': this.betIdx });
         this.onClickCloseBuyFGUI();

@@ -268,6 +268,7 @@ export class RollingType1 extends wheelModule implements _RollingType {
         this.setResult(result);
         this.propertys._rollingStopping = true;
         await Utils.delayEvent(this.stopRollingEvent);
+        this.wheel.machine.paytable.stopWheelRolling(this.wheel._ID);
     }
 
 

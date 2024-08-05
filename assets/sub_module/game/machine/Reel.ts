@@ -402,6 +402,7 @@ export class Reel extends Component {
 
         this.changeState(REEL_STATE.STOPPING); // 停止滾輪
         await this.stopRolling(); // 通知停止滾輪
+        await this.paytable.stopRolling(); // 通知停止滾輪
 
         this.changeState(REEL_STATE.IDLE);  // 恢復正常狀態
         await Utils.delayEvent(this.properties.handler.stoping, 'done'); // 等待滾輪靜止
@@ -417,6 +418,8 @@ export class Reel extends Component {
         let rollingData = this.properties.startRolling[mode];
         let wheels = this.getWheels();
         let time = 0;
+
+        await this.machine.paytable.startRolling();
 
         for(let i=0;i<rollingData.length;i++) {
 

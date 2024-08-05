@@ -26,7 +26,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 3349
+      "__id__": 3390
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -57,7 +57,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 3350
+      "__id__": 3391
     },
     "_id": "836ddf30-7ff2-445d-9811-1c6a37d435a7"
   },
@@ -80,16 +80,16 @@
         "__id__": 3340
       },
       {
-        "__id__": 3343
+        "__id__": 3384
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 3347
+        "__id__": 3388
       },
       {
-        "__id__": 3348
+        "__id__": 3389
       }
     ],
     "_prefab": null,
@@ -512,7 +512,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 376.5194805194805,
+    "_orthoHeight": 360,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -3158,7 +3158,7 @@
     "_string": "BALANCE",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 25,
+    "_actualFontSize": 26,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -3381,7 +3381,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 27,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -3969,7 +3969,7 @@
     "_string": "TOTAL WIN",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 25,
+    "_actualFontSize": 26,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -4192,7 +4192,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 27,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -4786,7 +4786,7 @@
     "_string": "TOTAL BET",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 25,
+    "_actualFontSize": 26,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -5009,7 +5009,7 @@
     "_string": "Rp 999,999",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 27,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -23935,7 +23935,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 439.95424107142856,
+      "width": 439.97086480753313,
       "height": 101.69999999999999
     },
     "_anchorPoint": {
@@ -23968,7 +23968,7 @@
     "_string": "選擇硬幣即可揭曉神獸。\n3 隻相同神獸可贏大獎",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 48.125,
+    "_actualFontSize": 50.33333333333333,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 45,
@@ -48176,8 +48176,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 66.70199624594156,
-      "height": 50.400000000000006
+      "width": 66.69124375905422,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -48209,7 +48209,7 @@
     "_string": "Version",
     "_horizontalAlign": 2,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -49413,8 +49413,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -49446,7 +49446,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -50014,8 +50014,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -50047,7 +50047,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -50615,8 +50615,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -50648,7 +50648,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -51216,8 +51216,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -51249,7 +51249,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -51817,8 +51817,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -51850,7 +51850,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -53471,8 +53471,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -53504,7 +53504,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -54072,8 +54072,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54105,7 +54105,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -54673,8 +54673,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54706,7 +54706,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -55274,8 +55274,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -55307,7 +55307,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -55875,8 +55875,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -55908,7 +55908,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -56476,8 +56476,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -56509,7 +56509,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -56857,7 +56857,7 @@
     "_string": "All wins pay in any position from left to right on adjacent reels. beginning with the leftmost reel.\nHighest win only on each winning combination.\nwins on different combinations are added.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 37,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -57511,8 +57511,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.04357751623377,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -57544,7 +57544,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -58304,7 +58304,7 @@
     "_string": "3 scatter symbols appearing anywhere will trigger the Free Spins feature, which is worth 10 free spins. Each additional scatter symbol will trigger an additional 2 free spins.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 37,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -59294,7 +59294,7 @@
     "_string": "1.Wild symbol substitutes for all symbols.\n2.When a WILD appears the player may be awarded an available jackpot.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 37,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -60140,7 +60140,7 @@
     "_string": "1.A.K.Q.J.10 and 9 do not appear during the free games.\n2.3 scatter symbols will retrigger 10 free spins.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 37,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -60772,7 +60772,7 @@
     "_string": "1.When a WILD appears the player may be enter the jackpot \n   game.\n2.12 coins will appear.\n3.Touching a coin will reveal the symbol of an available \n   jackpot.\n4.When 3 matching symbols have been revealed the \n   corresponding jackpot will be awarded and the feature \n   ends.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 30,
+    "_actualFontSize": 31,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -63018,7 +63018,7 @@
     "_string": "《DUO FU DUO CAI》is a slot game with 3x5 reels and 243 ways to win. Collect Scatter to enter the free game. Each time you spin Wild, you may enter the JACKPOT game.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 31,
+    "_actualFontSize": 32,
     "_fontSize": 25,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -63437,7 +63437,7 @@
     "_string": "During the game, if there is any malfunction or disconnection, the final betting records will base on system's database. Our company reserves the right of final interpretation.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 43,
+    "_actualFontSize": 45,
     "_fontSize": 35,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -70358,8 +70358,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 401.48158482142856,
-      "height": 50.400000000000006
+      "width": 401.4967679661631,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -70391,7 +70391,7 @@
     "_string": "AUTO SPIN SETTING",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 48.125,
+    "_actualFontSize": 50.33333333333333,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -71108,7 +71108,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 201.74573863636363,
+      "width": 201.71267073675497,
       "height": 50.400000000000006
     },
     "_anchorPoint": {
@@ -71141,7 +71141,7 @@
     "_string": "UNTIL FEATURE",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 31.28125,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -71542,7 +71542,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150.24296114042207,
+      "width": 150.21831992446192,
       "height": 50.400000000000006
     },
     "_anchorPoint": {
@@ -71575,7 +71575,7 @@
     "_string": "QUICK SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 31.28125,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -71976,7 +71976,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 158.90080915178572,
+      "width": 158.874758284613,
       "height": 50.400000000000006
     },
     "_anchorPoint": {
@@ -72009,7 +72009,7 @@
     "_string": "TURBO SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 31.28125,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -72229,7 +72229,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 84.7250786323052,
+      "width": 84.71119861729098,
       "height": 50.400000000000006
     },
     "_anchorPoint": {
@@ -72262,7 +72262,7 @@
     "_string": "START",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 31.28125,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -72833,7 +72833,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 147.3485440340909,
+      "width": 147.3243804325331,
       "height": 50.400000000000006
     },
     "_anchorPoint": {
@@ -72866,7 +72866,7 @@
     "_string": "SPIN TIMES",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 31.28125,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -73110,7 +73110,7 @@
     "_string": "UNLIMITED",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.0625,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -74501,8 +74501,8 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 164.45552201704547,
-      "height": 50.400000000000006
+      "width": 164.4617548052049,
+      "height": 50.4
     }
   },
   {
@@ -74521,7 +74521,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 38.998427353896105,
+      "width": 38.992030667942885,
       "height": 50.400000000000006
     }
   },
@@ -74541,7 +74541,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 90.88075791396103,
+      "width": 90.89133559473304,
       "height": 50.400000000000006
     }
   },
@@ -78756,9 +78756,9 @@
   },
   {
     "__type__": "RollingType1",
-    "rollingSpeed_n": 2000,
-    "rollingSpeed_q": 2000,
-    "rollingSpeed_t": 2000,
+    "rollingSpeed_n": 2200,
+    "rollingSpeed_q": 2200,
+    "rollingSpeed_t": 2200,
     "rollingDownCurve": {
       "__id__": 2686
     },
@@ -80999,7 +80999,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "enable": true,
+    "enable": false,
     "autoSave": true,
     "landscapeData": {
       "__id__": 2759
@@ -81518,9 +81518,9 @@
   },
   {
     "__type__": "RollingType1",
-    "rollingSpeed_n": 2000,
-    "rollingSpeed_q": 2000,
-    "rollingSpeed_t": 2000,
+    "rollingSpeed_n": 2200,
+    "rollingSpeed_q": 2200,
+    "rollingSpeed_t": 2200,
     "rollingDownCurve": {
       "__id__": 2786
     },
@@ -81594,7 +81594,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "enable": true,
+    "enable": false,
     "autoSave": true,
     "landscapeData": {
       "__id__": 2794
@@ -82113,9 +82113,9 @@
   },
   {
     "__type__": "RollingType1",
-    "rollingSpeed_n": 2000,
-    "rollingSpeed_q": 2000,
-    "rollingSpeed_t": 2000,
+    "rollingSpeed_n": 2200,
+    "rollingSpeed_q": 2200,
+    "rollingSpeed_t": 2200,
     "rollingDownCurve": {
       "__id__": 2821
     },
@@ -82189,7 +82189,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "enable": true,
+    "enable": false,
     "autoSave": true,
     "landscapeData": {
       "__id__": 2829
@@ -82708,9 +82708,9 @@
   },
   {
     "__type__": "RollingType1",
-    "rollingSpeed_n": 2000,
-    "rollingSpeed_q": 2000,
-    "rollingSpeed_t": 2000,
+    "rollingSpeed_n": 2200,
+    "rollingSpeed_q": 2200,
+    "rollingSpeed_t": 2200,
     "rollingDownCurve": {
       "__id__": 2856
     },
@@ -82784,7 +82784,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "enable": true,
+    "enable": false,
     "autoSave": true,
     "landscapeData": {
       "__id__": 2864
@@ -83303,9 +83303,9 @@
   },
   {
     "__type__": "RollingType1",
-    "rollingSpeed_n": 2000,
-    "rollingSpeed_q": 2000,
-    "rollingSpeed_t": 2000,
+    "rollingSpeed_n": 2200,
+    "rollingSpeed_q": 2200,
+    "rollingSpeed_t": 2200,
     "rollingDownCurve": {
       "__id__": 2891
     },
@@ -83379,7 +83379,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "enable": true,
+    "enable": false,
     "autoSave": true,
     "landscapeData": {
       "__id__": 2899
@@ -84471,7 +84471,7 @@
       0
     ],
     "rollingTime_n": 0.5,
-    "rollingTime_q": 0.3,
+    "rollingTime_q": 0.4,
     "rollingTime_t": 0
   },
   {
@@ -92981,13 +92981,655 @@
     "soundList": [
       {
         "__id__": 3342
+      },
+      {
+        "__id__": 3343
+      },
+      {
+        "__id__": 3344
+      },
+      {
+        "__id__": 3345
+      },
+      {
+        "__id__": 3346
+      },
+      {
+        "__id__": 3347
+      },
+      {
+        "__id__": 3348
+      },
+      {
+        "__id__": 3349
+      },
+      {
+        "__id__": 3350
+      },
+      {
+        "__id__": 3351
+      },
+      {
+        "__id__": 3352
+      },
+      {
+        "__id__": 3353
+      },
+      {
+        "__id__": 3354
+      },
+      {
+        "__id__": 3355
+      },
+      {
+        "__id__": 3356
+      },
+      {
+        "__id__": 3357
+      },
+      {
+        "__id__": 3358
+      },
+      {
+        "__id__": 3359
+      },
+      {
+        "__id__": 3360
+      },
+      {
+        "__id__": 3361
+      },
+      {
+        "__id__": 3362
+      },
+      {
+        "__id__": 3363
+      },
+      {
+        "__id__": 3364
+      },
+      {
+        "__id__": 3365
+      },
+      {
+        "__id__": 3366
+      },
+      {
+        "__id__": 3367
+      },
+      {
+        "__id__": 3368
+      },
+      {
+        "__id__": 3369
+      },
+      {
+        "__id__": 3370
+      },
+      {
+        "__id__": 3371
+      },
+      {
+        "__id__": 3372
+      },
+      {
+        "__id__": 3373
+      },
+      {
+        "__id__": 3374
+      },
+      {
+        "__id__": 3375
+      },
+      {
+        "__id__": 3376
       }
     ],
-    "defaultMusicId": "",
-    "maxPlaySoundCount": 10,
+    "defaultMusicId": "0",
+    "maxPlaySoundCount": 15,
     "filterSameSoundSec": 50,
-    "defaultSoundList": [],
+    "defaultSoundList": [
+      {
+        "__id__": 3377
+      },
+      {
+        "__id__": 3378
+      },
+      {
+        "__id__": 3379
+      },
+      {
+        "__id__": 3380
+      },
+      {
+        "__id__": 3381
+      },
+      {
+        "__id__": 3382
+      },
+      {
+        "__id__": 3383
+      }
+    ],
     "_id": "4c1/NPAbNJS7JuV4xle680"
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "4a93da96-e843-4767-9160-eba95118a916",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": true,
+    "id": "bgm_jp",
+    "description": "進 JP Game 播放, JpGame4600.enter_jp_game",
+    "soundType": 1,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "18b99d83-b652-439a-bbb8-ea2ab86adeb9",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "bgm_total_win",
+    "description": "FreeGame 結算音樂",
+    "soundType": 1,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "ad67ca25-1911-4a0d-8c1e-ad7d2fb140e3",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_coin_finish",
+    "description": "翻中連線銅錢",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "7dcca3fc-63f7-4323-bab5-145b02f2d901",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_coin_open",
+    "description": "JP 選出未選出",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "b31df455-00fa-4c02-8398-b8b2d534bc14",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_door_close",
+    "description": "關門",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "08bbc1ea-f718-4541-aab9-f30b39176325",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_door_open",
+    "description": "開⾨",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "5f79a75a-7d79-4262-83bc-1b09d2d2e44d",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_fg_alarm",
+    "description": "Free game觸發鈴聲，播放時停⽌其 他⾳樂⾳效",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "4225b878-bf2e-4bb9-9628-f95bc6674dac",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_fg_cutscene",
+    "description": "Free game進場，播放時停⽌其他⾳樂⾳效",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "f1e8a636-70bc-4ee6-b9a7-b51e6319093b",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_coin_open_all",
+    "description": "Jp翻開全部銅錢",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "79349c57-f013-4c3c-a2c1-b3499869c603",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_collect_1",
+    "description": "聚寶盆, Level1",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "1bd31ced-3a87-4a2c-b9b7-c22a96f1bff6",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_collect_2",
+    "description": "聚寶盆, Level2",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "09b24718-6ffa-456c-bc1c-9fa736239138",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_collect_3",
+    "description": "聚寶盆, Level3",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "f1a8967b-adfd-42f8-bbb4-14d52540cc23",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_collected",
+    "description": "聚寶盆, Level4",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "d7755bc6-a9da-45a1-bb08-b0051ffa7e29",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_intro",
+    "description": "Jp進場⾳效與sfx_door_open⼀同觸 發",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "5d012984-8fe8-42b9-bdc8-eed98d7970ba",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_total_win",
+    "description": "總贏",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "510fe083-d479-43a8-82a6-7ba4bd398839",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_jp_trigger",
+    "description": "Jp觸發聚寶盆搖晃",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "b820a900-2daf-4968-8e11-880016f31b71",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_payout_loop_end",
+    "description": "⼀般贏分跳錢結束",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "0ae9ffbe-264a-4b88-bd9d-3159158245b3",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_payout_loop",
+    "description": "⼀般贏分跳錢",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "fd7b42e6-33be-4433-be4e-855aa64290d4",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_readyhead",
+    "description": "瞇牌",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "827b26fd-8ee7-4a85-b600-3a7fcef59daa",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_reel_pre_roll",
+    "description": "Spin按下後，輪盤有⼀個全盤往上再 落下的動作，⾳效於此時觸發",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "6ec6104a-8349-4b60-81aa-74750154c17b",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_reel_roll_loop",
+    "description": "輪盤轉動",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "dea9f90d-370d-4b4a-9397-6e1f7be92a3d",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_reel_spin",
+    "description": "輪盤啟動",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "4314a013-97d9-4176-84bd-6d4b5db443a9",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_reel_stop",
+    "description": "輪盤停輪",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "e933c885-ce02-4106-a3f3-6759a11f5a17",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_show_line",
+    "description": "秀線",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "249a0171-9364-4c02-b1ff-71cb492c58f2",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_sym_fu_fly_end",
+    "description": "錢⾶到定點後⾳效，於聚寶盆晃動時 觸發",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "8b2b498c-3fdf-498a-98c9-3ac95807e5de",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_sym_fu_fly",
+    "description": "錢往上⾶⾳效",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "9fe0f982-21d9-4415-a1b4-412b701adf6e",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_sym_fu",
+    "description": "獎圖：Wild亮起",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "4e68dfc2-1a5f-499e-b0a9-6b0cda95e9b3",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_sym_scatter_L1",
+    "description": "獎圖scatter第⼀層",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "314d0f88-4241-4480-b267-1bdeb4258db5",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_sym_scatter_L2",
+    "description": "獎圖scatter第⼆層",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "1a68d529-706d-4172-bba2-153744dce271",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_sym_scatter_L3",
+    "description": "獎圖scatter第三層",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "e8d05322-808b-4179-b408-21daf3d0da16",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_totalwin_payout_end",
+    "description": "Jp與fg結束時總結算跳錢結束",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "87ec04c0-2ab2-4c53-ba0f-45cd7c25cf06",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_totalwin_payout",
+    "description": "Jp與fg結束時總結算跳錢",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "43ee8940-4a95-4199-a487-087fbe73e80f",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "sfx_win_line",
+    "description": "連線⾳效, 於跳錢⾯版跳出時觸發",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "0a428f36-4c9a-4252-8b19-5200c0b5fc21",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "ui_button_bfg_ok",
+    "description": "Buy free game 「OK」按鈕⾳效",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "303f08ec-a3b1-43d9-8e08-de609b58931f",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "ui_button_bfg",
+    "description": "Buy free game按鈕⾳效",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "20f37bda-a16e-42ee-897a-e8d4fc04d825",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": true,
+    "id": "0",
+    "description": "MainGame音樂",
+    "soundType": 1,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
+      "__uuid__": "ff7e9ca5-0da1-4ce3-81de-e35927cdb83d",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": true,
+    "id": "1",
+    "description": "FeatureGame音樂",
+    "soundType": 1,
+    "filterSameSound": false
   },
   {
     "__type__": "AudioClipData",
@@ -92995,10 +93637,54 @@
     "clip": null,
     "volume": 0.8,
     "loop": false,
-    "id": "",
-    "description": "",
-    "soundType": 1,
+    "id": "100",
+    "description": "Spin音效",
+    "soundType": 0,
+    "filterSameSound": false
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": null,
+    "volume": 0.8,
+    "loop": false,
+    "id": "101",
+    "description": "停輪音效",
+    "soundType": 0,
     "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": null,
+    "volume": 0.8,
+    "loop": false,
+    "id": "102",
+    "description": "贏分音效",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": null,
+    "volume": 0.8,
+    "loop": false,
+    "id": "103",
+    "description": "NearMiss音效",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": null,
+    "volume": 0.8,
+    "loop": false,
+    "id": "104",
+    "description": "共用按鍵聲",
+    "soundType": 0,
+    "filterSameSound": false
   },
   {
     "__type__": "cc.Node",
@@ -93012,7 +93698,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 3344
+        "__id__": 3385
       }
     ],
     "_prefab": null,
@@ -93051,16 +93737,16 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 3343
+      "__id__": 3384
     },
     "_enabled": true,
     "__prefab": null,
     "languageData": [
       {
-        "__id__": 3345
+        "__id__": 3386
       },
       {
-        "__id__": 3346
+        "__id__": 3387
       }
     ],
     "_id": "41j/I//vVFOKrVFZCMGSP6"
@@ -93138,28 +93824,28 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 3351
+      "__id__": 3392
     },
     "shadows": {
-      "__id__": 3352
+      "__id__": 3393
     },
     "_skybox": {
-      "__id__": 3353
+      "__id__": 3394
     },
     "fog": {
-      "__id__": 3354
+      "__id__": 3395
     },
     "octree": {
-      "__id__": 3355
+      "__id__": 3396
     },
     "skin": {
-      "__id__": 3356
+      "__id__": 3397
     },
     "lightProbeInfo": {
-      "__id__": 3357
+      "__id__": 3398
     },
     "postSettings": {
-      "__id__": 3358
+      "__id__": 3399
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

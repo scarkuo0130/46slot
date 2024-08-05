@@ -1,4 +1,4 @@
-import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, ParticleSystem, EventTarget, Tween, ParticleSystem2D } from 'cc';
+import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, ParticleSystem, EventTarget, Tween, ParticleSystem2D, AudioSource } from 'cc';
 import { Utils, DATA_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
 import { Payway } from '../../sub_module/game/machine/pay/Payway';
@@ -8,6 +8,8 @@ import { JpGame4600 } from './jp_game/JpGame4600';
 import { FreeGame } from '../../sub_module/game/FeatureGame/FreeGame';
 import { OrientationNode } from '../../sub_module/develop/OrientationNode';
 import { AutoSpin } from '../../sub_module/game/AutoSpin';
+import { SoundManager } from '../../sub_module/game/machine/SoundManager';
+import { t } from 'xstate';
 const { ccclass, property } = _decorator;
 
 export enum JP_TYPE {
@@ -141,23 +143,26 @@ export class Payway4600 extends Payway {
      * @override 可覆寫
      * @from paytable.spin()
      */
-    private async processWinningScore() {
+    public async processWinningScore() {
         const gameResult = this.gameResult;
         const free_game: boolean = gameResult.free_spin_times > 0;
 
-        this.machine.activeBuyFGButton(false);  // 關閉購買 Free Game 按鈕
-        // console.log('gameResult', free_game, gameResult);
-        // 聚寶盆動畫，如果有JP遊戲，先進去玩
-        await this.absorbWildSymbolIntoTreasurePot(free_game);
+        this.machine.activeBuyFGButton(false);                  // 關閉購買 Free Game 按鈕
+        await this.absorbWildSymbolIntoTreasurePot(free_game);  // 聚寶盆動畫，如果有JP遊戲，先進去玩
 
-        if (!free_game) { // 假如沒有 free_game, 就回去報獎流程
+        if (!free_game) {                                       // 假如沒有 free_game, 就回去報獎流程
             return super.processWinningScore();
         }
 
-        // 進入JP遊戲
+        if ( this.machine.featureGame === false) {
+            await SoundManager.PauseMusic();                    // 主場暫停音樂
+            SoundManager.PlaySoundByID('sfx_fg_alarm');         // 觸發 Free Game 警鈴音效
+        }
+        
+        // * 進入JP遊戲
         console.log('進入free game遊戲');
-        await Utils.delay(3000);
-        await this.start_free_game();
+        await Utils.delay(4000);
+        await this.start_free_game();                           // 進入 Free Game 流程
     }
 
     /**
@@ -184,16 +189,29 @@ export class Payway4600 extends Payway {
         } }).start();
 
         await Utils.delay(300);
+        const source : AudioSource = SoundManager.PlaySoundByID('sfx_payout_loop', true, {
+            onComplete:(source)=> { // 播放結束音效
+                SoundManager.PlaySoundByID('sfx_payout_loop_end'); 
+            }
+        });
         score_board.setAnimation(0, 'play', false);
         particle.node.setWorldPosition(score_board.node.worldPosition);
         particle.node.setScale(17, 17, 1);
         particle.node.active = true;
         particle.play();
 
+        SoundManager.PlaySoundByID('sfx_win_line');
+        Utils.delay(200).then(() => { if ( source ) source.loop = false; });
         await super.performAllPayline(); // 播放全部獎項
-
+        // source.loop = false;
         particle.stop();
         await Utils.commonFadeIn(score_board.node, true, null, score_board);
+        
+    }
+
+    protected async performSingleLine(lineData: any, isWaiting: boolean = false): Promise<number> {
+        if (isWaiting) SoundManager.PlaySoundByID('sfx_show_line');
+        return super.performSingleLine(lineData, isWaiting);
     }
 
     /**
@@ -240,9 +258,10 @@ export class Payway4600 extends Payway {
             this.wildSoulFlyToPot(wilds[i]);
             this.wildSoulFlyToPot(wilds[i]);
         }
-
+        SoundManager.PlaySoundByID('sfx_sym_fu');
         // 等待動畫播完
         await Utils.delay(400);
+        SoundManager.PlaySoundByID('sfx_sym_fu_fly');
 
         if (this.gameResult?.jp_prize > 0) {
             this.machine.featureGame = true;
@@ -267,19 +286,6 @@ export class Payway4600 extends Payway {
         this.machine.featureGame = false;
     }
 
-    /**
-     * 進入JP遊戲
-     */
-    private async enter_jp_game() {
-        await this.play_pot_ani(true);
-
-        let door = this.doorSpine;
-        door.node.active = true;
-
-        await Utils.playSpine(door, 'play', false); // 關門動畫
-    }
-
-
     /** 開場動畫 */
     private async preload_open_door() {
         await Utils.delayEvent(this.properties['preload']['onload']);
@@ -289,6 +295,7 @@ export class Payway4600 extends Payway {
 
         this.properties['preload']['mask'].node.active = true;
         door.node.active = true;
+        SoundManager.PlaySoundByID('sfx_door_open');
         Utils.playSpine(door, 'play02', false, 1, true, (trackEntry) => { door.node.active = false; });
         door.paused = true;
 
@@ -312,6 +319,9 @@ export class Payway4600 extends Payway {
 
     // 聚寶盆等級與動畫對應
     private TYPE_POT_LEVEL = { 0: 'default', 1: 'level1', 2: 'level2', 3: 'level3', 4: 'level4', };
+
+    // 對應動畫音效
+    private TYPE_POT_SOUND = { 1: 'sfx_jp_collect_1', 2: 'sfx_jp_collect_2', 3: 'sfx_jp_collect_3', 4: 'sfx_jp_collected', };
 
     // 聚寶盆等級提升機率
     private levelupRate = { 0: 90, 1: 70, 2: 60, 3: 50 };
@@ -340,19 +350,24 @@ export class Payway4600 extends Payway {
      * @param open 是否開啟聚寶盆
      */
     public async play_pot_ani(open: boolean = false) {
+        const lastLevel = this.JP_LEVEL;
         const level = this.levelUp();
         const spine: sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
+
+        if ( open === false) await Utils.delay(1000);
+        Utils.playSpine(spine, 'play05', false);
+        SoundManager.PlaySoundByID('sfx_sym_fu_fly_end');
+        await Utils.delay(800);
+
+        if ( level != lastLevel ) SoundManager.PlaySoundByID(this.TYPE_POT_SOUND[level]);
+        await Utils.delay(200);
+        spine.setSkin(this.TYPE_POT_LEVEL[level]);
+
         if (open === false) {
-            await Utils.delay(1000);
-            Utils.playSpine(spine, 'play05', false);
-            await Utils.delay(1000);
-            spine.setSkin(this.TYPE_POT_LEVEL[level]);
             if ( level === 4 ) Utils.playSpine(spine, 'play06', true);
             return;
         }
-
-        spine.setSkin(this.TYPE_POT_LEVEL[4]);
-
+        SoundManager.PlaySoundByID('sfx_jp_intro');         // 播放JP開啟音效
         const particles = spine.node.getComponentsInChildren(ParticleSystem);
         for (let i = 0; i < particles.length; i++) {
             particles[i].node.active = true;
@@ -452,15 +467,17 @@ export class Payway4600 extends Payway {
                 if (roundData.free_spin_times > 0) {
                     freeGameTimes += roundData.free_spin_times;
                 }
-                await Utils.delay(1000);
+                await Utils.delay(500);
                 freeGameTimes--;
                 await AutoSpin.AutoSpinTimes(freeGameTimes);                    // 更新 Spin 次數
                 self.playBGParticle();                                          // 播放背景粒子
             }
         );
 
-        // Free Game 已經結束
+        // * Free Game 已經結束
+        SoundManager.PauseMusic();                                              // 暫停音樂
         await Utils.delay(1000);                                                // 發呆一下
+        SoundManager.PlayMusic('bgm_total_win');                                // 播放總得分音樂
         await this.end_free_game_ui(sub_game);                                  // 結束 Free Game UI
         AutoSpin.CloseAutoSpinTimes();                                          // 關掉Spin次數
 
@@ -475,6 +492,7 @@ export class Payway4600 extends Payway {
 
         this.reel.closeNearMissMask();
         this.machine.controller.maskActive(true);
+        SoundManager.PlaySoundByID('sfx_fg_cutscene');                          // 觸發 Free Game 警鈴音效
 
         if (this.isFreeGame) {                                                  // 如果已經在 Free Game 中，顯示觸發 UI
             const triggerUI = this.properties['freeGame']['trigger_ui'].component;
@@ -489,7 +507,7 @@ export class Payway4600 extends Payway {
             await Utils.delay(500);
             await this.performAllPayline();                                     // 因為 Scatter 有分數，所以要播放一次
 
-        } else { // 如果不在 Free Game 中，打開 Free Game UI
+        } else {                                                                // 如果不在 Free Game 中，打開 Free Game UI
             const startUI: Node = this.properties['freeGame']['start_ui'].node;
             let clickEvent = new EventTarget();
             startUI.active = true;
@@ -513,7 +531,7 @@ export class Payway4600 extends Payway {
 
             Utils.commonFadeIn(startUI, true, [new Color(255, 255, 255, 0), Color.WHITE], startUI);
             await Utils.commonActiveUITween(startUI, false, true);              // 關閉 UI
-            //開關門 轉場
+            // * 開關門 轉場
             await this.jpGame.open_door(() => {                                 // 關門關門裡面要做什麼
                 this.machine.controller.maskActive(false);
                 this.properties['background']['freeGame'].node.active = true;
@@ -525,8 +543,38 @@ export class Payway4600 extends Payway {
                     this.controller.displayTotalBetIdx(idx)                     // 更新 TotalBet;
                     this.changeTotalBet(totalBet);                              // 更新 JP 獎項
                 }
+
+                SoundManager.PlayMusic('1');                                    // 播放FG音樂
             });
         }
+    }
+
+    /**
+     * 停止 Wheel 滾動音效
+     */
+    public async stopWheelRolling(wheelID: number): Promise<void> {
+        SoundManager.PlaySoundByID('sfx_reel_stop');                            // 播放停止音效
+        return super.stopWheelRolling(wheelID);
+    }
+
+    /**
+     * 開始滾輪, 播放音效
+     */
+    public async startRolling() {
+        SoundManager.PlaySoundByID('sfx_reel_spin');                            // 播放Spin音效
+        const source = SoundManager.PlaySoundByID('sfx_reel_roll_loop',true);   // 播放滾輪音效 (根本聽不到)
+        this.properties['sound']['sfx_reel_roll_loop'] = source;
+        Utils.delay(400).then(() => { SoundManager.PlaySoundByID('sfx_reel_pre_roll'); }); // 播放下壓音效
+        await super.startRolling();
+    }
+
+    /**
+     * 停止滾輪, 停止滾輪音效
+     */
+    public async stopRolling(): Promise<void> {
+        const source = this.properties['sound']['sfx_reel_roll_loop'];
+        if (source) source.loop = false;
+        return super.stopRolling();
     }
 
     /**
@@ -548,32 +596,35 @@ export class Payway4600 extends Payway {
         Utils.commonFadeIn(endUI, false, [new Color(255, 255, 255, 0), Color.WHITE], endUI);
         await Utils.commonActiveUITween(endUI, true);
 
-        timesLabel.string = subGameData['result'].length; // 顯示次數
-
-        // 滾動總得分
-        let clickEvent = new EventTarget();
+        timesLabel.string = subGameData['result'].length;                             // 顯示總Spin次數
+        let clickEvent = new EventTarget();                                           // 滾動總得分點擊事件
 
         // 開始滾分, 十秒
         let waiting = await Utils.commonTweenNumber(totalWinLabel, 0, total_win, 10, null, clickEvent);
-        waiting['time'] = Date.now();
+        waiting['time'] = Date.now();                                                 // 記錄開始時間        
 
-        // 打開按鈕
-        endUI.on(Node.EventType.TOUCH_END, async () => {
+        // 播放滾分音效
+        const rollingScoreSound = SoundManager.PlaySoundByID('sfx_totalwin_payout', true);
+        
+        endUI.on(Node.EventType.TOUCH_END, async () => {                              // 打開快速滾分，按鈕事件
             // 如果 tween 還沒結束，就直接結束
             let tween = waiting.tween;
-            if (tween == null)          return clickEvent.emit('done');
-            if (tween.isDone === true)  return clickEvent.emit('done');               // 已經結束
+            if (tween == null)          return clickEvent.emit('done');               // 沒有在滾分, 直接結束
+            if (tween.isDone === true)  return clickEvent.emit('done');               // 已經結束, 直接結束
             let lastTime = Date.now() - waiting['time'];                              // 滾分剩餘時間
             if (lastTime < 500)         return;                                       // 剩下不到 0.5 秒，不理他，等自然結束
             
             tween.stop();                                                             // 停止目前滾到一半的分數
             const nowValue = clickEvent['value'];
             await Utils.commonTweenNumber(totalWinLabel, nowValue, total_win, 0.5);   // 剩餘分數，0.5秒內滾完
-            clickEvent.emit('done');
+            clickEvent.emit('done');                                                  // 滾分結束
         });
 
         await Utils.delayEvent(clickEvent);                                           // 等待滾完
         endUI.off(Node.EventType.TOUCH_END);                                          // 移除滾分點擊
+        //rollingScoreSound.loop = false;                                             // 停止總得分音效
+        rollingScoreSound.stop();
+        SoundManager.PlaySoundByID('sfx_totalwin_payout_end');                        // 播放總得分結束音效
 
         await Utils.delay(500);
         await Utils.scaleFade(totalWinLabel);                                         // 數字縮放淡出效果
@@ -587,13 +638,13 @@ export class Payway4600 extends Payway {
         } else {
             await Utils.delay(2000);                                                  // 等待三秒
         }
-
-        // 關閉介面
-        Utils.commonFadeIn(endUI, true, [new Color(255, 255, 255, 0), Color.WHITE], endUI, 0.3);
+        SoundManager.PauseMusic();                                                    // 暫停音樂
+        Utils.commonFadeIn(endUI, true, [new Color(255, 255, 255, 0), Color.WHITE], endUI, 0.3); // 關閉介面
         await Utils.commonActiveUITween(endUI, false);
-
+        
         let endEvent = new EventTarget();
         await this.jpGame.open_door(async () => {                                     // 關門轉場 
+            SoundManager.PlayMusic('0');                                              // 播放主場音樂
             this.controller.refreshTotalBet();                                        // 更新 TotalBet;
             this.changeTotalBet(this.machine.totalBet);                               // 更新 JP 獎項
 
@@ -645,22 +696,40 @@ export class Payway4600 extends Payway {
             }
             return false;
         }
+
+        SoundManager.PlaySoundByID('sfx_readyhead'); // 播放聽牌音效
         return true;
     }
+
+    private dropScatterSound = ['sfx_sym_scatter_L1','sfx_sym_scatter_L2','sfx_sym_scatter_L3'];
 
     // 敲鑼的動態什麼時候做
     // 有聽牌機會在做
     public showDropSymbol(wheelID: number, symbol: Symbol): boolean {
-        return super.showDropSymbol(wheelID, symbol);
-        /*
+        // if ( wheelID < 3 ) SoundManager.PlaySoundByID(this.dropScatterSound[wheelID]);
+        //return super.showDropSymbol(wheelID, symbol);
+        
 
-        if ( wheelID > 2 ) return false;                                   // 第3輪之後不用做
-        if ( wheelID === 0 ) return true;                                  // 第一排一定要做
-        if ( wheelID > 0 && this.reel.nearMiss === 1 ) {                   // 第二排 但沒有聽牌不用做
+        if ( wheelID > 2 ) return true;                                    // 第3輪之後不用做
+        if ( wheelID === 0 ) {                                             // 第一排一定要做
+            SoundManager.PlaySoundByID(this.dropScatterSound[0]);
+            return true;                                  
+        }
+        if ( wheelID > 0 && this.reel.nearMiss === 1 ) {                   // 第二排 但有聽牌才做
+            SoundManager.PlaySoundByID(this.dropScatterSound[1]);
             return true; 
         }
-        return false; */
+        return true; 
     }
 
+    public async onClickOpenBuyFGUI() : Promise<boolean> { 
+        SoundManager.PlaySoundByID('ui_button_bfg');
+        return super.onClickOpenBuyFGUI(); 
+    }
+
+    public async clickBuyFeatureGameConfirm() : Promise<boolean> { 
+        SoundManager.PlaySoundByID('ui_button_bfg_ok');
+        return super.clickBuyFeatureGameConfirm(); 
+    }
 }
 
