@@ -716,7 +716,7 @@ export class Payway4600 extends Payway {
             return true;                                  
         }
         if ( wheelID > 0 && this.reel.nearMiss === 1 ) {                   // 第二排 但有聽牌才做
-            SoundManager.PlaySoundByID(this.dropScatterSound[1]);
+            SoundManager.PlaySoundByID(this.dropScatterSound[wheelID]);
             return true; 
         }
         return true; 

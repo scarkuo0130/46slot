@@ -364,13 +364,13 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 141.25001525878906,
-      "height": 135.36773681640625
+      "width": 258.0799865722656,
+      "height": 106.37000274658203
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.49911504434338655,
-      "y": 0.5050518742123619
+      "x": 0.5001550238182094,
+      "y": 0.4999529842250061
     },
     "_id": "49mwkgEnhLgaqLmCXvB//I"
   },
@@ -395,12 +395,12 @@
       "a": 255
     },
     "_skeletonData": {
-      "__uuid__": "9b5c709d-2521-40d3-8b76-1982550a1135",
+      "__uuid__": "d682a9c5-1888-4bff-883b-b5eeb329d0ea",
       "__expectedType__": "sp.SkeletonData"
     },
     "defaultSkin": "default",
-    "defaultAnimation": "play",
-    "_premultipliedAlpha": false,
+    "defaultAnimation": "play03",
+    "_premultipliedAlpha": true,
     "_timeScale": 1,
     "_preCacheMode": 1,
     "_cacheMode": 1,

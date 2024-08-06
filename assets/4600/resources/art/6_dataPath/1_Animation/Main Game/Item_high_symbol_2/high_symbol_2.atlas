@@ -1,83 +1,76 @@
 
 high_symbol_2.png
-size: 256,2048
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BM_01
   rotate: false
-  xy: 2, 741
-  size: 247, 233
-  orig: 247, 245
-  offset: 0, 6
-  index: -1
-BM_02
-  rotate: false
-  xy: 2, 510
-  size: 241, 229
-  orig: 247, 245
-  offset: 3, 8
+  xy: 2, 407
+  size: 309, 291
+  orig: 309, 306
+  offset: 0, 7
   index: -1
 Boat_01
   rotate: true
-  xy: 195, 94
-  size: 184, 48
-  orig: 185, 48
-  offset: 0, 0
+  xy: 302, 375
+  size: 230, 59
+  orig: 232, 60
+  offset: 0, 1
   index: -1
 Boat_02
-  rotate: 180
-  xy: 2, 133
-  size: 207, 92
-  orig: 207, 92
+  rotate: true
+  xy: 254, 129
+  size: 259, 116
+  orig: 259, 116
   offset: 0, 0
   index: -1
 Boat_03
   rotate: false
-  xy: 2, 194
-  size: 150, 119
-  orig: 150, 124
-  offset: 0, 5
+  xy: 2, 3
+  size: 188, 150
+  orig: 188, 156
+  offset: 0, 6
   index: -1
 Boat_04
   rotate: 180
-  xy: 2, 61
-  size: 151, 80
-  orig: 151, 80
+  xy: 181, 41
+  size: 189, 100
+  orig: 189, 100
   offset: 0, 0
   index: -1
 Icon_Common_24
   rotate: false
-  xy: 2, 315
-  size: 205, 193
-  orig: 205, 205
-  offset: 0, 3
+  xy: 2, 154
+  size: 256, 251
+  orig: 256, 256
+  offset: 0, 4
   index: -1
 Lig
   rotate: false
-  xy: 70, 16
-  size: 43, 42
-  orig: 51, 46
-  offset: 4, 4
+  xy: 332, 606
+  size: 54, 52
+  orig: 64, 57
+  offset: 5, 5
   index: -1
 fangshe02
-  rotate: false
-  xy: 154, 20
-  size: 73, 71
-  orig: 80, 80
-  offset: 4, 5
+  rotate: true
+  xy: 311, 911
+  size: 92, 89
+  orig: 100, 100
+  offset: 5, 6
   index: -1
 high_symbol_3
   rotate: false
-  xy: 2, 976
-  size: 246, 242
-  orig: 262, 245
-  offset: 8, 1
+  xy: 2, 700
+  size: 307, 303
+  orig: 328, 306
+  offset: 11, 1
   index: -1
 圖層 1
   rotate: false
-  xy: 2, 3
-  size: 66, 56
-  orig: 66, 56
+  xy: 311, 839
+  size: 82, 70
+  orig: 82, 70
   offset: 0, 0
   index: -1
