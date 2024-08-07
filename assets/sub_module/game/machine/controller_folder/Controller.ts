@@ -1,12 +1,13 @@
 import { _decorator, Component, Node, game, Button, EventTarget, Vec3, tween, Color, Sprite, Label, input, Input, EventKeyboard, KeyCode } from 'cc';
-import { Utils, DATA_TYPE } from '../../../utils/Utils';
-import { Orientation, Viewport } from '../../../utils/Viewport';
-import { AutoSpin } from '../../AutoSpin';
-import { Machine } from '../Machine';
-import { gameInformation } from '../../GameInformation';
-import { DataManager } from '../../../data/DataManager';
-import { GameInformation } from '../GameInformation';
-import { BuyFeatureGameUI } from '../BuyFeatureGameUI';
+import { Utils, DATA_TYPE }         from '../../../utils/Utils';
+import { Orientation, Viewport }    from '../../../utils/Viewport';
+import { AutoSpin }                 from '../../AutoSpin';
+import { Machine }                  from '../Machine';
+import { gameInformation }          from '../../GameInformation';
+import { DataManager }              from '../../../data/DataManager';
+import { GameInformation }          from '../GameInformation';
+import { BuyFeatureGameUI }         from '../BuyFeatureGameUI';
+import { SoundManager, PLAY_MODE }  from '../SoundManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('Controller')
@@ -14,25 +15,25 @@ export class Controller extends Component {
 
     private initData = {
         "buttons" : {
-            'TotalBetIncrease'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Total Bet/Increase',         [DATA_TYPE.CLICK_EVENT]: this.clickTotalBetIncrease, 'busyDisable':true  },
-            'TotalBetDecrease'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Total Bet/Decrease',         [DATA_TYPE.CLICK_EVENT]: this.clickTotalBetDecrease, 'busyDisable':true },
-            'Information'       : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Information', [DATA_TYPE.CLICK_EVENT]: this.clickInformation,      'busyDisable':true },
-            'Option'            : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Option',      [DATA_TYPE.CLICK_EVENT]: this.clickOption,           'busyDisable':true },
-            'SpeedMode'         : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed',       [DATA_TYPE.CLICK_EVENT]: this.clickSpeedMode,        'busyDisable':true },
-            'AutoSpin'          : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Auto',        [DATA_TYPE.CLICK_EVENT]: this.clickAutoSpin,         'busyDisable':true },
-            'InGameMenu'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/InGameMenu',  [DATA_TYPE.CLICK_EVENT]: this.clickInGameMenu,       'busyDisable':true },
-            'Record'            : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Record',      [DATA_TYPE.CLICK_EVENT]: this.clickRecord,           'busyDisable':true },
-            'Fullscreen'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Screen',      [DATA_TYPE.CLICK_EVENT]: this.clickFullscreen,       'busyDisable':true },
-            'OptionBack'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Back',        [DATA_TYPE.CLICK_EVENT]: this.clickOptionBack,       'busyDisable':true },
-            'Spin'              : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Spin',        [DATA_TYPE.CLICK_EVENT]: this.clickSpin,             'busyDisable':true },
-            'Sound'             : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound',       [DATA_TYPE.CLICK_EVENT]: this.clickSound,            'busyDisable':true },
+            'TotalBetIncrease'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Total Bet/Increase',         [DATA_TYPE.CLICK_EVENT]: this.clickTotalBetIncrease, 'busyDisable':true, 'buttonSound':true },
+            'TotalBetDecrease'  : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Total Bet/Decrease',         [DATA_TYPE.CLICK_EVENT]: this.clickTotalBetDecrease, 'busyDisable':true, 'buttonSound':true  },
+            'Information'       : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Information', [DATA_TYPE.CLICK_EVENT]: this.clickInformation,      'busyDisable':true, 'buttonSound':true  },
+            'Option'            : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Option',      [DATA_TYPE.CLICK_EVENT]: this.clickOption,           'busyDisable':true, 'buttonSound':true  },
+            'SpeedMode'         : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Speed',       [DATA_TYPE.CLICK_EVENT]: this.clickSpeedMode,        'busyDisable':true, 'buttonSound':true  },
+            'AutoSpin'          : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Auto',        [DATA_TYPE.CLICK_EVENT]: this.clickAutoSpin,         'busyDisable':true, 'buttonSound':true  },
+            'InGameMenu'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/InGameMenu',  [DATA_TYPE.CLICK_EVENT]: this.clickInGameMenu,       'busyDisable':true, 'buttonSound':true  },
+            'Record'            : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Record',      [DATA_TYPE.CLICK_EVENT]: this.clickRecord,           'busyDisable':true, 'buttonSound':true  },
+            'Fullscreen'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Screen',      [DATA_TYPE.CLICK_EVENT]: this.clickFullscreen,       'busyDisable':true, 'buttonSound':true  },
+            'OptionBack'        : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Back',        [DATA_TYPE.CLICK_EVENT]: this.clickOptionBack,       'busyDisable':true, 'buttonSound':true  },
+            'Spin'              : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Bottom Buttons/Spin',        [DATA_TYPE.CLICK_EVENT]: this.clickSpin,             'busyDisable':true, 'buttonSound':false  },
+            'Sound'             : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound',       [DATA_TYPE.CLICK_EVENT]: this.clickSound,            'busyDisable':true, 'buttonSound':false  },
 
             // ====== 橫版按鈕 ======
-            'OptionLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Option',             [DATA_TYPE.CLICK_EVENT]: this.clickOption,     'busyDisable':true },
-            'RecordLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Record',     [DATA_TYPE.CLICK_EVENT]: this.clickRecord,     'busyDisable':true },
-            'SoundLandscape'    : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound',      [DATA_TYPE.CLICK_EVENT]: this.clickSound,      'busyDisable':true },
-            'InGameMenuLandscape':{ [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/InGameMenu', [DATA_TYPE.CLICK_EVENT]: this.clickInGameMenu, 'busyDisable':true },
-            'ScreenLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen',     [DATA_TYPE.CLICK_EVENT]: this.clickFullscreen, 'busyDisable':true },
+            'OptionLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Option',             [DATA_TYPE.CLICK_EVENT]: this.clickOption,     'busyDisable':true, 'buttonSound':true  },
+            'RecordLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Record',     [DATA_TYPE.CLICK_EVENT]: this.clickRecord,     'busyDisable':true, 'buttonSound':true  },
+            'SoundLandscape'    : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound',      [DATA_TYPE.CLICK_EVENT]: this.clickSound,      'busyDisable':true, 'buttonSound':false  },
+            'InGameMenuLandscape':{ [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/InGameMenu', [DATA_TYPE.CLICK_EVENT]: this.clickInGameMenu, 'busyDisable':true, 'buttonSound':true  },
+            'ScreenLandscape'   : { [DATA_TYPE.TYPE] : Button,        [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen',     [DATA_TYPE.CLICK_EVENT]: this.clickFullscreen, 'busyDisable':true, 'buttonSound':true  },
             'INIT_EVENT'        : this.initButton
         },
 
@@ -41,6 +42,18 @@ export class Controller extends Component {
             'fullscreen_exit_p' : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Screen/FullScreen Off', },
             'fullscreen_l'      : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen/FullScreen', },
             'fullscreen_exit_l' : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Screen/FullScreen Off', },
+        },
+
+        'soundMode_p' : {
+            'all_on'            : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound/Sound',     'next':'music_off' },
+            'music_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound/Music Off', 'next':'sound_off' },
+            'sound_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound/Sound Off', 'next':'all_on' },
+        },
+
+        'soundMode_l' : {
+            'all_on'            : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound/Sound',     'next':'music_off' },
+            'music_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound/Music Off', 'next':'sound_off' },
+            'sound_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound/Sound Off', 'next':'all_on' },
         },
 
         'speedMode' : {
@@ -156,7 +169,7 @@ export class Controller extends Component {
         const optionData = this.props['OptionData'];
         const optionButtons = this.props['optionButtons'];
         optionData[Orientation.PORTRAIT]['fromPos'] = new Vec3(optionButtons['portraitOption'][DATA_TYPE.NODE].position);
-        optionData[Orientation.PORTRAIT]['toPos'] = new Vec3(optionButtons['portraitBottom'][DATA_TYPE.NODE].position);
+        optionData[Orientation.PORTRAIT]['toPos']   = new Vec3(optionButtons['portraitBottom'][DATA_TYPE.NODE].position);
     }
 
     // #region [[rgba(0, 0, 0, 0)]] 遮罩相關功能
@@ -217,11 +230,16 @@ export class Controller extends Component {
         Utils.initData(this.initData, this);
         this.initMask();
         this.initOptionButton();
+        this.initSoundMode();
 
         console.log(this.properties);
         input.on(Input.EventType.KEY_DOWN, this.onKeySpaceDown, this);
     }
 
+    /**
+     * 按鍵設定
+     * @todo 空白鍵進行 Spin
+     */
     protected onKeySpaceDown(event: EventKeyboard) { 
         if ( event.keyCode !== KeyCode.SPACE ) return;
         AutoSpin.StopAutoSpin();
@@ -282,33 +300,32 @@ export class Controller extends Component {
 
     private async clickSpinButtonAnimation() {
         const spinImage = this.props['spin']['image'].node.parent;
-        tween(spinImage).to(0.1, { scale: new Vec3(1.2,1.2,1) }).to(0.1, { scale: Vec3.ONE }).start();
+        tween(spinImage).to(0.1, { scale: new Vec3(0.6,0.6,1) }).to(0.15, { scale: Vec3.ONE }, {easing:'backOut'}).start();
     }
 
     /**
      * Spin 按鈕事件
      */
     public async clickSpin(autoSpin:boolean=false) {
-        if ( this.machine.featureGame ) return false; // 如果在特色遊戲中, 則不可SPIN
 
-        this.clickSpinButtonAnimation() ;
-        if ( this.machine.spinning ) {
-            if ( this.machine.fastStopping ) return;
+        if ( this.machine.featureGame ) return false;   // 如果在特色遊戲中, 則不可SPIN
+        this.clickSpinButtonAnimation() ;               // SPIN 按鈕點擊動畫
+        if ( this.machine.spinning ) {                  // 正在 SPIN 中
+            if ( this.machine.fastStopping ) return false; // 已經是快速停止狀態，不做任何事
 
-            let times = this.props['clickSpin'][1]++;
+            let times = this.props['clickSpin'][1]++;   // 紀錄快停次數
             Utils.GoogleTag('ClickSpinStop', {'event_category':'Spin', 'event_label':'ClickSpinStop', 'times': times});
-            this.machine.fastStopping = true;
+            this.machine.fastStopping = true;           // 設定快速停止狀態
             return false;
         }
-        let times = this.props['clickSpin'][0]++;
+
+        let times = this.props['clickSpin'][0]++;       // 紀錄 SPIN 次數
         Utils.GoogleTag('ClickSpin', {'event_category':'Spin', 'event_label':'ClickSpin', 'value':this.betIdx, 'times': times});
-        this.clickOption(null, false); // 關閉 Option 功能
 
-        // 等待 Spin 結束
-        await this.machine.clickSpin();
-
-        // 如果有 AutoSpin 則繼續
-        this.autoSpin.decrementCount();
+        this.clickOption(null, false);                  // 關閉 Option 功能
+        await this.machine.clickSpin();                 // 等待 Spin 結束
+        await this.autoSpin.decrementCount();           // 如果有 AutoSpin 則繼續
+        return true;
     }
 
     protected clickInformation() {
@@ -385,13 +402,7 @@ export class Controller extends Component {
 
     public static ChangeSpeedMode(mode:number) { return Controller.Instance.changeSpeedMode(mode); }
 
-    protected clickAutoSpin() {
-       AutoSpin.OpenUI();
-    }
-
-    protected clickStopAutoSpin() {
-
-    }
+    protected clickAutoSpin() { AutoSpin.OpenUI(); }
 
     protected clickInGameMenu() {
         console.log('clickInGameMenu');
@@ -403,8 +414,36 @@ export class Controller extends Component {
         console.log('clickRecord');
     }
 
+    protected initSoundMode() {
+        this.props['soundMode'] = {};
+        this.props['soundMode'][Orientation.LANDSCAPE] = {};
+        this.props['soundMode'][Orientation.PORTRAIT]  = {};
+
+        this.props['soundMode'][Orientation.LANDSCAPE][PLAY_MODE.NORMAL]     = this.props['soundMode_l']['all_on'].node;
+        this.props['soundMode'][Orientation.LANDSCAPE][PLAY_MODE.ONLY_SOUND] = this.props['soundMode_l']['music_off'].node;
+        this.props['soundMode'][Orientation.LANDSCAPE][PLAY_MODE.NO_SOUND]   = this.props['soundMode_l']['sound_off'].node;
+
+        this.props['soundMode'][Orientation.PORTRAIT][PLAY_MODE.NORMAL]      = this.props['soundMode_p']['all_on'].node;
+        this.props['soundMode'][Orientation.PORTRAIT][PLAY_MODE.ONLY_SOUND]  = this.props['soundMode_p']['music_off'].node;
+        this.props['soundMode'][Orientation.PORTRAIT][PLAY_MODE.NO_SOUND]    = this.props['soundMode_p']['sound_off'].node;
+    }
+
+    protected changeSoundMode(mode:PLAY_MODE) {
+        for(let i=0;i<PLAY_MODE.length;i++) {
+            const active = (mode === i);
+            this.props['soundMode'][Orientation.LANDSCAPE][i].active = active;
+            this.props['soundMode'][Orientation.PORTRAIT][i].active = active;
+        }
+
+        SoundManager.setMode(mode);
+        Utils.GoogleTag('ChangeSoundMode', {'event_category':'soundMode', 'event_label':'ChangeSoundMode', 'value':mode});
+    }
+
     protected clickSound() {
-        console.log('clickSound');
+        let mode = SoundManager.Mode + 1;
+        if ( mode >= PLAY_MODE.length ) mode = 0;
+
+        this.changeSoundMode(mode);
     }
 
     protected clickFullscreen() {

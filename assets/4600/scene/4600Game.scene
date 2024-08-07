@@ -26,7 +26,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 3390
+      "__id__": 3386
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -57,7 +57,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 3391
+      "__id__": 3387
     },
     "_id": "836ddf30-7ff2-445d-9811-1c6a37d435a7"
   },
@@ -80,16 +80,16 @@
         "__id__": 3340
       },
       {
-        "__id__": 3384
+        "__id__": 3380
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 3388
+        "__id__": 3384
       },
       {
-        "__id__": 3389
+        "__id__": 3385
       }
     ],
     "_prefab": null,
@@ -426,7 +426,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 639.9999999999999,
+      "x": 640,
       "y": 360,
       "z": 0
     },
@@ -669,8 +669,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.6,
+      "y": 1.6,
       "z": 1
     },
     "_mobility": 0,
@@ -3158,7 +3158,7 @@
     "_string": "BALANCE",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21,
+    "_actualFontSize": 26,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -3381,7 +3381,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21,
+    "_actualFontSize": 27,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -3969,7 +3969,7 @@
     "_string": "TOTAL WIN",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21,
+    "_actualFontSize": 26,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -4192,7 +4192,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21,
+    "_actualFontSize": 27,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -4786,7 +4786,7 @@
     "_string": "TOTAL BET",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21,
+    "_actualFontSize": 26,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -5009,7 +5009,7 @@
     "_string": "Rp 999,999",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 21,
+    "_actualFontSize": 27,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -23935,7 +23935,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 440,
+      "width": 439.97086480753313,
       "height": 101.69999999999999
     },
     "_anchorPoint": {
@@ -23968,7 +23968,7 @@
     "_string": "選擇硬幣即可揭曉神獸。\n3 隻相同神獸可贏大獎",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 50.33333333333333,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 45,
@@ -48176,7 +48176,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 66.708984375,
+      "width": 66.69124375905422,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -48209,7 +48209,7 @@
     "_string": "Version",
     "_horizontalAlign": 2,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -49413,8 +49413,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -49446,7 +49446,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -50014,8 +50014,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -50047,7 +50047,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -50615,8 +50615,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -50648,7 +50648,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -51216,8 +51216,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -51249,7 +51249,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -51817,8 +51817,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -51850,7 +51850,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -53471,8 +53471,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -53504,7 +53504,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -54072,8 +54072,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54105,7 +54105,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -54673,8 +54673,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54706,7 +54706,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -55274,8 +55274,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -55307,7 +55307,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -55875,8 +55875,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -55908,7 +55908,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -56476,8 +56476,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -56509,7 +56509,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -56857,7 +56857,7 @@
     "_string": "All wins pay in any position from left to right on adjacent reels. beginning with the leftmost reel.\nHighest win only on each winning combination.\nwins on different combinations are added.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 31,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -57511,8 +57511,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.048828125,
-      "height": 97.8
+      "width": 50.03553377871482,
+      "height": 97.79999999999998
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -57544,7 +57544,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -58304,7 +58304,7 @@
     "_string": "3 scatter symbols appearing anywhere will trigger the Free Spins feature, which is worth 10 free spins. Each additional scatter symbol will trigger an additional 2 free spins.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 31,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -59294,7 +59294,7 @@
     "_string": "1.Wild symbol substitutes for all symbols.\n2.When a WILD appears the player may be awarded an available jackpot.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 31,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -60140,7 +60140,7 @@
     "_string": "1.A.K.Q.J.10 and 9 do not appear during the free games.\n2.3 scatter symbols will retrigger 10 free spins.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 31,
+    "_actualFontSize": 38,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -60772,7 +60772,7 @@
     "_string": "1.When a WILD appears the player may be enter the jackpot \n   game.\n2.12 coins will appear.\n3.Touching a coin will reveal the symbol of an available \n   jackpot.\n4.When 3 matching symbols have been revealed the \n   corresponding jackpot will be awarded and the feature \n   ends.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 25,
+    "_actualFontSize": 31,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -63018,7 +63018,7 @@
     "_string": "《DUO FU DUO CAI》is a slot game with 3x5 reels and 243 ways to win. Collect Scatter to enter the free game. Each time you spin Wild, you may enter the JACKPOT game.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 26,
+    "_actualFontSize": 32,
     "_fontSize": 25,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -63437,7 +63437,7 @@
     "_string": "During the game, if there is any malfunction or disconnection, the final betting records will base on system's database. Our company reserves the right of final interpretation.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 36,
+    "_actualFontSize": 45,
     "_fontSize": 35,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -66429,7 +66429,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -37.577999999999975,
+      "y": -22.193,
       "z": 0
     },
     "_lrot": {
@@ -66497,11 +66497,11 @@
       "b": 255,
       "a": 255
     },
-    "_string": "123,456,789.00",
+    "_string": "123,456,789",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 19,
-    "_fontSize": 20,
+    "_actualFontSize": 24,
+    "_fontSize": 25,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
     "_overflow": 2,
@@ -70358,7 +70358,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 401.5234375,
+      "width": 401.4967679661631,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -70391,7 +70391,7 @@
     "_string": "AUTO SPIN SETTING",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 50.33333333333333,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -71108,8 +71108,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 201.75390625,
-      "height": 50.4
+      "width": 201.71267073675497,
+      "height": 50.400000000000006
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -71141,7 +71141,7 @@
     "_string": "UNTIL FEATURE",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -71542,8 +71542,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150.2490234375,
-      "height": 50.4
+      "width": 150.21831992446192,
+      "height": 50.400000000000006
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -71575,7 +71575,7 @@
     "_string": "QUICK SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -71976,8 +71976,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 158.9072265625,
-      "height": 50.4
+      "width": 158.874758284613,
+      "height": 50.400000000000006
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -72009,7 +72009,7 @@
     "_string": "TURBO SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -72229,8 +72229,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 84.728515625,
-      "height": 50.4
+      "width": 84.71119861729098,
+      "height": 50.400000000000006
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -72262,7 +72262,7 @@
     "_string": "START",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -72833,8 +72833,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 147.3544921875,
-      "height": 50.4
+      "width": 147.3243804325331,
+      "height": 50.400000000000006
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -72866,7 +72866,7 @@
     "_string": "SPIN TIMES",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 26,
+    "_actualFontSize": 32.71666666666667,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -73110,7 +73110,7 @@
     "_string": "UNLIMITED",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 20,
+    "_actualFontSize": 25.166666666666664,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -74501,7 +74501,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 164.47265625,
+      "width": 164.4617548052049,
       "height": 50.4
     }
   },
@@ -74521,8 +74521,8 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 39,
-      "height": 50.4
+      "width": 38.992030667942885,
+      "height": 50.400000000000006
     }
   },
   {
@@ -74541,8 +74541,8 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 90.91552734375,
-      "height": 50.4
+      "width": 90.89133559473304,
+      "height": 50.400000000000006
     }
   },
   {
@@ -74585,7 +74585,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1279.9999999999998,
+      "width": 1280,
       "height": 720
     },
     "_anchorPoint": {
@@ -76233,7 +76233,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_clips": [
       {
         "__uuid__": "b1c7e592-509b-441a-a917-87c5c02ae490",
@@ -77690,8 +77690,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -188.798,
-      "y": 202.78300000000002,
+      "x": -210.224,
+      "y": 150.728,
       "z": 0
     },
     "_lrot": {
@@ -77836,8 +77836,8 @@
     "enable": true,
     "position": {
       "__type__": "cc.Vec3",
-      "x": -188.798,
-      "y": 202.78300000000002,
+      "x": -210.224,
+      "y": 150.728,
       "z": 0
     },
     "scale": {
@@ -78341,7 +78341,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -330,
+      "x": -328,
       "y": 0,
       "z": 0
     },
@@ -78758,7 +78758,7 @@
     "__type__": "RollingType1",
     "rollingSpeed_n": 2200,
     "rollingSpeed_q": 2200,
-    "rollingSpeed_t": 2200,
+    "rollingSpeed_t": 2700,
     "rollingDownCurve": {
       "__id__": 2686
     },
@@ -81520,7 +81520,7 @@
     "__type__": "RollingType1",
     "rollingSpeed_n": 2200,
     "rollingSpeed_q": 2200,
-    "rollingSpeed_t": 2200,
+    "rollingSpeed_t": 2700,
     "rollingDownCurve": {
       "__id__": 2786
     },
@@ -81698,7 +81698,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 0,
+      "x": 1,
       "y": 0,
       "z": 0
     },
@@ -82115,7 +82115,7 @@
     "__type__": "RollingType1",
     "rollingSpeed_n": 2200,
     "rollingSpeed_q": 2200,
-    "rollingSpeed_t": 2200,
+    "rollingSpeed_t": 2700,
     "rollingDownCurve": {
       "__id__": 2821
     },
@@ -82293,7 +82293,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 162.99999999999994,
+      "x": 165,
       "y": 0,
       "z": 0
     },
@@ -82710,7 +82710,7 @@
     "__type__": "RollingType1",
     "rollingSpeed_n": 2200,
     "rollingSpeed_q": 2200,
-    "rollingSpeed_t": 2200,
+    "rollingSpeed_t": 2700,
     "rollingDownCurve": {
       "__id__": 2856
     },
@@ -82888,7 +82888,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 329.99999999999994,
+      "x": 328,
       "y": 0,
       "z": 0
     },
@@ -83305,7 +83305,7 @@
     "__type__": "RollingType1",
     "rollingSpeed_n": 2200,
     "rollingSpeed_q": 2200,
-    "rollingSpeed_t": 2200,
+    "rollingSpeed_t": 2700,
     "rollingDownCurve": {
       "__id__": 2891
     },
@@ -84478,11 +84478,13 @@
     "__type__": "RollingInspect",
     "rollingTime_n": 1,
     "rollingTime_q": 0.5,
-    "rollingTime_t": 0.5
+    "rollingTime_t": 0.3
   },
   {
     "__type__": "SymbolInspect",
-    "isDropSymbol": [],
+    "isDropSymbol": [
+      0
+    ],
     "container": {
       "__id__": 2919
     },
@@ -85527,8 +85529,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.3,
+      "y": 1.3,
       "z": 1
     },
     "_mobility": 0,
@@ -88328,8 +88330,8 @@
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 0.85,
-      "y": 0.85,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "affectActive": false,
@@ -88361,8 +88363,8 @@
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 1.3,
+      "y": 1.3,
       "z": 1
     },
     "affectActive": false,
@@ -90425,7 +90427,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -230,
+      "x": -245,
       "y": 450,
       "z": 0
     },
@@ -90438,8 +90440,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "_mobility": 0,
@@ -90795,14 +90797,14 @@
     "enable": true,
     "position": {
       "__type__": "cc.Vec3",
-      "x": -230,
+      "x": -245,
       "y": 450,
       "z": 0
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "affectActive": false,
@@ -90851,7 +90853,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -230,
+      "x": -245,
       "y": 565,
       "z": 0
     },
@@ -90864,8 +90866,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "_mobility": 0,
@@ -91221,14 +91223,14 @@
     "enable": true,
     "position": {
       "__type__": "cc.Vec3",
-      "x": -230,
+      "x": -245,
       "y": 565,
       "z": 0
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "affectActive": false,
@@ -91277,7 +91279,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 230,
+      "x": 245,
       "y": 450,
       "z": 0
     },
@@ -91290,8 +91292,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "_mobility": 0,
@@ -91647,14 +91649,14 @@
     "enable": true,
     "position": {
       "__type__": "cc.Vec3",
-      "x": 230,
+      "x": 245,
       "y": 450,
       "z": 0
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "affectActive": false,
@@ -91703,7 +91705,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 230,
+      "x": 245,
       "y": 565,
       "z": 0
     },
@@ -91716,8 +91718,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "_mobility": 0,
@@ -92073,14 +92075,14 @@
     "enable": true,
     "position": {
       "__type__": "cc.Vec3",
-      "x": 230,
+      "x": 245,
       "y": 565,
       "z": 0
     },
     "scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.75,
+      "y": 0.75,
       "z": 1
     },
     "affectActive": false,
@@ -93097,18 +93099,6 @@
       },
       {
         "__id__": 3379
-      },
-      {
-        "__id__": 3380
-      },
-      {
-        "__id__": 3381
-      },
-      {
-        "__id__": 3382
-      },
-      {
-        "__id__": 3383
       }
     ],
     "_id": "4c1/NPAbNJS7JuV4xle680"
@@ -93621,70 +93611,29 @@
     "__type__": "AudioClipData",
     "active": true,
     "clip": {
+      "__uuid__": "52918e1a-52fe-4c6a-b967-af75aff3e8df",
+      "__expectedType__": "cc.AudioClip"
+    },
+    "volume": 0.8,
+    "loop": false,
+    "id": "100",
+    "description": "共用按鍵聲",
+    "soundType": 0,
+    "filterSameSound": true
+  },
+  {
+    "__type__": "AudioClipData",
+    "active": true,
+    "clip": {
       "__uuid__": "ff7e9ca5-0da1-4ce3-81de-e35927cdb83d",
       "__expectedType__": "cc.AudioClip"
     },
     "volume": 0.8,
     "loop": true,
     "id": "1",
-    "description": "FeatureGame音樂",
+    "description": "FreeGame 音樂",
     "soundType": 1,
-    "filterSameSound": false
-  },
-  {
-    "__type__": "AudioClipData",
-    "active": true,
-    "clip": null,
-    "volume": 0.8,
-    "loop": false,
-    "id": "100",
-    "description": "Spin音效",
-    "soundType": 0,
-    "filterSameSound": false
-  },
-  {
-    "__type__": "AudioClipData",
-    "active": true,
-    "clip": null,
-    "volume": 0.8,
-    "loop": false,
-    "id": "101",
-    "description": "停輪音效",
-    "soundType": 0,
     "filterSameSound": true
-  },
-  {
-    "__type__": "AudioClipData",
-    "active": true,
-    "clip": null,
-    "volume": 0.8,
-    "loop": false,
-    "id": "102",
-    "description": "贏分音效",
-    "soundType": 0,
-    "filterSameSound": true
-  },
-  {
-    "__type__": "AudioClipData",
-    "active": true,
-    "clip": null,
-    "volume": 0.8,
-    "loop": false,
-    "id": "103",
-    "description": "NearMiss音效",
-    "soundType": 0,
-    "filterSameSound": true
-  },
-  {
-    "__type__": "AudioClipData",
-    "active": true,
-    "clip": null,
-    "volume": 0.8,
-    "loop": false,
-    "id": "104",
-    "description": "共用按鍵聲",
-    "soundType": 0,
-    "filterSameSound": false
   },
   {
     "__type__": "cc.Node",
@@ -93698,7 +93647,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 3385
+        "__id__": 3381
       }
     ],
     "_prefab": null,
@@ -93737,16 +93686,16 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 3384
+      "__id__": 3380
     },
     "_enabled": true,
     "__prefab": null,
     "languageData": [
       {
-        "__id__": 3386
+        "__id__": 3382
       },
       {
-        "__id__": 3387
+        "__id__": 3383
       }
     ],
     "_id": "41j/I//vVFOKrVFZCMGSP6"
@@ -93824,28 +93773,28 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 3392
+      "__id__": 3388
     },
     "shadows": {
-      "__id__": 3393
+      "__id__": 3389
     },
     "_skybox": {
-      "__id__": 3394
+      "__id__": 3390
     },
     "fog": {
-      "__id__": 3395
+      "__id__": 3391
     },
     "octree": {
-      "__id__": 3396
+      "__id__": 3392
     },
     "skin": {
-      "__id__": 3397
+      "__id__": 3393
     },
     "lightProbeInfo": {
-      "__id__": 3398
+      "__id__": 3394
     },
     "postSettings": {
-      "__id__": 3399
+      "__id__": 3395
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

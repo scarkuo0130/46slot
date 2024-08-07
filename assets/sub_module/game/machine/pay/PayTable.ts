@@ -1,11 +1,12 @@
 import { _decorator, Sprite, Component, Node, Vec3, tween, Label, Button, EventTarget, JsonAsset, ccenum, UIOpacity, CCInteger, CCFloat, Color } from 'cc';
-import { Reel } from '../Reel';
+import { Reel }             from '../Reel';
 import { Utils, DATA_TYPE } from '../../../utils/Utils';
-import { Machine } from '../Machine';
-import { BigWin } from '../BigWin';
-import { Controller } from '../controller_folder/Controller';
+import { Machine }          from '../Machine';
+import { BigWin }           from '../BigWin';
+import { Controller }       from '../controller_folder/Controller';
 import { BuyFeatureGameUI } from '../BuyFeatureGameUI';
-import { Symbol } from '../Symbol';
+import { Symbol }           from '../Symbol';
+import { AutoSpin }         from '../../AutoSpin';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 
 
@@ -163,17 +164,26 @@ export class Paytable extends Component {
      * @override 可覆寫
      */
     public async spin(eventTarget:EventTarget=null) {
-        this.breakPerformSingleLineLoop();          // 取消報獎流程
+        this.breakPerformSingleLineLoop();                  // 取消報獎流程
         this.machine.state = Machine.SPIN_STATE.SPINNING;
-        await this.reel.spin();                     // 等待 SPIN 結束
+        await this.reel.spin();                             // 等待 SPIN 結束
         this.machine.state = Machine.SPIN_STATE.STOPPING;
-        await this.processWinningScore();           // 執行報獎流程
+        await this.processWinningScore();                   // 執行報獎流程
         this.machine.state = Machine.SPIN_STATE.IDLE;
         eventTarget?.emit('done');
         
-        if ( this.machine.featureGame === true ) return;
-        await this.performSingleLineLoop(); // 執行單項報獎流程
-       
+        if ( this.machine.featureGame === true ) return this.normalState(false);    // 如果是FeatureGame, 不進入輪播報獎流程
+        if ( AutoSpin.isActive() === true )      return this.normalState(false);    // 如果是自動 SPIN, 不進入輪播報獎流程
+        this.performSingleLineLoop();                                               // 執行單項報獎流程, 等待下次 SPIN
+    }
+
+    public normalState(standby:boolean=true) {
+        this.reelMaskActive(false);
+        this.breakPerformSingleLineLoop();
+
+        if ( standby === false ) return;
+        // 沒有待命，Symbol 出框
+        this.reel.moveAllWheelShowDropSymbol();
     }
 
     /**
@@ -359,7 +369,7 @@ export class Paytable extends Component {
      */
     public async stopRolling() { return; }
 
-    // #region[[rgba(0,0,0,0)]] BuyFeatureGameUI 事件
+    // #region [[rgba(0,0,0,0)]] BuyFeatureGameUI 事件
     public onClickCloseBuyFGUI() { return; }
 
     /**

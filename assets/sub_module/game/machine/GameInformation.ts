@@ -43,7 +43,7 @@ export class GameInformation extends Component {
         this.node.setPosition(0, 0, 0);
         this.node.active = false;
         Utils.initData(this.onload, this);
-        console.log(this);
+        // console.log(this);
         this.copyPageToScrollView();
     }
 
@@ -55,7 +55,6 @@ export class GameInformation extends Component {
             let newNode : Node = instantiate(node);
             newNode.setScale(0.75,0.75,1);
             scrollContent.addChild(newNode);
-            console.log(newNode);
         });
     }
 

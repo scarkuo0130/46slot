@@ -97,10 +97,10 @@ export class Payway extends Paytable {
     public async performSingleLineLoop() {
         const { lines, pay_credit_total } = this.gameResult;
 
-        if ( this.machine.featureGame === true )   return this.reelMaskActive(false);
-        if ( this.gameResult.noLoop === true )     return this.reelMaskActive(false);
-        if ( pay_credit_total === 0 )              return this.reelMaskActive(false);
-        if ( lines == null || lines.length === 0 ) return this.reelMaskActive(false);
+        if ( this.machine.featureGame === true )   return this.normalState();
+        if ( this.gameResult.noLoop === true )     return this.normalState();
+        if ( pay_credit_total === 0 )              return this.normalState();
+        if ( lines == null || lines.length === 0 ) return this.normalState();
 
         await this.reelMaskActive(true);      // 打開遮罩
         let idx = 0;

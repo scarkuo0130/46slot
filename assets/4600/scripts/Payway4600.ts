@@ -84,6 +84,10 @@ export class Payway4600 extends Payway {
             'main':         { [DATA_TYPE.TYPE]: Node,               [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/Main Background' },
             'freeGame':     { [DATA_TYPE.TYPE]: OrientationNode,    [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background' },
         },
+
+        'buyFeatureGame': {
+            'light':        { [DATA_TYPE.TYPE]: Node,               [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Buy Feature Game/Light' },
+        },
     };
 
     protected onload() {
@@ -124,6 +128,7 @@ export class Payway4600 extends Payway {
         this.JP_LEVEL = 0;
         console.warn('onstart', this);
         this.properties['preload']['onload'].emit('done');
+        this.pre_set_enter_game_ani();
     }
 
     /**
@@ -137,6 +142,13 @@ export class Payway4600 extends Payway {
 
     // 顯示分數的背板
     protected get scoreBoard(): sp.Skeleton { return this.properties['perform']['score_board'].component; }
+
+    public async spin(eventTarget:EventTarget=null) {
+        this.properties['buyFeatureGame']['light'].node.active = false;
+        await super.spin(eventTarget);
+        this.properties['buyFeatureGame']['light'].node.active = true;
+    }
+
 
     /**
      * 進入報獎流程
@@ -230,13 +242,14 @@ export class Payway4600 extends Payway {
         soul.worldPosition = wild.worldPosition;
         soul.active  = true;
         const toPos  = this.jp(JP_TYPE.POT).ani.node.worldPosition.clone();
-        toPos.x     += Utils.Random(-55, 55);
-        toPos.y     += Utils.Random(-55, 55);
+        toPos.x     += Utils.Random(-100, 100);
+        toPos.y     += Utils.Random(-100, 100);
 
         const middlePos = soul.worldPosition.clone();
-        middlePos.x += Utils.Random(-200, 200);
-        middlePos.y += Utils.Random(-200, 200);
+        middlePos.x += Utils.Random(-300, 300);
+        middlePos.y += Utils.Random(-300, 300);
 
+        tween(soul).delay(0.2).to(0.3, { scale: new Vec3(1, 1, 1) }, { easing: 'backOut' }).start();
         await Utils.tweenBezierCurve(soul, toPos, 0.5, null, true, middlePos);
         tween(soul).to(0.5, { scale: new Vec3(0, 0, 0) }, { easing: 'smooth' }).start();
         Utils.delay(1000).then(() => { ObjectPool.Put('soul', soul) }); // 回收
@@ -258,6 +271,7 @@ export class Payway4600 extends Payway {
             this.wildSoulFlyToPot(wilds[i]);
             this.wildSoulFlyToPot(wilds[i]);
         }
+
         SoundManager.PlaySoundByID('sfx_sym_fu');
         // 等待動畫播完
         await Utils.delay(400);
@@ -301,8 +315,11 @@ export class Payway4600 extends Payway {
 
         await Utils.commonFadeIn(this.properties['preload']['mask'].node, true, [new Color(0, 0, 0, 0), new Color(0, 0, 0, 255)]);
         door.paused = false;
+        
+        await Utils.delay(1500);
+        //await Utils.delay(500);
+        await this.pre_enter_game_ani();
 
-        await Utils.delay(2000);
         this.properties['preload']['pDoor'].node.active = false;
         this.properties['preload']['lDoor'].node.active = false;
 
@@ -311,6 +328,24 @@ export class Payway4600 extends Payway {
         this.jp(JP_TYPE.MINOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINI).ani.component.setAnimation( 0, 'play03', false);
         this.loop_play_jp_ani();
+    }
+
+    public get pre_enter_game_nodes() : Node[] {
+        let nodes : Node[] = [];
+        const children = this.machine.node.children;
+        for (let i = 1; i < children.length; i++) {
+            nodes.push(children[i]);
+        }
+        nodes.shift();
+        return nodes;
+    } 
+
+    private pre_set_enter_game_ani() {
+        
+    }
+
+    private async pre_enter_game_ani() {
+        
     }
 
     // 門的 Spine Component
@@ -364,7 +399,7 @@ export class Payway4600 extends Payway {
         spine.setSkin(this.TYPE_POT_LEVEL[level]);
 
         if (open === false) {
-            if ( level === 4 ) Utils.playSpine(spine, 'play06', true);
+            if ( level === 4 ) Utils.playSpine(spine, 'play05', true);
             return;
         }
         SoundManager.PlaySoundByID('sfx_jp_intro');         // 播放JP開啟音效
@@ -409,7 +444,7 @@ export class Payway4600 extends Payway {
 
             if (spine['isPlaying'] === true) continue;
             if (jp === JP_TYPE.POT) {
-                if ( this.JP_LEVEL === 4 ) Utils.playSpine(spine, 'play06', true);
+                if ( this.JP_LEVEL === 4 ) Utils.playSpine(spine, 'play05', true);
                 else Utils.playSpine(spine, 'play06', false);
             }
             else Utils.playSpine(spine, 'play03', false);

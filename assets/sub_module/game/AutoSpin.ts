@@ -5,6 +5,7 @@ import { dropDown } from '../utils/DropDown/dropDown';
 import { Utils, DATA_TYPE } from '../utils/Utils';
 import { Controller } from './machine/controller_folder/Controller';
 import { Machine } from './machine/Machine';
+import { SoundManager } from './machine/SoundManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('AutoSpin')
@@ -47,6 +48,7 @@ export class AutoSpin extends Component {
         }
     };
 
+    public static isActive() : boolean { return AutoSpin.Instance.active; }
     public get active() : boolean { return this.properties.autoSpin.active; }
     private set active(value:boolean) { this.properties.autoSpin.active = value; }
 
@@ -93,18 +95,22 @@ export class AutoSpin extends Component {
 
     public switchSpinTimes(active:boolean) {
         console.log('switchSpinTimes', active);
+        SoundManager.PlayButtonSound();
     }
 
     public swichUntilFeature(active:boolean) {
         console.log('swichUntilFeature', active);
+        SoundManager.PlayButtonSound();
     }
 
     public switchQuickSpin(active:boolean) {
+        SoundManager.PlayButtonSound();
         if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.QUICK);
         if ( this.machine.SpeedMode === Machine.SPIN_MODE.QUICK ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.NORMAL);
     }
 
     public switchTurboSpin(active:boolean) {
+        SoundManager.PlayButtonSound();
         if ( active === true ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.TURBO);
         if ( this.machine.SpeedMode === Machine.SPIN_MODE.TURBO ) return Controller.ChangeSpeedMode(Machine.SPIN_MODE.NORMAL);
     }
@@ -157,6 +163,7 @@ export class AutoSpin extends Component {
             'untilFeature'   : +untilFeatureActive,
         }});
         this.decrementCount();
+        SoundManager.PlayButtonSound();
     }
 
     public static IsUtilFeature() : boolean {
@@ -168,7 +175,7 @@ export class AutoSpin extends Component {
      * 是否要繼續AutoSpin
      * @returns 
      */
-    public async decrementCount() : boolean {
+    public async decrementCount() : Promise<boolean> {
         if ( this.machine.isBusy ) return false;
 
         if ( this.active === false ) {

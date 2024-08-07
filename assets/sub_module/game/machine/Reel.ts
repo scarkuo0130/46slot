@@ -516,8 +516,10 @@ export class Reel extends Component {
 
         for(let i=0;i<wheels.length;i++) {
             const symbols = showDropSymbols[i];
-            symbols.forEach(symbol => symbol?.remove());
-            showDropSymbols[i] = [];
+            if ( symbols ) {
+                symbols?.forEach(symbol => symbol?.remove());
+                showDropSymbols[i] = [];
+            }
 
             const wSymbols = wheels[i].allSymbols();
             wSymbols.forEach(symbol => symbol.active = true);
@@ -624,6 +626,13 @@ export class Reel extends Component {
         symbols.push(symbols.push(this.moveToShowWinContainer(wheelID, dropSymbols)));
 
         return symbols;
+    }
+
+    public moveAllWheelShowDropSymbol() {
+        const wheels = this.getWheels();
+        for(let i=0;i<wheels.length;i++) {
+            this.showDropSymbol(i);
+        }
     }
 
     /**

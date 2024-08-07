@@ -6,9 +6,10 @@ const { ccclass, property, disallowMultiple } = _decorator;
  * 音效播放模式
  */
 export enum PLAY_MODE {
-    NORMAL = 0,
-    ONLY_SOUND = 1,
-    NO_SOUND = 2,
+    NORMAL      = 0,
+    ONLY_SOUND  = 1,
+    NO_SOUND    = 2,
+    length      = 3,
 }
 
 /**
@@ -21,12 +22,7 @@ export enum TYPE_SOUND {
 
 export enum DEFAULT_SOUND_ID {
     MAIN_GAME = '0',
-    FEATURE_GAME = '1',
-    SPIN = '100',
-    WHEEL_STOP = '101',
-    WIN = '102',
-    NEAR_MISS = '103',
-    BUTTON = '104',
+    BUTTON = '100',
 }
 
 @ccclass('SimpleAudioClipData')
@@ -95,11 +91,11 @@ export class SoundManager extends Component {
     @property({type:[AudioClipData], displayName:'DefaultSoundList', tooltip:'預設音效列表'})
     public defaultSoundList : AudioClipData[] = [
         new AudioClipData ({ id:DEFAULT_SOUND_ID.MAIN_GAME,    description:'MainGame音樂',     soundType:TYPE_SOUND.IS_MUSIC, filterSameSound:false, loop:true }),
-        new AudioClipData ({ id:DEFAULT_SOUND_ID.FEATURE_GAME, description:'FeatureGame音樂',  soundType:TYPE_SOUND.IS_MUSIC, filterSameSound:false, loop:true }),
-        new AudioClipData ({ id:DEFAULT_SOUND_ID.SPIN,         description:'Spin音效',         soundType:TYPE_SOUND.IS_SOUND, filterSameSound:false }),
-        new AudioClipData ({ id:DEFAULT_SOUND_ID.WHEEL_STOP,   description:'停輪音效',          soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
-        new AudioClipData ({ id:DEFAULT_SOUND_ID.WIN,          description:'贏分音效',          soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
-        new AudioClipData ({ id:DEFAULT_SOUND_ID.NEAR_MISS,    description:'NearMiss音效',     soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
+//      new AudioClipData ({ id:DEFAULT_SOUND_ID.FEATURE_GAME, description:'FeatureGame音樂',  soundType:TYPE_SOUND.IS_MUSIC, filterSameSound:false, loop:true }),
+//      new AudioClipData ({ id:DEFAULT_SOUND_ID.SPIN,         description:'Spin音效',         soundType:TYPE_SOUND.IS_SOUND, filterSameSound:false }),
+//      new AudioClipData ({ id:DEFAULT_SOUND_ID.WHEEL_STOP,   description:'停輪音效',          soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
+//      new AudioClipData ({ id:DEFAULT_SOUND_ID.WIN,          description:'贏分音效',          soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
+//      new AudioClipData ({ id:DEFAULT_SOUND_ID.NEAR_MISS,    description:'NearMiss音效',     soundType:TYPE_SOUND.IS_SOUND, filterSameSound:true }),
         new AudioClipData ({ id:DEFAULT_SOUND_ID.BUTTON,       description:'共用按鍵聲',        soundType:TYPE_SOUND.IS_SOUND, filterSameSound:false }),
     ];
 
@@ -123,12 +119,12 @@ export class SoundManager extends Component {
 
         switch(mode) {
             case PLAY_MODE.NORMAL:
-                this.ResumeMusic();
+                this.PlayMusic();
                 break;
 
             case PLAY_MODE.NO_SOUND:
             case PLAY_MODE.ONLY_SOUND:
-                // SoundManager.stopMusic(1);
+                this.Instance.stopAllSound();
                 break;
         }
 
@@ -160,13 +156,21 @@ export class SoundManager extends Component {
         SoundManager.setMode(PLAY_MODE.NORMAL);
     }
 
+    // 播放共用按鍵聲
+    public static PlayButtonSound() { SoundManager.PlaySoundByID(DEFAULT_SOUND_ID.BUTTON); }
+
     /**
      * Web視窗轉移時，會啟動這個 funciton
      */
     public static OnMute() { SoundManager.Instance.onMute(); }
     public onMute() {
         this.isMute = true;
-        let soundList = this.soundAudioSource;
+        this.stopAllSound();
+    }
+
+    public stopAllSound() {
+        this.pauseMusic();
+        const soundList = this.soundAudioSource;
         soundList.forEach((sound)=>{ sound.stop(); });
     }
 
@@ -179,9 +183,6 @@ export class SoundManager extends Component {
     } 
 
     public start() {
-        console.log('SoundManager start', this);
-        // SoundManager.playClip(this.defaultMusicId);
-        // SoundManager.queuePlaySoundList = [];
         this.playMusic();
     }
 
@@ -248,11 +249,11 @@ export class SoundManager extends Component {
         let source = this.getAudioSource(soundType);
         if ( source == null ) return null;
         source.stop();
-        source.clip = clip;
-        source.volume = volume;
-        source.loop = loop;
+        source.clip         = clip;
+        source.volume       = volume;
+        source.loop         = loop;
         source.play();
-        source['playTime'] = Date.now();
+        source['playTime']  = Date.now();
         this.playSoundOption(source, option);
         return source;
     }
@@ -340,7 +341,6 @@ export class SoundManager extends Component {
      */
     public playMusic(id:string=null) : AudioSource {
         id = ( id || this.lastMusicID || this.defaultMusicId);
-        console.log('playMusic', id);
         this.lastMusicID = id;
         return this.playSoundByID(id);
     }

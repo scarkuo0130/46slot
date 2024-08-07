@@ -3,6 +3,7 @@ import { PREVIEW, EDITOR } from "cc/env";
 import { Config, GameConfig } from '../game/GameConfig';
 import { gameInformation } from '../game/GameInformation';
 import { get } from "mobx";
+import { SoundManager } from "../game/machine/SoundManager";
 const { ccclass, property } = _decorator;
 
 export namespace _utilsDecorator {
@@ -97,6 +98,10 @@ export class Utils {
             if ( subProperty[DATA_TYPE.CLICK_EVENT] != null ) {
                 node.on(Node.EventType.TOUCH_END, subProperty[DATA_TYPE.CLICK_EVENT], bindComponent);
                 Utils.AddHandHoverEvent(node);
+
+                if ( subProperty['buttonSound'] === true ) { // 播放共用音效
+                    node.on(Node.EventType.TOUCH_END, () => { SoundManager.PlayButtonSound(); }, bindComponent);
+                }
             }
 
             propertiesData[DATA_TYPE.NODE]        = node;
