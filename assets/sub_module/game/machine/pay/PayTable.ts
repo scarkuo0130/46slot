@@ -270,6 +270,7 @@ export class Paytable extends Component {
     public async performSingleLineLoop () { return; }
 
     public displaySingleWinNumber(pay_credit:number, pos: Vec3=Vec3.ZERO) {
+        if ( pos == null ) pos = Vec3.ZERO;
         if ( pay_credit === 0 ) return this.singleWinLabel.string = '';
         let wPos = new Vec3(pos.x + this.winNumberSinglePos.x, pos.y + this.winNumberSinglePos.y, 0);
         this.singleWinLabel.string = Utils.numberComma(pay_credit);

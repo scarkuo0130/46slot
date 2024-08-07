@@ -67,6 +67,33 @@ export class Payway extends Paytable {
         }
     }
 
+    /**
+     * 取得播放贏分動畫的秒數
+     * @param syms 
+     * @param maxSec 
+     * @returns {number} 最大秒數
+     */
+    private getSymbolsAnimationDuration(syms: Node[], maxSec=1) : number {
+        syms.forEach( symbol => {
+            if ( symbol == null ) return;
+            let comp = symbol.getComponent(Symbol);
+            if ( comp == null ) return;
+
+            let sec = comp.getAnimationDuration();
+            if ( sec > maxSec ) maxSec = sec;
+        });
+        return maxSec;
+    }
+
+    private getFirstSymbolPosition(symbols: Node[]) : Vec3 | null {
+        if ( symbols == null || symbols.length === 0 ) return null;
+        for(let i=0;i<symbols.length;i++) {
+            if ( symbols[i] == null ) continue;
+            return symbols[i].worldPosition;
+        }
+        return null;
+    }
+
     // way {"symbol_id": 7,"way": 3,"ways": [1,1,1],"pay_credit": 500}
     public async performSingleLine(lineData: any, isWaiting: boolean=false) : Promise<number> {
         // console.log(lineData);
@@ -75,16 +102,20 @@ export class Payway extends Paytable {
 
         let reel = this.reel;
         let wSymbols = [];
+        let winSec = 1;
+        let firstWorldPosition = null;
+
         for(let i=0;i<way.length;i++) {
-            wSymbols.push(reel.moveToShowWinContainer(i, [symbol_id, 0], way[i]));
+            const syms = reel.moveToShowWinContainer(i, [symbol_id, 0], way[i]);                   // 移動到 WinContainer
+            winSec = this.getSymbolsAnimationDuration(syms, winSec);                               // 取得最大的動畫時間
+            if (firstWorldPosition == null) firstWorldPosition = this.getFirstSymbolPosition(syms);  // 取得第一個 Symbol 的位置
+            wSymbols.push(syms);
         }
-        // console.log('wSymbols', wSymbols,[symbol_id, way, pay_credit]);
-        let winSec = wSymbols[0][0].getComponent(Symbol).getAnimationDuration();
-        if ( winSec < 1 ) winSec = 1;
+
         wSymbols.forEach( w=>w.forEach( symbol=> symbol.getComponent(Symbol).win()));
         
         if ( isWaiting ) {
-            this.displaySingleWinNumber(pay_credit, wSymbols[0][0].worldPosition);
+            this.displaySingleWinNumber(pay_credit, firstWorldPosition);
             await Utils.delay(winSec * 1000);
             this.displaySingleWinNumber(0);
         }

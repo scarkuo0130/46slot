@@ -347,10 +347,11 @@ export class JpGame4600 extends Component {
     public async exit_jp_game() {
         this.paytable.reset_pot_ani();
         await this.open_door(() => {
-            this.machine.node.active = true;
+            this.machine.node.active            = true;
             this.machine.controller.node.active = true;
-            this.node.active = false;
-            SoundManager.PlayMusic('0');        // 播放主遊戲音樂
+            this.node.active                    = false;
+            if ( this.paytable.isFreeGame === false ) SoundManager.PlayMusic('0'); // 播放主遊戲音樂
+            else SoundManager.PlayMusic('1');                                      // 播放FG遊戲音樂
         });
 
         this.jp_event.emit('done');

@@ -1,4 +1,4 @@
-import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, ParticleSystem, EventTarget, Tween, ParticleSystem2D, AudioSource } from 'cc';
+import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, ParticleSystem, EventTarget, Tween, ParticleSystem2D, AudioSource, view } from 'cc';
 import { Utils, DATA_TYPE } from '../../sub_module/utils/Utils';
 import { Symbol } from '../../sub_module/game/machine/Symbol';
 import { Payway } from '../../sub_module/game/machine/pay/Payway';
@@ -83,6 +83,8 @@ export class Payway4600 extends Payway {
         'background': {
             'main':         { [DATA_TYPE.TYPE]: Node,               [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/Main Background' },
             'freeGame':     { [DATA_TYPE.TYPE]: OrientationNode,    [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background' },
+            'mainGame_p':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/Main Background/background_portrait/bg01' },
+            'freeGame_p':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background/background_portrait/bg01' },
         },
 
         'buyFeatureGame': {
@@ -146,9 +148,22 @@ export class Payway4600 extends Payway {
     public async spin(eventTarget:EventTarget=null) {
         this.properties['buyFeatureGame']['light'].node.active = false;
         await super.spin(eventTarget);
-        this.properties['buyFeatureGame']['light'].node.active = true;
+        if (this.machine.featureGame !== true ) this.properties['buyFeatureGame']['light'].node.active = true;
     }
 
+    public get bg_light():sp.Skeleton | null { 
+        if ( Viewport.Orientation === Orientation.LANDSCAPE ) return null;
+        if ( this.machine.featureGame === true ) return null;
+        return this.properties['background']['mainGame_p'][DATA_TYPE.COMPONENT];
+    }
+
+    public async flash_bg_light() {
+        if ( this.bg_light == null ) return;
+        this.bg_light.node.active = true;
+        await Utils.playSpine(this.bg_light, 'play', false);
+        await Utils.delay(1000);
+        this.bg_light.node.active = false;
+    }
 
     /**
      * 進入報獎流程
@@ -165,15 +180,18 @@ export class Payway4600 extends Payway {
         if (!free_game) {                                       // 假如沒有 free_game, 就回去報獎流程
             return super.processWinningScore();
         }
-
+        
         if ( this.machine.featureGame === false) {
+            await this.performAllPayline();                         // 因為 Scatter 有分數，所以要播放一次得分
+            this.reelMaskActive(false);                             // 關閉遮罩
+            await Utils.delay(1000);                            // 等待一秒
             await SoundManager.PauseMusic();                    // 主場暫停音樂
             SoundManager.PlaySoundByID('sfx_fg_alarm');         // 觸發 Free Game 警鈴音效
+            await Utils.delay(4000);
         }
         
         // * 進入JP遊戲
         console.log('進入free game遊戲');
-        await Utils.delay(4000);
         await this.start_free_game();                           // 進入 Free Game 流程
     }
 
@@ -190,6 +208,8 @@ export class Payway4600 extends Payway {
 
         const score_board = this.scoreBoard;
         const particle: ParticleSystem = this.properties['perform']['coin'].component;
+
+        this.flash_bg_light();
 
         score_board.node.setScale(0.3, 0.3, 1);
         score_board.color = new Color(255, 255, 255, 0);
@@ -317,7 +337,6 @@ export class Payway4600 extends Payway {
         door.paused = false;
         
         await Utils.delay(1500);
-        //await Utils.delay(500);
         await this.pre_enter_game_ani();
 
         this.properties['preload']['pDoor'].node.active = false;
@@ -328,6 +347,9 @@ export class Payway4600 extends Payway {
         this.jp(JP_TYPE.MINOR).ani.component.setAnimation(0, 'play03', false);
         this.jp(JP_TYPE.MINI).ani.component.setAnimation( 0, 'play03', false);
         this.loop_play_jp_ani();
+        this.flash_bg_light();
+
+        SoundManager.PlaySoundByID('sfx_sc_collect');
     }
 
     public get pre_enter_game_nodes() : Node[] {
@@ -692,7 +714,7 @@ export class Payway4600 extends Payway {
         });
         endEvent = null;
         await Utils.delayEvent(endEvent);
-        await this.performAllPayline();                                               // 因為 Scatter 有分數，所以要播放一次
+        // await this.performAllPayline();                                               // 因為 Scatter 有分數，所以要播放一次
 
     }
 
@@ -733,6 +755,7 @@ export class Payway4600 extends Payway {
         }
 
         SoundManager.PlaySoundByID('sfx_readyhead'); // 播放聽牌音效
+        this.flash_bg_light();
         return true;
     }
 

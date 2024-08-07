@@ -5,9 +5,6 @@
       "base": {
         "_value": true
       },
-      "graphcis": {
-        "_value": true
-      },
       "gfx-webgl": {
         "_value": true
       },
@@ -21,6 +18,9 @@
         "_value": true
       },
       "3d": {
+        "_value": true
+      },
+      "meshopt": {
         "_value": true
       },
       "2d": {
@@ -77,7 +77,7 @@
         "_value": false
       },
       "debug-renderer": {
-        "_value": false
+        "_value": true
       },
       "particle-2d": {
         "_value": true
@@ -113,18 +113,18 @@
         "_value": true
       },
       "dragon-bones": {
-        "_value": true
+        "_value": false
       },
       "marionette": {
+        "_value": true
+      },
+      "procedural-animation": {
         "_value": true
       },
       "custom-pipeline": {
         "_value": true
       },
-      "meshopt": {
-        "_value": true
-      },
-      "procedural-animation": {
+      "graphcis": {
         "_value": true
       },
       "graphics": {
@@ -138,7 +138,7 @@
       "audio",
       "base",
       "custom-pipeline",
-      "dragon-bones",
+      "debug-renderer",
       "gfx-webgl",
       "gfx-webgl2",
       "intersection-2d",

@@ -6,10 +6,13 @@
       "height": 1280,
       "fitHeight": true
     },
-    "highQuality": true
+    "highQuality": false
   },
   "custom_joint_texture_layouts": [],
   "script": {
     "preserveSymlinks": true
+  },
+  "physics": {
+    "allowSleep": false
   }
 }

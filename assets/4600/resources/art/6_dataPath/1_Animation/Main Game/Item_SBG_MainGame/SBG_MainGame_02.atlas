@@ -1,13 +1,13 @@
 
 SBG_MainGame_02.png
-size: 1024,256
+size: 889,889
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 ERT_01
   rotate: false
-  xy: 2, 2
-  size: 633, 215
-  orig: 641, 226
-  offset: 4, 0
+  xy: 2, 586
+  size: 885, 301
+  orig: 897, 316
+  offset: 6, 0
   index: -1

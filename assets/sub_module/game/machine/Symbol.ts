@@ -24,8 +24,11 @@ export class SymbolSpineInspect {
     @property({ displayName: 'loop播放贏分動態', tooltip: 'loopWinAnimation' })
     public loopWinAnimation: boolean = false;
 
-    @property({ displayName: '滾停狀態動態名稱', tooltip: 'dropAnimation' })
+    @property({ displayName: '落地狀態動態名稱', tooltip: 'dropAnimation' })
     public dropAnimation: string = 'idle';
+
+    @property({ displayName: '落地音效代號', tooltip: 'dropSoundID' })
+    public dropSoundID: string = '';
 }
 
 @ccclass('Symbol/Inspect')
@@ -120,7 +123,10 @@ export class Symbol extends Component {
     public normal() { return this.showState(TYPE_STATE.NORMAL); }
     public moving() { return this.showState(TYPE_STATE.MOVE); }
     public win()    { return this.showState(TYPE_STATE.WIN); }
-    public drop()   { return this.showState(TYPE_STATE.DROP); }
+    public drop()   { 
+        if ( this.inspect.spineInspect.dropSoundID && this.inspect.spineInspect.dropSoundID.length > 0 ) SoundManager.PlaySoundByID(this.inspect.spineInspect.dropSoundID);
+        return this.showState(TYPE_STATE.DROP); 
+    }
 
     public async winAsync() {
         this.win();

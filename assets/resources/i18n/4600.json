@@ -36,7 +36,10 @@
         "5000": "畫面內文",
         "5001": "",
         "5002": "",
-        "NaN": "轉場畫面"
+        "6000": "說明",
+        "6001": "",
+        "6002": "",
+        "NaN": ""
     },
     "ID": {
         "1000": "1000",
@@ -63,6 +66,9 @@
         "5000": "5000",
         "5001": "5001",
         "5002": "5002",
+        "6000": "6000",
+        "6001": "6001",
+        "6002": "6002",
         "NaN": ""
     },
     "zh-cn": {
@@ -90,6 +96,9 @@
         "5000": "恭喜中奖！",
         "5001": "免費遊戲",
         "5002": "点击任何地方开始游戏",
+        "6000": "Wild可以替代所有符号",
+        "6001": "3个分散可以触发10次免费旋转",
+        "6002": "Jackpot Game可以获得Jackpot大奖",
         "NaN": ""
     },
     "en": {
@@ -117,6 +126,9 @@
         "5000": "CONGRATULATIONS",
         "5001": "FREE GAME",
         "5002": "PRESS ANYWHERE TO CONTINUE",
+        "6000": "Wild symbol substitutes for all symbols",
+        "6001": "3 Scatters can trigger 10 Free Spins",
+        "6002": "Jackpot Game can win Jackpot prizes",
         "NaN": ""
     },
     "id": {
@@ -144,6 +156,9 @@
         "5000": "SELAMAT",
         "5001": "PUTARAN GRATIS",
         "5002": "TEKAN DI MANA SAJA UNTUK MELANJUTKAN",
+        "6000": "Simbol liar menggantikan semua simbol",
+        "6001": "3 Scatters dapat memicu 10 Putaran Gratis",
+        "6002": "Game Jackpot bisa memenangkan hadiah Jackpot",
         "NaN": ""
     },
     "ko": {
@@ -171,6 +186,9 @@
         "5000": "당첨 축하합니다!",
         "5001": "프리 스핀",
         "5002": "계속하려면 아무 곳이나 누르세요",
+        "6000": "와일드 심볼은 모든 심볼을 대체합니다.",
+        "6001": "3개의 스캐터는 10개의 무료 스핀을 트리거할 수 있습니다.",
+        "6002": "잭팟 게임에서는 잭팟 상금을 얻을 수 있습니다",
         "NaN": ""
     },
     "vi": {
@@ -198,6 +216,9 @@
         "5000": "CONGRATULATIONS",
         "5001": "FREE GAME",
         "5002": "Nhấp vị trí bất kỳ để tiếp tục trò chơi",
+        "6000": "Biểu tượng hoang dã thay thế cho tất cả các biểu tượng",
+        "6001": "3 biểu tượng Scatter có thể kích hoạt 10 Vòng quay miễn phí",
+        "6002": "Trò chơi Jackpot có thể giành được giải thưởng Jackpot",
         "NaN": ""
     },
     "th": {
@@ -225,6 +246,9 @@
         "5000": "CONGRATULATIONS",
         "5001": "ฟรีเกม",
         "5002": "คลิกตำแหน่งใดก็ได้เพื่อเล่นเกมต่อ",
+        "6000": "สัญลักษณ์ Wild ทดแทนสัญลักษณ์ทั้งหมด",
+        "6001": "สแคทเตอร์ 3 อันสามารถเรียกใช้ฟรีสปินได้ 10 ครั้ง",
+        "6002": "เกมแจ็คพอตสามารถคว้ารางวัลแจ็คพอตได้",
         "NaN": ""
     },
     "ms": {
@@ -252,6 +276,9 @@
         "5000": "CONGRATULATIONS",
         "5001": "PERMAINAN PERCUMA ",
         "5002": "KLIK MANA-MANA KEDUDUKAN UNTUK MENERUSKAN PERMAINAN",
+        "6000": "Simbol liar menggantikan semua simbol",
+        "6001": "3 Scatters boleh mencetuskan 10 Putaran Percuma",
+        "6002": "Permainan Jackpot boleh memenangi hadiah Jackpot",
         "NaN": ""
     },
     "ph": {
@@ -279,6 +306,9 @@
         "5000": "CONGRATULATIONS",
         "5001": "LIBRENG GAME",
         "5002": "PINDUTIN KAHIT SAAN PARA MAGPATULOY",
+        "6000": "Ang ligaw na simbolo ay pamalit sa lahat ng simbolo",
+        "6001": "Ang 3 Scatters ay maaaring mag-trigger ng 10 Libreng Spins",
+        "6002": "Ang Jackpot Game ay maaaring manalo ng mga premyo ng Jackpot",
         "NaN": ""
     }
 }

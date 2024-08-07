@@ -517,11 +517,18 @@ export class Reel extends Component {
         for(let i=0;i<wheels.length;i++) {
             const symbols = showDropSymbols[i];
             if ( symbols ) {
-                symbols?.forEach(symbol => symbol?.remove());
-                showDropSymbols[i] = [];
+                symbols?.forEach( (symbol:Node) => { 
+                    if ( symbol == null ) return;
+                    symbol.active = false;
+                    const sym = symbol.getComponent(Symbol);
+                    if ( sym ) sym.remove();
+                    else symbol.destroy();
+                });
             }
+            showDropSymbols[i] = [];
 
             const wSymbols = wheels[i].allSymbols();
+            if ( wSymbols == null ) continue;
             wSymbols.forEach(symbol => symbol.active = true);
         }
 

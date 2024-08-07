@@ -1,13 +1,13 @@
 
 BG_FreeGame_02.png
-size: 1024,256
+size: 1277,1277
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 ERT_01
   rotate: false
-  xy: 2, 2
-  size: 633, 215
-  orig: 641, 226
-  offset: 4, 0
+  xy: 2, 838
+  size: 1273, 437
+  orig: 1281, 451
+  offset: 6, 1
   index: -1

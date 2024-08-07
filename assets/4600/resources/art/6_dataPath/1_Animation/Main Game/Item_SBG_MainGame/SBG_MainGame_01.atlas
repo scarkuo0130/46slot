@@ -1,48 +1,41 @@
 
 SBG_MainGame_01.png
-size: 1024,1024
+size: 1217,1217
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-BM
+ERT_02
   rotate: false
   xy: 2, 2
-  size: 360, 640
-  orig: 360, 640
-  offset: 0, 0
-  index: -1
-ERT_02
-  rotate: true
-  xy: 644, 455
-  size: 550, 253
-  orig: 559, 258
-  offset: 5, 5
+  size: 770, 354
+  orig: 783, 361
+  offset: 7, 7
   index: -1
 ERT_03
   rotate: true
-  xy: 616, 120
-  size: 333, 145
-  orig: 344, 151
-  offset: 5, 6
+  xy: 900, 749
+  size: 466, 204
+  orig: 481, 211
+  offset: 7, 7
   index: -1
 ERT_04_2
   rotate: false
-  xy: 2, 644
-  size: 640, 361
-  orig: 641, 361
-  offset: 0, 0
+  xy: 2, 711
+  size: 896, 504
+  orig: 897, 505
+  offset: 0, 1
   index: -1
 ERT_05
-  rotate: true
-  xy: 364, 56
-  size: 586, 250
-  orig: 597, 257
-  offset: 6, 7
+  rotate: false
+  xy: 2, 358
+  size: 819, 351
+  orig: 836, 360
+  offset: 8, 9
   index: -1
 ERT_07
   rotate: false
-  xy: 763, 171
-  size: 184, 282
-  orig: 360, 640
-  offset: 88, 358
+  xy: 823, 315
+  size: 258, 394
+  orig: 504, 896
+  offset: 123, 502
   index: -1

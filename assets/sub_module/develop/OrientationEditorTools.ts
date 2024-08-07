@@ -44,6 +44,7 @@ export class OrientationEditorTools extends Component {
     @property({type:CCBoolean, displayName: '儲存轉向資料', tooltip: '是否儲存轉向資料'})
     public set SaveOrientationData(value: boolean) {
         if ( EDITOR === false ) return;
+        if ( value === false ) return;
         let orientation = this.orientation;
         if ( this.saveNodes.length === 0 ) return;
         for(let i=0; i<this.saveNodes.length; i++) {
