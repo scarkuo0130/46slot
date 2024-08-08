@@ -684,6 +684,7 @@ export class Payway4600 extends Payway {
         SoundManager.PlaySoundByID('sfx_totalwin_payout_end');                        // 播放總得分結束音效
 
         await Utils.delay(500);
+        SoundManager.PlaySoundByID('sfx_sc_collect');                                 // 播放敲鑼音效
         await Utils.scaleFade(totalWinLabel);                                         // 數字縮放淡出效果
         clickEvent.removeAll('done');                                                 // 移除滾分事件
 

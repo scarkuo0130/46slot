@@ -736,9 +736,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 201,
-      "b": 178,
+      "r": 243,
+      "g": 236,
+      "b": 206,
       "a": 255
     },
     "_string": "Jackpot Game can win Jackpot prizes",
@@ -761,13 +761,13 @@
     "_enableOutline": true,
     "_outlineColor": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 117,
+      "g": 33,
       "b": 0,
       "a": 255
     },
     "_outlineWidth": 2,
-    "_enableShadow": false,
+    "_enableShadow": true,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -778,7 +778,7 @@
     "_shadowOffset": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": 2
+      "y": -2
     },
     "_shadowBlur": 2,
     "key": "game",
@@ -956,9 +956,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 201,
-      "b": 178,
+      "r": 243,
+      "g": 236,
+      "b": 206,
       "a": 255
     },
     "_string": "Wild symbol substitutes for all symbols",
@@ -981,13 +981,13 @@
     "_enableOutline": true,
     "_outlineColor": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 117,
+      "g": 33,
       "b": 0,
       "a": 255
     },
     "_outlineWidth": 2,
-    "_enableShadow": false,
+    "_enableShadow": true,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -998,7 +998,7 @@
     "_shadowOffset": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": 2
+      "y": -2
     },
     "_shadowBlur": 2,
     "key": "game",
@@ -1176,9 +1176,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 201,
-      "b": 178,
+      "r": 243,
+      "g": 236,
+      "b": 206,
       "a": 255
     },
     "_string": "3 Scatters can trigger 10 Free Spins",
@@ -1201,13 +1201,13 @@
     "_enableOutline": true,
     "_outlineColor": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 117,
+      "g": 33,
       "b": 0,
       "a": 255
     },
     "_outlineWidth": 2,
-    "_enableShadow": false,
+    "_enableShadow": true,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -1218,7 +1218,7 @@
     "_shadowOffset": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": 2
+      "y": -2
     },
     "_shadowBlur": 2,
     "key": "game",
@@ -2356,9 +2356,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 201,
-      "b": 178,
+      "r": 243,
+      "g": 236,
+      "b": 206,
       "a": 255
     },
     "_string": "1.A.K.Q.J.10 and 9 do not appear during the free games.\n2.3 scatter symbols will retrigger 10 free spins.",
@@ -2381,13 +2381,13 @@
     "_enableOutline": true,
     "_outlineColor": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 117,
+      "g": 33,
       "b": 0,
       "a": 255
     },
     "_outlineWidth": 2,
-    "_enableShadow": false,
+    "_enableShadow": true,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -2398,7 +2398,7 @@
     "_shadowOffset": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": 2
+      "y": -2
     },
     "_shadowBlur": 2,
     "key": "game",
@@ -2579,9 +2579,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 201,
-      "b": 178,
+      "r": 243,
+      "g": 236,
+      "b": 206,
       "a": 255
     },
     "_string": "3 scatter symbols appearing anywhere will trigger the Free Spins feature, which is worth 10 free spins. Each additional scatter symbol will trigger an additional 2 free spins.",
@@ -2604,13 +2604,13 @@
     "_enableOutline": true,
     "_outlineColor": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 117,
+      "g": 33,
       "b": 0,
       "a": 255
     },
     "_outlineWidth": 2,
-    "_enableShadow": false,
+    "_enableShadow": true,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -2621,7 +2621,7 @@
     "_shadowOffset": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": 2
+      "y": -2
     },
     "_shadowBlur": 2,
     "key": "game",
@@ -2802,9 +2802,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 201,
-      "b": 178,
+      "r": 243,
+      "g": 236,
+      "b": 206,
       "a": 255
     },
     "_string": "1.Wild symbol substitutes for all symbols.\n2.When a WILD appears the player may be awarded an available jackpot.",
@@ -2827,13 +2827,13 @@
     "_enableOutline": true,
     "_outlineColor": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 117,
+      "g": 33,
       "b": 0,
       "a": 255
     },
     "_outlineWidth": 2,
-    "_enableShadow": false,
+    "_enableShadow": true,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -2844,7 +2844,7 @@
     "_shadowOffset": {
       "__type__": "cc.Vec2",
       "x": 2,
-      "y": 2
+      "y": -2
     },
     "_shadowBlur": 2,
     "key": "game",
@@ -4723,7 +4723,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 112.953,
+      "x": 101.945,
       "y": -47.74,
       "z": 0
     },
@@ -4762,8 +4762,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 84.728515625,
-      "height": 58.4
+      "width": 81,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4787,9 +4787,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 230,
-      "g": 223,
-      "b": 176,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_string": "100%",
@@ -4800,16 +4800,19 @@
     "_fontFamily": "Arial",
     "_lineHeight": 40,
     "_overflow": 0,
-    "_enableWrapText": true,
-    "_font": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
+    "_enableWrapText": false,
+    "_font": {
+      "__uuid__": "27d002b3-8486-4822-9644-f9af2028ae69",
+      "__expectedType__": "cc.BitmapFont"
+    },
+    "_isSystemFontUsed": false,
+    "_spacingX": -3,
     "_isItalic": false,
-    "_isBold": true,
+    "_isBold": false,
     "_isUnderline": false,
     "_underlineHeight": 2,
     "_cacheMode": 0,
-    "_enableOutline": true,
+    "_enableOutline": false,
     "_outlineColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -4818,12 +4821,12 @@
       "a": 255
     },
     "_outlineWidth": 4,
-    "_enableShadow": true,
+    "_enableShadow": false,
     "_shadowColor": {
       "__type__": "cc.Color",
       "r": 255,
       "g": 255,
-      "b": 0,
+      "b": 255,
       "a": 255
     },
     "_shadowOffset": {

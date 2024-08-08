@@ -336,6 +336,7 @@ export class JpGame4600 extends Component {
         SoundManager.PlaySoundByID('sfx_totalwin_payout_end'); // 播放滾分結尾音效
 
         await Utils.delay(500);
+        SoundManager.PlaySoundByID('sfx_sc_collect');          // 播放敲鑼音效
         Utils.scaleFade(this.reward_label, 1, 3);
         
         SoundManager.PauseMusic();                             // 暫停JP總獎金音效
