@@ -48,6 +48,11 @@ export class DialogUI extends Component {
         }
     }
 
+    private async loadErrorMessage() {
+        if ( DialogUI.ErrorMessage !== null ) return;
+        DialogUI.ErrorMessage = await Utils.loadJson('data/ErrorMessage');
+    }
+
     private closeUI(): void {
         Utils.commonActiveUITween(this.node, false);
         Controller.MaskActive(false);
@@ -58,8 +63,10 @@ export class DialogUI extends Component {
         '1' : () => { location.reload(); },
         '2' : () => { DialogUI.Instance.closeUI(); },
     };
-    public static OpenErrorMessage(errorCode:string) {
+    public static async OpenErrorMessage(errorCode:string) {
         console.log('OpenErrorMessage', errorCode);
+        await DialogUI.Instance.loadErrorMessage();
+        
         let messageData = DialogUI.ErrorMessage[errorCode];
         if ( messageData == null ) {
             messageData = DialogUI.ErrorMessage['default'];

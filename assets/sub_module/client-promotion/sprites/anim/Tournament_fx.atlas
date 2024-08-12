@@ -1,0 +1,223 @@
+
+Tournament_fx.jpg
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fx1/S1_00
+  rotate: false
+  xy: 102, 918
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_01
+  rotate: false
+  xy: 233, 918
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_02
+  rotate: false
+  xy: 364, 918
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_03
+  rotate: false
+  xy: 495, 918
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_04
+  rotate: false
+  xy: 626, 918
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_05
+  rotate: false
+  xy: 757, 918
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_06
+  rotate: false
+  xy: 888, 918
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_07
+  rotate: false
+  xy: 1, 815
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_08
+  rotate: false
+  xy: 132, 815
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_09
+  rotate: false
+  xy: 263, 815
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_10
+  rotate: false
+  xy: 394, 815
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_11
+  rotate: false
+  xy: 525, 815
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_12
+  rotate: false
+  xy: 656, 815
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_13
+  rotate: false
+  xy: 787, 815
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_14
+  rotate: true
+  xy: 918, 787
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_15
+  rotate: false
+  xy: 1, 712
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_16
+  rotate: false
+  xy: 132, 712
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_17
+  rotate: false
+  xy: 263, 712
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_18
+  rotate: false
+  xy: 394, 712
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_19
+  rotate: false
+  xy: 525, 712
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_20
+  rotate: false
+  xy: 656, 712
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_21
+  rotate: false
+  xy: 787, 712
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_22
+  rotate: true
+  xy: 918, 656
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_23
+  rotate: false
+  xy: 1, 609
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_24
+  rotate: false
+  xy: 132, 609
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_25
+  rotate: false
+  xy: 263, 609
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_26
+  rotate: false
+  xy: 394, 609
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_27
+  rotate: false
+  xy: 525, 609
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_28
+  rotate: false
+  xy: 656, 609
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+fx1/S1_29
+  rotate: false
+  xy: 787, 609
+  size: 130, 102
+  orig: 300, 300
+  offset: 85, 97
+  index: -1
+star_1
+  rotate: false
+  xy: 1, 920
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

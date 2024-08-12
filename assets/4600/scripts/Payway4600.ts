@@ -1,15 +1,14 @@
 import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, ParticleSystem, EventTarget, Tween, ParticleSystem2D, AudioSource, view } from 'cc';
-import { Utils, DATA_TYPE } from '../../sub_module/utils/Utils';
-import { Symbol } from '../../sub_module/game/machine/Symbol';
-import { Payway } from '../../sub_module/game/machine/pay/Payway';
+import { Utils, DATA_TYPE }      from '../../sub_module/utils/Utils';
+import { Symbol }                from '../../sub_module/game/machine/Symbol';
+import { Payway }                from '../../sub_module/game/machine/pay/Payway';
 import { Viewport, Orientation } from '../../sub_module/utils/Viewport';
-import { ObjectPool } from '../../sub_module/game/ObjectPool';
-import { JpGame4600 } from './jp_game/JpGame4600';
-import { FreeGame } from '../../sub_module/game/FeatureGame/FreeGame';
-import { OrientationNode } from '../../sub_module/develop/OrientationNode';
-import { AutoSpin } from '../../sub_module/game/AutoSpin';
-import { SoundManager } from '../../sub_module/game/machine/SoundManager';
-import { t } from 'xstate';
+import { ObjectPool }            from '../../sub_module/game/ObjectPool';
+import { JpGame4600 }            from './jp_game/JpGame4600';
+import { FreeGame }              from '../../sub_module/game/FeatureGame/FreeGame';
+import { OrientationNode }       from '../../sub_module/develop/OrientationNode';
+import { AutoSpin }              from '../../sub_module/game/AutoSpin';
+import { SoundManager }          from '../../sub_module/game/machine/SoundManager';
 const { ccclass, property } = _decorator;
 
 export enum JP_TYPE {
@@ -31,7 +30,7 @@ export class Payway4600 extends Payway {
         [JP_TYPE.GRAND]: 10000,
         [JP_TYPE.MAJOR]: 1000,
         [JP_TYPE.MINOR]: 100,
-        [JP_TYPE.MINI]: 10,
+        [JP_TYPE.MINI] : 10,
     };
 
     public jp(type: number) { return this.properties['jp'][type]; }
@@ -85,6 +84,8 @@ export class Payway4600 extends Payway {
             'freeGame':     { [DATA_TYPE.TYPE]: OrientationNode,    [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background' },
             'mainGame_p':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/Main Background/background_portrait/bg01' },
             'freeGame_p':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background/background_portrait/bg01' },
+            'mainGame_l':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/Main Background/background_landscape/bg01' },
+            'freeGame_l':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background/background_landscape/bg01' },
         },
 
         'buyFeatureGame': {
@@ -130,7 +131,6 @@ export class Payway4600 extends Payway {
         this.JP_LEVEL = 0;
         console.warn('onstart', this);
         this.properties['preload']['onload'].emit('done');
-        this.pre_set_enter_game_ani();
     }
 
     /**
@@ -138,8 +138,7 @@ export class Payway4600 extends Payway {
      */
     public enterGame() {
         this.scoreBoard.node.active = false;
-        this.preload_open_door();       // 開門動畫
-        // console.warn('enterGame');
+        this.preload_open_door();               // 開門動畫
     }
 
     // 顯示分數的背板
@@ -152,9 +151,17 @@ export class Payway4600 extends Payway {
     }
 
     public get bg_light():sp.Skeleton | null { 
-        if ( Viewport.Orientation === Orientation.LANDSCAPE ) return null;
-        if ( this.machine.featureGame === true ) return null;
-        return this.properties['background']['mainGame_p'][DATA_TYPE.COMPONENT];
+        const orientation = Viewport.Orientation;
+
+        if ( orientation === Orientation.PORTRAIT ) {
+            if ( this.machine.featureGame === true ) return this.properties['background']['freeGame_p'][DATA_TYPE.COMPONENT];
+            else return this.properties['background']['mainGame_p'][DATA_TYPE.COMPONENT];
+        } else {
+            if ( this.machine.featureGame === true ) return this.properties['background']['freeGame_l'][DATA_TYPE.COMPONENT];
+            else return this.properties['background']['mainGame_l'][DATA_TYPE.COMPONENT];
+        }
+
+        return null;
     }
 
     public async flash_bg_light() {
@@ -182,8 +189,8 @@ export class Payway4600 extends Payway {
         }
         
         if ( this.machine.featureGame === false) {
-            await this.performAllPayline();                         // 因為 Scatter 有分數，所以要播放一次得分
-            this.reelMaskActive(false);                             // 關閉遮罩
+            await this.performAllPayline();                     // 因為 Scatter 有分數，所以要播放一次得分
+            this.reelMaskActive(false);                         // 關閉遮罩
             await Utils.delay(1000);                            // 等待一秒
             await SoundManager.PauseMusic();                    // 主場暫停音樂
             SoundManager.PlaySoundByID('sfx_fg_alarm');         // 觸發 Free Game 警鈴音效
@@ -262,8 +269,8 @@ export class Payway4600 extends Payway {
         soul.worldPosition = wild.worldPosition;
         soul.active  = true;
         const toPos  = this.jp(JP_TYPE.POT).ani.node.worldPosition.clone();
-        toPos.x     += Utils.Random(-100, 100);
-        toPos.y     += Utils.Random(-100, 100);
+        toPos.x     += Utils.Random(-50, 50);
+        toPos.y     += Utils.Random(-50, 50);
 
         const middlePos = soul.worldPosition.clone();
         middlePos.x += Utils.Random(-300, 300);
@@ -331,13 +338,12 @@ export class Payway4600 extends Payway {
         door.node.active = true;
         SoundManager.PlaySoundByID('sfx_door_open');
         Utils.playSpine(door, 'play02', false, 1, true, (trackEntry) => { door.node.active = false; });
-        door.paused = true;
 
+        door.paused = true;
         await Utils.commonFadeIn(this.properties['preload']['mask'].node, true, [new Color(0, 0, 0, 0), new Color(0, 0, 0, 255)]);
         door.paused = false;
         
         await Utils.delay(1500);
-        await this.pre_enter_game_ani();
 
         this.properties['preload']['pDoor'].node.active = false;
         this.properties['preload']['lDoor'].node.active = false;
@@ -362,13 +368,6 @@ export class Payway4600 extends Payway {
         return nodes;
     } 
 
-    private pre_set_enter_game_ani() {
-        
-    }
-
-    private async pre_enter_game_ani() {
-        
-    }
 
     // 門的 Spine Component
     // 自動對應橫豎版
@@ -411,6 +410,7 @@ export class Payway4600 extends Payway {
         const level = this.levelUp();
         const spine: sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
 
+        spine['isBusy'] = true;
         if ( open === false) await Utils.delay(1000);
         Utils.playSpine(spine, 'play05', false);
         SoundManager.PlaySoundByID('sfx_sym_fu_fly_end');
@@ -418,12 +418,15 @@ export class Payway4600 extends Payway {
 
         if ( level != lastLevel ) SoundManager.PlaySoundByID(this.TYPE_POT_SOUND[level]);
         await Utils.delay(200);
-        spine.setSkin(this.TYPE_POT_LEVEL[level]);
-
+        
         if (open === false) {
-            if ( level === 4 ) Utils.playSpine(spine, 'play05', true);
+            spine.setSkin(this.TYPE_POT_LEVEL[level]);
+            if ( level === 4 ) this.loop_play_full_pot_ani();
+            spine['isBusy'] = false;
             return;
         }
+        spine.setSkin(this.TYPE_POT_LEVEL[4]);
+
         SoundManager.PlaySoundByID('sfx_jp_intro');         // 播放JP開啟音效
         const particles = spine.node.getComponentsInChildren(ParticleSystem);
         for (let i = 0; i < particles.length; i++) {
@@ -431,7 +434,20 @@ export class Payway4600 extends Payway {
             particles[i].play();
         }
         await Utils.playSpine(spine, 'play03', false);
+        spine['isBusy'] = false;
         return;
+    }
+
+    /**
+     * 持續播放聚寶盆動畫
+     */
+    public async loop_play_full_pot_ani() {
+        if ( this.JP_LEVEL !== 4 ) return;
+        const spine: sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
+        SoundManager.PlaySoundByID('sfx_jp_collected');
+        await Utils.playSpine(spine, 'play05', false);
+        await Utils.delay(1000);
+        this.loop_play_full_pot_ani();
     }
 
     // 重置聚寶盆狀態
@@ -439,6 +455,8 @@ export class Payway4600 extends Payway {
         this.JP_LEVEL = 0;
         const level = this.JP_LEVEL;
         const spine: sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
+
+        spine['isBusy'] = false;
         spine.setSkin(this.TYPE_POT_LEVEL[level]);
         Utils.playSpine(spine, 'play05', false);
         const particles = spine.node.getComponentsInChildren(ParticleSystem);
@@ -466,7 +484,8 @@ export class Payway4600 extends Payway {
 
             if (spine['isPlaying'] === true) continue;
             if (jp === JP_TYPE.POT) {
-                if ( this.JP_LEVEL === 4 ) Utils.playSpine(spine, 'play05', true);
+                if (!spine || spine['isBusy'] === true) continue;
+                if ( this.JP_LEVEL === 4 ) continue;
                 else Utils.playSpine(spine, 'play06', false);
             }
             else Utils.playSpine(spine, 'play03', false);
@@ -705,18 +724,14 @@ export class Payway4600 extends Payway {
             SoundManager.PlayMusic('0');                                              // 播放主場音樂
             this.controller.refreshTotalBet();                                        // 更新 TotalBet;
             this.changeTotalBet(this.machine.totalBet);                               // 更新 JP 獎項
-
             this.machine.controller.maskActive(false);
             this.properties['background']['freeGame'].node.active = false;
-            // 換回原本盤面
-            this.restoreGameResult(this.firstGameResult);
+            this.restoreGameResult(this.firstGameResult);                               // 換回原本盤面
             await Utils.delay(500);
             endEvent.emit('done');
         });
         endEvent = null;
         await Utils.delayEvent(endEvent);
-        // await this.performAllPayline();                                               // 因為 Scatter 有分數，所以要播放一次
-
     }
 
     /** 計算 NearMiss 位置 
@@ -760,32 +775,31 @@ export class Payway4600 extends Payway {
         return true;
     }
 
+    // Scatter 掉落音效，越後面音階越高
     private dropScatterSound = ['sfx_sym_scatter_L1','sfx_sym_scatter_L2','sfx_sym_scatter_L3'];
 
     // 敲鑼的動態什麼時候做
     // 有聽牌機會在做
     public showDropSymbol(wheelID: number, symbol: Symbol): boolean {
-        // if ( wheelID < 3 ) SoundManager.PlaySoundByID(this.dropScatterSound[wheelID]);
-        //return super.showDropSymbol(wheelID, symbol);
-        
-
         if ( wheelID > 2 ) return true;                                    // 第3輪之後不用做
         if ( wheelID === 0 ) {                                             // 第一排一定要做
             SoundManager.PlaySoundByID(this.dropScatterSound[0]);
             return true;                                  
         }
         if ( wheelID > 0 && this.reel.nearMiss === 1 ) {                   // 第二排 但有聽牌才做
-            SoundManager.PlaySoundByID(this.dropScatterSound[wheelID]);
+            SoundManager.PlaySoundByID(this.dropScatterSound[wheelID]);    // 播放 Scatter 聽牌音效
             return true; 
         }
         return true; 
     }
 
+    // 打開 Buy Feature Game UI 播放音效
     public async onClickOpenBuyFGUI() : Promise<boolean> { 
         SoundManager.PlaySoundByID('ui_button_bfg');
         return super.onClickOpenBuyFGUI(); 
     }
 
+    // 購買 Buy Feature Game 播放音效
     public async clickBuyFeatureGameConfirm() : Promise<boolean> { 
         SoundManager.PlaySoundByID('ui_button_bfg_ok');
         return super.clickBuyFeatureGameConfirm(); 

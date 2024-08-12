@@ -1,0 +1,338 @@
+<div class="wrapper" style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff;">
+    <div class="swiper-container mySwiperContent"  style="position: relative; top: 0px;">
+        <div class="swiper-wrapper">
+
+        </div>
+    </div>
+    <div class="swiper-container mySwiperPagination" style="position: relative; top: -1450px;">
+        <div class="swiper-wrapper">
+
+        </div>
+        <div class="swiper-scrollbar">
+            <!-- <div class="swiper-scrollbar-drag"></div> -->
+        </div>
+    </div>
+</div>
+
+<style scoped>
+
+    .swiper-slide {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .mySwiperContent {
+        width: 890px;
+        height: 1600px;
+    }
+
+    .mySwiperContent .swiper-slide {
+        display: block;
+        transform: scale(1);
+    }
+
+    body.mobile .mySwiperContent .swiper-slide {
+        transform: scale(1);
+    }
+
+    .mySwiperPagination {
+        width: 100%;
+        /*overflow: scroll;*/
+        height: 220px;
+        padding-left: 25px;
+    }
+
+    .mySwiperPagination .swiper-slide {
+        display: block;
+        transform: scale(1);
+		opacity: 0.4;
+    }
+
+    body.mobile .mySwiperPagination .swiper-slide {
+        transform: scale(1);
+    }
+
+    .mySwiperPagination .swiper-slide-thumb-active,
+    .mySwiperPagination .swiper-slide-active {
+        opacity: 1;
+    }
+
+    .popup-window {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-font-smoothing: auto;
+        -moz-osx-font-smoothing: auto;
+    }
+
+    .promote {
+        position: fixed;
+        background-color: #000000;
+        /*background:linear-gradient(to top,  #00025d 0%,#2701ae 93%,#4e00ff 100%);
+        filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.302));*/
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    /*.promoteblur {
+		background-color: #000000;
+        filter: blur(9px);
+        border-radius: 30px;
+    }*/
+
+    .wrapper {
+        position: relative;
+        border: 1px solid #000000;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        color: #fff;
+        background-color: #000000;
+    }
+    /* not active */
+	.nav-pills .pill-prizes .nav-link:not(.active) {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: gray;
+	    border: unset;
+	    border-radius: 0;
+	}
+
+	.nav-pills .pill-winners .nav-link:not(.active) {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: gray;
+	    border: unset;
+	    border-radius: 0;
+	}
+
+	.nav-pills .pill-history .nav-link:not(.active) {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: gray;
+	    border: unset;
+	    border-radius: 0;
+	}
+
+    .nav-pills .pill-rules .nav-link:not(.active) {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: gray;
+	    border: unset;
+	    border-radius: 0;
+	}
+
+	/* active (faded) */
+	.nav-pills .pill-prizes .nav-link {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: white;
+	    border: solid gray;
+	    border-radius: 12px;
+	}
+
+	.nav-pills .pill-winners .nav-link {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: white;
+	    border: solid gray;
+	    border-radius: 12px;
+	}
+
+	.nav-pills .pill-history .nav-link {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: white;
+	    border: solid gray;
+	    border-radius: 12px;
+	}
+
+    .nav-pills .pill-rules .nav-link {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: white;
+	    border: solid gray;
+	    border-radius: 12px;
+	}
+
+    .tab-content > .tab-pane {
+		opacity: 1;
+        transition: opacity 0s;
+    }
+
+    .table-bordered thead th,
+    .table-bordered thead td,
+    .table-bordered tbody td,
+    .table-bordered tbody td {
+        border-width: 2px;
+    }
+
+    .nav {
+        font-size: 30px;
+    }
+
+    .nav-link:hover {
+        color:white;
+        border-color: #000000;
+        background-color: #ffffff;
+    }
+
+    /*tbody tr:nth-child(odd){
+        background-color: #742bea;
+    }
+
+    tbody tr:nth-child(even){
+        background-color: #4a01ba;
+    }*/
+
+    table {
+        background-color: #000000;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table>:not(caption)>*>* {
+        /* 去除bootstrap誆線 */
+        border-bottom-width: 0px !important;
+    }
+
+    th {
+        font-size: 28px;
+        /*font-weight: bold;*/
+        color: #ffffff;
+    }
+
+    td {
+        font-size: 25px;
+        /*font-weight: bold;*/
+        color: white;
+    }
+
+    .col {
+        overflow: auto;
+        height: 850px;
+    }
+
+    .col p {
+        font-size: 30px;
+        color: white;
+        text-align: left;
+        word-break: break-all;
+        margin: 100px 50px;
+    }
+
+    .rules .col{
+        background-color: #000000;
+        height: 875px !important;
+        border-radius: 20px;
+    }
+
+    /*.prize tr td:nth-child(1), .prize tr th:nth-child(1){
+        width:15%;
+    }
+
+    .prize tr td:nth-child(2), .prize tr th:nth-child(2) {
+        width:25%;
+    }
+
+    .winners tr td:nth-child(1), .winners tr th:nth-child(1){
+        width:20%;
+    }
+
+    .winners tr td:nth-child(2), .winners tr th:nth-child(2) {
+        width:20%;
+    }
+
+    .history tr td:nth-child(1), .history tr th:nth-child(1){
+        width:60%;
+    }
+
+    .history tr td:nth-child(2), .history tr th:nth-child(2) {
+        width:40%;
+    }
+
+    tr td:nth-child(3), tr th:nth-child(3) {
+        width:28%;
+    }
+
+    tr td:nth-child(4), tr th:nth-child(4) {
+        width:32%;
+    }*/
+
+    .prize {
+        height:875px;
+        background-color: #000000;
+    }
+
+    .winners {
+        height: 875px;
+        background-color: #000000;
+    }
+
+    .history {
+        height: 875px;
+        background-color: #000000;
+    }
+
+    .rules {
+        height: 875px;
+        background-color: #000000;
+    }
+
+    .rules .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    p.rule {
+        white-space: pre-wrap;
+    }
+
+    #hint{
+        color:white;
+        /*margin-left: 10px ;
+        text-align: left;*/
+    }
+
+    h1 {
+        font-size: 48px !important;
+    }
+
+    .left-time{
+        font-size: 28px;
+    }
+
+    .finished{
+        visibility: hidden;
+    }
+
+    .nav-item{
+        width:25%;
+    }
+
+    /*修改swiper scroll css*/
+    .swiper-horizontal>.swiper-scrollbar {
+        /*bottom: 150px !important;*/
+        height: 10px !important;
+    }
+
+    .swiper-scrollbar-drag {
+        background:gray !important;
+    }
+
+    .promote-button-close {
+        position:fixed;
+        top: 20px;
+        right: 20px;
+    }
+
+    .pd10 {
+        padding-right: 10px !important;
+    }
+
+    .pd200 {
+        padding-right: 200px !important;
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+</style>

@@ -1,0 +1,166 @@
+<div class="igm-main-container disable-select"></div>
+
+<style scoped>
+
+    .igm-main-container {
+        transform: scale(1.2);
+        position: absolute;
+        top: 116px;
+    }
+
+    /* override from Bootstrape */
+    .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        justify-content: flex-start;
+        position: absolute;
+        top: 162px;
+        left: 10px;
+        width: 650px;
+        height: 950px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    /* The first div */
+    .popup-window {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* The second div under .popup-window */
+    .ingamemenu {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    /*  */
+    .ingamemenu-content {
+        width: 672px;
+        height: 1138px;
+    }
+
+    /* In game menu window background */
+    .igm-background {
+        position: absolute;
+    }
+
+    /* Popular button */
+    .igm-button-game-list {
+        position: absolute;
+        top: 90px;
+        left: 14px;
+        z-index: 100;
+    }
+
+    /* Favorite button */
+    .igm-button-fav-list {
+        position: absolute;
+        top: 95px;
+        left: 208px;
+        z-index: 99;
+    }
+
+    /* Game Icon container */
+    .igm-game-icon-container {
+        width: 203px;
+        height: 227px;
+        margin: 10px 4px 10px 4px;
+        z-index: 95;
+    }
+    
+    /* Add to favorite button */
+    .igm-collect-icon {
+        position: relative;
+        right: -17px;
+        bottom: 24px;
+        cursor: pointer;
+        z-index: 99;
+    }
+
+    /* New / How label */
+    .igm-new-hot-label {
+        position: relative;
+        left: 42px;
+        top: -212px;
+        visibility: hidden;
+        z-index: 98;
+    }
+
+    /* Game Icon */
+    .igm-game-icon {
+        position: relative;
+        width: 186px;
+        height: 186px;
+        top: 20px;
+        left: 9px;
+        cursor: pointer;
+        z-index: 97;
+    }
+
+    /* Game icon board */
+    .igm_icon_board {
+        position: absolute;
+    }
+
+    /* Close button */
+    .igm-button-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .confirmContainer {
+        transform: scale(0.75);
+    }
+
+    .confirmWindow {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .confirmYesButton {
+        position: absolute;
+        bottom: 16px;
+        right: 50px;
+        z-index: 101;
+    }
+
+    .confirmNoButton {
+        position: absolute;
+        bottom: 16px;
+        left: 50px;
+        z-index: 101;
+    }
+
+    .confirmText {
+        position: absolute;
+        z-index: 101;
+        top: 160px;
+        left: 42px;
+        right: 42px;
+        font-size: 28pt;
+        color: white;
+    }
+
+    .disable-select {
+        user-select: none; /* supported by Chrome and Opera */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+    }
+    
+</style>

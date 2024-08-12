@@ -1,0 +1,1474 @@
+{
+    "skeleton": {
+        "hash": "W80imCHQoyyaXMUba0CQCoNFdv4",
+        "spine": "3.8.72",
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+    },
+    "bones": [
+        {
+            "name": "root"
+        },
+        {
+            "name": "JP",
+            "parent": "root",
+            "x": -3,
+            "y": -25.5
+        },
+        {
+            "name": "fx",
+            "parent": "root",
+            "x": 3.5,
+            "y": -4.87
+        },
+        {
+            "name": "fx_star_1",
+            "parent": "fx",
+            "x": -40.82,
+            "y": 23.55,
+            "scaleX": 0.6,
+            "scaleY": 0.6
+        },
+        {
+            "name": "fx_star_2",
+            "parent": "fx",
+            "x": 42.03,
+            "y": 14.61,
+            "scaleX": 0.5,
+            "scaleY": 0.5
+        },
+        {
+            "name": "fx_ball_1",
+            "parent": "fx",
+            "x": -36.7,
+            "y": 31.49,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "fx_ball_2",
+            "parent": "fx",
+            "x": -20.14,
+            "y": 38.37,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "fx_ball_3",
+            "parent": "fx",
+            "x": -1.69,
+            "y": 45.82,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "fx_ball_4",
+            "parent": "fx",
+            "x": 17.49,
+            "y": 38.09,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "fx_ball_5",
+            "parent": "fx",
+            "x": 33.67,
+            "y": 31.37,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "txt_light",
+            "parent": "JP",
+            "x": 4.19,
+            "y": -5.13
+        },
+        {
+            "name": "fx_star_3",
+            "parent": "fx",
+            "x": 39.33,
+            "y": 40.62,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "fx_star_4",
+            "parent": "fx",
+            "x": -67.62,
+            "y": 5.58,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "fx_star_5",
+            "parent": "fx",
+            "x": -23.81,
+            "y": 41.33,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        },
+        {
+            "name": "streamer_light",
+            "parent": "root",
+            "x": 1.36,
+            "y": -33.2
+        },
+        {
+            "name": "fx_star_6",
+            "parent": "fx",
+            "x": -67.62,
+            "y": 5.58,
+            "scaleX": 0.2,
+            "scaleY": 0.2
+        }
+    ],
+    "slots": [
+        {
+            "name": "txt_light",
+            "bone": "txt_light",
+            "color": "ffffff4f",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_star",
+            "bone": "fx_star_1",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_star2",
+            "bone": "fx_star_2",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_star3",
+            "bone": "fx_star_3",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_star4",
+            "bone": "fx_star_4",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_star6",
+            "bone": "fx_star_6",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_star5",
+            "bone": "fx_star_5",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_ball_05",
+            "bone": "fx_ball_1",
+            "color": "ffdb03ff",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_ball_5",
+            "bone": "fx_ball_2",
+            "color": "ffdb03ff",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_ball_6",
+            "bone": "fx_ball_3",
+            "color": "ffdb03ff",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_ball_7",
+            "bone": "fx_ball_4",
+            "color": "ffdb03ff",
+            "blend": "additive"
+        },
+        {
+            "name": "fx_ball_8",
+            "bone": "fx_ball_5",
+            "color": "ffdb03ff",
+            "blend": "additive"
+        },
+        {
+            "name": "streamer_light/streamer_light_00000",
+            "bone": "streamer_light",
+            "blend": "additive"
+        }
+    ],
+    "skins": [
+        {
+            "name": "default",
+            "attachments": {
+                "fx_ball_5": {
+                    "fx_ball_05": {
+                        "width": 128,
+                        "height": 128
+                    }
+                },
+                "fx_ball_6": {
+                    "fx_ball_05": {
+                        "width": 128,
+                        "height": 128
+                    }
+                },
+                "fx_ball_7": {
+                    "fx_ball_05": {
+                        "width": 128,
+                        "height": 128
+                    }
+                },
+                "fx_ball_8": {
+                    "fx_ball_05": {
+                        "width": 128,
+                        "height": 128
+                    }
+                },
+                "txt_light": {
+                    "txt_light": {
+                        "x": -1,
+                        "y": 39,
+                        "width": 128,
+                        "height": 39
+                    }
+                },
+                "fx_ball_05": {
+                    "fx_ball_05": {
+                        "width": 128,
+                        "height": 128
+                    }
+                },
+                "fx_star": {
+                    "fx_star": {
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "streamer_light/streamer_light_00000": {
+                    "streamer_light/streamer_light_00000": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00001": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00002": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00003": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00004": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00005": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00006": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00007": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00008": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00009": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00010": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00011": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00012": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00013": {
+                        "width": 136,
+                        "height": 44
+                    },
+                    "streamer_light/streamer_light_00014": {
+                        "width": 136,
+                        "height": 44
+                    }
+                },
+                "fx_star2": {
+                    "fx_star": {
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "fx_star3": {
+                    "fx_star": {
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "fx_star4": {
+                    "fx_star": {
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "fx_star5": {
+                    "fx_star": {
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "fx_star6": {
+                    "fx_star": {
+                        "width": 100,
+                        "height": 100
+                    }
+                }
+            }
+        }
+    ],
+    "animations": {
+        "idle": {},
+        "play_0": {
+            "slots": {
+                "fx_ball_5": {
+                    "color": [
+                        {
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "fx_star5": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_ball_05": {
+                    "color": [
+                        {
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 1.8,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "fx_star6": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_ball_6": {
+                    "color": [
+                        {
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 1.8,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "fx_ball_7": {
+                    "color": [
+                        {
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "fx_star4": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_star3": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_star2": {
+                    "color": [
+                        {
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.2,
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 0.4667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 0.7333,
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.1,
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 1.3667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 1.6333,
+                            "color": "ffffff00"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_star": {
+                    "color": [
+                        {
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 0.2667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 0.5667,
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 1.1667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 1.4667,
+                            "color": "ffffff00"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_ball_8": {
+                    "color": [
+                        {
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 1.8,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "txt_light": {
+                    "color": [
+                        {
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 0.3333,
+                            "color": "ffffffc8"
+                        },
+                        {
+                            "time": 0.6667,
+                            "color": "ffffff00"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "txt_light"
+                        }
+                    ]
+                }
+            },
+            "bones": {
+                "fx_star_5": {
+                    "translate": [
+                        {
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3333
+                        },
+                        {
+                            "time": 1,
+                            "y": 30
+                        },
+                        {
+                            "time": 1.1333
+                        },
+                        {
+                            "time": 1.8,
+                            "y": 30
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3333,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 0.6667,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.1333,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.4667,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1.8,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                "fx_star_4": {
+                    "translate": [
+                        {
+                            "y": 20,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.1667,
+                            "y": 20
+                        },
+                        {
+                            "time": 0.8333,
+                            "y": 40
+                        },
+                        {
+                            "time": 1,
+                            "x": 130,
+                            "y": 20
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 130,
+                            "y": 40
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.1667,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 0.5,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 0.8333,
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.3333,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                "fx_star_3": {
+                    "translate": [
+                        {},
+                        {
+                            "time": 0.6667,
+                            "y": 20
+                        },
+                        {
+                            "time": 1,
+                            "x": -24.69
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": -24.69,
+                            "y": 20
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 0.3333,
+                            "x": 2,
+                            "y": 2
+                        },
+                        {
+                            "time": 0.6667,
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.3333,
+                            "x": 2,
+                            "y": 2
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                "txt_light": {
+                    "translate": [
+                        {
+                            "y": -4.75
+                        }
+                    ]
+                },
+                "fx_star_6": {
+                    "translate": [
+                        {
+                            "y": 20,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "y": 20
+                        },
+                        {
+                            "time": 1.6667,
+                            "y": 40
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.3333,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                "fx": {
+                    "translate": [
+                        {
+                            "y": -3.89
+                        }
+                    ]
+                }
+            }
+        },
+        "play_1": {
+            "slots": {
+                "fx_ball_5": {
+                    "color": [
+                        {
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "streamer_light/streamer_light_00000": {
+                    "attachment": [
+                        {
+                            "time": 0.3667,
+                            "name": "streamer_light/streamer_light_00000"
+                        },
+                        {
+                            "time": 0.4,
+                            "name": "streamer_light/streamer_light_00001"
+                        },
+                        {
+                            "time": 0.4333,
+                            "name": "streamer_light/streamer_light_00002"
+                        },
+                        {
+                            "time": 0.4667,
+                            "name": "streamer_light/streamer_light_00003"
+                        },
+                        {
+                            "time": 0.5,
+                            "name": "streamer_light/streamer_light_00004"
+                        },
+                        {
+                            "time": 0.5333,
+                            "name": "streamer_light/streamer_light_00005"
+                        },
+                        {
+                            "time": 0.5667,
+                            "name": "streamer_light/streamer_light_00006"
+                        },
+                        {
+                            "time": 0.6,
+                            "name": "streamer_light/streamer_light_00007"
+                        },
+                        {
+                            "time": 0.6333,
+                            "name": "streamer_light/streamer_light_00008"
+                        },
+                        {
+                            "time": 0.6667,
+                            "name": "streamer_light/streamer_light_00009"
+                        },
+                        {
+                            "time": 0.7,
+                            "name": "streamer_light/streamer_light_00010"
+                        },
+                        {
+                            "time": 0.7333,
+                            "name": "streamer_light/streamer_light_00011"
+                        },
+                        {
+                            "time": 0.7667,
+                            "name": "streamer_light/streamer_light_00012"
+                        },
+                        {
+                            "time": 0.8,
+                            "name": "streamer_light/streamer_light_00013"
+                        },
+                        {
+                            "time": 0.8333,
+                            "name": "streamer_light/streamer_light_00014"
+                        },
+                        {
+                            "time": 0.8667,
+                            "name": null
+                        },
+                        {
+                            "time": 1.8,
+                            "name": null
+                        }
+                    ]
+                },
+                "fx_star5": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_ball_05": {
+                    "color": [
+                        {
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 1.8,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "fx_star6": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_ball_6": {
+                    "color": [
+                        {
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 1.8,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "fx_ball_7": {
+                    "color": [
+                        {
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb02a0"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "fx_star4": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_star3": {
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_star2": {
+                    "color": [
+                        {
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.2,
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 0.4667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 0.7333,
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.1,
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 1.3667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 1.6333,
+                            "color": "ffffff00"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_star": {
+                    "color": [
+                        {
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 0.2667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 0.5667,
+                            "color": "ffffff00",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 1.1667,
+                            "color": "ffffffff"
+                        },
+                        {
+                            "time": 1.4667,
+                            "color": "ffffff00"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_star"
+                        }
+                    ]
+                },
+                "fx_ball_8": {
+                    "color": [
+                        {
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 0.6,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 0.9,
+                            "color": "ffdb0200",
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.2,
+                            "color": "ffdb0200"
+                        },
+                        {
+                            "time": 1.5,
+                            "color": "ffdb02a2"
+                        },
+                        {
+                            "time": 1.8,
+                            "color": "ffdb0200"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "fx_ball_05"
+                        }
+                    ]
+                },
+                "txt_light": {
+                    "color": [
+                        {
+                            "color": "ffffff00"
+                        },
+                        {
+                            "time": 0.3333,
+                            "color": "ffffffc8"
+                        },
+                        {
+                            "time": 0.6667,
+                            "color": "ffffff00"
+                        }
+                    ],
+                    "attachment": [
+                        {
+                            "name": "txt_light"
+                        }
+                    ]
+                }
+            },
+            "bones": {
+                "fx_star_3": {
+                    "translate": [
+                        {},
+                        {
+                            "time": 0.6667,
+                            "y": 20
+                        },
+                        {
+                            "time": 1,
+                            "x": -24.69
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": -24.69,
+                            "y": 20
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 0.3333,
+                            "x": 2,
+                            "y": 2
+                        },
+                        {
+                            "time": 0.6667,
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.3333,
+                            "x": 2,
+                            "y": 2
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                "fx_star_5": {
+                    "translate": [
+                        {
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3333
+                        },
+                        {
+                            "time": 1,
+                            "y": 30
+                        },
+                        {
+                            "time": 1.1333
+                        },
+                        {
+                            "time": 1.8,
+                            "y": 30
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.3333,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 0.6667,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1.1333,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.4667,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1.8,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                "fx_star_4": {
+                    "translate": [
+                        {
+                            "y": 20,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.1667,
+                            "y": 20
+                        },
+                        {
+                            "time": 0.8333,
+                            "y": 40
+                        },
+                        {
+                            "time": 1,
+                            "x": 130,
+                            "y": 20
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 130,
+                            "y": 40
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 0.1667,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 0.5,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 0.8333,
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.3333,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                },
+                "fx_star_6": {
+                    "translate": [
+                        {
+                            "y": 20,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "y": 20
+                        },
+                        {
+                            "time": 1.6667,
+                            "y": 40
+                        }
+                    ],
+                    "scale": [
+                        {
+                            "x": 0,
+                            "y": 0,
+                            "curve": "stepped"
+                        },
+                        {
+                            "time": 1,
+                            "x": 0,
+                            "y": 0
+                        },
+                        {
+                            "time": 1.3333,
+                            "x": 1.75,
+                            "y": 1.75
+                        },
+                        {
+                            "time": 1.6667,
+                            "x": 0,
+                            "y": 0
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,398 @@
+<div class="wrapper" style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff;">
+    <div class="swiper-container jpSwiperContent" style="position: relative; top: 0px;">
+        <div class="swiper-wrapper">
+
+        </div>
+    </div>
+    <div class="swiper-container jpSwiperPagination" style="position: relative; top: -1450px;">
+        <div class="swiper-wrapper">
+
+        </div>
+        <div class="swiper-scrollbar">
+            <!-- <div class="swiper-scrollbar-drag"></div> -->
+        </div>
+    </div>
+</div>
+
+<style scoped>
+
+    .swiper-slide {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .jpSwiperContent {
+        width: 890px;
+        height: 1600px;
+    }
+
+    .jpSwiperContent .swiper-slide {
+        display: block;
+        transform: scale(1);
+    }
+
+    body.mobile .jpSwiperContent .swiper-slide {
+        transform: scale(1);
+    }
+
+    .jpSwiperPagination {
+        width: 100%;
+        /*overflow: scroll;*/
+        height: 220px;
+        padding-left: 25px;
+    }
+
+    .jpSwiperPagination .swiper-slide {
+        display: block;
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    body.mobile .jpSwiperPagination .swiper-slide {
+        transform: scale(1);
+    }
+
+    .jpSwiperPagination .swiper-slide-thumb-active,
+    .jpSwiperPagination .swiper-slide-active {
+        opacity: 1;
+    }
+
+    .popup-window {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-font-smoothing: auto;
+        -moz-osx-font-smoothing: auto;
+    }
+
+    .jackpot {
+        position: fixed;
+        background-color: #000000;
+        /*background:linear-gradient(to top,  #00025d 0%,#2701ae 93%,#4e00ff 100%);
+        filter: drop-shadow(4px 8px 4px rgba(0, 0, 0, 0.302));*/
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    /*.jackpotblur {
+		background-color: #000000;
+        filter: blur(9px);
+        border-radius: 30px;
+    }*/
+
+    .wrapper {
+        position: relative;
+        border: 1px solid #000000;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        color: #fff;
+        background-color: #000000;
+    }
+    /* not active */
+	.nav-pills .pill-jackpotprizes .nav-link:not(.active) {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: gray;
+	    border: unset;
+	    border-radius: 0;
+	}
+
+	.nav-pills .pill-jackpotwinners .nav-link:not(.active) {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: gray;
+	    border: unset;
+	    border-radius: 0;
+	}
+
+	.nav-pills .pill-jackpotsetting .nav-link:not(.active) {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: gray;
+	    border: unset;
+	    border-radius: 0;
+	}
+
+	/* active (faded) */
+	.nav-pills .pill-jackpotprizes .nav-link {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: white;
+	    border: solid gray;
+	    border-radius: 12px;
+	}
+
+	.nav-pills .pill-jackpotwinners .nav-link {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: white;
+	    border: solid gray;
+	    border-radius: 12px;
+	}
+
+	.nav-pills .pill-jackpotsetting .nav-link {
+	    background-color: rgba(0, 0, 0, 1);
+	    color: white;
+	    border: solid gray;
+	    border-radius: 12px;
+	}
+
+    .tab-content > .tab-pane {
+		opacity: 1;
+        transition: opacity 0s;
+    }
+
+    .table-bordered thead th,
+    .table-bordered thead td,
+    .table-bordered tbody td,
+    .table-bordered tbody td {
+        border-width: 2px;
+    }
+
+    .nav {
+        font-size: 30px;
+    }
+
+    .nav-link:hover {
+        color:white;
+        border-color: #000000;
+        background-color: #ffffff;
+    }
+
+    /*tbody tr:nth-child(odd){
+        background-color: #742bea;
+    }
+
+    tbody tr:nth-child(even){
+        background-color: #4a01ba;
+    }*/
+
+    table {
+        background-color: #000000;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table>:not(caption)>*>* {
+        /* 去除bootstrap誆線 */
+        border-bottom-width: 0px !important;
+    }
+
+    th {
+        font-size: 28px;
+        /*font-weight: bold;*/
+        color: #ffffff;
+    }
+
+    td {
+        font-size: 25px;
+        /*font-weight: bold;*/
+        color: white;
+    }
+
+    .col {
+        overflow: auto;
+        height: 810px;
+    }
+
+    .col p {
+        font-size: 30px;
+        color: white;
+        text-align: left;
+        word-break: break-all;
+        margin: 100px 50px;
+    }
+
+    .rules .col{
+        background-color: #000000;
+        height: 875px !important;
+        border-radius: 20px;
+    }
+
+    /*.prize tr td:nth-child(1), .prize tr th:nth-child(1){
+        width:15%;
+    }
+
+    .prize tr td:nth-child(2), .prize tr th:nth-child(2) {
+        width:25%;
+    }
+
+    .winners tr td:nth-child(1), .winners tr th:nth-child(1){
+        width:20%;
+    }
+
+    .winners tr td:nth-child(2), .winners tr th:nth-child(2) {
+        width:20%;
+    }
+
+    .history tr td:nth-child(1), .history tr th:nth-child(1){
+        width:60%;
+    }
+
+    .history tr td:nth-child(2), .history tr th:nth-child(2) {
+        width:40%;
+    }
+
+    tr td:nth-child(3), tr th:nth-child(3) {
+        width:28%;
+    }
+
+    tr td:nth-child(4), tr th:nth-child(4) {
+        width:32%;
+    }*/
+
+    .prize {
+        height:875px;
+        background-color: #000000;
+    }
+
+    .winners {
+        height: 875px;
+        background-color: #000000;
+    }
+
+    .history {
+        height: 875px;
+        background-color: #000000;
+    }
+
+    .rules {
+        height: 875px;
+        background-color: #000000;
+    }
+
+    .rules .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    p.rule {
+        white-space: pre-wrap;
+    }
+
+    .setting {
+        height: 875px;
+        background-color: #000000;
+    }
+
+    .setting .col {
+        overflow: auto;
+        height: 810px;
+    }
+
+    .setting .col p {
+        font-size: 30px;
+        color: white;
+        text-align: left;
+        word-break: break-all;
+        margin: 50px 50px;
+    }
+
+    .setting .form-switch {
+        text-align: left;
+    }
+    .setting .form-switch .form-check-input {
+        width: 80px !important;
+        padding: 20px;
+        margin: 4px 0px 10px 80px;
+    }
+    .setting .form-switch .form-check-label {
+        font-size: 30px;
+        color: white;
+        padding-left: 30px;
+        width: 400px !important;
+    }
+    
+    .setting .form-check {
+        text-align: left;
+        display: inline-block;
+    }
+    .setting .form-check .form-check-input {
+        width: 30px;
+        height: 30px;
+        padding: 20px;
+    }
+    .setting .form-check .form-check-label {
+        font-size: 30px;
+        color: white;
+        padding-left: 30px;
+        width: 200px;
+    }
+
+    .setting .col .tag-label {
+        font-size: 30px;
+        color: white;
+        text-align: left;
+        padding-left: 130px;
+        padding-bottom: 20px;
+    }
+
+    .setting .col hr.divide {
+        border: 2px solid #FFFFFF;
+        opacity: 0.75;
+        width: 80%;
+        margin: auto;
+    }
+
+    #hint{
+        color:white;
+        /*margin-left: 10px ;
+        text-align: left;*/
+    }
+
+    h1 {
+        font-size: 48px !important;
+    }
+
+    .left-time{
+        font-size: 28px;
+    }
+
+    .finished{
+        visibility: hidden;
+    }
+
+    .nav-item{
+        width:25%;
+    }
+
+    /*修改swiper scroll css*/
+    .swiper-horizontal>.swiper-scrollbar {
+        /*bottom: 150px !important;*/
+        height: 10px !important;
+    }
+
+    .swiper-scrollbar-drag {
+        background:gray !important;
+    }
+
+    .promote-button-close {
+        position:fixed;
+        top: 20px;
+        right: 20px;
+    }
+
+    .pd10 {
+        padding-right: 10px !important;
+    }
+
+    .pd200 {
+        padding-right: 200px !important;
+    }
+
+    .pd20top {
+        padding-top: 20px !important;
+        display: block !important;
+    }
+
+    .pd200left {
+        padding-left: 200px !important;
+        /* display: block !important; */
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+</style>

@@ -1,0 +1,70 @@
+/* -----------------------------------------------------
+   created with https://www.codeandweb.com/texturepacker 
+   -----------------------------------------------------
+   $TexturePacker:SmartUpdate:321ba44ac62bad1bba1a57150494f731:4a480d6dcf73e9ae12d2036bc8354a88:41e343de003ae5c26b152ad8855fea08$
+   -----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite-ingamemenu {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(in_game_menu_css.png);}
+
+.igm_bg_hor {width:1105px; height:633px; background-position: -675px -1px}
+.igm_bg_ver {width:672px; height:1183px; background-position: -1px -1px}
+.igm_cancel_en {width:238px; height:78px; background-position: -1px -1696px}
+.igm_cancel_id {width:238px; height:78px; background-position: -241px -1696px}
+.igm_cancel_ko {width:238px; height:78px; background-position: -481px -1696px}
+.igm_cancel_ms {width:238px; height:78px; background-position: -645px -1186px}
+.igm_cancel_ph {width:238px; height:78px; background-position: -645px -1266px}
+.igm_cancel_th {width:238px; height:78px; background-position: -645px -1346px}
+.igm_cancel_vi {width:238px; height:78px; background-position: -645px -1426px}
+.igm_cancel_zh-cn {width:238px; height:78px; background-position: -645px -1506px}
+.igm_check_bg {width:642px; height:508px; background-position: -1px -1186px}
+.igm_close {width:72px; height:72px; background-position: -885px -1184px}
+.igm_confirm_en {width:238px; height:78px; background-position: -645px -1586px}
+.igm_confirm_id {width:238px; height:78px; background-position: -721px -1666px}
+.igm_confirm_ko {width:238px; height:78px; background-position: -675px -636px}
+.igm_confirm_ms {width:238px; height:78px; background-position: -675px -716px}
+.igm_confirm_ph {width:238px; height:78px; background-position: -675px -796px}
+.igm_confirm_th {width:238px; height:78px; background-position: -675px -876px}
+.igm_confirm_vi {width:238px; height:78px; background-position: -675px -956px}
+.igm_confirm_zh-cn {width:238px; height:78px; background-position: -675px -1036px}
+.igm_favorite_but_0 {width:65px; height:63px; background-position: -1173px -636px}
+.igm_favorite_but_1 {width:65px; height:63px; background-position: -1103px -636px}
+.igm_favorite_en_0 {width:212px; height:66px; background-position: -675px -1116px}
+.igm_favorite_en_1 {width:230px; height:60px; background-position: -1313px -636px}
+.igm_favorite_id_0 {width:212px; height:66px; background-position: -889px -1116px}
+.igm_favorite_id_1 {width:230px; height:60px; background-position: -1545px -636px}
+.igm_favorite_ko_0 {width:212px; height:66px; background-position: -885px -1258px}
+.igm_favorite_ko_1 {width:230px; height:60px; background-position: -1313px -698px}
+.igm_favorite_ms_0 {width:212px; height:66px; background-position: -959px -1184px}
+.igm_favorite_ms_1 {width:230px; height:60px; background-position: -1545px -698px}
+.igm_favorite_ph_0 {width:212px; height:66px; background-position: -885px -1326px}
+.igm_favorite_ph_1 {width:230px; height:60px; background-position: -915px -701px}
+.igm_favorite_th_0 {width:212px; height:66px; background-position: -885px -1394px}
+.igm_favorite_th_1 {width:230px; height:60px; background-position: -1313px -760px}
+.igm_favorite_vi_0 {width:212px; height:66px; background-position: -885px -1462px}
+.igm_favorite_vi_1 {width:230px; height:60px; background-position: -1545px -760px}
+.igm_favorite_zh-cn_0 {width:212px; height:66px; background-position: -885px -1530px}
+.igm_favorite_zh-cn_1 {width:230px; height:60px; background-position: -915px -763px}
+.igm_hot {width:120px; height:36px; background-position: -961px -1734px}
+.igm_new {width:120px; height:36px; background-position: -1083px -1734px}
+.igm_popular_en_0 {width:212px; height:66px; background-position: -885px -1598px}
+.igm_popular_en_1 {width:230px; height:60px; background-position: -1103px -1097px}
+.igm_popular_id_0 {width:212px; height:66px; background-position: -885px -1598px}
+.igm_popular_id_1 {width:230px; height:60px; background-position: -1103px -1097px}
+.igm_popular_ko_0 {width:212px; height:66px; background-position: -961px -1666px}
+.igm_popular_ko_1 {width:230px; height:60px; background-position: -1173px -1159px}
+.igm_popular_ms_0 {width:212px; height:66px; background-position: -1099px -1252px}
+.igm_popular_ms_1 {width:230px; height:60px; background-position: -1405px -822px}
+.igm_popular_ph_0 {width:212px; height:66px; background-position: -915px -825px}
+.igm_popular_ph_1 {width:230px; height:60px; background-position: -1147px -822px}
+.igm_popular_th_0 {width:212px; height:66px; background-position: -915px -893px}
+.igm_popular_th_1 {width:230px; height:60px; background-position: -1405px -884px}
+.igm_popular_vi_0 {width:212px; height:66px; background-position: -915px -961px}
+.igm_popular_vi_1 {width:230px; height:60px; background-position: -1129px -884px}
+.igm_popular_zh-cn_0 {width:212px; height:66px; background-position: -915px -1029px}
+.igm_popular_zh-cn_1 {width:230px; height:60px; background-position: -1129px -946px}

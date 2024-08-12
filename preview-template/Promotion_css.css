@@ -1,0 +1,69 @@
+/* -----------------------------------------------------
+   created with https://www.codeandweb.com/texturepacker 
+   -----------------------------------------------------
+   $TexturePacker:SmartUpdate:0d0cda2cf96341959d3d896d813a33dd:d9299156b2e47a7c8cbdb3db2d89e66b:f7952fca26d481634c93c51e54786751$
+   -----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprites {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(Promotion_css.png);}
+
+.cashdrop_0 {width:409px; height:216px; background-position: -1px -1px}
+.cashdrop_1 {width:409px; height:216px; background-position: -412px -1px}
+.cashdrop_2 {width:409px; height:216px; background-position: -823px -1px}
+.cashdrop_3 {width:409px; height:216px; background-position: -1234px -1px}
+.cashdrop_4 {width:409px; height:216px; background-position: -1645px -1px}
+.cashdrop_5 {width:409px; height:216px; background-position: -2056px -1px}
+.cashdrop_estimated_0 {width:409px; height:216px; background-position: -2467px -1px}
+.cashdrop_estimated_1 {width:409px; height:216px; background-position: -2878px -1px}
+.cashdrop_estimated_2 {width:409px; height:216px; background-position: -3289px -1px}
+.cashdrop_estimated_3 {width:409px; height:216px; background-position: -1px -219px}
+.cashdrop_estimated_4 {width:409px; height:216px; background-position: -412px -219px}
+.cashdrop_estimated_5 {width:409px; height:216px; background-position: -823px -219px}
+.cashdrop_finished_0 {width:409px; height:216px; background-position: -1234px -219px}
+.cashdrop_finished_1 {width:409px; height:216px; background-position: -1645px -219px}
+.cashdrop_finished_2 {width:409px; height:216px; background-position: -2056px -219px}
+.cashdrop_finished_3 {width:409px; height:216px; background-position: -2467px -219px}
+.cashdrop_finished_4 {width:409px; height:216px; background-position: -2878px -219px}
+.cashdrop_finished_5 {width:409px; height:216px; background-position: -3289px -219px}
+.dot {width:26px; height:26px; background-position: -3700px -43px}
+.jackpot_0 {width:409px; height:216px; background-position: -1px -437px}
+.jackpot_1 {width:409px; height:216px; background-position: -1px -655px}
+.jackpot_estimated_1 {width:409px; height:216px; background-position: -1px -873px}
+.jackpot_finished_1 {width:409px; height:216px; background-position: -1px -1091px}
+.label_finished {width:150px; height:40px; background-position: -3700px -1px}
+.promote_but_close {width:50px; height:50px; background-position: -3852px -1px}
+.tournament_0 {width:409px; height:216px; background-position: -1px -1309px}
+.tournament_1 {width:409px; height:216px; background-position: -1px -1527px}
+.tournament_2 {width:409px; height:216px; background-position: -1px -1745px}
+.tournament_3 {width:409px; height:216px; background-position: -1px -1963px}
+.tournament_4 {width:409px; height:216px; background-position: -1px -2181px}
+.tournament_5 {width:409px; height:216px; background-position: -1px -2399px}
+.tournament_estimated_0 {width:409px; height:216px; background-position: -1px -2617px}
+.tournament_estimated_1 {width:409px; height:216px; background-position: -1px -2835px}
+.tournament_estimated_2 {width:409px; height:216px; background-position: -1px -3053px}
+.tournament_estimated_3 {width:409px; height:216px; background-position: -1px -3271px}
+.tournament_estimated_4 {width:409px; height:216px; background-position: -1px -3489px}
+.tournament_estimated_5 {width:409px; height:216px; background-position: -1px -3707px}
+.tournament_finished_0 {width:409px; height:216px; background-position: -412px -437px}
+.tournament_finished_1 {width:409px; height:216px; background-position: -823px -437px}
+.tournament_finished_2 {width:409px; height:216px; background-position: -1234px -437px}
+.tournament_finished_3 {width:409px; height:216px; background-position: -1645px -437px}
+.tournament_finished_4 {width:409px; height:216px; background-position: -2056px -437px}
+.tournament_finished_5 {width:409px; height:216px; background-position: -2467px -437px}
+
+/*
+promotionalContent
+*/
+.promotionalContentTitle{
+    text-overflow: ellipsis;
+    height: 35px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 70%;
+    margin: 0 auto;
+}

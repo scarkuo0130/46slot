@@ -39,7 +39,8 @@
         "6000": "說明",
         "6001": "",
         "6002": "",
-        "NaN": ""
+        "7000": "說明",
+        "NaN": "Jackpot game"
     },
     "ID": {
         "1000": "1000",
@@ -69,6 +70,7 @@
         "6000": "6000",
         "6001": "6001",
         "6002": "6002",
+        "7000": "7000",
         "NaN": ""
     },
     "zh-cn": {
@@ -99,6 +101,7 @@
         "6000": "Wild可以替代所有符号",
         "6001": "3个分散可以触发10次免费旋转",
         "6002": "Jackpot Game可以获得Jackpot大奖",
+        "7000": "选择金币可以揭晓神兽\r\n3只相同神兽可以赢得Jackpot",
         "NaN": ""
     },
     "en": {
@@ -129,6 +132,7 @@
         "6000": "Wild symbol substitutes for all symbols",
         "6001": "3 Scatters can trigger 10 Free Spins",
         "6002": "Jackpot Game can win Jackpot prizes",
+        "7000": "Choose gold coins to reveal the mythical beast\r\n3 identical mythical beasts can win the Jackpot",
         "NaN": ""
     },
     "id": {
@@ -159,6 +163,7 @@
         "6000": "Simbol liar menggantikan semua simbol",
         "6001": "3 Scatters dapat memicu 10 Putaran Gratis",
         "6002": "Game Jackpot bisa memenangkan hadiah Jackpot",
+        "7000": "Pilih koin emas untuk mengungkap binatang mitos\r\n3 binatang mitos yang identik dapat memenangkan Jackpot",
         "NaN": ""
     },
     "ko": {
@@ -189,6 +194,7 @@
         "6000": "와일드 심볼은 모든 심볼을 대체합니다.",
         "6001": "3개의 스캐터는 10개의 무료 스핀을 트리거할 수 있습니다.",
         "6002": "잭팟 게임에서는 잭팟 상금을 얻을 수 있습니다",
+        "7000": "신화 속 짐승을 드러내려면 금화를 선택하세요\r\n동일한 신화 속의 짐승 3마리가 잭팟을 터뜨릴 수 있습니다.",
         "NaN": ""
     },
     "vi": {
@@ -219,6 +225,7 @@
         "6000": "Biểu tượng hoang dã thay thế cho tất cả các biểu tượng",
         "6001": "3 biểu tượng Scatter có thể kích hoạt 10 Vòng quay miễn phí",
         "6002": "Trò chơi Jackpot có thể giành được giải thưởng Jackpot",
+        "7000": "Chọn tiền vàng để tiết lộ con thú thần thoại\r\n3 con thú thần thoại giống hệt nhau có thể trúng Jackpot",
         "NaN": ""
     },
     "th": {
@@ -249,6 +256,7 @@
         "6000": "สัญลักษณ์ Wild ทดแทนสัญลักษณ์ทั้งหมด",
         "6001": "สแคทเตอร์ 3 อันสามารถเรียกใช้ฟรีสปินได้ 10 ครั้ง",
         "6002": "เกมแจ็คพอตสามารถคว้ารางวัลแจ็คพอตได้",
+        "7000": "เลือกเหรียญทองเพื่อเปิดเผยสัตว์ในตำนาน\r\nสัตว์ในตำนานที่เหมือนกัน 3 ตัวสามารถชนะแจ็คพอตได้",
         "NaN": ""
     },
     "ms": {
@@ -279,6 +287,7 @@
         "6000": "Simbol liar menggantikan semua simbol",
         "6001": "3 Scatters boleh mencetuskan 10 Putaran Percuma",
         "6002": "Permainan Jackpot boleh memenangi hadiah Jackpot",
+        "7000": "Pilih syiling emas untuk mendedahkan binatang mitos\r\n3 haiwan mitos yang sama boleh memenangi Jackpot",
         "NaN": ""
     },
     "ph": {
@@ -309,6 +318,7 @@
         "6000": "Ang ligaw na simbolo ay pamalit sa lahat ng simbolo",
         "6001": "Ang 3 Scatters ay maaaring mag-trigger ng 10 Libreng Spins",
         "6002": "Ang Jackpot Game ay maaaring manalo ng mga premyo ng Jackpot",
+        "7000": "Pumili ng mga gintong barya upang ipakita ang gawa-gawa na hayop\nMaaaring manalo ng Jackpot ang 3 magkatulad na mythical beast",
         "NaN": ""
     }
 }

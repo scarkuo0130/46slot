@@ -283,7 +283,8 @@ export class JpGame4600 extends Component {
         for (let i = 0; i < 12; i++) {
             if ( this.properties['coin'][i].component.jp_type != JP_TYPE.NONE ) continue;
             this.properties['coin'][i].component.click_type(this.get_last_type(), true);
-            // await Utils.delay(300);
+            SoundManager.PlaySoundByID('sfx_jp_coin_open');
+            await Utils.delay(300);
         }
     }
 
@@ -302,6 +303,7 @@ export class JpGame4600 extends Component {
         const isAnswer = times >= 3;
 
         this.play_jp_board_animation(type, times);
+        this.reset_idle_count();
 
         if ( isAnswer === false ) {                         // 還沒有選滿三個
             coin.click_type(type, false, isAnswer);         // 開錢幣效果
@@ -370,7 +372,7 @@ export class JpGame4600 extends Component {
         this.last_label.node.active = false;
         const idle_event = this.idle_event;
         this.idle_count = 0;
-        while(this.idle_count<21) {
+        while(this.idle_count<11) {
             this.idle_count++;
             await Utils.delay(1000);
             console.log('check_idle_count', this.idle_count);
@@ -397,7 +399,7 @@ export class JpGame4600 extends Component {
             const coin = coins[random].component;
             if ( coin.jp_type !== JP_TYPE.NONE ) continue;
 
-            await Utils.delay(1000);
+            await Utils.delay(300);
             await this.click_coin(coin);
         }
     }
@@ -406,7 +408,7 @@ export class JpGame4600 extends Component {
 
     public async display_last_sec() {
         const label = this.last_label;
-        const last = 20 - this.idle_count;
+        const last = 10 - this.idle_count;
 
         if ( last < 0 ) return;
         if ( last > 10 ) return;
