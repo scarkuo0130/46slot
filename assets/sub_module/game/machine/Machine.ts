@@ -179,7 +179,7 @@ export class Machine extends Component {
 
         // 啟用所有按鈕
         this.controller.buttonSpinning(false);
-        this.controller.activeBusyButtons(true);
+        if ( AutoSpin.isActive() === false ) this.controller.activeBusyButtons(true);
 
         this.controller.refreshBalance(); // 更新餘額
         this.fastStopping = false;

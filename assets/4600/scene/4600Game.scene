@@ -515,7 +515,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 362.85356695869837,
+    "_orthoHeight": 640,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -726,6 +726,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 0,
+    "isPriority": true,
     "spine": {
       "__id__": 12
     },
@@ -8636,9 +8637,7 @@
   },
   {
     "__type__": "SymbolInspect",
-    "isDropSymbol": [
-      0
-    ],
+    "isDropSymbol": [],
     "container": {
       "__id__": 364
     },
@@ -12070,6 +12069,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 1,
+    "isPriority": false,
     "spine": {
       "__id__": 479
     },
@@ -12291,6 +12291,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 2,
+    "isPriority": false,
     "spine": {
       "__id__": 493
     },
@@ -12512,6 +12513,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 3,
+    "isPriority": false,
     "spine": {
       "__id__": 507
     },
@@ -12733,6 +12735,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 4,
+    "isPriority": false,
     "spine": {
       "__id__": 521
     },
@@ -12954,6 +12957,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 5,
+    "isPriority": false,
     "spine": {
       "__id__": 535
     },
@@ -13175,6 +13179,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 6,
+    "isPriority": false,
     "spine": {
       "__id__": 549
     },
@@ -13396,6 +13401,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 7,
+    "isPriority": false,
     "spine": {
       "__id__": 563
     },
@@ -13617,6 +13623,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 8,
+    "isPriority": false,
     "spine": {
       "__id__": 577
     },
@@ -13838,6 +13845,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 9,
+    "isPriority": false,
     "spine": {
       "__id__": 591
     },
@@ -14059,6 +14067,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 10,
+    "isPriority": false,
     "spine": {
       "__id__": 605
     },
@@ -14280,6 +14289,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 11,
+    "isPriority": false,
     "spine": {
       "__id__": 619
     },
@@ -14501,6 +14511,7 @@
   {
     "__type__": "Symbol/Inspect",
     "id": 12,
+    "isPriority": true,
     "spine": {
       "__id__": 633
     },
@@ -15272,7 +15283,7 @@
     "_string": "BALANCE",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 25,
+    "_actualFontSize": 21,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -15495,7 +15506,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 27,
+    "_actualFontSize": 21,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -16083,7 +16094,7 @@
     "_string": "TOTAL WIN",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 25,
+    "_actualFontSize": 21,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -16306,7 +16317,7 @@
     "_string": "Rp 999,999,999.00",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 27,
+    "_actualFontSize": 21,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -16900,7 +16911,7 @@
     "_string": "TOTAL BET",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 25,
+    "_actualFontSize": 21,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -17123,7 +17134,7 @@
     "_string": "Rp 999,999",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 27,
+    "_actualFontSize": 21,
     "_fontSize": 22,
     "_fontFamily": "Arial",
     "_lineHeight": 20,
@@ -34057,7 +34068,7 @@
     "_string": "",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 50,
+    "_actualFontSize": 41,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 45,
@@ -58268,7 +58279,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 66.6855297637672,
+      "width": 66.708984375,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -58301,7 +58312,7 @@
     "_string": "Version",
     "_horizontalAlign": 2,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -59505,8 +59516,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -59538,7 +59549,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -60106,8 +60117,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -60139,7 +60150,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -60707,8 +60718,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -60740,7 +60751,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -61308,8 +61319,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -61341,7 +61352,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -61909,8 +61920,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -61942,7 +61953,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -63563,8 +63574,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -63596,7 +63607,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -64164,8 +64175,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -64197,7 +64208,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -64765,8 +64776,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -64798,7 +64809,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -65366,8 +65377,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -65399,7 +65410,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -65967,8 +65978,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -66000,7 +66011,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -66568,8 +66579,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -66601,7 +66612,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -66949,7 +66960,7 @@
     "_string": "All wins pay in any position from left to right on adjacent reels. beginning with the leftmost reel.\nHighest win only on each winning combination.\nwins on different combinations are added.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 38,
+    "_actualFontSize": 31,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -67603,8 +67614,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.03122799984355,
-      "height": 97.79999999999998
+      "width": 50.048828125,
+      "height": 97.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -67636,7 +67647,7 @@
     "_string": "5 999\n4 999\n3 999",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -68396,7 +68407,7 @@
     "_string": "3 scatter symbols appearing anywhere will trigger the Free Spins feature, which is worth 10 free spins. Each additional scatter symbol will trigger an additional 2 free spins.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 38,
+    "_actualFontSize": 31,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -69386,7 +69397,7 @@
     "_string": "1.Wild symbol substitutes for all symbols.\n2.When a WILD appears the player may be awarded an available jackpot.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 38,
+    "_actualFontSize": 31,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -70232,7 +70243,7 @@
     "_string": "1.A.K.Q.J.10 and 9 do not appear during the free games.\n2.3 scatter symbols will retrigger 10 free spins.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 38,
+    "_actualFontSize": 31,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -70864,7 +70875,7 @@
     "_string": "1.When a WILD appears the player may be enter the jackpot \n   game.\n2.12 coins will appear.\n3.Touching a coin will reveal the symbol of an available \n   jackpot.\n4.When 3 matching symbols have been revealed the \n   corresponding jackpot will be awarded and the feature \n   ends.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 31,
+    "_actualFontSize": 25,
     "_fontSize": 30,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -73110,7 +73121,7 @@
     "_string": "《DUO FU DUO CAI》is a slot game with 3x5 reels and 243 ways to win. Collect Scatter to enter the free game. Each time you spin Wild, you may enter the JACKPOT game.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 32,
+    "_actualFontSize": 26,
     "_fontSize": 25,
     "_fontFamily": "Arial",
     "_lineHeight": 30,
@@ -73529,7 +73540,7 @@
     "_string": "During the game, if there is any malfunction or disconnection, the final betting records will base on system's database. Our company reserves the right of final interpretation.",
     "_horizontalAlign": 1,
     "_verticalAlign": 0,
-    "_actualFontSize": 44,
+    "_actualFontSize": 36,
     "_fontSize": 35,
     "_fontFamily": "Arial",
     "_lineHeight": 35,
@@ -80450,7 +80461,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 401.4629370697747,
+      "width": 401.5234375,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -80483,7 +80494,7 @@
     "_string": "AUTO SPIN SETTING",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 49.9375,
+    "_actualFontSize": 40,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -81200,7 +81211,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 201.69555205725905,
+      "width": 201.75390625,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -81233,7 +81244,7 @@
     "_string": "UNTIL FEATURE",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 32.459375,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -81634,7 +81645,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150.20556701736544,
+      "width": 150.2490234375,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -81667,7 +81678,7 @@
     "_string": "QUICK SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 32.459375,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -82068,7 +82079,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 158.86127190237795,
+      "width": 158.9072265625,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -82101,7 +82112,7 @@
     "_string": "TURBO SPIN",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 32.459375,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -82321,7 +82332,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 84.7040123396433,
+      "width": 84.728515625,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -82354,7 +82365,7 @@
     "_string": "START",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 32.459375,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -82925,7 +82936,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 147.3118742177722,
+      "width": 147.3544921875,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -82958,7 +82969,7 @@
     "_string": "SPIN TIMES",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 32.459375,
+    "_actualFontSize": 26,
     "_fontSize": 26,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -83202,7 +83213,7 @@
     "_string": "UNLIMITED",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 24.96875,
+    "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -84593,7 +84604,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 164.44788162938048,
+      "width": 164.47265625,
       "height": 50.4
     }
   },
@@ -84613,7 +84624,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 38.98872614205256,
+      "width": 39,
       "height": 50.4
     }
   },
@@ -84633,7 +84644,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 90.88356294978097,
+      "width": 90.91552734375,
       "height": 50.4
     }
   },

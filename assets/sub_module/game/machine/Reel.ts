@@ -581,12 +581,14 @@ export class Reel extends Component {
         const container  = this.showWinContainer;
         const position   = symbol.worldPosition;
         const showSymbol = ObjectPool.Get(symbol.SymID);
+        const sym       = showSymbol.getComponent(Symbol);
         
         symbol.active            = false;
         showSymbol.parent        = container;
         showSymbol.worldPosition = position;
         showSymbol.active        = true;
 
+        if ( sym.inspect.isPriority ) showSymbol.setSiblingIndex(container.children.length-1);
         this.properties.showDropSymbols[wheelID].push(showSymbol);
         return showSymbol;
     }

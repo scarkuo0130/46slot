@@ -149,7 +149,7 @@ export class Payway4600 extends Payway {
     public async spin(eventTarget:EventTarget=null) {
         this.properties['buyFeatureGame']['light'].node.active = false;
         await super.spin(eventTarget);
-        if (this.machine.featureGame !== true ) this.properties['buyFeatureGame']['light'].node.active = true;
+        if (this.machine.featureGame !== true && AutoSpin.isActive() !== true ) this.properties['buyFeatureGame']['light'].node.active = true;
     }
 
     public get bg_light():sp.Skeleton | null { 
@@ -390,17 +390,6 @@ export class Payway4600 extends Payway {
         await Utils.delay(1000);
         this.dragon_boar();
     }
-
-    public get pre_enter_game_nodes() : Node[] {
-        let nodes : Node[] = [];
-        const children = this.machine.node.children;
-        for (let i = 1; i < children.length; i++) {
-            nodes.push(children[i]);
-        }
-        nodes.shift();
-        return nodes;
-    } 
-
 
     // 門的 Spine Component
     // 自動對應橫豎版

@@ -112,7 +112,14 @@ export class Payway extends Paytable {
             wSymbols.push(syms);
         }
 
-        wSymbols.forEach( w=>w.forEach( symbol=> symbol.getComponent(Symbol).win()));
+        wSymbols.forEach( w=>w.forEach( symbol=> {
+            let sym = symbol.getComponent(Symbol);
+            sym.win();
+            if ( sym.isPriority === true ) {
+                const idx = symbol.parent.children.length - 1;
+                symbol.setSiblingIndex(idx);
+            }
+        }));
         
         if ( isWaiting ) {
             this.displaySingleWinNumber(pay_credit, firstWorldPosition);

@@ -35,6 +35,9 @@ export class Inspect {
     @property({ displayName: "ID", step: 1, tooltip: 'id'})
     public id: number = 0;
 
+    @property({ displayName: '顯示優先權', tooltip: 'isPriority, 當Symbol互相疊加時，優先權較高的設定會壓到其他Symbol' })
+    public isPriority:boolean = false;
+
     @property({ displayName: 'SpineNode', type: Node, tooltip: 'Spine動態的Node' })
     public spine: Node;
 
