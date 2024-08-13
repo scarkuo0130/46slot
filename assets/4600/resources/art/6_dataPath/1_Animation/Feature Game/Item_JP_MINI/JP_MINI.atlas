@@ -139,9 +139,9 @@ KBO_19
   index: -1
 MINI
   rotate: false
-  xy: 2, 17
-  size: 110, 33
-  orig: 110, 33
+  xy: 2, 16
+  size: 117, 34
+  orig: 117, 34
   offset: 0, 0
   index: -1
 MINI_BM

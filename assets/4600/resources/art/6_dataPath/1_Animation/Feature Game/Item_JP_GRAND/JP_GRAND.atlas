@@ -6,9 +6,9 @@ filter: Linear,Linear
 repeat: none
 GRAND
   rotate: false
-  xy: 2, 17
-  size: 151, 33
-  orig: 151, 33
+  xy: 2, 16
+  size: 132, 34
+  orig: 132, 34
   offset: 0, 0
   index: -1
 GRAND_BM
@@ -27,14 +27,14 @@ GRAND_KAO
   index: -1
 KBO_01
   rotate: false
-  xy: 155, 23
+  xy: 366, 53
   size: 41, 43
   orig: 206, 85
   offset: 3, 28
   index: -1
 KBO_02
   rotate: false
-  xy: 310, 46
+  xy: 136, 16
   size: 55, 50
   orig: 206, 85
   offset: 3, 22
@@ -146,7 +146,7 @@ KBO_17
   index: -1
 KBO_18
   rotate: false
-  xy: 367, 46
+  xy: 310, 46
   size: 54, 50
   orig: 206, 85
   offset: 150, 12

@@ -2,6 +2,7 @@ import { _decorator, Component, Label, sp, Sprite, EventTarget, tween, Vec3, Col
 import { Utils, DATA_TYPE, _utilsDecorator } from '../../utils/Utils';
 import { Machine } from './Machine';
 import { gameInformation } from '../GameInformation';
+import { SoundManager } from './SoundManager';
 const { isDevelopFunction } = _utilsDecorator;
 
 const { ccclass, property } = _decorator;
@@ -144,6 +145,12 @@ export class BigWin extends Component {
 
     // public async waitingBigWin() { await Utils.delayEvent(this.event, 'done'); }
 
+    private playSoundID = {
+        [BigWin.BIGWIN_TYPE.BIG_WIN]   : 'sfx_wins_hit_big',
+        [BigWin.BIGWIN_TYPE.SUPER_WIN] : 'sfx_wins_hit_super',
+        [BigWin.BIGWIN_TYPE.MEGA_WIN]  : 'sfx_wins_hit_mega',
+    };
+
     public async play(type:number, quick:boolean=false) {
         if ( type === this.playing ) return;
         // 如果正在播放中，則中斷播放
@@ -152,6 +159,7 @@ export class BigWin extends Component {
         this.playing = type;
         this.playingSprite.node.active = true;
         this.activeParticle(true);
+        SoundManager.PlaySoundByID(this.playSoundID[type]);
 
         let spine = this.spine(type);
         spine.node.active = true;
@@ -272,6 +280,7 @@ export class BigWin extends Component {
         let playValue       = [ 0, totalBet * winLevelRate["BIG_WIN"], totalBet * winLevelRate["SUPER_WIN"], totalBet * winLevelRate["MEGA_WIN"]];
         let event           = this.event;
         let type            = BigWin.BIGWIN_TYPE.BIG_WIN;
+        let lastMusicId     = SoundManager.LastMusicID();
         
         playValue[lastType] = totalWin;
         this.playValue      = playValue;
@@ -280,9 +289,14 @@ export class BigWin extends Component {
         event.removeAll('done');
 
         this.node.active = true;
+
+        await SoundManager.PauseMusic();
         await this.machine.controller.maskActive(true);
+        let bigWinMusic = SoundManager.PlayMusic('bgm_wins_loop');
         Utils.commonFadeIn(this.valueBoard.node, false, null, this.valueBoard, 0.2);
         Utils.GoogleTag('BigWin', {'event_category':'BigWin', 'event_label':'BigWin', 'value':lastType });
+
+        let coinLoop = SoundManager.PlaySoundByID('sfx_wins_payout_loop', true);
         while(true) {
             if ( type === BigWin.BIGWIN_TYPE.BIG_WIN ) await this.play(type);
             else this.play(type);
@@ -298,9 +312,28 @@ export class BigWin extends Component {
             this.break();
             type++;
         }
+        coinLoop?.stop();
+        SoundManager.PlaySoundByID('sfx_wins_payout_loop_end');
         await this.showValue();
         await this.break();
         await this.end(); // 結束
+
+        /*
+        if ( bigWinMusic != null ) {
+            bigWinMusic.loop = false;
+            while(bigWinMusic.playing) { await Utils.delay(100); }
+            SoundManager.PlaySoundByID('bgm_wins_loop_end');
+            await Utils.delay(1000);
+            SoundManager.PlayMusic(lastMusicId);
+        }*/
+        
+        bigWinMusic?.stop();
+        SoundManager.PlaySoundByID('bgm_wins_loop_end');
+        await Utils.delay(1000);
+        SoundManager.PlayMusic(lastMusicId);
+
+        bigWinMusic['']
+        
     }
 
     public async tweenScore(duration:number, from:number, finishValue:number, isFinish:boolean=false, isQuickTween:boolean=false) {
