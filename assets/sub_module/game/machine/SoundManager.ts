@@ -213,6 +213,7 @@ export class SoundManager extends Component {
         }
     }
 
+    public static LastMusicID() : string { return SoundManager.Instance.lastMusicID; }
     private get lastMusicID() : string { return this.properties.lastMusicID; }
     private set lastMusicID(value:string) { this.properties.lastMusicID = value; }
 

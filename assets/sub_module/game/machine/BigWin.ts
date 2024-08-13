@@ -331,9 +331,6 @@ export class BigWin extends Component {
         SoundManager.PlaySoundByID('bgm_wins_loop_end');
         await Utils.delay(1000);
         SoundManager.PlayMusic(lastMusicId);
-
-        bigWinMusic['']
-        
     }
 
     public async tweenScore(duration:number, from:number, finishValue:number, isFinish:boolean=false, isQuickTween:boolean=false) {

@@ -1,6 +1,6 @@
 import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, ParticleSystem, EventTarget, Tween, ParticleSystem2D, AudioSource, view } from 'cc';
 import { Utils, DATA_TYPE }      from '../../sub_module/utils/Utils';
-import { Symbol }                from '../../sub_module/game/machine/Symbol';
+import { Symbol, TYPE_STATE }    from '../../sub_module/game/machine/Symbol';
 import { Payway }                from '../../sub_module/game/machine/pay/Payway';
 import { Viewport, Orientation } from '../../sub_module/utils/Viewport';
 import { ObjectPool }            from '../../sub_module/game/ObjectPool';
@@ -86,6 +86,8 @@ export class Payway4600 extends Payway {
             'freeGame_p':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background/background_portrait/bg01' },
             'mainGame_l':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/Main Background/background_landscape/bg01' },
             'freeGame_l':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background/background_landscape/bg01' },
+            'dragon_l':     { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Items/Dragon' },
+            'dragon_p':     { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Items 2/Dragon' },
         },
 
         'buyFeatureGame': {
@@ -164,6 +166,22 @@ export class Payway4600 extends Payway {
         return null;
     }
 
+    // 龍的咆哮動畫
+    public async dragon_boar() {
+        const orientation = Viewport.Orientation;
+        let dragon: sp.Skeleton = null;
+        if ( orientation === Orientation.PORTRAIT ) {
+            dragon = this.properties['background']['dragon_p'][DATA_TYPE.COMPONENT];
+        } else {
+            dragon = this.properties['background']['dragon_l'][DATA_TYPE.COMPONENT];
+        }
+
+        dragon.node.active = true;
+        SoundManager.PlaySoundByID('sfx_dragon');
+        await Utils.playSpine(dragon, 'play02', false);
+        Utils.playSpine(dragon, 'play', true);
+    }
+
     public async flash_bg_light() {
         if ( this.bg_light == null ) return;
         this.bg_light.node.active = true;
@@ -194,12 +212,21 @@ export class Payway4600 extends Payway {
             await Utils.delay(1000);                            // 等待一秒
             await SoundManager.PauseMusic();                    // 主場暫停音樂
             SoundManager.PlaySoundByID('sfx_fg_alarm');         // 觸發 Free Game 警鈴音效
-            await Utils.delay(4000);
+            // this.dragon_boar();                              // 龍的咆哮動畫
+            await Utils.delay(4000);                            // 等待鈴聲
         }
         
         // * 進入JP遊戲
         console.log('進入free game遊戲');
         await this.start_free_game();                           // 進入 Free Game 流程
+    }
+
+    // 確認得分播放龍的咆哮 
+    protected check_score_play_dragon() {
+        const total_win = this.gameResult.pay_credit_total;
+        const total_bet = this.machine.totalBet;
+
+        if ( total_win >= total_bet ) this.dragon_boar();
     }
 
     /**
@@ -222,6 +249,7 @@ export class Payway4600 extends Payway {
         score_board.color = new Color(255, 255, 255, 0);
         score_board.node.active = true;
         let color = { value: 0 };
+
         tween(score_board.node).to(0.3, { scale: new Vec3(1, 1, 1) }, { easing: 'backInOut' }).start();
         tween(color).to(0.3, { value: 255 }, { easing: 'smooth', onUpdate: (c) => { 
             score_board.color = new Color(255, 255, 255, color.value); 
@@ -233,6 +261,7 @@ export class Payway4600 extends Payway {
                 SoundManager.PlaySoundByID('sfx_payout_loop_end'); 
             }
         });
+        
         score_board.setAnimation(0, 'play', false);
         particle.node.setWorldPosition(score_board.node.worldPosition);
         particle.node.setScale(17, 17, 1);
@@ -242,6 +271,7 @@ export class Payway4600 extends Payway {
         SoundManager.PlaySoundByID('sfx_win_line');
         Utils.delay(200).then(() => { if ( source ) source.loop = false; });
         await super.performAllPayline(); // 播放全部獎項
+        this.check_score_play_dragon();  // 確認得分播放龍的咆哮
         // source.loop = false;
         particle.stop();
         await Utils.commonFadeIn(score_board.node, true, null, score_board);
@@ -321,6 +351,7 @@ export class Payway4600 extends Payway {
     }
 
     public async exit_jp_game() {
+        this.dragon_boar();
         this.reset_pot_ani();
         if (this.isFreeGame) return;
         this.machine.controller.buttonSpinning(false);
@@ -356,6 +387,8 @@ export class Payway4600 extends Payway {
         this.flash_bg_light();
 
         SoundManager.PlaySoundByID('sfx_sc_collect');
+        await Utils.delay(1000);
+        this.dragon_boar();
     }
 
     public get pre_enter_game_nodes() : Node[] {
@@ -571,6 +604,7 @@ export class Payway4600 extends Payway {
         SoundManager.PlaySoundByID('sfx_fg_cutscene');                          // 觸發 Free Game 警鈴音效
 
         if (this.isFreeGame) {                                                  // 如果已經在 Free Game 中，顯示觸發 UI
+            await this.dragon_boar();
             const triggerUI = this.properties['freeGame']['trigger_ui'].component;
             triggerUI.node.active = true;
             Utils.commonFadeIn(triggerUI.node, false, [new Color(255, 255, 255, 0), Color.WHITE], triggerUI);
@@ -732,6 +766,7 @@ export class Payway4600 extends Payway {
         });
         endEvent = null;
         await Utils.delayEvent(endEvent);
+        this.dragon_boar();
     }
 
     /** 計算 NearMiss 位置 
@@ -803,6 +838,22 @@ export class Payway4600 extends Payway {
     public async clickBuyFeatureGameConfirm() : Promise<boolean> { 
         SoundManager.PlaySoundByID('ui_button_bfg_ok');
         return super.clickBuyFeatureGameConfirm(); 
+    }
+
+    /** 設定 wild win 的時間秒數
+     * @from wild symbol
+    */
+    public wild_onstart(symbol:Symbol) {
+        let sec = Utils.getAnimationDuration(symbol.spine, 'play')
+                + Utils.getAnimationDuration(symbol.spine, 'play02');
+        symbol.properties.animationData[TYPE_STATE.WIN].duration = sec;
+    }
+
+    public async wild_play_win(symbol:Symbol) {
+        const spine = symbol.spine;
+        await Utils.playSpine(spine, 'play', false);
+        Utils.playSpine(spine, 'play02', false);
+        console.log('wild_play_win');
     }
 }
 

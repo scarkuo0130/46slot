@@ -346,7 +346,7 @@ export class Paytable extends Component {
      * @param symbol 
      * @returns 
      */
-    public showDropSymbol(wheelID:number, symbol:Symbol) : boolean { return true; }
+    public showDropSymbol(wheelID:number, symbol:Symbol) : boolean { symbol.drop(); return true; }
 
     /**
      * 額外撰寫，計算TotalBet數值

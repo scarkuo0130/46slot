@@ -90,9 +90,9 @@ export class JpGame4600 extends Component {
         this.properties['idle_event'] = new EventTarget();
         this.idle_count = 0;
 
-        input.on(Input.EventType.KEY_DOWN, this.reset_idle_count, this);
-        input.on(Input.EventType.TOUCH_START, this.reset_idle_count, this);
-        input.on(Input.EventType.MOUSE_MOVE, this.reset_idle_count, this);
+        // input.on(Input.EventType.KEY_DOWN, this.reset_idle_count, this);
+        // input.on(Input.EventType.TOUCH_START, this.reset_idle_count, this);
+        // input.on(Input.EventType.MOUSE_MOVE, this.reset_idle_count, this);
     }
 
     private get machine() : Machine { return Machine.Instance; }
@@ -233,7 +233,7 @@ export class JpGame4600 extends Component {
         this.properties['jp']['grand'].component.string = Utils.numberCommaM(totalBet * JP_REWARD[JP_TYPE.GRAND]);
         this.properties['jp']['major'].component.string = Utils.numberCommaM(totalBet * JP_REWARD[JP_TYPE.MAJOR]);
         this.properties['jp']['minor'].component.string = Utils.numberCommaM(totalBet * JP_REWARD[JP_TYPE.MINOR]);
-        this.properties['jp']['mini'].component.string = Utils.numberCommaM(totalBet * JP_REWARD[JP_TYPE.MINI]);
+        this.properties['jp']['mini'].component.string = Utils.numberCommaM(totalBet  * JP_REWARD[JP_TYPE.MINI]);
     }
 
     private reset_coin() {
@@ -303,7 +303,7 @@ export class JpGame4600 extends Component {
         const isAnswer = times >= 3;
 
         this.play_jp_board_animation(type, times);
-        this.reset_idle_count();
+        // this.reset_idle_count();
 
         if ( isAnswer === false ) {                         // 還沒有選滿三個
             coin.click_type(type, false, isAnswer);         // 開錢幣效果
@@ -317,6 +317,7 @@ export class JpGame4600 extends Component {
         // * 選幣結束
         this.idle_event['done'] = true;                     // 停止偵測發呆行為
         this.isDone = true;
+        this.last_label.string = '';
         this.reward_light_jp_board(type);
         this.light_coin();
         
@@ -378,6 +379,7 @@ export class JpGame4600 extends Component {
             console.log('check_idle_count', this.idle_count);
             this.display_last_sec();
 
+            if ( this.isDone )                 return; // 遊戲結束
             if ( idle_event['done'] === true ) return; // 結束偵測
         }
 
@@ -410,11 +412,17 @@ export class JpGame4600 extends Component {
         const label = this.last_label;
         const last = 10 - this.idle_count;
 
-        if ( last < 0 ) return;
-        if ( last > 10 ) return;
+        if ( this.isDone )  return label.string = '';
+        if ( last < 0 )     return label.string = '';
+        if ( last > 10 )    return label.string = '';
         await Utils.commonActiveUITween(label.node, false, true);
+
+        if ( this.isDone )  return label.string = '';
         label.string = last.toString();
+
         await Utils.commonActiveUITween(label.node, true, true);
+        if ( this.isDone )  return label.string = '';
+
         if ( last <= 3 ) await Utils.scaleFade(label, 1, 3);
     }
 

@@ -411,7 +411,9 @@ export class Controller extends Component {
 
     protected clickRecord() {
         Utils.GoogleTag('ClickBetRecord', {'event_category':'BetRecord', 'event_label':'ClickBetRecord'});
-        console.log('clickRecord');
+        const betrecordurl = gameInformation.fullBetrecordurl;
+        console.log('clickRecord', gameInformation.betrecordurl);
+        window.open(betrecordurl, '_blank');
     }
 
     protected initSoundMode() {

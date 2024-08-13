@@ -272,7 +272,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 360,
+    "_orthoHeight": 376.0311284046693,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -364,13 +364,13 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 234.8300018310547,
-      "height": 170.88999938964844
+      "width": 139.12501525878906,
+      "height": 140
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5004897068639989,
-      "y": 0.5006729350118805
+      "x": 0.5013477087470662,
+      "y": 0.5
     },
     "_id": "49mwkgEnhLgaqLmCXvB//I"
   },
@@ -395,11 +395,11 @@
       "a": 255
     },
     "_skeletonData": {
-      "__uuid__": "72bb5e60-1c5c-4e63-8751-8565fdd6ecce",
+      "__uuid__": "a5ed775b-6d50-4e1d-a872-867057a1ed1b",
       "__expectedType__": "sp.SkeletonData"
     },
-    "defaultSkin": "level4",
-    "defaultAnimation": "play05",
+    "defaultSkin": "default",
+    "defaultAnimation": "play",
     "_premultipliedAlpha": true,
     "_timeScale": 1,
     "_preCacheMode": 1,

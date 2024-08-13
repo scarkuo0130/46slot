@@ -586,9 +586,8 @@ export class WheelLibrary extends Component {
 
         this.allSymbols().forEach(symbol => {
             const sym = symbol.getComponent(Symbol);
-            const { id, spineInspect } = sym.inspect;
+            const id = sym.inspect.id;
 
-            if ( spineInspect.dropAnimation == null ) return;
             if ( scatterSymbol.indexOf(id) === -1 ) return;
             if ( this.machine.paytable?.showDropSymbol(this.wheel._ID, sym) === false ) return;
 
