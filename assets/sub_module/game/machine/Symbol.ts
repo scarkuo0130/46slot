@@ -85,6 +85,7 @@ export class Symbol extends Component {
 
     public get symID() { return this.inspect.id; }
     public get spine() : sp.Skeleton | null { return this.properties.data['spine']; }
+    public get isPriority() : boolean { return this.inspect.isPriority === true; }
 
     /// <summary>
     /// 初始化 Node 資料

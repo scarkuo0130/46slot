@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, game, Button, EventTarget, Vec3, tween, Color, Sprite, Label, input, Input, EventKeyboard, KeyCode } from 'cc';
+import { _decorator, Component, Node, sys, Button, EventTarget, Vec3, tween, Color, Sprite, Label, input, Input, EventKeyboard, KeyCode } from 'cc';
 import { Utils, DATA_TYPE }         from '../../../utils/Utils';
 import { Orientation, Viewport }    from '../../../utils/Viewport';
 import { AutoSpin }                 from '../../AutoSpin';
@@ -45,12 +45,14 @@ export class Controller extends Component {
         },
 
         'soundMode_p' : {
+            'content'           : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound', },   
             'all_on'            : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound/Sound',     'next':'music_off' },
             'music_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound/Music Off', 'next':'sound_off' },
             'sound_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Buttons/Sound/Sound Off', 'next':'all_on' },
         },
 
         'soundMode_l' : {
+            'content'           : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound', },
             'all_on'            : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound/Sound',     'next':'music_off' },
             'music_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound/Music Off', 'next':'sound_off' },
             'sound_off'         : { [DATA_TYPE.TYPE] : Node,          [DATA_TYPE.NODE_PATH] : 'Option Landscape/Content/Sound/Sound Off', 'next':'all_on' },
@@ -154,6 +156,26 @@ export class Controller extends Component {
         this.props['BusyDisableButtons'] = busyDisableButtons;
     }
 
+    private iphoneDisableFullScreen() : boolean {
+        console.log(sys.os);
+        if ( sys.isMobile === false ) return false;
+        if ( sys.os !== 'iOS' ) return false;
+
+        const fullScreen = this.props['fullScreen'];
+        fullScreen['fullscreen_p'][DATA_TYPE.NODE].active = false;
+        fullScreen['fullscreen_exit_p'][DATA_TYPE.NODE].active = false;
+        fullScreen['fullscreen_l'][DATA_TYPE.NODE].active = false;
+        fullScreen['fullscreen_exit_l'][DATA_TYPE.NODE].active = false;
+        fullScreen['fullscreen_p'][DATA_TYPE.NODE].parent.active = false;
+        fullScreen['fullscreen_l'][DATA_TYPE.NODE].parent.active = false;
+
+        this.props['soundMode_p']['content'][DATA_TYPE.NODE].setPosition(115, 10, 0);
+        this.props['buttons']['Record'][DATA_TYPE.NODE].setPosition(-90, 10, 0);
+        this.props['buttons']['InGameMenuLandscape'][DATA_TYPE.NODE].setPosition(0, 90, 0);
+
+        return true;
+    }
+
     public addDisableButtons(button:Button) { this.props['BusyDisableButtons'].push(button); }
 
     private initUIValue() {
@@ -248,6 +270,7 @@ export class Controller extends Component {
 
     protected start() {
         this.changeSpeedMode(this.machine.SpeedMode);
+        this.iphoneDisableFullScreen();
     }
 
     public get machine() :Machine { return this.props['machine']; }
@@ -329,6 +352,7 @@ export class Controller extends Component {
     }
 
     protected clickInformation() {
+        if ( this.machine.isBusy === true ) return; 
         Utils.GoogleTag('ClickInformation', {'event_category':'Information', 'event_label':'ClickInformation'});
         GameInformation.OpenUI();
     }
@@ -338,6 +362,9 @@ export class Controller extends Component {
      * @param active 切換按鈕狀態, 預設為反向
      */
     protected clickOption(event, active:boolean=null) {
+        console.log('clickOption', active);
+        if ( this.machine.isBusy === true && active !== false ) return; 
+
         const orientation = Viewport.instance.getCurrentOrientation();
         const optionData  = this.props['OptionData'][orientation];
         const optionButtons = this.props['optionButtons'];
@@ -371,12 +398,13 @@ export class Controller extends Component {
     /**
      * 關閉 Option 按鈕列表 功能
      */
-    protected clickOptionBack() { return this.clickOption(null, false); }
+    public clickOptionBack() { return this.clickOption(null, false); }
 
     /**
      * 點擊切換速度模式
      */
     protected clickSpeedMode() {
+        if ( this.machine.isBusy === true ) return; 
         const speedMode = this.props.speedMode;
         const lastMode = this.machine.SpeedMode;
         const nextMode = speedMode[lastMode]['next'];
@@ -402,14 +430,19 @@ export class Controller extends Component {
 
     public static ChangeSpeedMode(mode:number) { return Controller.Instance.changeSpeedMode(mode); }
 
-    protected clickAutoSpin() { AutoSpin.OpenUI(); }
+    protected clickAutoSpin() { 
+        if ( this.machine.isBusy === true ) return; 
+        AutoSpin.OpenUI(); 
+    }
 
     protected clickInGameMenu() {
+        if ( this.machine.isBusy === true ) return; 
         console.log('clickInGameMenu');
         Utils.GoogleTag('ClickInGameMenu', {'event_category':'InGameMenu', 'event_label':'ClickInGameMenu'});
     }
 
     protected clickRecord() {
+        if ( this.machine.isBusy === true ) return; 
         Utils.GoogleTag('ClickBetRecord', {'event_category':'BetRecord', 'event_label':'ClickBetRecord'});
         const betrecordurl = gameInformation.fullBetrecordurl;
         console.log('clickRecord', gameInformation.betrecordurl);
@@ -442,6 +475,7 @@ export class Controller extends Component {
     }
 
     protected clickSound() {
+        if ( this.machine.isBusy === true ) return; 
         let mode = SoundManager.Mode + 1;
         if ( mode >= PLAY_MODE.length ) mode = 0;
 
@@ -449,6 +483,7 @@ export class Controller extends Component {
     }
 
     protected clickFullscreen() {
+        if ( this.machine.isBusy === true ) return; 
         console.log('clickFullscreen');
         const isFullScreen = this.machine.isFullScreen;
 
@@ -608,7 +643,7 @@ export class Controller extends Component {
             gameInformation.lineBet,
             gameInformation.lineTotal
         ];
-
+        gameInformation.coinValue = coinValue;
         return coinValue * 1000 * lineBet * lineTotal / 1000;
     }
 
@@ -623,10 +658,16 @@ export class Controller extends Component {
     public refreshTotalBet() { this.changeTotalBet(this.betValue); }
 
     /**  減少押注 */
-    protected clickTotalBetDecrease() { this.changeTotalBetIdx(this.betIdx - 1); }
+    protected clickTotalBetDecrease() { 
+        if ( this.machine.isBusy === true ) return; 
+        this.changeTotalBetIdx(this.betIdx - 1); 
+    }
 
     /**  增加押注 */
-    protected clickTotalBetIncrease() { this.changeTotalBetIdx(this.betIdx + 1); }
+    protected clickTotalBetIncrease() { 
+        if ( this.machine.isBusy === true ) return; 
+        this.changeTotalBetIdx(this.betIdx + 1);
+     }
 
     /** 
      * 改變押注 

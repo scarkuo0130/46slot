@@ -40,7 +40,8 @@ export class Machine extends Component {
 
     // 是否忙碌中
     public get isBusy() : boolean { 
-        if ( this.featureGame ) return true;
+        if ( this.featureGame === true ) return true;
+        if ( AutoSpin.isActive() === true ) return true;
         return this.spinning;
     }
     public set state(value:number) { this.properties.spinState = value; }
@@ -171,6 +172,7 @@ export class Machine extends Component {
      */
     public async spin() {
         // 關閉所有按鈕
+        this.controller.clickOptionBack();
         this.controller.activeBusyButtons(false);
         this.controller.buttonSpinning();
 

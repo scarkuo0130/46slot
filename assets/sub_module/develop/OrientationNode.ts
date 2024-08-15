@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3, Size, Vec2, UITransform } from 'cc';
+import { _decorator, Component, Node, Vec3, Size, Vec2, UITransform, EventHandler } from 'cc';
 import {Orientation, Viewport} from '../utils/Viewport';
 import { EDITOR, PREVIEW } from 'cc/env';
 import { OrientationEditorTools } from './OrientationEditorTools';
@@ -37,6 +37,9 @@ export class OrientationItem {
 
     @property({displayName: '取得節點位置', tooltip: 'siblingIndex', visible:function(this:OrientationItem) { return this.enable === true;}})
     public siblingIndex: number;
+
+    @property({displayName: '呼叫事件', tooltip: 'callEvent (orientation:Orientation, item:Node, customData)', visible:function(this:OrientationItem) { return this.enable === true;}})
+    public callEvent : EventHandler = new EventHandler();
 }
 
 
@@ -127,6 +130,8 @@ export class OrientationNode extends Component {
         }
 
         this.changeChildOrientation(orientation);
+        if ( orientationItem.callEvent != null ) orientationItem.callEvent.emit([orientation, this.node, orientationItem.callEvent.customEventData]);
+
         if ( EDITOR ) this.check();
         return orientationItem.siblingIndex;
     }

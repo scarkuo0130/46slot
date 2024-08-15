@@ -588,7 +588,7 @@ export class Reel extends Component {
         showSymbol.worldPosition = position;
         showSymbol.active        = true;
 
-        if ( sym.inspect.isPriority ) showSymbol.setSiblingIndex(container.children.length-1);
+        if ( sym.isPriority ) showSymbol.setSiblingIndex(container.children.length-1);
         this.properties.showDropSymbols[wheelID].push(showSymbol);
         return showSymbol;
     }

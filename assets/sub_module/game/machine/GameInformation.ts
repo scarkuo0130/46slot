@@ -87,14 +87,20 @@ export class GameInformation extends Component {
         }
     }
 
+    public displayNumber(value:number) : string{
+        if ( value >= 1000000 ) return Utils.numberCommaM(value);
+        return Utils.numberComma(value); 
+    }
+
     // 取得 paytable 的 label
     public paytableLabelString(symbol:number) {
         if ( SymbolPayTable[symbol] == null ) return '';
         let totalBet = this.machine.totalBet;
         let paytable = SymbolPayTable[symbol];
-        let str = `3 ${totalBet*paytable[3]}\n`
-                + `4 ${totalBet*paytable[4]}\n`
-                + `5 ${totalBet*paytable[5]}`;
+        let value = [ this.displayNumber(totalBet*paytable[3]),this.displayNumber(totalBet*paytable[4]),this.displayNumber(totalBet*paytable[5]) ];
+        let str = `3 ${value[0]}\n`
+                + `4 ${value[1]}\n`
+                + `5 ${value[2]}`;
 
         return str;
     }

@@ -5,6 +5,7 @@ import { Utils, DATA_TYPE } from '../../utils/Utils';
 import { Reel } from './Reel';
 import { Paytable } from './pay/PayTable';
 import { Controller } from './controller_folder/Controller';
+import { AutoSpin } from '../AutoSpin';
 const { ccclass, property } = _decorator;
 
 /**

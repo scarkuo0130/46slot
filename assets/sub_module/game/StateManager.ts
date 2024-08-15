@@ -197,7 +197,7 @@ export class StateManager {
         } );
 
     async sendSpinCommand () : Promise<any> {
-        let betCredit: number = gameInformation.lineBet * gameInformation.lineTotal * gameInformation.coinValue;
+        let betCredit: number = gameInformation.coinValue * 1000 * gameInformation.lineBet * gameInformation.lineTotal / 1000 ;
         let sendSpinData = {
             "command": HttpConstants.SPIN,
             "token": gameInformation.token,

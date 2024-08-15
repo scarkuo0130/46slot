@@ -113,7 +113,7 @@ export class Payway extends Paytable {
         }
 
         wSymbols.forEach( w=>w.forEach( symbol=> {
-            let sym = symbol.getComponent(Symbol);
+            let sym : Symbol = symbol.getComponent(Symbol);
             sym.win();
             if ( sym.isPriority === true ) {
                 const idx = symbol.parent.children.length - 1;

@@ -141,6 +141,7 @@ export class AutoSpin extends Component {
     }
 
     public clickStart() {
+        console.log('clickStart');
         this.closeUI();
         if ( this.machine.isBusy ) return;
 
@@ -176,7 +177,8 @@ export class AutoSpin extends Component {
      * @returns 
      */
     public async decrementCount() : Promise<boolean> {
-        if ( this.machine.isBusy ) return false;
+        if ( this.machine.featureGame ) return false;
+        if ( this.machine.spinning ) return false;
 
         if ( this.active === false ) {
             this.closeAutoSpinTimes();
