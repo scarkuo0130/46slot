@@ -174,9 +174,7 @@ export class GameInformation {
     public get fullBetrecordurl () {
         // return `${ this._betrecordurl }?token=${ this.token }&lang=en&serverurl=http%3A%2F%2Fgs-lab.game-rock.online`;
         const { _betrecordurl, _token, _serverurl, _lang } = this;
-        return `${ _betrecordurl }#/list?token=${ _token }&lang=${_lang}&serverurl=${_serverurl}`;
-        // * http://gc.prep.lab/betrecord2/#/list?token=testtoken4600&lang=en&serverurl=http%3A%2F%2Fgs.prep.lab
-
+        return `${ _betrecordurl }?token=${ _token }&lang=${_lang}&serverurl=${_serverurl}`;
     }
 
     public get gameid () {

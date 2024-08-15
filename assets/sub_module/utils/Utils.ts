@@ -748,10 +748,9 @@ export class Utils {
         try {
             if ( gtag == undefined || gtag == null ) return;
             if ( data == null ) {
-                data = { 'send_to' : gameInformation.gameid, 'event_category': 'click' };
-            } else {
-                data['send_to'] = gameInformation.gameid;
-            }
+                data = { 'event_category': 'click' };
+            } 
+            console.log('GoogleTag', event, data);
             return gtag('event', event, data ); 
 
         } catch (e) { 

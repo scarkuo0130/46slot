@@ -48,7 +48,7 @@ export class AutoSpin extends Component {
         }
     };
 
-    public static isActive() : boolean { return AutoSpin.Instance.active; }
+    public static isActive() : boolean { return AutoSpin.Instance.active === true; }
     public get active() : boolean { return this.properties.autoSpin.active; }
     private set active(value:boolean) { this.properties.autoSpin.active = value; }
 

@@ -272,7 +272,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 376.0311284046693,
+    "_orthoHeight": 470.5170239596469,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -364,12 +364,12 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 139.12501525878906,
-      "height": 140
+      "width": 106.26000213623047,
+      "height": 115
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5013477087470662,
+      "x": 0.5,
       "y": 0.5
     },
     "_id": "49mwkgEnhLgaqLmCXvB//I"
@@ -395,7 +395,7 @@
       "a": 255
     },
     "_skeletonData": {
-      "__uuid__": "a5ed775b-6d50-4e1d-a872-867057a1ed1b",
+      "__uuid__": "40fce1a8-d57a-423d-8675-dc1a52f98919",
       "__expectedType__": "sp.SkeletonData"
     },
     "defaultSkin": "default",
