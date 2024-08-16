@@ -1,41 +1,62 @@
 
 Background_Phoenix.png
-size: 1024,512
+size: 626,626
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Phoenix_01
-  rotate: true
-  xy: 2, 40
-  size: 437, 425
-  orig: 451, 452
-  offset: 6, 25
+Icon_Common_24
+  rotate: false
+  xy: 353, 431
+  size: 205, 193
+  orig: 205, 205
+  offset: 0, 3
   index: -1
 Phoenix_02
   rotate: true
-  xy: 902, 2
-  size: 168, 102
-  orig: 177, 116
-  offset: 2, 7
+  xy: 479, 146
+  size: 135, 81
+  orig: 142, 93
+  offset: 1, 6
   index: -1
 Phoenix_03
-  rotate: true
-  xy: 429, 72
-  size: 405, 344
-  orig: 407, 348
-  offset: 2, 0
+  rotate: false
+  xy: 2, 7
+  size: 325, 275
+  orig: 326, 278
+  offset: 1, 0
   index: -1
 Phoenix_04
-  rotate: true
-  xy: 775, 11
-  size: 159, 125
-  orig: 166, 132
-  offset: 7, 5
+  rotate: false
+  xy: 329, 36
+  size: 128, 100
+  orig: 133, 106
+  offset: 5, 4
   index: -1
 Phoenix_05
+  rotate: true
+  xy: 353, 283
+  size: 146, 244
+  orig: 151, 254
+  offset: 2, 0
+  index: -1
+Phoenix_06
   rotate: false
-  xy: 775, 172
-  size: 182, 305
-  orig: 189, 317
-  offset: 3, 0
+  xy: 2, 284
+  size: 349, 340
+  orig: 361, 362
+  offset: 5, 20
+  index: -1
+Phoenix_07
+  rotate: false
+  xy: 329, 2
+  size: 51, 32
+  orig: 361, 362
+  offset: 12, 147
+  index: -1
+fangshe02
+  rotate: false
+  xy: 329, 138
+  size: 148, 143
+  orig: 160, 160
+  offset: 7, 10
   index: -1

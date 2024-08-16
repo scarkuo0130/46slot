@@ -1,27 +1,27 @@
 
 low_symbol_4.png
-size: 512,128
+size: 266,266
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 J_01
   rotate: true
-  xy: 262, 8
-  size: 85, 109
-  orig: 87, 111
-  offset: 1, 1
+  xy: 2, 203
+  size: 61, 78
+  orig: 61, 78
+  offset: 0, 0
   index: -1
 J_02
   rotate: true
-  xy: 143, 2
-  size: 91, 117
-  orig: 93, 119
-  offset: 1, 1
+  xy: 82, 201
+  size: 63, 83
+  orig: 65, 83
+  offset: 1, 0
   index: -1
 圖層 2
   rotate: true
-  xy: 2, 4
-  size: 89, 139
-  orig: 91, 140
+  xy: 167, 201
+  size: 63, 97
+  orig: 64, 98
   offset: 1, 0
   index: -1

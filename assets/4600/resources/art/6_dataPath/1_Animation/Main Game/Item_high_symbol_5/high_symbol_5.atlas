@@ -6,42 +6,42 @@ filter: Linear,Linear
 repeat: none
 BM_01
   rotate: true
-  xy: 330, 571
-  size: 309, 290
+  xy: 330, 556
+  size: 309, 275
   orig: 309, 306
-  offset: 0, 8
+  offset: 0, 17
   index: -1
 Icon_Common_24
   rotate: false
-  xy: 622, 379
+  xy: 607, 364
   size: 256, 240
   orig: 256, 256
   offset: 0, 4
   index: -1
 Lig
   rotate: false
-  xy: 2, 418
+  xy: 2, 403
   size: 54, 52
   orig: 64, 57
   offset: 5, 5
   index: -1
 blur
   rotate: false
-  xy: 2, 563
+  xy: 2, 548
   size: 326, 317
   orig: 328, 325
   offset: 0, 8
   index: -1
 fangshe02
   rotate: false
-  xy: 2, 472
+  xy: 2, 457
   size: 92, 89
   orig: 100, 100
   offset: 5, 6
   index: -1
 golda_01
   rotate: false
-  xy: 622, 621
+  xy: 607, 606
   size: 258, 259
   orig: 258, 259
   offset: 0, 0

@@ -1,83 +1,83 @@
 
 high_symbol_3.png
-size: 1629,1629
+size: 1040,1040
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BM_01
   rotate: false
-  xy: 2, 531
-  size: 563, 535
-  orig: 565, 537
-  offset: 1, 1
+  xy: 286, 769
+  size: 283, 269
+  orig: 283, 269
+  offset: 0, 0
   index: -1
 BM_02
   rotate: false
-  xy: 2, 2
-  size: 555, 527
-  orig: 557, 529
-  offset: 1, 1
+  xy: 571, 773
+  size: 279, 265
+  orig: 279, 265
+  offset: 0, 0
   index: -1
 BM_03
-  rotate: true
-  xy: 565, 1068
-  size: 545, 519
-  orig: 547, 521
-  offset: 1, 1
+  rotate: false
+  xy: 571, 510
+  size: 274, 261
+  orig: 274, 261
+  offset: 0, 0
   index: -1
 Icon_Common_24
   rotate: false
-  xy: 559, 21
-  size: 512, 508
-  orig: 512, 512
-  offset: 0, 2
+  xy: 286, 516
+  size: 256, 251
+  orig: 256, 256
+  offset: 0, 4
   index: -1
 Lig
   rotate: false
-  xy: 1073, 463
-  size: 110, 105
-  orig: 128, 114
-  offset: 9, 9
+  xy: 941, 522
+  size: 56, 53
+  orig: 64, 57
+  offset: 4, 4
   index: -1
 bird_01
-  rotate: false
-  xy: 802, 601
-  size: 280, 342
-  orig: 280, 346
+  rotate: true
+  xy: 852, 898
+  size: 140, 171
+  orig: 140, 173
   offset: 0, 0
   index: -1
 bird_02
-  rotate: 180
-  xy: 993, 556
-  size: 236, 364
-  orig: 349, 365
-  offset: 8, 0
+  rotate: true
+  xy: 852, 778
+  size: 118, 182
+  orig: 175, 183
+  offset: 4, 0
   index: -1
 bird_03
-  rotate: false
-  xy: 750, 855
-  size: 119, 194
-  orig: 121, 196
-  offset: 2, 0
+  rotate: true
+  xy: 941, 577
+  size: 60, 97
+  orig: 61, 98
+  offset: 1, 0
   index: -1
 bird_04
   rotate: false
-  xy: 567, 532
-  size: 295, 273
-  orig: 307, 283
-  offset: 9, 5
+  xy: 852, 639
+  size: 148, 137
+  orig: 154, 142
+  offset: 4, 2
   index: -1
 blur
   rotate: false
-  xy: 2, 1068
-  size: 561, 559
-  orig: 563, 560
-  offset: 1, 0
+  xy: 2, 759
+  size: 282, 279
+  orig: 282, 280
+  offset: 0, 0
   index: -1
 fangshe02
   rotate: false
-  xy: 567, 887
-  size: 185, 179
-  orig: 200, 200
-  offset: 9, 12
+  xy: 847, 548
+  size: 92, 89
+  orig: 100, 100
+  offset: 5, 6
   index: -1

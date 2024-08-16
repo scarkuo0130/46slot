@@ -1,188 +1,181 @@
 
 Item_FG_Window.png
-size: 2048,512
+size: 640,640
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BM
   rotate: false
-  xy: 2, 19
-  size: 435, 186
-  orig: 436, 188
+  xy: 2, 415
+  size: 521, 223
+  orig: 523, 225
   offset: 0, 2
-  index: -1
-FS01
-  rotate: false
-  xy: 674, 238
-  size: 208, 27
-  orig: 217, 38
-  offset: 3, 6
   index: -1
 FS02
   rotate: false
-  xy: 674, 238
-  size: 208, 27
-  orig: 217, 38
+  xy: 2, 21
+  size: 250, 34
+  orig: 260, 46
   offset: 3, 6
   index: -1
 FT01
   rotate: false
-  xy: 302, 210
-  size: 370, 55
-  orig: 370, 55
+  xy: 2, 57
+  size: 443, 65
+  orig: 443, 65
   offset: 0, 0
   index: -1
 FT02
   rotate: false
-  xy: 302, 267
-  size: 376, 61
-  orig: 378, 61
+  xy: 2, 124
+  size: 452, 72
+  orig: 454, 73
   offset: 1, 0
   index: -1
 KAO
   rotate: false
-  xy: 302, 330
-  size: 430, 179
-  orig: 432, 181
+  xy: 2, 198
+  size: 516, 215
+  orig: 518, 217
   offset: 1, 1
   index: -1
 fg
-  rotate: true
-  xy: 2, 207
-  size: 302, 298
-  orig: 302, 301
-  offset: 0, 2
+  rotate: false
+  xy: 456, 17
+  size: 181, 179
+  orig: 181, 181
+  offset: 0, 1
   index: -1
 gg_00
   rotate: true
-  xy: 1050, 9
-  size: 81, 96
-  orig: 600, 300
-  offset: 88, 129
+  xy: 575, 459
+  size: 25, 30
+  orig: 180, 90
+  offset: 26, 38
   index: -1
 gg_01
   rotate: true
-  xy: 1574, 106
-  size: 113, 96
-  orig: 600, 300
-  offset: 88, 129
+  xy: 565, 312
+  size: 34, 30
+  orig: 180, 90
+  offset: 26, 38
   index: -1
 gg_02
-  rotate: true
-  xy: 1436, 53
-  size: 138, 136
-  orig: 600, 300
-  offset: 88, 89
+  rotate: false
+  xy: 576, 416
+  size: 41, 41
+  orig: 180, 90
+  offset: 26, 27
   index: -1
 gg_03
-  rotate: true
-  xy: 1292, 28
-  size: 163, 142
-  orig: 600, 300
-  offset: 88, 83
+  rotate: false
+  xy: 525, 411
+  size: 49, 43
+  orig: 180, 90
+  offset: 26, 25
   index: -1
 gg_04
   rotate: true
-  xy: 734, 324
-  size: 185, 142
-  orig: 600, 300
-  offset: 88, 83
+  xy: 520, 290
+  size: 56, 43
+  orig: 180, 90
+  offset: 26, 25
   index: -1
 gg_05
   rotate: false
-  xy: 1271, 193
-  size: 210, 153
-  orig: 600, 300
-  offset: 89, 83
+  xy: 254, 9
+  size: 62, 46
+  orig: 180, 90
+  offset: 27, 25
   index: -1
 gg_06
   rotate: true
-  xy: 786, 25
-  size: 211, 160
-  orig: 600, 300
-  offset: 105, 83
+  xy: 525, 456
+  size: 63, 48
+  orig: 180, 90
+  offset: 32, 25
   index: -1
 gg_07
-  rotate: true
-  xy: 948, 92
-  size: 210, 160
-  orig: 600, 300
-  offset: 135, 83
+  rotate: false
+  xy: 576, 528
+  size: 62, 48
+  orig: 180, 90
+  offset: 41, 25
   index: -1
 gg_08
-  rotate: true
-  xy: 884, 304
-  size: 205, 164
-  orig: 600, 300
-  offset: 166, 79
+  rotate: false
+  xy: 382, 6
+  size: 61, 49
+  orig: 180, 90
+  offset: 50, 24
   index: -1
 gg_09
-  rotate: true
-  xy: 439, 8
-  size: 200, 174
-  orig: 600, 300
-  offset: 197, 68
+  rotate: false
+  xy: 525, 586
+  size: 60, 52
+  orig: 180, 90
+  offset: 59, 21
   index: -1
 gg_10
   rotate: true
-  xy: 615, 7
-  size: 201, 169
-  orig: 600, 300
-  offset: 227, 65
+  xy: 587, 578
+  size: 60, 51
+  orig: 180, 90
+  offset: 68, 19
   index: -1
 gg_11
-  rotate: false
-  xy: 1260, 348
-  size: 202, 161
-  orig: 600, 300
-  offset: 257, 65
+  rotate: true
+  xy: 520, 348
+  size: 61, 49
+  orig: 180, 90
+  offset: 77, 19
   index: -1
 gg_12
-  rotate: false
-  xy: 1050, 348
-  size: 208, 161
-  orig: 600, 300
-  offset: 281, 65
+  rotate: true
+  xy: 525, 521
+  size: 63, 49
+  orig: 180, 90
+  offset: 84, 19
   index: -1
 gg_13
-  rotate: true
-  xy: 1110, 139
-  size: 207, 159
-  orig: 600, 300
-  offset: 308, 67
+  rotate: false
+  xy: 318, 7
+  size: 62, 48
+  orig: 180, 90
+  offset: 93, 20
   index: -1
 gg_14
-  rotate: false
-  xy: 1464, 364
-  size: 171, 145
-  orig: 600, 300
-  offset: 346, 81
+  rotate: true
+  xy: 520, 238
+  size: 50, 43
+  orig: 180, 90
+  offset: 105, 25
   index: -1
 gg_15
   rotate: true
-  xy: 1148, 2
-  size: 135, 142
-  orig: 600, 300
-  offset: 382, 83
+  xy: 576, 486
+  size: 40, 43
+  orig: 180, 90
+  offset: 115, 25
   index: -1
 gg_16
-  rotate: false
-  xy: 1483, 221
-  size: 111, 141
-  orig: 600, 300
-  offset: 406, 83
+  rotate: true
+  xy: 520, 204
+  size: 32, 42
+  orig: 180, 90
+  offset: 123, 25
   index: -1
 gg_17
-  rotate: true
-  xy: 1574, 5
-  size: 99, 107
-  orig: 600, 300
-  offset: 418, 83
+  rotate: false
+  xy: 565, 278
+  size: 29, 32
+  orig: 180, 90
+  offset: 126, 25
   index: -1
 gg_18
-  rotate: true
-  xy: 948, 11
-  size: 79, 100
-  orig: 600, 300
-  offset: 438, 83
+  rotate: false
+  xy: 565, 246
+  size: 23, 30
+  orig: 180, 90
+  offset: 132, 25
   index: -1

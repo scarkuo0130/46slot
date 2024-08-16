@@ -1,82 +1,82 @@
 
 Background_Dragon.png
-size: 676,676
+size: 562,562
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Dragon_01
-  rotate: true
-  xy: 510, 140
+  rotate: false
+  xy: 276, 177
   size: 95, 45
   orig: 114, 67
   offset: 11, 11
   index: -1
 Dragon_02
   rotate: true
-  xy: 414, 382
+  xy: 2, 11
   size: 161, 216
   orig: 175, 227
   offset: 10, 5
   index: -1
 Dragon_03
-  rotate: true
-  xy: 564, 223
+  rotate: false
+  xy: 276, 336
   size: 55, 104
   orig: 69, 117
   offset: 7, 6
   index: -1
 Dragon_04
-  rotate: false
-  xy: 557, 128
+  rotate: true
+  xy: 365, 59
   size: 116, 93
   orig: 123, 98
   offset: 3, 2
   index: -1
 Dragon_05
-  rotate: true
-  xy: 564, 280
+  rotate: false
+  xy: 460, 112
   size: 100, 110
   orig: 105, 118
   offset: 2, 7
   index: -1
 Dragon_06
-  rotate: true
-  xy: 2, 15
+  rotate: false
+  xy: 2, 174
   size: 272, 386
   orig: 284, 400
   offset: 5, 1
   index: -1
 Dragon_07
-  rotate: false
-  xy: 390, 162
+  rotate: true
+  xy: 276, 442
   size: 118, 73
   orig: 122, 85
   offset: 1, 7
   index: -1
 Dragon_08
   rotate: false
-  xy: 390, 62
+  xy: 460, 12
   size: 100, 98
   orig: 108, 107
   offset: 3, 6
   index: -1
 Dragon_09
   rotate: false
-  xy: 414, 545
+  xy: 333, 224
   size: 225, 129
   orig: 230, 164
   offset: 0, 0
   index: -1
 Icon_Common_24
-  rotate: false
-  xy: 2, 289
-  size: 410, 385
-  orig: 410, 410
-  offset: 0, 6
+  rotate: true
+  xy: 365, 355
+  size: 205, 193
+  orig: 205, 205
+  offset: 0, 3
   index: -1
 fangshe02
-  rotate: false
-  xy: 414, 237
+  rotate: true
+  xy: 220, 24
   size: 148, 143
   orig: 160, 160
   offset: 7, 10

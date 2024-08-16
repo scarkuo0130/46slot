@@ -1,27 +1,27 @@
 
 low_symbol_6.png
-size: 512,128
+size: 240,240
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 9_01
   rotate: true
-  xy: 254, 8
-  size: 88, 104
-  orig: 90, 106
-  offset: 1, 1
+  xy: 2, 180
+  size: 58, 69
+  orig: 58, 69
+  offset: 0, 0
   index: -1
 9_02
   rotate: true
-  xy: 140, 2
-  size: 94, 112
-  orig: 96, 114
-  offset: 1, 1
+  xy: 73, 177
+  size: 61, 74
+  orig: 62, 74
+  offset: 0, 0
   index: -1
 圖層 2
   rotate: true
-  xy: 2, 4
-  size: 92, 136
-  orig: 95, 141
-  offset: 2, 1
+  xy: 149, 177
+  size: 61, 89
+  orig: 62, 92
+  offset: 1, 1
   index: -1

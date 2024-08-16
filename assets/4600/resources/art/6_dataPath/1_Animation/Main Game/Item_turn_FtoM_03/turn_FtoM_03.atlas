@@ -1,20 +1,20 @@
 
 turn_FtoM_03.png
-size: 1024,1024
+size: 376,376
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 GU03
-  rotate: true
-  xy: 590, 131
-  size: 449, 401
-  orig: 468, 428
-  offset: 18, 14
+  rotate: false
+  xy: 2, 173
+  size: 225, 201
+  orig: 234, 214
+  offset: 9, 7
   index: -1
 GU04
-  rotate: false
-  xy: 2, 2
-  size: 586, 578
-  orig: 587, 580
-  offset: 0, 1
+  rotate: true
+  xy: 229, 227
+  size: 147, 145
+  orig: 147, 145
+  offset: 0, 0
   index: -1

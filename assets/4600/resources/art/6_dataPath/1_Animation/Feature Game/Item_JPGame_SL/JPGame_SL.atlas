@@ -1,76 +1,76 @@
 
 JPGame_SL.png
-size: 2048,1024
+size: 1162,1162
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BM
-  rotate: true
-  xy: 2, 98
-  size: 897, 505
-  orig: 897, 505
+  rotate: false
+  xy: 2, 582
+  size: 1026, 578
+  orig: 1026, 578
   offset: 0, 0
   index: -1
 BM02A
   rotate: false
-  xy: 509, 490
-  size: 385, 505
-  orig: 386, 505
+  xy: 2, 2
+  size: 440, 578
+  orig: 441, 578
   offset: 0, 0
   index: -1
 BM02B
-  rotate: true
-  xy: 509, 238
-  size: 250, 505
-  orig: 251, 505
+  rotate: false
+  xy: 444, 2
+  size: 285, 578
+  orig: 286, 578
   offset: 1, 0
   index: -1
 BM03
-  rotate: false
-  xy: 2, 2
-  size: 657, 94
-  orig: 657, 95
+  rotate: true
+  xy: 1030, 410
+  size: 750, 108
+  orig: 750, 109
   offset: 0, 1
   index: -1
 BM04A
-  rotate: true
-  xy: 661, 22
-  size: 214, 505
-  orig: 214, 505
+  rotate: false
+  xy: 731, 2
+  size: 244, 578
+  orig: 244, 578
   offset: 0, 0
   index: -1
 DOA1
   rotate: false
-  xy: 896, 492
-  size: 143, 149
-  orig: 143, 149
+  xy: 977, 238
+  size: 163, 170
+  orig: 163, 170
   offset: 0, 0
   index: -1
 DOA2
   rotate: false
-  xy: 509, 102
-  size: 49, 56
-  orig: 72, 57
-  offset: 16, 1
+  xy: 1080, 171
+  size: 56, 65
+  orig: 82, 66
+  offset: 18, 1
   index: -1
 DOA3
-  rotate: true
-  xy: 560, 125
-  size: 33, 77
-  orig: 34, 77
+  rotate: false
+  xy: 977, 492
+  size: 36, 88
+  orig: 38, 88
   offset: 1, 0
   index: -1
 Lig
-  rotate: true
-  xy: 509, 160
-  size: 76, 73
-  orig: 90, 80
-  offset: 7, 7
+  rotate: false
+  xy: 977, 48
+  size: 86, 83
+  orig: 102, 91
+  offset: 8, 8
   index: -1
 SF
-  rotate: true
-  xy: 896, 643
-  size: 352, 351
-  orig: 384, 386
-  offset: 17, 18
+  rotate: false
+  xy: 977, 133
+  size: 101, 103
+  orig: 110, 110
+  offset: 5, 2
   index: -1

@@ -1,27 +1,27 @@
 
 turn_MtoF_02.png
-size: 1024,512
+size: 745,745
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 GU01
   rotate: false
-  xy: 516, 2
-  size: 125, 125
-  orig: 130, 130
-  offset: 2, 2
+  xy: 597, 597
+  size: 146, 146
+  orig: 151, 151
+  offset: 2, 1
   index: -1
 GU02
   rotate: true
-  xy: 516, 129
-  size: 162, 17
-  orig: 164, 20
+  xy: 597, 405
+  size: 190, 19
+  orig: 192, 23
   offset: 1, 0
   index: -1
 turn_MtoF_02
   rotate: false
-  xy: 2, 30
-  size: 512, 261
-  orig: 520, 262
-  offset: 4, 1
+  xy: 2, 440
+  size: 593, 303
+  orig: 606, 305
+  offset: 6, 2
   index: -1

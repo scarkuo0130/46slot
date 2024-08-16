@@ -41,21 +41,21 @@ Firework_00
   index: -1
 Firework_01
   rotate: false
-  xy: 606, 311
+  xy: 757, 769
   size: 36, 37
   orig: 93, 89
   offset: 28, 30
   index: -1
 Firework_02
   rotate: false
-  xy: 739, 238
+  xy: 667, 242
   size: 52, 52
   orig: 93, 89
   offset: 20, 22
   index: -1
 Firework_03
-  rotate: false
-  xy: 669, 55
+  rotate: true
+  xy: 653, 6
   size: 63, 62
   orig: 93, 89
   offset: 14, 17
@@ -68,29 +68,29 @@ Firework_04
   offset: 11, 14
   index: -1
 Firework_05
-  rotate: true
-  xy: 669, 119
+  rotate: false
+  xy: 683, 354
   size: 72, 70
   orig: 93, 89
   offset: 9, 12
   index: -1
 Firework_06
   rotate: true
-  xy: 686, 426
+  xy: 685, 426
   size: 74, 73
   orig: 93, 89
   offset: 8, 10
   index: -1
 Firework_07
   rotate: false
-  xy: 684, 350
+  xy: 606, 350
   size: 75, 74
   orig: 93, 89
   offset: 8, 9
   index: -1
 Firework_08
   rotate: false
-  xy: 606, 350
+  xy: 607, 426
   size: 76, 74
   orig: 93, 89
   offset: 7, 9
@@ -249,41 +249,6 @@ Firework_30
   orig: 93, 89
   offset: 7, 5
   index: -1
-Firework_31
-  rotate: true
-  xy: 607, 426
-  size: 74, 77
-  orig: 93, 89
-  offset: 8, 5
-  index: -1
-Firework_32
-  rotate: false
-  xy: 669, 193
-  size: 68, 76
-  orig: 93, 89
-  offset: 8, 5
-  index: -1
-Firework_33
-  rotate: false
-  xy: 667, 271
-  size: 68, 77
-  orig: 93, 89
-  offset: 8, 5
-  index: -1
-Firework_34
-  rotate: false
-  xy: 757, 730
-  size: 49, 76
-  orig: 93, 89
-  offset: 22, 5
-  index: -1
-Firework_35
-  rotate: false
-  xy: 757, 687
-  size: 36, 41
-  orig: 93, 89
-  offset: 30, 15
-  index: -1
 Scatter
   rotate: false
   xy: 2, 529
@@ -293,7 +258,7 @@ Scatter
   index: -1
 Wave_01
   rotate: false
-  xy: 737, 292
+  xy: 683, 296
   size: 56, 56
   orig: 64, 64
   offset: 4, 4

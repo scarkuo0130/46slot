@@ -1,69 +1,69 @@
 
 high_symbol_4.png
-size: 1680,1680
+size: 687,687
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 BM_01
-  rotate: false
-  xy: 2, 532
-  size: 618, 555
-  orig: 618, 612
-  offset: 0, 29
+  rotate: true
+  xy: 315, 376
+  size: 309, 278
+  orig: 309, 306
+  offset: 0, 14
   index: -1
 BM_02
-  rotate: false
-  xy: 2, 2
-  size: 534, 528
-  orig: 656, 560
-  offset: 61, 0
+  rotate: true
+  xy: 2, 120
+  size: 268, 264
+  orig: 328, 280
+  offset: 30, 0
   index: -1
 Icon_Common_24
-  rotate: true
-  xy: 538, 2
-  size: 512, 505
-  orig: 512, 512
-  offset: 0, 5
+  rotate: false
+  xy: 268, 134
+  size: 256, 240
+  orig: 256, 256
+  offset: 0, 4
   index: -1
 Ingots_01
-  rotate: 270
-  xy: 827, 963
-  size: 334, 189
-  orig: 344, 210
-  offset: 3, 10
+  rotate: false
+  xy: 504, 6
+  size: 168, 95
+  orig: 172, 105
+  offset: 1, 5
   index: -1
 Ingots_02
-  rotate: true
-  xy: 625, 1213
-  size: 466, 259
-  orig: 471, 275
-  offset: 5, 9
+  rotate: false
+  xy: 268, 2
+  size: 234, 130
+  orig: 236, 138
+  offset: 2, 4
   index: -1
 Ingots_03
   rotate: true
-  xy: 622, 566
-  size: 541, 290
-  orig: 544, 301
-  offset: 3, 0
+  xy: 526, 103
+  size: 271, 145
+  orig: 272, 151
+  offset: 1, 0
   index: -1
 Lig
   rotate: false
-  xy: 681, 1107
-  size: 110, 105
-  orig: 128, 114
-  offset: 9, 9
+  xy: 96, 66
+  size: 54, 52
+  orig: 64, 57
+  offset: 5, 5
   index: -1
 fangshe02
-  rotate: true
-  xy: 884, 1493
-  size: 185, 179
-  orig: 200, 200
-  offset: 9, 12
+  rotate: false
+  xy: 2, 29
+  size: 92, 89
+  orig: 100, 100
+  offset: 5, 6
   index: -1
 high_symbol_4
   rotate: false
-  xy: 2, 1089
-  size: 621, 589
-  orig: 656, 650
-  offset: 21, 30
+  xy: 2, 390
+  size: 311, 295
+  orig: 328, 325
+  offset: 10, 15
   index: -1
