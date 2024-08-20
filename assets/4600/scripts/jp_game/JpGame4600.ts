@@ -249,7 +249,11 @@ export class JpGame4600 extends Component {
         }
     }
 
+    public isDevelopRandom : boolean = false;
+
     private get_random_type() : JP_TYPE {
+        if ( Utils.isDevelopment() === true && this.isDevelopRandom === true ) return this.jp_type;
+
         let type;
         let count = 0;
         while(true) {

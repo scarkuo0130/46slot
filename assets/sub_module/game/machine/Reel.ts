@@ -1,4 +1,4 @@
-import { _decorator, CCFloat, CCInteger, Component, EventHandler, EventTarget, Node } from 'cc';
+import { _decorator, CCFloat, CCInteger, Component, EventHandler, EventTarget, Node, game } from 'cc';
 import { Utils, _utilsDecorator } from '../../utils/Utils';
 import { Wheel } from './Wheel';
 import { Symbol } from './Symbol';
@@ -173,6 +173,7 @@ export class Reel extends Component {
             [SPIN_MODE.QUICK]  : 0, // 持續滾動時間
             [SPIN_MODE.TURBO]  : 0, // 持續滾動時間
         },
+        gameOnHideEvent : null,     // 遊戲退出背景事件
     };
 
     protected onLoad() {
@@ -181,6 +182,26 @@ export class Reel extends Component {
         this.properties.showWinContainer = this.symbolInspect.container;
         this.initNearMissData();
         Machine.SetReel(this);
+
+        this.properties.gameOnHideEvent = new EventTarget();
+        game.on("game_on_hide", this.gameOnHide, this);
+        game.on("game_on_show", this.gameOnShow, this);
+    }
+
+    public get gameOnHideEvent() { return this.properties.gameOnHideEvent; }
+    public async waitGameOnHide() {
+        while(this.gameOnHideEvent['hide']) {
+            await Utils.delay(100);
+        }
+    }
+
+    public gameOnHide() { 
+        this.gameOnHideEvent['hide'] = true;
+        console.log('game_on_hide'); 
+    }
+    public gameOnShow() { 
+        this.gameOnHideEvent['hide'] = false;
+        this.gameOnHideEvent.emit('done');
     }
 
     protected initNearMissData() {
@@ -393,17 +414,26 @@ export class Reel extends Component {
      * @description 滾輪開始滾動
      */
     public async spin() {
+        console.log('Reel Spin');
         this.Rest();
 
+        console.log('Reel Spin step 1');
         this.changeState(REEL_STATE.SPINNING); // 開始滾輪
         this.startRolling();      // 啟動滾輪
 
+        console.log('Reel Spin step 2');
         await this.rolling();     // 滾輪持續滾動
 
+        console.log('Reel Spin step 3');
         this.changeState(REEL_STATE.STOPPING); // 停止滾輪
+
+        console.log('Reel Spin step 4');
         await this.stopRolling(); // 通知停止滾輪
+
+        console.log('Reel Spin step 5');
         await this.paytable.stopRolling(); // 通知停止滾輪
 
+        console.log('Reel Spin step 6');
         this.changeState(REEL_STATE.IDLE);  // 恢復正常狀態
         await Utils.delayEvent(this.properties.handler.stoping, 'done'); // 等待滾輪靜止
         
@@ -430,19 +460,21 @@ export class Reel extends Component {
             let wheel = wheels[data.wheelID];
             wheel.Spin();
         }
+
+        await this.waitGameOnHide();
     }
 
     /**
      * @description 滾輪持續滾動
      */
     protected async rolling() {
-        
         await Utils.delay(200); // 最低滾動時間
         let stopTime = this.properties.rolling[this.spinMode];
         let stepTime = stopTime/5;
         let time = 0.2;
 
         while(true) {
+            await this.waitGameOnHide();
             await Utils.delay(stepTime);
             if ( this.result === null ) continue;   // 等待盤面結果
             if ( time >= stopTime )     break;      // 滾輪停止時間
@@ -452,6 +484,7 @@ export class Reel extends Component {
         }
 
         await Utils.delay(100);
+        await this.waitGameOnHide();
     }
 
     /**
@@ -472,6 +505,7 @@ export class Reel extends Component {
             let data = rollingData[i];
             let id = data.wheelID;
             let wheel = wheels[id];
+            await this.waitGameOnHide(); // 等待遊戲退出背景
 
             if ( nearMiss < i && this.paytable.nearMissWheel(i) ) { // NearMiss 流程
                 if ( firstNearMiss === false ) {
@@ -483,10 +517,30 @@ export class Reel extends Component {
                 if ( !this.isFastStoping && time > 0 ) {
                     await Utils.delay(time);
                 }
-                // console.log('stopRolling',(Date.now()-dt) , id, time);
                 wheel.stopRolling(result[id]); // 一般停輪
                 dt = Date.now();
             }
+        }
+    }
+
+    /**
+     * 切換分頁後，回到遊戲時，停輪處理
+     */
+    private gameBackStopRolling() {
+        if ( this.state !== REEL_STATE.STOPPING ) return;
+        let mode = this.spinMode;
+        let rollingData = this.properties.stopRolling[mode];
+        let wheels = this.getWheels();
+        let result = this.result;
+        let nearMiss = this.nearMiss; 
+        let firstNearMiss = false;
+
+        for(let i=0;i<rollingData.length;i++) {
+            let data = rollingData[i];
+            let id = data.wheelID;
+            let wheel = wheels[id];
+
+            wheel.stopRolling(result[id]); // 一般停輪
         }
     }
 

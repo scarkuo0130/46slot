@@ -100,9 +100,9 @@ export class BigWin extends Component {
         this.properties[BigWin.BIGWIN_TYPE.BIG_WIN].particles   = this.properties[BigWin.BIGWIN_TYPE.BIG_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
         this.properties[BigWin.BIGWIN_TYPE.SUPER_WIN].particles = this.properties[BigWin.BIGWIN_TYPE.SUPER_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
         this.properties[BigWin.BIGWIN_TYPE.MEGA_WIN].particles  = this.properties[BigWin.BIGWIN_TYPE.MEGA_WIN]['particle'].node.getComponentsInChildren(ParticleSystem);
-        this.spine(BigWin.BIGWIN_TYPE.BIG_WIN).node.on('click', ()=>{ this.quickEnd(); });
+        this.spine(BigWin.BIGWIN_TYPE.BIG_WIN).node.on('click',   ()=>{ this.quickEnd(); });
         this.spine(BigWin.BIGWIN_TYPE.SUPER_WIN).node.on('click', ()=>{ this.quickEnd(); });
-        this.spine(BigWin.BIGWIN_TYPE.MEGA_WIN).node.on('click', ()=>{ this.quickEnd(); });
+        this.spine(BigWin.BIGWIN_TYPE.MEGA_WIN).node.on('click',  ()=>{ this.quickEnd(); });
         Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.BIG_WIN).node);
         Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.SUPER_WIN).node);
         Utils.AddHandHoverEvent(this.spine(BigWin.BIGWIN_TYPE.MEGA_WIN).node);
@@ -260,8 +260,8 @@ export class BigWin extends Component {
 
         let several = totalWin / totalBet;
         if ( several < winLevelRate['BIG_WIN'] )  return BigWin.BIGWIN_TYPE.NONE;
-        if ( several > winLevelRate['MEGA_WIN'])  return BigWin.BIGWIN_TYPE.MEGA_WIN;
-        if ( several > winLevelRate['SUPER_WIN']) return BigWin.BIGWIN_TYPE.SUPER_WIN;
+        if ( several >= winLevelRate['MEGA_WIN'])  return BigWin.BIGWIN_TYPE.MEGA_WIN;
+        if ( several >= winLevelRate['SUPER_WIN']) return BigWin.BIGWIN_TYPE.SUPER_WIN;
 
         return BigWin.BIGWIN_TYPE.BIG_WIN;
     }
@@ -297,6 +297,7 @@ export class BigWin extends Component {
         Utils.GoogleTag('BigWin', {'event_category':'BigWin', 'event_label':'BigWin', 'value':lastType });
 
         let coinLoop = SoundManager.PlaySoundByID('sfx_wins_payout_loop', true);
+        console.log('bigwin playValue', playValue);
         while(true) {
             if ( type === BigWin.BIGWIN_TYPE.BIG_WIN ) await this.play(type);
             else this.play(type);
@@ -307,7 +308,6 @@ export class BigWin extends Component {
                 break;
             }
 
-            
             if ( (type === lastType) ) break;
             this.break();
             type++;

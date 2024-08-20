@@ -129,6 +129,7 @@ export class Machine extends Component {
 
     @isDevelopFunction(true)
     private developTest() {
+        // if ( Utils.isDevelopment() === false ) return;
         cc.machine = this;
         cc.DataManager = DataManager.instance;
         cc.slotData = slotData;
@@ -184,7 +185,7 @@ export class Machine extends Component {
         console.log('spin end', AutoSpin.isActive());
         if ( AutoSpin.isActive() !== true ) this.controller.activeBusyButtons(true);
 
-        this.controller.refreshBalance(); // 更新餘額
+        if (this.featureGame !== true ) this.controller.refreshBalance(); // 更新餘額
         this.fastStopping = false;
         return; // 回到 Controller clickSpin function
         
@@ -220,7 +221,9 @@ export class Machine extends Component {
         if ( event?.['spinning'] ) return false;
         if ( buyEvent?.['spinning'] ) return false;
 
-        let totalBet = this.controller.calculateTotalBet(idx);
+        let multiplier = gameInformation.buyInformation.multiplier;
+        let baseTotalBet = this.controller.calculateTotalBet(idx);
+        let totalBet = baseTotalBet * multiplier;
         let userCredit = this.userCredit;
         
         if ( userCredit < totalBet ) {
@@ -238,7 +241,7 @@ export class Machine extends Component {
         userCredit -= totalBet;
         this.controller.changeBalance(userCredit);
         this.spin();
-        await this.spinCommand(totalBet);
+        await this.spinCommand(baseTotalBet);
         buyEvent.emit('done');
         event['buy'] = {
             'totalBet' : totalBet,
@@ -248,6 +251,7 @@ export class Machine extends Component {
         return true;
     }
 
+    public isDevelop() : boolean { return Utils.isDevelopment(); }
 
     // 向 Server 發送SPIN指令
     public async spinCommand (buyTotalBet:number=0): Promise<any> { 

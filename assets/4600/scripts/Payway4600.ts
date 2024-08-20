@@ -131,8 +131,8 @@ export class Payway4600 extends Payway {
         this.properties['freeGame']['start_ui'].node.active     = false;
         this.properties['freeGame']['end_ui'].node.active       = false;
         this.JP_LEVEL = 0;
-        console.warn('onstart', this);
         this.properties['preload']['onload'].emit('done');
+        this.reel.putReelSymbol([[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],]);
     }
 
     /**
@@ -185,7 +185,7 @@ export class Payway4600 extends Payway {
     public async flash_bg_light() {
         if ( this.bg_light == null ) return;
         this.bg_light.node.active = true;
-        await Utils.playSpine(this.bg_light, 'play', false);
+        await Utils.playSpine(this.bg_light, 'play', false, 1, true);
         await Utils.delay(1000);
         this.bg_light.node.active = false;
     }
@@ -207,6 +207,7 @@ export class Payway4600 extends Payway {
         }
         
         if ( this.machine.featureGame === false) {
+            this.machine.featureGame = true;
             await this.performAllPayline();                     // 因為 Scatter 有分數，所以要播放一次得分
             this.reelMaskActive(false);                         // 關閉遮罩
             await Utils.delay(1000);                            // 等待一秒
@@ -240,6 +241,7 @@ export class Payway4600 extends Payway {
         if (lines.length === 0) return;
         if (pay_credit_total === 0) return;
 
+        await this.reel.waitGameOnHide();   // 等待遊戲退背景事件
         const score_board = this.scoreBoard;
         const particle: ParticleSystem = this.properties['perform']['coin'].component;
 
@@ -255,6 +257,7 @@ export class Payway4600 extends Payway {
             score_board.color = new Color(255, 255, 255, color.value); 
         } }).start();
 
+        await this.reel.waitGameOnHide();   // 等待遊戲退背景事件
         await Utils.delay(300);
         const source : AudioSource = SoundManager.PlaySoundByID('sfx_payout_loop', true, {
             onComplete:(source)=> { // 播放結束音效
@@ -270,12 +273,14 @@ export class Payway4600 extends Payway {
 
         SoundManager.PlaySoundByID('sfx_win_line');
         Utils.delay(200).then(() => { if ( source ) source.loop = false; });
-        await super.performAllPayline(); // 播放全部獎項
-        this.check_score_play_dragon();  // 確認得分播放龍的咆哮
+        await this.reel.waitGameOnHide();   // 等待遊戲退背景事件
+        await super.performAllPayline();    // 播放全部獎項
+        this.check_score_play_dragon();     // 確認得分播放龍的咆哮
         // source.loop = false;
-        particle.stop();
+        particle?.stop();
         await Utils.commonFadeIn(score_board.node, true, null, score_board);
-        
+        await this.reel.waitGameOnHide();   // 等待遊戲退背景事件
+        this.totalWinLabel.string = '';     // 關閉總得分
     }
 
     protected async performSingleLine(lineData: any, isWaiting: boolean = false): Promise<number> {
@@ -483,6 +488,7 @@ export class Payway4600 extends Payway {
         Utils.playSpine(spine, 'play05', false);
         const particles = spine.node.getComponentsInChildren(ParticleSystem);
         for (let i = 0; i < particles.length; i++) {
+            if ( particles[i] == null ) continue;
             particles[i].node.active = false;
             particles[i].stop();
         }
@@ -520,6 +526,8 @@ export class Payway4600 extends Payway {
     // 播放背景粒子
     private playBGParticle() {
         const particle: ParticleSystem2D = this.properties['preload']['particle'].component;
+        if ( particle == null ) return;
+
         if (particle.isFull()) return particle.resetSystem();
         particle.stopSystem();
         Utils.delay(1000).then(() => { particle.resetSystem(); });
@@ -553,9 +561,11 @@ export class Payway4600 extends Payway {
         this.machine.featureGame = true;
         this.isFreeGame = true;
         const sub_game = this.machine.spinData['sub_game'];
-
+        this.controller.activeFreeGameButton(true);
         let freeGameTimes = this.gameResult.free_spin_times;
         await AutoSpin.AutoSpinTimes(freeGameTimes);                            // 打開 Spin 次數
+        await Utils.delay(1000);                                                // 等待一秒
+        await AutoSpin.AutoSpinTimes(freeGameTimes-1);
 
         const self = this;
         // 開始 Free Game
@@ -567,7 +577,8 @@ export class Payway4600 extends Payway {
                 }
                 await Utils.delay(500);
                 freeGameTimes--;
-                await AutoSpin.AutoSpinTimes(freeGameTimes);                    // 更新 Spin 次數
+                const times = freeGameTimes-1;
+                if ( times >= 0) await AutoSpin.AutoSpinTimes(times);           // 更新 Spin 次數
                 self.playBGParticle();                                          // 播放背景粒子
             }
         );
@@ -681,7 +692,7 @@ export class Payway4600 extends Payway {
      */
     public async end_free_game_ui(subGameData: any) {
         const endUI = this.properties['freeGame']['end_ui'].node;
-        const [times, total_win] = [subGameData['result'].length, subGameData['pay_credit_total']];
+        const [times, total_win] = [subGameData['result'].length, this.machine.spinData['payout_credit']];
         const [timesLabel, totalWinLabel] = [
             this.properties['freeGame']['endTimes'].component,
             this.properties['freeGame']['endTotalWin'].component,
@@ -706,23 +717,34 @@ export class Payway4600 extends Payway {
         const rollingScoreSound = SoundManager.PlaySoundByID('sfx_totalwin_payout', true);
         
         endUI.on(Node.EventType.TOUCH_END, async () => {                              // 打開快速滾分，按鈕事件
+            let finish = ()=>{ 
+                clickEvent.emit('done');  
+                clickEvent['done'] = true;
+            }
             // 如果 tween 還沒結束，就直接結束
+            if ( waiting == null )      return finish();                               // 沒有在滾分, 直接結束
             let tween = waiting.tween;
-            if (tween == null)          return clickEvent.emit('done');               // 沒有在滾分, 直接結束
-            if (tween.isDone === true)  return clickEvent.emit('done');               // 已經結束, 直接結束
+            if (tween == null)          return finish();                               // 沒有在滾分, 直接結束
+            if (tween.isDone === true)  return finish();                               // 已經結束, 直接結束
             let lastTime = Date.now() - waiting['time'];                              // 滾分剩餘時間
-            if (lastTime < 500)         return;                                       // 剩下不到 0.5 秒，不理他，等自然結束
+            if (lastTime < 200)         return;                                       // 剩下不到 0.2 秒，不理他，等自然結束
             
-            tween.stop();                                                             // 停止目前滾到一半的分數
-            const nowValue = clickEvent['value'];
-            await Utils.commonTweenNumber(totalWinLabel, nowValue, total_win, 0.5);   // 剩餘分數，0.5秒內滾完
-            clickEvent.emit('done');                                                  // 滾分結束
-        });
 
-        await Utils.delayEvent(clickEvent);                                           // 等待滾完
+            tween?.stop();                                                            // 停止目前滾到一半的分數
+            // const nowValue = clickEvent['value'];
+            // Utils.commonTweenNumber(totalWinLabel, nowValue, total_win, 0.5);         // 剩餘分數，0.5秒內滾完
+            totalWinLabel.string = Utils.numberComma(total_win);                      // 直接顯示總得分
+            await Utils.delay(500);                                                   // 等待 0.5 秒
+            finish();                                                                  // 滾分結束
+        });
+        while (clickEvent!==null) {                                                   // 等待滾分結束
+            if (clickEvent['done'] === true) break;
+            await Utils.delay(100);
+        }
+                                        
         endUI.off(Node.EventType.TOUCH_END);                                          // 移除滾分點擊
         //rollingScoreSound.loop = false;                                             // 停止總得分音效
-        rollingScoreSound.stop();
+        rollingScoreSound?.stop();
         SoundManager.PlaySoundByID('sfx_totalwin_payout_end');                        // 播放總得分結束音效
 
         await Utils.delay(500);
@@ -736,7 +758,7 @@ export class Payway4600 extends Payway {
             await Utils.delayEvent(clickEvent);                                       // 等待玩家 click
             endUI.off(Node.EventType.TOUCH_END);
         } else {
-            await Utils.delay(2000);                                                  // 等待三秒
+            await Utils.delay(2000);                                                  // 等待2秒
         }
         SoundManager.PauseMusic();                                                    // 暫停音樂
         Utils.commonFadeIn(endUI, true, [new Color(255, 255, 255, 0), Color.WHITE], endUI, 0.3); // 關閉介面
@@ -843,6 +865,11 @@ export class Payway4600 extends Payway {
         await Utils.playSpine(spine, 'play', false);
         Utils.playSpine(spine, 'play02', false);
         console.log('wild_play_win');
+    }
+
+    public rollingRandomSymbols() :  number[] {
+        if ( this.machine.featureGame !== true ) return null;
+        return [1,2,3,4,5];
     }
 }
 

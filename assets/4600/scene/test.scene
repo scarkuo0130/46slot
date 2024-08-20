@@ -272,7 +272,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 385.0567595459236,
+    "_orthoHeight": 391.255060728745,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -364,7 +364,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 106.26000213623047,
+      "width": 106.260009765625,
       "height": 115
     },
     "_anchorPoint": {
@@ -395,11 +395,11 @@
       "a": 255
     },
     "_skeletonData": {
-      "__uuid__": "40fce1a8-d57a-423d-8675-dc1a52f98919",
+      "__uuid__": "9afe1f38-5822-4b36-ac45-ea1f408b1acb",
       "__expectedType__": "sp.SkeletonData"
     },
     "defaultSkin": "default",
-    "defaultAnimation": "play",
+    "defaultAnimation": "play04",
     "_premultipliedAlpha": true,
     "_timeScale": 1,
     "_preCacheMode": 1,

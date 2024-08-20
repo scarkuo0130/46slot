@@ -259,7 +259,10 @@ export class Paytable extends Component {
         maskEvent['running'] = false;
     }
 
+    loopTime = 0;
+
     public breakPerformSingleLineLoop() {
+        this.loopTime = Date.now();
         this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
         this.reelMaskActive(false);         // 關閉遮罩
         if ( this.machine.featureGame === false) this.controller.setTotalWin(0);
@@ -387,5 +390,7 @@ export class Paytable extends Component {
     // 是否可以購買 FeatureGame
     public checkBuyFeatureGame() : boolean { return true; }
     // #endregion
+
+    public rollingRandomSymbols() { return null; }
 
 }

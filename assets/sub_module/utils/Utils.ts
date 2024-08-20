@@ -13,13 +13,15 @@ export namespace _utilsDecorator {
      * @param value 
      * @returns 
      */
-    export function isDevelopFunction ( value: boolean = true ) {
-        return function ( target: any, propertyKey: string, descriptor: PropertyDescriptor ) {
-            if ( EDITOR === true ) return;
-            if ( Utils.isDevelopment() === true ) return;
-            if ( value === false ) return;
-            target[ propertyKey ] = () => { };
-            console.log = () => { };
+    export function isDevelopFunction(value: boolean = true) {
+        return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+            if (typeof EDITOR !== 'undefined' && EDITOR === true) return;
+            if (Utils.isDevelopment() === false) {
+                target[propertyKey] = () => { };
+                console.log = () => { };
+                return;
+            }
+            if (value === false) return;
         };
     }
 }
@@ -426,7 +428,8 @@ export class Utils {
     public static removeDelay ( name: string ) { this.waittingData[ name ] = null; }
 
     public static isDevelopment (): boolean {
-        if ( Utils.getSite() === 'Develop' ) return true;
+        const getSite = Utils.getSite();
+        if ( getSite === 'Develop' ) return true;
         if ( PREVIEW === true ) return true;
 
         return false;
@@ -684,7 +687,11 @@ export class Utils {
                 label.string = numberStringFunc(data.value); 
                 if ( eventTarget ) eventTarget['value'] = data.value;
             },
-            onComplete: () => { eventTarget?.emit('done'); }
+            onComplete: () => { 
+                if ( eventTarget == null ) return;
+                eventTarget.emit('done'); 
+                eventTarget['done'] = true;
+            }
          }).start();
          t['isDone'] = get => { return data.value === to; };
 

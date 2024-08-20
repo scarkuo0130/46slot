@@ -17,13 +17,13 @@ export class Develop4600 extends Component {
     @isDevelopFunction(true)
     onLoad() {
         Develop4600.Instance = this;
-        cc.develop = this;
     }
 
     public get machine() { return cc.machine; }
 
     @isDevelopFunction(true)
     async start() {
+        if ( Utils.isDevelopment() === false ) return;
         await Utils.delay(1000);
         if ( this.machine == null ) return;
         this.developOverrideFunction();
@@ -44,6 +44,7 @@ export class Develop4600 extends Component {
     /**
      * 攔截 paytable buyFeatureGameUI 的 clickBuyFeatureGame
      */
+    @isDevelopFunction(true)
     private DevelopClickBuyFeatureGame() {
         this.simulateFeatureGame = true;
         return this.machine.controller.clickSpin();
@@ -82,6 +83,7 @@ export class Develop4600 extends Component {
         this.isOverrideSpinResponse = false;
     }
 
+    @isDevelopFunction(true)
     public simulateFeatureGameSpinResponse() {
         let mainGameList = this.loadStorage('mainGame');
         if ( mainGameList.length < 10 ) return alert('請先 Spin 10 次以上');
@@ -98,6 +100,7 @@ export class Develop4600 extends Component {
         return { 'pay_credit_total' : pay_credit_total, 'result' : result };
     }
 
+    @isDevelopFunction(true)
     private make_subGameResponse(spinData) {
         spinData['sub_game'] = this.simulateFeatureGameSpinResponse();
         spinData['get_sub_game'] = true;
@@ -108,6 +111,7 @@ export class Develop4600 extends Component {
         spinData['main_game']['result_reels'][4][1] = 12;
     }
 
+    @isDevelopFunction(true)
     private saveMainGame(spinData:any) {
         let mainGame = spinData['main_game'];
         
@@ -121,19 +125,23 @@ export class Develop4600 extends Component {
         return mainGameList;
     }
 
+    @isDevelopFunction(true)
     private saveStorage(key:string, value:any) {
         sys.localStorage.setItem(key, JSON.stringify(value));
     }
 
+    @isDevelopFunction(true)
     private loadStorage(key:string) {
         let value = sys.localStorage.getItem(key);
         return JSON.parse(value);
     }
 
+    @isDevelopFunction(true)
     private removeStorage(key:string) {
         sys.localStorage.removeItem(key);
     }
 
+    @isDevelopFunction(true)
     private getStorageKeys() {
         let keys = [];
         for(let i = 0; i < sys.localStorage.length; i++) {
@@ -160,6 +168,7 @@ export class Develop4600 extends Component {
         return haveWild;
     }
 
+    @isDevelopFunction(true)
     private nowDateTime() : string {
         const date = new Date();
         const mm = date.getMonth() + 1; // getMonth() is zero-based
@@ -171,6 +180,7 @@ export class Develop4600 extends Component {
         return [date.getFullYear(), (mm>9 ? '' : '0') + mm, (dd>9 ? '' : '0') + dd].join('') + (hh>9 ? '' : '0') + hh + (min>9 ? '' : '0') + min + (ss>9 ? '' : '0') + ss;
     }
 
+    @isDevelopFunction(true)
     public JP() {
         Machine.Instance.spinTest({
             "game_id": 4600,
@@ -275,6 +285,7 @@ export class Develop4600 extends Component {
         });
     }
 
+    @isDevelopFunction(true)
     public JPtoFG() {
         Machine.Instance.spinTest({
             "game_id": 4600,
@@ -1169,7 +1180,7 @@ export class Develop4600 extends Component {
         });
     }
 
-    
+    @isDevelopFunction(true)
     public FGtoJP() {
         Machine.Instance.spinTest({
             "game_id": 4600,
@@ -2064,6 +2075,7 @@ export class Develop4600 extends Component {
         });
     }
 
+    @isDevelopFunction(true)
     public FGtoFG() {
         Machine.Instance.spinTest({
                 "game_id": 4600,
@@ -3720,6 +3732,7 @@ export class Develop4600 extends Component {
         );
     }
 
+    @isDevelopFunction(true)
     public spinTest1() {
         Machine.Instance.spinTest({
             "game_id": 4600,
@@ -3834,6 +3847,7 @@ export class Develop4600 extends Component {
         });
     }
 
+    @isDevelopFunction(true)
     public spinTest2() {
         Machine.Instance.spinTest({
             "game_id": 4600,
@@ -3950,6 +3964,7 @@ export class Develop4600 extends Component {
         });
     }
 
+    @isDevelopFunction(true)
     public FG_end() {
         let spinData = {
             "game_id": 4600,

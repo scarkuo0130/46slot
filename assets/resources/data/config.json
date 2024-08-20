@@ -1,10 +1,12 @@
 {
     "Sites": {
         "Develop": [
-            "gc-lab.game-rock.online",
+            "gc.prep.lab",
+            "www.playhard.name",
+            "www.ifun7.vip",
             "localhost"
         ],
         "QA": []
     },
-    "Version": "4600.beta0815"
+    "Version": "4600.beta0819"
 }

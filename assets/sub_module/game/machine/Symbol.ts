@@ -147,6 +147,7 @@ export class Symbol extends Component {
         let { animation, callEvent, soundID  } = animationData;
 
         if ( spine == null ) return;
+        spine.clearTracks();
         if ( animation != null && animation.length > 0 ) Utils.playSpine(spine, animation);
         if ( callEvent != null ) callEvent.emit([this]);
         if ( soundID != null && soundID.length > 0 ) SoundManager.PlaySoundByID(soundID);

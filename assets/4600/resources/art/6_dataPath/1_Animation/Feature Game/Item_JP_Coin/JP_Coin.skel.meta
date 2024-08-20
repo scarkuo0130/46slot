@@ -2,8 +2,9 @@
   "ver": "1.2.6",
   "importer": "spine-data",
   "imported": true,
-  "uuid": "40fce1a8-d57a-423d-8675-dc1a52f98919",
+  "uuid": "9afe1f38-5822-4b36-ac45-ea1f408b1acb",
   "files": [
+    ".bin",
     ".json"
   ],
   "subMetas": {},

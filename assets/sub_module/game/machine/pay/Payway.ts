@@ -55,6 +55,7 @@ export class Payway extends Paytable {
             const waitSec = max_wait_sec * 1000;
             await Utils.delay(waitSec); 
         }
+        await this.reel.waitGameOnHide();
 
         this.reel.moveBackToWheel();            // 將所有 Symbol 移回輪中
         totalWinLabel.string = '';              // 關閉總得分
@@ -98,6 +99,8 @@ export class Payway extends Paytable {
     public async performSingleLine(lineData: any, isWaiting: boolean=false) : Promise<number> {
         // console.log(lineData);
         if ( lineData == null || !lineData.symbol_id || !lineData.pay_credit ) return 0;
+        this.totalWinLabel.string = ''
+
         const { symbol_id, way, pay_credit } = lineData;
 
         let reel = this.reel;
@@ -139,10 +142,13 @@ export class Payway extends Paytable {
         if ( this.gameResult.noLoop === true )     return this.normalState();
         if ( pay_credit_total === 0 )              return this.normalState();
         if ( lines == null || lines.length === 0 ) return this.normalState();
+        this.loopTime = Date.now();
+        const loopTime = this.loopTime;
 
         await this.reelMaskActive(true);      // 打開遮罩
         let idx = 0;
         while(true) {
+            if ( loopTime !== this.loopTime ) return;
             await this.performSingleLine(lines[idx], true);
             if ( this.machine.state !== Machine.SPIN_STATE.IDLE ) return;
             this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中

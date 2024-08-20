@@ -602,7 +602,9 @@ export class WheelLibrary extends Component {
      * @returns [string] symbol ID
      */
     protected getRandomSymbolID() {
-        const { rollingSymbols: ranSymbols } = this.baseInspect;
+        let ranSymbols : number[] = this.machine.paytable.rollingRandomSymbols();
+        if (ranSymbols == null) ranSymbols = this.baseInspect.rollingSymbols;
+        
         return ranSymbols.length ? ranSymbols[Math.floor(Math.random() * ranSymbols.length)] : null;
     }
 

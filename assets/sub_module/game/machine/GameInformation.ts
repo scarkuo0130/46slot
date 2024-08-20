@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Label, PageView, ScrollView, Node, Button } from 'cc';
+import { _decorator, Component, instantiate, Label, PageView, ScrollView, Node, Button, UITransform } from 'cc';
 import { Machine } from './Machine';
 import { DATA_TYPE, Utils } from '../../utils/Utils';
 const { ccclass, property } = _decorator;
@@ -45,6 +45,7 @@ export class GameInformation extends Component {
         Utils.initData(this.onload, this);
         // console.log(this);
         this.copyPageToScrollView();
+        this.infinityPageView();
     }
 
     private copyPageToScrollView() {
@@ -53,9 +54,40 @@ export class GameInformation extends Component {
 
         pageContent.children.forEach((node)=>{
             let newNode : Node = instantiate(node);
+            let uiTransform = newNode.getComponent(UITransform);
+            let size = uiTransform.contentSize;
+            uiTransform.setContentSize(size.width*0.8, size.height*0.8);
             newNode.setScale(0.75,0.75,1);
             scrollContent.addChild(newNode);
         });
+    }
+
+    private infinityPageView() {
+        const pageContent = this.properties['ui']['pageContent'].node;
+        const children = pageContent.children;
+        // 複製第一頁到最後一頁
+        const firstPage = children[0];
+        const lastPage = children[children.length-1];
+        const newPage = instantiate(firstPage);
+        const newlastPage = instantiate(lastPage);
+        pageContent.addChild(newPage);
+        pageContent.addChild(newlastPage);
+        newlastPage.setSiblingIndex(0);
+
+        // 設定事件
+        let pageView = this.properties['ui']['PageView'].component;
+        pageView.node.on(PageView.EventType.PAGE_TURNING, this.onPageEvent, this);
+    }
+
+    public onPageEvent(pageView:PageView, args) {
+        console.log(pageView.curPageIdx, args);
+        const curPageIdx = pageView.curPageIdx;
+        const length = pageView.content.children.length;
+        if ( curPageIdx === 0 ) {
+            pageView.scrollToPage(length - 2, 0.01);
+        } else if ( curPageIdx === length - 1 ) {
+            pageView.scrollToPage(1, 0.01);
+        }
     }
 
 
@@ -88,7 +120,6 @@ export class GameInformation extends Component {
     }
 
     public displayNumber(value:number) : string{
-        if ( value >= 1000000 ) return Utils.numberCommaM(value);
         return Utils.numberComma(value); 
     }
 
@@ -113,7 +144,7 @@ export class GameInformation extends Component {
         this.changePaytableSymbol();
         Utils.commonActiveUITween(this.node, true);
 
-        this.properties['ui']['PageView'].component.scrollToPage(0, 0);
+        this.properties['ui']['PageView'].component.scrollToPage(1, 0.1);
         this.properties['ui']['ScrollView'].component.scrollToTop(0);
     }
 

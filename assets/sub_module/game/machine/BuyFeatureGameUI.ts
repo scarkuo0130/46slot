@@ -71,7 +71,7 @@ export class BuyFeatureGameUI {
         Utils.commonActiveUITween(this.node, false); 
     }
 
-    public static CloseUI() { BuyFeatureGameUI.Instance.onClickCloseBuyFGUI(); }
+    public static CloseUI(confirm:boolean=false) { BuyFeatureGameUI.Instance.onClickCloseBuyFGUI(); }
 
     public async onClickOpenBuyFGUI() { 
         if ( this.machine.isBusy ) return;
@@ -107,6 +107,21 @@ export class BuyFeatureGameUI {
         if ( idx >= max ) idx = 0;
         this.betIdx = idx;
         this.refreshTotalBet();
+        this.refreshControllerTotalBet(idx);
+    }
+
+    /**
+     * 連動 Controller 的 TotalBet
+     * @param idx 
+     * @returns 
+     */
+    private refreshControllerTotalBet(idx:number) {
+        const bet_available_idx = gameInformation.bet_available_idx;
+        if ( idx + 1 !== bet_available_idx ) return this.controller.changeTotalBetIdx(idx);
+        
+        const totalBet = this.controller.calculateTotalBet(idx);
+        this.machine.eventChangeTotalBet();
+        this.machine.paytable.changeTotalBet(totalBet);
     }
 
     private get betValue() { 

@@ -512,7 +512,7 @@ export class Controller extends Component {
         if ( to == null ) return;
         if ( to === from ) return;
         if ( tweenSec === 0 ) return this.setBalance(to);
-
+        // console.warn('changeBalance', to, from, tweenSec);
         from = from ?? this.props['ui']['balance']['lastValue'];
         return await this.tweenValue(to, from, tweenSec, (data)=> this.setBalance(data['value']), this.props['ui']['balance']['event']);
     }
@@ -673,7 +673,7 @@ export class Controller extends Component {
      * 改變押注 
      * @param idx {number} 指定押注Index
      */
-    private changeTotalBetIdx(idx:number) {
+    public changeTotalBetIdx(idx:number) {
         
         const length = this.betIdxLength;
 
