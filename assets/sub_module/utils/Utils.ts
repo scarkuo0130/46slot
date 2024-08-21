@@ -65,7 +65,7 @@ export class Utils {
                 continue;
             }
             let node: any, path : string;
-
+            if ( subProperty == null ) continue;
             if ( subProperty[DATA_TYPE.SCENE_PATH] != null ) {
                 path = subProperty[DATA_TYPE.SCENE_PATH];
                 if ( path == null || typeof(path) !== 'string' ) continue;

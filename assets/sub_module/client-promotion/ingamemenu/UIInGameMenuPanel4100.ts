@@ -17,6 +17,7 @@ import { igmButtonUtils } from '../utils/igmButtonUtils';
 // import { GoogleAnalytics } from '../../analytics/GoogleAnalytics';
 import { Utils } from '../../utils/Utils';
 import { SoundManager, PLAY_MODE } from '../../game/machine/SoundManager';
+import { UIPromotionTips } from './PromotionTips/UIPromotionTips';
 // import { promotionTipWindow } from '../../../4500/scripts/promotionTipWindow';
 
 const { ccclass, property } = _decorator;
@@ -458,6 +459,7 @@ export class UIInGameMenuPanel4100 extends Component {
     }
 
     async fetchPromotionBrief () {
+        console.warn('fetchPromotionBrief');
         const GET_PROMOTION_BRIEF = 'get_promotion_brief';
         let promotionBrief = {
             command: GET_PROMOTION_BRIEF,
@@ -690,6 +692,10 @@ export class UIInGameMenuPanel4100 extends Component {
 
         let promotionResponse = await this.fetchPromotionBrief();
         this.processPromotionBriefResponse( promotionResponse );
+        console.log('afterGameReadyToSpin', promotionResponse);
+        if ( UIPromotionTips !== undefined ) {
+            UIPromotionTips.DisplayPromotion( promotionResponse );
+        }
         // this.scriptPromotionTipWindow.setResponse( promotionResponse );
 
         let igmStatusResponse = await this.fetchInGameMenuStatus();

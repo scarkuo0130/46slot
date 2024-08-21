@@ -117,7 +117,7 @@ export class BuyFeatureGameUI {
      */
     private refreshControllerTotalBet(idx:number) {
         const bet_available_idx = gameInformation.bet_available_idx;
-        if ( idx + 1 !== bet_available_idx ) return this.controller.changeTotalBetIdx(idx);
+        if ( idx !== bet_available_idx - 1 ) return this.controller.changeTotalBetIdx(idx);
         
         const totalBet = this.controller.calculateTotalBet(idx);
         this.machine.eventChangeTotalBet();
