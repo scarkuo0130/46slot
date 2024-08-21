@@ -48,6 +48,14 @@ export class GameInformation extends Component {
         this.infinityPageView();
     }
 
+    protected start() {
+        let pageView = this.properties['ui']['PageView'].component;
+        let children = pageView.indicator.node.children;
+        if ( children == null || children.length === 0 ) return;
+        children[0].active = false;
+        children[children.length-1].active = false;
+    }
+
     private copyPageToScrollView() {
         let pageContent = this.properties['ui']['pageContent'].node;
         let scrollContent = this.properties['ui']['scrollContent'].node;
@@ -80,7 +88,6 @@ export class GameInformation extends Component {
     }
 
     public onPageEvent(pageView:PageView, args) {
-        console.log(pageView.curPageIdx, args);
         const curPageIdx = pageView.curPageIdx;
         const length = pageView.content.children.length;
         if ( curPageIdx === 0 ) {
@@ -89,7 +96,6 @@ export class GameInformation extends Component {
             pageView.scrollToPage(1, 0.01);
         }
     }
-
 
     // 紀錄 paytable 的 label
     public paytableSymbols = {};
@@ -120,7 +126,7 @@ export class GameInformation extends Component {
     }
 
     public displayNumber(value:number) : string{
-        return Utils.numberComma(value); 
+        return Utils.changeUnit(value, true); 
     }
 
     // 取得 paytable 的 label
@@ -129,9 +135,9 @@ export class GameInformation extends Component {
         let totalBet = this.machine.totalBet;
         let paytable = SymbolPayTable[symbol];
         let value = [ this.displayNumber(totalBet*paytable[3]),this.displayNumber(totalBet*paytable[4]),this.displayNumber(totalBet*paytable[5]) ];
-        let str = `3 ${value[0]}\n`
-                + `4 ${value[1]}\n`
-                + `5 ${value[2]}`;
+        let str = `3  ${value[0]}\n`
+                + `4  ${value[1]}\n`
+                + `5  ${value[2]}`;
 
         return str;
     }

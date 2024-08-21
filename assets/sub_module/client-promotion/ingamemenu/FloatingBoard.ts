@@ -2,6 +2,7 @@ import { _decorator, Component, Enum, Toggle, Vec3, Node, AudioSource, ITweenOpt
 import { igmMoveEffectConfig, igmTweenEasingEnum } from '../utils/igmEffectUtils';
 import { Utils } from '../../utils/Utils';
 import { igmButtonUtils } from '../utils/igmButtonUtils';
+import { PLAY_MODE, SoundManager } from '../../game/machine/SoundManager';
 const { ccclass, property } = _decorator;
 export enum ShowPopupButtonType {
     NONE,  //不顯示
@@ -95,6 +96,12 @@ export class FloatingBoard extends Component {
             this.toggleRight.node.active = false;
         }
     }
+
+    public async closeToggle() {
+        console.log('closeToggle', this.toggleLeft.isChecked);
+        if ( this.toggleLeft.isChecked === true ) return;
+        this.onToggleClick();
+    }
     /**
      * 箭頭(toggle)押下後,按鈕(button)往左或右
      */
@@ -164,9 +171,9 @@ export class FloatingBoard extends Component {
      * 播放按鍵音效
      */
     public playSound ( volume: number = 1.0, loop: boolean = false ): void {
-        if ( !this.audioSource ) {
-            return;
-        }
+        if ( !this.audioSource ) return;
+        if ( SoundManager.Mode === PLAY_MODE.NO_SOUND ) return;
+        
         this.audioSource.loop = loop;
         if ( this.soundMuted ) {
             this.audioSource.volume = 0;

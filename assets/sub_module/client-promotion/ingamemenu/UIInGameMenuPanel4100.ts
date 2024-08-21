@@ -16,6 +16,7 @@ import { FloatingBoard } from './FloatingBoard';
 import { igmButtonUtils } from '../utils/igmButtonUtils';
 // import { GoogleAnalytics } from '../../analytics/GoogleAnalytics';
 import { Utils } from '../../utils/Utils';
+import { SoundManager, PLAY_MODE } from '../../game/machine/SoundManager';
 // import { promotionTipWindow } from '../../../4500/scripts/promotionTipWindow';
 
 const { ccclass, property } = _decorator;
@@ -157,12 +158,12 @@ export class UIInGameMenuPanel4100 extends Component {
     }
 
     onResize (): void {
+        this.floatingBoardCurrent.closeToggle();
         let height = Math.max( window.innerHeight, document.documentElement.clientHeight )
         let width = Math.max( window.innerWidth, document.documentElement.clientWidth );
         let isPortrait = ( height > width );
 
         this.inGameMenuContent.onResize( isPortrait );
-
         this.promotionContent.onResize( isPortrait );
 
         let innerWidth = window.innerWidth;
@@ -208,7 +209,7 @@ export class UIInGameMenuPanel4100 extends Component {
     public onButtonInGameMenuClick (): void {
         this.getInGameMenuData();
         //GoogleAnalytics.AddGtag( 'event', 'in_game_menu_open_ui', { 'event_category': 'open_ui', 'event_label': 'open_ui' } );
-        Utils.GoogleTag('in_game_menu_open_ui', { 'event_category': 'open_ui', 'event_label': 'open_ui' } );
+        Utils.GoogleTag('InGameMenuOpenUI', { 'event_category': 'open_ui', 'event_label': 'open_ui' } );
     }
     /** 浮動按鈕左下 撒幣＋晉升賽＋錦標賽 */
     public onButtonPromotionClick (): void {
@@ -221,7 +222,7 @@ export class UIInGameMenuPanel4100 extends Component {
 
         this.playSound();
         //GoogleAnalytics.AddGtag( 'event', 'promotion_open', { 'event_category': 'open_ui', 'event_label': 'open_ui' } );
-        Utils.GoogleTag('promotion_open', { 'event_category': 'open_ui', 'event_label': 'open_ui' } );
+        Utils.GoogleTag('PromotionOpen', { 'event_category': 'open_ui', 'event_label': 'open_ui' } );
     }
     /** 浮動按鈕左上 Jackpot */
     public onButtonJackpotClick (): void {
@@ -233,7 +234,7 @@ export class UIInGameMenuPanel4100 extends Component {
 
         this.playSound();
         //GoogleAnalytics.AddGtag( 'event', 'promotion_open', { 'event_category': 'open_jackpot_ui', 'event_label': 'open_jackpot_ui' } );
-        Utils.GoogleTag('promotion_open', { 'event_category': 'open_jackpot_ui', 'event_label': 'open_jackpot_ui' } );
+        Utils.GoogleTag('PromotionOpen', { 'event_category': 'open_jackpot_ui', 'event_label': 'open_jackpot_ui' } );
     }
 
     //XMLHttpRequest
@@ -1001,9 +1002,10 @@ export class UIInGameMenuPanel4100 extends Component {
      * 播放按鍵音效
      */
     public playSound ( volume: number = 1.0, loop: boolean = false ): void {
-        if ( !this.audioSource ) {
-            return;
-        }
+        if ( !this.audioSource ) return;
+        console.log( 'playSound', SoundManager.Mode );
+        if ( SoundManager.Mode === PLAY_MODE.NO_SOUND ) return;
+
         this.audioSource.loop = loop;
         if ( this.soundMuted ) {
             this.audioSource.volume = 0;

@@ -158,11 +158,13 @@ export class AutoSpin extends Component {
         autoSpin.spinTimes      = spinTimes;
         autoSpin.untilFeature   = untilFeatureActive;
 
-        Utils.GoogleTag('StartAutoSpin', {'event_category':'AutoSpin', 'event_label':'StartAutoSpin', 'value': {
+        Utils.GoogleTag('StartAutoSpin', {
+            'event_category' :'AutoSpin', 
+            'event_label'    :'StartAutoSpin', 
             'spinTimes'      : spinTimes,
             'spinTimeActive' : +spinTimeActive,
             'untilFeature'   : +untilFeatureActive,
-        }});
+        });
         this.decrementCount();
         SoundManager.PlayButtonSound();
     }
@@ -245,12 +247,7 @@ export class AutoSpin extends Component {
         if ( this.machine.featureGame ) return false;
         if ( this.enabled === false )   return false;
 
-        Utils.GoogleTag('StopAutoSpin', {'event_category':'AutoSpin', 'event_label':'StopAutoSpin', 'value': {
-            'spinTimes'      : this.properties.autoSpin.spinTimes,
-            'spinTimeActive' : +this.properties.autoSpin.spinTimeActive,
-            'untilFeature'   : +this.properties.autoSpin.untilFeature,
-        }});
-
+        Utils.GoogleTag('StopAutoSpin', {'event_category':'AutoSpin', 'event_label':'StopAutoSpin'});
         this.closeAutoSpinTimes();
         this.autoSpinTimeLabel.string = '';
         this.active = false;

@@ -88,6 +88,8 @@ export class Payway4600 extends Payway {
             'freeGame_l':   { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Background/FG Background/background_landscape/bg01' },
             'dragon_l':     { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Items/Dragon' },
             'dragon_p':     { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Items 2/Dragon' },
+            'phoenix_l':    { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Items/Phoenix' },
+            'phoenix_p':    { [DATA_TYPE.TYPE]: sp.Skeleton,        [DATA_TYPE.SCENE_PATH]: 'Canvas/Machine/Items 2/Phoenix' },
         },
 
         'buyFeatureGame': {
@@ -182,6 +184,21 @@ export class Payway4600 extends Payway {
         Utils.playSpine(dragon, 'play', true);
     }
 
+    public async phoenix_boar() {
+        const orientation = Viewport.Orientation;
+        let phoenix: sp.Skeleton = null;
+        if ( orientation === Orientation.PORTRAIT ) {
+            phoenix = this.properties['background']['phoenix_p'][DATA_TYPE.COMPONENT];
+        } else {
+            phoenix = this.properties['background']['phoenix_l'][DATA_TYPE.COMPONENT];
+        }
+
+        phoenix.node.active = true;
+        SoundManager.PlaySoundByID('sfx_phoenix');
+        await Utils.playSpine(phoenix, 'play02', false);
+        Utils.playSpine(phoenix, 'play', true);
+    }
+
     public async flash_bg_light() {
         if ( this.bg_light == null ) return;
         this.bg_light.node.active = true;
@@ -227,7 +244,8 @@ export class Payway4600 extends Payway {
         const total_win = this.gameResult.pay_credit_total;
         const total_bet = this.machine.totalBet;
 
-        if ( total_win >= total_bet ) this.dragon_boar();
+        if ( total_win >= total_bet )   return this.dragon_boar();
+        if ( total_win > 0 )            return this.phoenix_boar();
     }
 
     /**
@@ -394,6 +412,7 @@ export class Payway4600 extends Payway {
         SoundManager.PlaySoundByID('sfx_sc_collect');
         await Utils.delay(1000);
         this.dragon_boar();
+        this.phoenix_boar();
     }
 
     // 門的 Spine Component
@@ -444,6 +463,7 @@ export class Payway4600 extends Payway {
         await Utils.delay(800);
 
         if ( level != lastLevel ) SoundManager.PlaySoundByID(this.TYPE_POT_SOUND[level]);
+        if ( level === 4 ) SoundManager.PlaySoundByID('sfx_jp_collected');
         await Utils.delay(200);
         
         if (open === false) {
@@ -471,7 +491,7 @@ export class Payway4600 extends Payway {
     public async loop_play_full_pot_ani() {
         if ( this.JP_LEVEL !== 4 ) return;
         const spine: sp.Skeleton = this.jp(JP_TYPE.POT).ani.component;
-        SoundManager.PlaySoundByID('sfx_jp_collected');
+        // SoundManager.PlaySoundByID('sfx_jp_collected');
         await Utils.playSpine(spine, 'play05', false);
         await Utils.delay(1000);
         this.loop_play_full_pot_ani();
@@ -604,6 +624,7 @@ export class Payway4600 extends Payway {
         SoundManager.PlaySoundByID('sfx_fg_cutscene');                          // 觸發 Free Game 警鈴音效
 
         if (this.isFreeGame) {                                                  // 如果已經在 Free Game 中，顯示觸發 UI
+            this.phoenix_boar();
             await this.dragon_boar();
             const triggerUI = this.properties['freeGame']['trigger_ui'].component;
             triggerUI.node.active = true;
@@ -778,6 +799,7 @@ export class Payway4600 extends Payway {
         endEvent = null;
         await Utils.delayEvent(endEvent);
         this.dragon_boar();
+        this.phoenix_boar();
     }
 
     /** 計算 NearMiss 位置 

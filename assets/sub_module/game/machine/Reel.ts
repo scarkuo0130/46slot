@@ -414,26 +414,17 @@ export class Reel extends Component {
      * @description 滾輪開始滾動
      */
     public async spin() {
-        console.log('Reel Spin');
         this.Rest();
 
-        console.log('Reel Spin step 1');
         this.changeState(REEL_STATE.SPINNING); // 開始滾輪
         this.startRolling();      // 啟動滾輪
-
-        console.log('Reel Spin step 2');
         await this.rolling();     // 滾輪持續滾動
 
-        console.log('Reel Spin step 3');
         this.changeState(REEL_STATE.STOPPING); // 停止滾輪
 
-        console.log('Reel Spin step 4');
         await this.stopRolling(); // 通知停止滾輪
-
-        console.log('Reel Spin step 5');
         await this.paytable.stopRolling(); // 通知停止滾輪
 
-        console.log('Reel Spin step 6');
         this.changeState(REEL_STATE.IDLE);  // 恢復正常狀態
         await Utils.delayEvent(this.properties.handler.stoping, 'done'); // 等待滾輪靜止
         

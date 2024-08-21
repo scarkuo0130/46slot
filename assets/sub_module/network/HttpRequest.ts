@@ -4,6 +4,8 @@ import { gameInformation } from '../game/GameInformation';
 import { playerInformation } from '../game/PlayerInformation';
 import { slotData } from '../game/SlotData';
 import { DataManager } from '../data/DataManager';
+import { Utils } from '../utils/Utils';
+import { Loading } from '../game/Loading';
 const { ccclass, property } = _decorator;
 
 export namespace HttpConstants {
@@ -54,6 +56,16 @@ export class HttpRequest {
         'get_in_game_menu_game_url': HttpRequest.getInGameMenuGameUrl
     };
 
+    public static GaErrorMessage(event:string='ErrorCode', code:any, command:string=null) {
+        let data = { 'code': code };
+        if ( command ) data['command'] = command;
+        if ( !Loading.LoadingDone ) {
+            Utils.GoogleTag('LoadingError'+code, data);
+            data['loadingFail'] = 1;
+        }
+        Utils.GoogleTag(event, data);
+    }
+
     public static establishConnect ( data: string ) {
         return new Promise( ( resolve, reject ) => {
             HttpRequest.xhr.timeout = 4 * 60 * 1000;
@@ -66,14 +78,15 @@ export class HttpRequest {
                     reject( '404' );
                 } else {
                     if ( HttpRequest.xhr.readyState === READY_STATE_CONNECT ) {
-                        // console.log( 'readyState = READY_STATE_CONNECT' );
+                        
                     } else if ( HttpRequest.xhr.readyState === READY_STATE_ARRIVED ) {
-                        // console.log( 'readyState = READY_STATE_ARRIVED' );
+                        
                     } else if ( HttpRequest.xhr.readyState === READY_STATE_PROCESS ) {
-                        // console.log( 'readyState = READY_STATE_PROCESS' );
+                        
                     } else if ( HttpRequest.xhr.readyState === READY_STATE_SUCCESS ) {
                         // console.log( 'readyState = READY_STATE_SUCCESS' );
                         let response = HttpRequest.xhr.response;
+                        let command: keyof typeof HttpRequest.parseResponse = response.command;
                         if ( response == null ) {
                             console.log( 'ERROR_INTERNET' );
                             reject( 'ERROR_INTERNET' );
@@ -81,6 +94,7 @@ export class HttpRequest {
                         }
 
                         if ( response.error_code != 0 ) {
+                            HttpRequest.GaErrorMessage('ErrorCode', response.error_code, command);
                             console.log( 'ERROR_INTERNET' );
                             reject( response.error_code );
                         }
@@ -90,7 +104,7 @@ export class HttpRequest {
                             reject( 'ERROR_INTERNET' );
                             return;
                         }
-                        let command: keyof typeof HttpRequest.parseResponse = response.command;
+                        
                         if ( HttpRequest.parseResponse[ command ] ) {
                             HttpRequest.parseResponse[ command ]( response );
                             resolve( 'success' );
@@ -102,6 +116,7 @@ export class HttpRequest {
                 }
             };
             HttpRequest.xhr.onerror = function () {
+                HttpRequest.GaErrorMessage('InternetError', this.status);
                 console.log( 'ERROR_INTERNET' );
                 reject( 'ERROR_INTERNET' );
             };

@@ -91,7 +91,8 @@ export class Viewport {
             this.checkOrientation( lockOrientation );
             // * Delay 50 ms to dispatch
             if ( this.orientation !== this.previousOrientation ) {
-                Utils.GoogleTag('orientation', {'event_category':'orientation', 'event_label':'orientation', 'value': this.orientation });
+                const event = this.orientation === Orientation.LANDSCAPE ? 'Landscape' : 'Portrait';
+                Utils.GoogleTag('Orientation'+event, {'event_category':'orientation', 'event_label':'orientation', 'value': this.orientation });
                 this.onOrientationChangeSignal.dispatch( this.orientation );
                 if ( this.onOrientationChangeEventHandler.length > 0 ) {
                     this.onOrientationChangeEventHandler.forEach( e => { e.emit( [ this.orientation, e.customEventData ] ); } );

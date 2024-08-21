@@ -23,9 +23,9 @@ export class Develop4600 extends Component {
 
     @isDevelopFunction(true)
     async start() {
-        if ( Utils.isDevelopment() === false ) return;
         await Utils.delay(1000);
-        if ( this.machine == null ) return;
+        if ( Utils.isDevelopment() === false ) return;
+        // if ( this.machine == null ) return;
         this.developOverrideFunction();
         cc.develop = this;
     }
@@ -39,6 +39,10 @@ export class Develop4600 extends Component {
         // 移除 onclick 
         let buttonNode : Node = this.machine.paytable.buyFeatureGame.properties.BuyFeatureGameUI.buyButton.node;
         buttonNode.on('click', this.DevelopClickBuyFeatureGame, this);
+    }
+
+    public testNumber(value) {
+        return Utils.changeUnit(value);
     }
 
     /**

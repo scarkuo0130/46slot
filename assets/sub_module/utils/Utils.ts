@@ -288,28 +288,27 @@ export class Utils {
         return String.fromCharCode( ...binaryData.split( ' ' ).map( binary => parseInt( binary, 2 ) ) );
     }
 
+    
     /**
      * Convert the number text to unit
      * @param value 
      * @param allowThousand 
      * @returns 
      */
-    public static changeUnit ( value: number | string, allowThousand: boolean = false ): string {
+    public static changeUnit ( value: number | string, allowThousand: boolean = true ): string {
         const THOUSAND: number = 1000;
         const MILLION: number = 1000000;
         const BILLION: number = 1000000000;
 
         let item: number = ( typeof value === 'string' ) ? parseInt( value ) : value;
         if ( item / BILLION >= 1 ) {
-            return Utils.toFixedNoRound( item / BILLION, 2 ) + 'B';
+            return Utils.toFixedNoRound( item / BILLION, 3 ) + 'B';
         } else if ( item / MILLION >= 1 ) {
-            return Utils.toFixedNoRound( item / MILLION, 2 ) + 'M';
+            return Utils.toFixedNoRound( item / MILLION, 3 ) + 'M';
         } else if ( allowThousand && item / THOUSAND >= 1 ) {
-            return Utils.toFixedNoRound( item / THOUSAND, 2 ) + 'K';
+            return Utils.toFixedNoRound( item / THOUSAND, 3 ) + 'K';
         } else {
-            let regex: RegExp = new RegExp( '^-?\\d+(?:\.\\d{0,' + ( -1 ) + '})?' );
-            let result: string = item.toString().match( regex )[ 0 ];
-            return result.replace( /(\d)(?=(\d{3})+(?!\d))/g, '$1,' );
+            return Utils.numberComma( item );
         }
     }
 
@@ -324,9 +323,11 @@ export class Utils {
         let re = new RegExp( '^-?\\d+(?:\.\\d{0,' + ( fixed || -1 ) + '})?' );
         let itemString = item.toFixed( fixed );
         let rt = itemString.match( re )[ 0 ];
-        return rt.replace( /(\d)(?=(\d{3})+(?!\d))/g, '$1,' );
+        let result = rt.replace( /(\d)(?=(\d{3})+(?!\d))/g, '$1,' );
+        while ( result.endsWith( "0" ) == true ) result = result.substring( 0, result.length - 1 );
+        if ( result.endsWith( "." ) == true ) result = result.substring( 0, result.length - 1 );
+        return result;
     }
-
     /**
      * Replace the `{0}...{1}` to args
      * @param target 

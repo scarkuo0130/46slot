@@ -157,9 +157,8 @@ export class Controller extends Component {
     }
 
     private iphoneDisableFullScreen() : boolean {
-        console.log(sys.os);
         if ( sys.isMobile === false ) return false;
-        if ( sys.os !== 'iOS' ) return false;
+        if ( sys.os !== 'iOS' )       return false;
 
         const fullScreen = this.props['fullScreen'];
         fullScreen['fullscreen_p'][DATA_TYPE.NODE].active = false;
@@ -253,8 +252,6 @@ export class Controller extends Component {
         this.initMask();
         this.initOptionButton();
         this.initSoundMode();
-
-        console.log(this.properties);
         input.on(Input.EventType.KEY_DOWN, this.onKeySpaceDown, this);
     }
 
@@ -337,13 +334,13 @@ export class Controller extends Component {
             if ( this.machine.fastStopping ) return false; // 已經是快速停止狀態，不做任何事
 
             let times = this.props['clickSpin'][1]++;   // 紀錄快停次數
-            Utils.GoogleTag('ClickSpinStop', {'event_category':'Spin', 'event_label':'ClickSpinStop', 'times': times});
+            Utils.GoogleTag('ClickSpinStop', {'event_category':'Spin', 'event_label':'ClickSpinStop'});
             this.machine.fastStopping = true;           // 設定快速停止狀態
             return false;
         }
 
         let times = this.props['clickSpin'][0]++;       // 紀錄 SPIN 次數
-        Utils.GoogleTag('ClickSpin', {'event_category':'Spin', 'event_label':'ClickSpin', 'value':this.betIdx, 'times': times});
+        Utils.GoogleTag('ClickSpin', {'event_category':'Spin', 'event_label':'ClickSpin', 'value':this.betIdx});
 
         this.clickOption(null, false);                  // 關閉 Option 功能
         await this.machine.clickSpin();                 // 等待 Spin 結束
@@ -362,7 +359,6 @@ export class Controller extends Component {
      * @param active 切換按鈕狀態, 預設為反向
      */
     protected clickOption(event, active:boolean=null) {
-        console.log('clickOption', active);
         if ( this.machine.isBusy === true && active !== false ) return; 
 
         const orientation = Viewport.instance.getCurrentOrientation();
@@ -437,7 +433,6 @@ export class Controller extends Component {
 
     protected clickInGameMenu() {
         if ( this.machine.isBusy === true ) return; 
-        console.log('clickInGameMenu');
         Utils.GoogleTag('ClickInGameMenu', {'event_category':'InGameMenu', 'event_label':'ClickInGameMenu'});
     }
 
@@ -445,7 +440,6 @@ export class Controller extends Component {
         if ( this.machine.isBusy === true ) return; 
         Utils.GoogleTag('ClickBetRecord', {'event_category':'BetRecord', 'event_label':'ClickBetRecord'});
         const betrecordurl = gameInformation.fullBetrecordurl;
-        console.log('clickRecord', gameInformation.betrecordurl);
         window.open(betrecordurl, '_blank');
     }
 
@@ -484,7 +478,6 @@ export class Controller extends Component {
 
     protected clickFullscreen() {
         if ( this.machine.isBusy === true ) return; 
-        console.log('clickFullscreen');
         const isFullScreen = this.machine.isFullScreen;
 
         this.props['fullScreen']['fullscreen_p'][DATA_TYPE.NODE].active      = isFullScreen;
@@ -512,7 +505,6 @@ export class Controller extends Component {
         if ( to == null ) return;
         if ( to === from ) return;
         if ( tweenSec === 0 ) return this.setBalance(to);
-        // console.warn('changeBalance', to, from, tweenSec);
         from = from ?? this.props['ui']['balance']['lastValue'];
         return await this.tweenValue(to, from, tweenSec, (data)=> this.setBalance(data['value']), this.props['ui']['balance']['event']);
     }
@@ -550,7 +542,6 @@ export class Controller extends Component {
      * @returns 
      */
     public async addTotalWin(value:number) {
-        console.log('addTotalWin', value,this.props['ui']['totalWin']['lastValue']);
         const totalWin = this.props['ui']['totalWin']['lastValue'];
         return await this.changeTotalWin(totalWin + value);
     }

@@ -236,7 +236,7 @@ export class BigWin extends Component {
         }
 
         this.quickStop = true;
-        Utils.GoogleTag('QuickEnd', {'event_category':'BigWin', 'event_label':'QuickEnd', 'value':this.playing });
+        Utils.GoogleTag('BigWinQuickEnd', {'event_category':'BigWin', 'event_label':'QuickEnd', 'value':this.playing });
     }
 
     public bigWinLabel() { return gameInformation._winLevelRate; }

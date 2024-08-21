@@ -64,7 +64,6 @@ export class Loading extends Component {
     @property({ displayName: '是否為預覽模式, 如果Loading.ts不是掛在 Loading Scene, 請打勾', tooltip: 'isPreview', group: { name: 'Preview', id: '0' } })
     public isPreview: boolean = false;
 
-
     @property({ type: [LoadingImage], displayName: 'PlatformImage', tooltip: '載入平台圖片', group: { name: 'LoadingPlatfromImage', id: '0' } })
     public platformImage: LoadingImage[] = [];
 
@@ -81,8 +80,13 @@ export class Loading extends Component {
 
     public static noLoading: boolean = false;
 
+    public _loadingDone: boolean = false;
+    public static get LoadingDone() { return Loading.Instance._loadingDone; }
+    public get loadingDone() { return this._loadingDone; }
+
     onLoad() {
         if (Loading.Instance !== null) return Loading.noLoading = true;
+        this.loadingTime = Date.now();
         this.maskSprite.node.active = true;
         Loading.Instance = this;
         Utils.getConfig();
@@ -91,8 +95,10 @@ export class Loading extends Component {
         GoogleAnalytics.instance.initialize();
     }
 
+    private loadingTime = 0;
+    public static get LoadingTime() { return Loading.Instance.loadingTime; }
+
     start() {
-        let loadingTime = Date.now();
         if (Loading.noLoading) return Machine.EnterGame();
         Utils.GoogleTag('EnterGame', { 'currency': gameInformation.currency, 'language': gameInformation.lang });
         this.tweenMask();
@@ -103,8 +109,6 @@ export class Loading extends Component {
             .then(this.getGameData)
             .then(() => {
                 this.loadGameScene();
-                loadingTime = Date.now() - loadingTime;
-                Utils.GoogleTag('LoadingTime', { 'time': loadingTime });
             })
             .catch(function (e) {
                 DialogUI.OpenErrorMessage('405');
@@ -252,7 +256,11 @@ export class Loading extends Component {
             }
         }, function () {
             EventManager.instance.dispatchEvent(EventType.UPDATE_PROGRESS, 1);
-            director.loadScene(Loading.Instance.GameScene);
+            director.loadScene(Loading.Instance.GameScene, (err, scene )=>{
+                self._loadingDone = true;
+                let loadingTime = Math.floor((Date.now() - self.loadingTime)/1000 + 4);
+                Utils.GoogleTag('LoadingEnd', { 'time': loadingTime });
+            });
         });
     }
 }
