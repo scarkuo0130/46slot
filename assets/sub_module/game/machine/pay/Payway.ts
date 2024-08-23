@@ -147,10 +147,11 @@ export class Payway extends Paytable {
 
         await this.reelMaskActive(true);      // 打開遮罩
         let idx = 0;
+        this.machine.state = Machine.SPIN_STATE.PERFORM_SCORE;
         while(true) {
             if ( loopTime !== this.loopTime ) return;
             await this.performSingleLine(lines[idx], true);
-            if ( this.machine.state !== Machine.SPIN_STATE.IDLE ) return;
+            if ( this.machine.state !== Machine.SPIN_STATE.PERFORM_SCORE ) return;
             this.reel.moveBackToWheel();        // 將所有 Symbol 移回輪中
             idx++;
             if ( idx >= lines.length ) idx = 0;

@@ -20,6 +20,12 @@ export interface IOrientable {
     landscapeLayout (): void;
 }
 
+export enum ORIENTATION_EVENT {
+    ON_PRE_ORIENTATION_CHANGE   = 'onPreOrientationChange',
+    ON_ORIENTATION_CHANGE       = 'onOrientationChange',
+    ON_ORIENTATION_CHANGE_END   = 'onOrientationChangeEnd',
+}
+
 @ccclass( 'Viewport' )
 export class Viewport {
 
@@ -43,6 +49,8 @@ export class Viewport {
 
     public onOrientationChangeEventHandler: EventHandler[] = [];
 
+    
+
     protected previousOrientation: Orientation = Orientation.PORTRAIT;
     protected orientation: Orientation = Orientation.PORTRAIT;
 
@@ -64,7 +72,21 @@ export class Viewport {
             if ( EDITOR ) return;
             window.addEventListener( 'resize', this.resizeHandler.bind( this ) );
         }
+
+        screen.on('fullscreen-change', this.fullscreenChangeHandler.bind( this ) );
+        this.eventEmitters = {  
+            [ORIENTATION_EVENT.ON_PRE_ORIENTATION_CHANGE]:  [],
+            [ORIENTATION_EVENT.ON_ORIENTATION_CHANGE]:      [],
+            [ORIENTATION_EVENT.ON_ORIENTATION_CHANGE_END]:  [],
+        };
     }
+
+    public static on ( event: ORIENTATION_EVENT, callback: Function ) {
+        Viewport.instance.eventEmitters[event].push( callback );
+        return callback;
+    }
+
+    public fullscreenChangeHandler ( width: number, height: number ) {}
 
     public static get Orientation (): Orientation { return Viewport.instance.getCurrentOrientation();}
 
@@ -83,23 +105,29 @@ export class Viewport {
         this.onOrientationChangeEventHandler.splice( idx, 1 );
     }
 
-    protected resizeHandler ( lockOrientation = null ): void {
+    public eventEmitters: any = {  };
+
+    private isResizeHandlerLocked: boolean = false;
+    protected async resizeHandler ( lockOrientation = null ) {
         if ( EDITOR === true ) return;
-        console.log( 'resizeHandler');
-        window.setTimeout( ( event ) => {
-            console.log( 'resizeHandler', [ this.orientation, this.previousOrientation ] );
-            this.checkOrientation( lockOrientation );
-            // * Delay 50 ms to dispatch
-            if ( this.orientation !== this.previousOrientation ) {
-                const event = this.orientation === Orientation.LANDSCAPE ? 'Landscape' : 'Portrait';
-                Utils.GoogleTag('Orientation'+event, {'event_category':'orientation', 'event_label':'orientation', 'value': this.orientation });
-                this.onOrientationChangeSignal.dispatch( this.orientation );
-                if ( this.onOrientationChangeEventHandler.length > 0 ) {
-                    this.onOrientationChangeEventHandler.forEach( e => { e.emit( [ this.orientation, e.customEventData ] ); } );
-                }
-                console.log( 'Orientation changed', this.onOrientationChangeEventHandler );
-            }
-        }, 50 );
+        if ( this.isResizeHandlerLocked === true ) return;
+        this.isResizeHandlerLocked = true;
+
+        await Promise.all( this.eventEmitters[ORIENTATION_EVENT.ON_PRE_ORIENTATION_CHANGE].map( async e => await e(this.orientation) ) );
+        await new Promise( ( resolve ) => { setTimeout( resolve, 50 ); } ); // * Delay 50 ms to dispatch
+        this.checkOrientation( lockOrientation );
+            
+        if ( this.orientation !== this.previousOrientation ) {
+            this.onOrientationChangeSignal.dispatch( this.orientation );
+            this.onOrientationChangeEventHandler.forEach( e => { e.emit( [ this.orientation, e.customEventData ] ); } );
+            await Promise.all( this.eventEmitters[ORIENTATION_EVENT.ON_ORIENTATION_CHANGE].map( async e => await e(this.orientation) ) );
+            await Promise.all( this.eventEmitters[ORIENTATION_EVENT.ON_ORIENTATION_CHANGE_END].map( async e => await e(this.orientation) ) );
+
+            const event = this.orientation === Orientation.LANDSCAPE ? 'Landscape' : 'Portrait';
+            Utils.GoogleTag('Orientation'+event, {'event_category':'orientation', 'event_label':'orientation', 'value': this.orientation });
+        }
+
+        this.isResizeHandlerLocked = false;
     }
 
     public static lockResizeHandler ( lockOrientation = null ) { Viewport.instance.resizeHandler( lockOrientation ); }

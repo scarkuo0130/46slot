@@ -758,7 +758,7 @@ export class Utils {
             if ( data == null ) {
                 data = { 'event_category': 'click' };
             } 
-            console.log('GoogleTag', event, data);
+            // console.log('GoogleTag', event, data);
             return gtag('event', event, data ); 
 
         } catch (e) { 

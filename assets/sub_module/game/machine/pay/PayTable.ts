@@ -169,7 +169,6 @@ export class Paytable extends Component {
         await this.reel.spin();                             // 等待 SPIN 結束
         this.machine.state = Machine.SPIN_STATE.STOPPING;
         await this.processWinningScore();                   // 執行報獎流程
-        this.machine.state = Machine.SPIN_STATE.IDLE;
         eventTarget?.emit('done');
         
         if ( this.machine.featureGame === true ) return this.normalState(false);    // 如果是FeatureGame, 不進入輪播報獎流程
@@ -179,11 +178,9 @@ export class Paytable extends Component {
 
     public normalState(standby:boolean=true) {
         this.reelMaskActive(false);
-        this.breakPerformSingleLineLoop();
+        this.machine.state = Machine.SPIN_STATE.IDLE;
 
-        if ( standby === false ) return;
-        // 沒有待命，Symbol 出框
-        this.reel.moveAllWheelShowDropSymbol();
+        if ( standby === false ) return this.breakPerformSingleLineLoop();
     }
 
     /**
@@ -392,5 +389,14 @@ export class Paytable extends Component {
     // #endregion
 
     public rollingRandomSymbols() { return null; }
+    
+    /** 
+    * 全螢幕更換事件
+     * @override 可覆寫
+     * @param isFullScreen { boolean } 是否全螢幕
+     * @param width        { number  } 寬度
+     * @param height       { number  } 高度
+    */
+    public async fullscreenChangeHandler(isFullScreen:boolean, width: number, height: number) { }
 
 }

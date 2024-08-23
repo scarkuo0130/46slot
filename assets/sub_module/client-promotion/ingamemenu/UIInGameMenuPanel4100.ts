@@ -158,8 +158,11 @@ export class UIInGameMenuPanel4100 extends Component {
         igmButtonUtils.setNodeEventOffHover( this.buttonJackpot.node );
     }
 
-    onResize (): void {
-        this.floatingBoardCurrent.closeToggle();
+    public isOnResize: boolean = false;
+    async onResize (): void {
+        if ( this.isOnResize === true ) return;
+        this.isOnResize = true;
+        await this.floatingBoardCurrent.closeToggle();
         let height = Math.max( window.innerHeight, document.documentElement.clientHeight )
         let width = Math.max( window.innerWidth, document.documentElement.clientWidth );
         let isPortrait = ( height > width );
@@ -188,6 +191,7 @@ export class UIInGameMenuPanel4100 extends Component {
         this.promotionContent.setRatio( ratio );
 
         this.resetPosition();
+        this.isOnResize = false;
     }
 
     public resetPosition (): void {
@@ -687,16 +691,11 @@ export class UIInGameMenuPanel4100 extends Component {
 
 
     async afterGameReadyToSpin () {
-        //this.mainUIContainer = event.detail.container;
-        //this.userAccount = event.detail.account;
-
         let promotionResponse = await this.fetchPromotionBrief();
         this.processPromotionBriefResponse( promotionResponse );
-        console.log('afterGameReadyToSpin', promotionResponse);
         if ( UIPromotionTips !== undefined ) {
             UIPromotionTips.DisplayPromotion( promotionResponse );
         }
-        // this.scriptPromotionTipWindow.setResponse( promotionResponse );
 
         let igmStatusResponse = await this.fetchInGameMenuStatus();
         this.inGameMenuStatus = igmStatusResponse[ 0 ].status as number;

@@ -1,5 +1,5 @@
 import { _decorator, Component, Node, NodePool, instantiate, Vec3, Material, sp } from 'cc';
-import { _utilsDecorator } from '../utils/Utils';
+import { _utilsDecorator, Utils } from '../utils/Utils';
 const { ccclass, property, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -74,6 +74,7 @@ export class ObjectPool extends Component {
 
     @isDevelopFunction(true)
     public static debugConsole() {
+        if ( Utils.isDevelopment() === false ) return;
         let pool = ObjectPool.Pool;
         let keys = Object.keys(pool);
         let data = {};
@@ -90,6 +91,7 @@ export class ObjectPool extends Component {
 
     @isDevelopFunction(true)
     public debugPool() {
+        if ( Utils.isDevelopment() === false ) return;
         cc.objectPool = ObjectPool;
         return ObjectPool.debugConsole();
     }

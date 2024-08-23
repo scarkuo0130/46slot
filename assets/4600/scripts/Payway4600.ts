@@ -2,13 +2,14 @@ import { _decorator, Color, Label, Node, Sprite, sp, Vec3, tween, ParticleSystem
 import { Utils, DATA_TYPE }      from '../../sub_module/utils/Utils';
 import { Symbol, TYPE_STATE }    from '../../sub_module/game/machine/Symbol';
 import { Payway }                from '../../sub_module/game/machine/pay/Payway';
-import { Viewport, Orientation } from '../../sub_module/utils/Viewport';
 import { ObjectPool }            from '../../sub_module/game/ObjectPool';
 import { JpGame4600 }            from './jp_game/JpGame4600';
 import { FreeGame }              from '../../sub_module/game/FeatureGame/FreeGame';
 import { OrientationNode }       from '../../sub_module/develop/OrientationNode';
 import { AutoSpin }              from '../../sub_module/game/AutoSpin';
 import { SoundManager }          from '../../sub_module/game/machine/SoundManager';
+import { Machine }               from '../../sub_module/game/machine/Machine';
+import { Viewport, Orientation, ORIENTATION_EVENT } from '../../sub_module/utils/Viewport';
 const { ccclass, property } = _decorator;
 
 export enum JP_TYPE {
@@ -126,7 +127,24 @@ export class Payway4600 extends Payway {
         this.doorSpine.node.active = true;
         Utils.playSpine(this.doorSpine, 'idle', false, 1, true);
         this.properties['preload']['onload'] = new EventTarget();
+        Viewport.on(ORIENTATION_EVENT.ON_PRE_ORIENTATION_CHANGE, this.onPreOrientationChange.bind(this));
     }
+
+    /**
+     * 轉向螢幕事件
+     * @param orientation 
+     * @todo 在 Spin 完成後，才能轉向
+     */
+    public async onPreOrientationChange(orientation: Orientation) {
+
+        if ( this.machine.spinning === false ) return;
+        // Spin 中要轉向，設定快停
+        this.machine.fastStopping = true;
+
+        // 等待 Spin 完成
+        while(this.machine.spinning) await Utils.delay(100);
+    }
+
     // 給予專案 start 使用
     protected onstart() {
         this.properties['freeGame']['trigger_ui'].node.active   = false;
@@ -235,7 +253,7 @@ export class Payway4600 extends Payway {
         }
         
         // * 進入JP遊戲
-        console.log('進入free game遊戲');
+        // console.log('進入free game遊戲');
         await this.start_free_game();                           // 進入 Free Game 流程
     }
 
@@ -333,6 +351,7 @@ export class Payway4600 extends Payway {
         await Utils.tweenBezierCurve(soul, toPos, 0.5, null, true, middlePos);
         tween(soul).to(0.5, { scale: new Vec3(0, 0, 0) }, { easing: 'smooth' }).start();
         Utils.delay(1000).then(() => { ObjectPool.Put('soul', soul) }); // 回收
+        spine.setAnimation(0, 'idle', false);
     }
 
     /**
@@ -366,7 +385,7 @@ export class Payway4600 extends Payway {
             return true;
         }
 
-        this.reel.moveBackToWheel();
+        // this.reel.moveBackToWheel();
         if (fullWait) await this.play_pot_ani(false);
         else this.play_pot_ani(false);
 
@@ -703,8 +722,7 @@ export class Payway4600 extends Payway {
      * 停止滾輪, 停止滾輪音效
      */
     public async stopRolling(): Promise<void> {
-        const source = this.properties['sound']['sfx_reel_roll_loop'];
-        if (source) source.stop();
+        this.properties['sound']['sfx_reel_roll_loop']?.stop();
         return super.stopRolling();
     }
 
@@ -886,7 +904,7 @@ export class Payway4600 extends Payway {
         const spine = symbol.spine;
         await Utils.playSpine(spine, 'play', false);
         Utils.playSpine(spine, 'play02', false);
-        console.log('wild_play_win');
+        // console.log('wild_play_win');
     }
 
     public rollingRandomSymbols() :  number[] {

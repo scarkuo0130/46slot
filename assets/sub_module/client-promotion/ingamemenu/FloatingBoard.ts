@@ -98,9 +98,8 @@ export class FloatingBoard extends Component {
     }
 
     public async closeToggle() {
-        console.log('closeToggle', this.toggleLeft.isChecked);
         if ( this.toggleLeft.isChecked === true ) return;
-        this.onToggleClick();
+        await this.onToggleClick();
     }
     /**
      * 箭頭(toggle)押下後,按鈕(button)往左或右

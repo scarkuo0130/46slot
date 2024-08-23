@@ -479,13 +479,16 @@ export class Controller extends Component {
     protected clickFullscreen() {
         if ( this.machine.isBusy === true ) return; 
         const isFullScreen = this.machine.isFullScreen;
-
-        this.props['fullScreen']['fullscreen_p'][DATA_TYPE.NODE].active      = isFullScreen;
-        this.props['fullScreen']['fullscreen_exit_p'][DATA_TYPE.NODE].active = !isFullScreen;
-        this.props['fullScreen']['fullscreen_l'][DATA_TYPE.NODE].active      = isFullScreen;
-        this.props['fullScreen']['fullscreen_exit_l'][DATA_TYPE.NODE].active = !isFullScreen;
         this.machine.fullscreen(!isFullScreen);
-        Utils.GoogleTag('ClickFullScreen', {'event_category':'FullScreen', 'event_label':'ClickFullScreen', 'value':+!isFullScreen});
+    }
+
+    public async fullscreenChangeHandler(isFullScreen:boolean, width:number, height:number) {
+        this.props['fullScreen']['fullscreen_p'][DATA_TYPE.NODE].active      = !isFullScreen;
+        this.props['fullScreen']['fullscreen_exit_p'][DATA_TYPE.NODE].active = isFullScreen;
+        this.props['fullScreen']['fullscreen_l'][DATA_TYPE.NODE].active      = !isFullScreen;
+        this.props['fullScreen']['fullscreen_exit_l'][DATA_TYPE.NODE].active = isFullScreen;
+
+        Utils.GoogleTag('ClickFullScreen', {'event_category':'FullScreen', 'event_label':'ClickFullScreen', 'value':+isFullScreen});
     }
 
     /** 更新餘額顯示 */

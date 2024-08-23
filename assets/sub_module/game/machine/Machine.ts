@@ -1,4 +1,4 @@
-import { _decorator, Component, find, Mask, EventTarget, Graphics, Button, Color, screen } from 'cc';
+import { _decorator, Component, find, Mask, EventTarget, Graphics, Button, Color, screen, sys } from 'cc';
 import { AutoSpin } from '../AutoSpin';
 import { Controller } from './controller_folder/Controller';
 import { gameInformation } from '../GameInformation';
@@ -125,6 +125,7 @@ export class Machine extends Component {
         slotData.machine = this;
         this.properties['spinEvent'] = new EventTarget();
         this.developTest();
+        screen.on('fullscreen-change', this.fullscreenChangeHandler.bind( this ) );
     }
 
     @isDevelopFunction(true)
@@ -138,27 +139,29 @@ export class Machine extends Component {
 
     protected start() {
         this.properties['controller'] = Controller.Instance;
-        Viewport.lockResizeHandler();
         const mask = find('Canvas')?.getComponent(Mask);
         if ( mask ) {
             mask.enabled = true;
             mask.node.getComponent(Graphics).enabled = true;
-    }   }
+        }
+    }
 
-    public startAutoSpin() {
-        console.log('startAutoSpin');
+    public async fullscreenChangeHandler ( width: number, height: number ) {
+        await this.paytable?.fullscreenChangeHandler(this.isFullScreen, width, height);
+        await this.controller?.fullscreenChangeHandler(this.isFullScreen, width, height);
     }
 
     public static EnterGame() { Machine.Instance.enterGame(); }
     public enterGame() {
-        console.log('enterGame', gameInformation, DataManager.instance);
-        console.log(this.controller);
         this.controller.refreshBalance();
         this.controller.setTotalWin(0);
         this.controller.betIdx = gameInformation._coinValueDefaultIndex;
         this.controller.refreshTotalBet();
         this.paytable.changeTotalBet(this.totalBet);
         this.paytable.enterGame();
+        if ( screen.supportsFullScreen && sys.isMobile ) {
+            this.fullscreen(true);
+        }
     }
 
 
@@ -182,7 +185,6 @@ export class Machine extends Component {
 
         // 啟用所有按鈕
         this.controller.buttonSpinning(false);
-        console.log('spin end', AutoSpin.isActive());
         if ( AutoSpin.isActive() !== true ) this.controller.activeBusyButtons(true);
 
         if (this.featureGame !== true ) this.controller.refreshBalance(); // 更新餘額

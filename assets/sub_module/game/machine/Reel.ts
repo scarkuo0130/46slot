@@ -5,6 +5,7 @@ import { Symbol } from './Symbol';
 import { Machine } from './Machine';
 import { ObjectPool } from '../ObjectPool';
 import { Paytable } from './pay/PayTable';
+import { ORIENTATION_EVENT, Viewport } from '../../utils/Viewport';
 const { ccclass, property, menu, help, disallowMultiple } = _decorator;
 const { isDevelopFunction } = _utilsDecorator;
 
@@ -186,18 +187,16 @@ export class Reel extends Component {
         this.properties.gameOnHideEvent = new EventTarget();
         game.on("game_on_hide", this.gameOnHide, this);
         game.on("game_on_show", this.gameOnShow, this);
+        Viewport.on(ORIENTATION_EVENT.ON_PRE_ORIENTATION_CHANGE, this.waitGameOnHide.bind(this));
     }
 
     public get gameOnHideEvent() { return this.properties.gameOnHideEvent; }
     public async waitGameOnHide() {
-        while(this.gameOnHideEvent['hide']) {
-            await Utils.delay(100);
-        }
+        while(this.gameOnHideEvent['hide']) await Utils.delay(100);
     }
 
     public gameOnHide() { 
         this.gameOnHideEvent['hide'] = true;
-        console.log('game_on_hide'); 
     }
     public gameOnShow() { 
         this.gameOnHideEvent['hide'] = false;

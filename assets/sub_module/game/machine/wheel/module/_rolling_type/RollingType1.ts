@@ -250,7 +250,7 @@ export class RollingType1 extends wheelModule implements _RollingType {
 
         endEvent.removeAll('done');
         tween(wheel.container)
-            .to(sec, { position: toPos }, { easing: easing })                            // 下壓
+            .to(sec, { position: toPos },     { easing: easing })                        // 下壓
             .to(sec, { position: Vec3.ZERO }, { easing: easingBack, onComplete: () => { endEvent.emit('done'); }}) // 回彈
             .start();
         
